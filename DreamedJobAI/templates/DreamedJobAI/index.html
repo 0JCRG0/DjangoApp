@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome to the Landing Page</title>
+    <title>DreamedJobAI</title>
 </head>
 <body>
     <h1>DreamedJobAI</h1>
-    <form method="POST" action="{% url 'DreamedJobAI:index' %}">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="text" name="user_input" placeholder="Enter text here">
+        {{ form.as_p }}
         <button type="submit">Submit</button>
-    </form>
+    </form>    
 </body>
 </html>
