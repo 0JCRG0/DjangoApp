@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to the Landing Page</title>
+</head>
+<body>
+    <h1>DreamedJobAI</h1>
+    <form method="POST" action="{% url 'DreamedJobAI:index' %}">
+        {% csrf_token %}
+        <input type="text" name="user_input" placeholder="Enter text here">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
