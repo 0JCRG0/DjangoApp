@@ -1,0 +1,18 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Summarised CV</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'DreamedJobAI/summary.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Summarised CV</h1>
+        <div class="summary">
+            <p>{{ summarised_cv }}</p>
+        </div>
+        <a href="{% url 'DreamedJobAI:index' %}">Upload another CV</a>
+    </div>
+</body>
+</html>

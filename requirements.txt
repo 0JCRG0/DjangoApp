@@ -1,3 +1,6 @@
 libmagic
 pdfminer.six
-
+python-dotenv
+openai
+pandas
+pretty_errors
