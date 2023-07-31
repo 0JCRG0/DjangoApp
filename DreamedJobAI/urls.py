@@ -8,6 +8,6 @@ urlpatterns = [
 
 app_name = 'DreamedJobAI'
 urlpatterns = [
-    path('', views.landing_page, name='landing_page'),
+    path('', views.home, name='home'),
     path('index/', views.index, name='index'),
 ]

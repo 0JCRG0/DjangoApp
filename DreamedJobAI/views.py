@@ -9,8 +9,8 @@ from django.core.files.base import ContentFile
 import magic
 from .utils import summarise_cv, extract_text_from_pdf
 
-def landing_page(request):
-    return render(request, 'DreamedJobAI/landing_page.html')
+def home(request):
+    return render(request, 'DreamedJobAI/home.html')
 
 def index(request):
     if request.method == 'POST':
