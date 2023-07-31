@@ -3,37 +3,43 @@ import openai
 from dotenv import load_dotenv
 import pandas as pd
 import pretty_errors
+from .models import UserText
+import io
+from pdfminer.converter import TextConverter
+from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+from pdfminer.pdfpage import PDFPage
+from django.core.files.base import ContentFile
+import magic
 
 load_dotenv('.env')
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
-MODEL= "gpt-3.5-turbo-16k"
-#MODEL = "gpt-3.5-turbo"
-
-delimiters = "####"
-
-system_query = f""" 
-
-Your task is to extract relevant information from a candidate's CV, to find suitable job openings./
-
-Extract relevant information from the candidate's CV, delimited by {delimiters} characters, in at most 200 words. /
-
-Extract any relevant information about qualifications, previous job titles, /
-responsibilities/key duties, skills and other relevant achivements /
-(such as publications, conferences, projects, awards, etc.). /
-
-Use the following format:
-
-Qualifications:
-Previous job titles:
-Responsibilities/Key Duties:
-Skills: 
-Other Achivements:
-
-"""
-
 def summarise_cv(job_description: str) -> str:
+    MODEL= "gpt-3.5-turbo-16k"
+    #MODEL = "gpt-3.5-turbo"
+
+    delimiters = "####"
+
+    system_query = f""" 
+
+    Your task is to extract relevant information from a candidate's CV, to find suitable job openings./
+
+    Extract relevant information from the candidate's CV, delimited by {delimiters} characters, in at most 200 words. /
+
+    Extract any relevant information about qualifications, previous job titles, /
+    responsibilities/key duties, skills and other relevant achivements /
+    (such as publications, conferences, projects, awards, etc.). /
+
+    Use the following format:
+
+    Qualifications:
+    Previous job titles:
+    Responsibilities/Key Duties:
+    Skills: 
+    Other Achivements:
+
+    """
     response = openai.ChatCompletion.create(
         messages=[
             {'role': 'user', 'content': system_query},
@@ -60,3 +66,26 @@ def summarise_cv(job_description: str) -> str:
         total_cost = prompt_cost + completion_cost
         print(f"COST FOR SUMMARISING: ${total_cost} USD")
     return response_message
+
+def extract_text_from_pdf(pdf_file):
+    try:
+        mime = magic.Magic(mime=True)
+        mime_type = mime.from_buffer(pdf_file.read())
+        if mime_type == 'application/pdf':
+            pdf_file.seek(0)
+            resource_manager = PDFResourceManager()
+            text_stream = io.StringIO()
+            device = TextConverter(resource_manager, text_stream)
+            interpreter = PDFPageInterpreter(resource_manager, device)
+
+            for page in PDFPage.get_pages(pdf_file):
+                interpreter.process_page(page)
+
+            extracted_text = text_stream.getvalue()
+            device.close()
+            text_stream.close()
+            return extracted_text
+        else:
+            return None
+    except Exception:
+        return None

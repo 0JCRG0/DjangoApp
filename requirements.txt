@@ -4,3 +4,11 @@ python-dotenv
 openai
 pandas
 pretty_errors
+tiktoken
+transformers
+tensor
+nltk
+langdetect
+pyarrow
+tqdm
+scipy
