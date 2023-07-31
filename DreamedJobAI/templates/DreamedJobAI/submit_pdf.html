@@ -1,0 +1,13 @@
+{% extends 'DreamedJobAI/base.html' %}
+{% load static %}
+{% block content %}
+    <section class="feature">
+        <div class="feature-content">
+            <h1>RoleHounds</h1>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Submit</button>
+                </form>   
+    </section>
+{% endblock content %}

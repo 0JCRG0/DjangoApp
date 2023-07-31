@@ -12,7 +12,7 @@ from .utils import summarise_cv, extract_text_from_pdf
 def home(request):
     return render(request, 'DreamedJobAI/home.html')
 
-def index(request):
+def submit_pdf(request):
     if request.method == 'POST':
         form = UploadPDFForm(request.POST, request.FILES)
         if form.is_valid():
@@ -23,8 +23,8 @@ def index(request):
             user_text.extracted_text = extracted_text
             user_text.save()
             summarised_cv = summarise_cv(extracted_text)
-            return render(request, 'DreamedJobAI/summary.html', {'summarised_cv': summarised_cv})
+            return render(request, 'DreamedJobAI/summarise.html', {'summarised_cv': summarised_cv})
     else:
         form = UploadPDFForm()
-    return render(request, 'DreamedJobAI/index.html', {'form': form})
+    return render(request, 'DreamedJobAI/submit_pdf.html', {'form': form})
 

@@ -2,7 +2,7 @@
 @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css');
 
 :root {
-  --color-primary: #ee394c;
+  --color-primary: #0a0506;
   --color-secondary: #86b7fe;
   --color-light: #f2f2f2;
   --color-gray: #ced4da;
@@ -28,7 +28,7 @@ body {
 }
 
 img {
-  max-width: 10%;
+  max-width: 100%;
 }
 input,
 button,

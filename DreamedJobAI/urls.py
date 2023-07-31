@@ -9,5 +9,5 @@ urlpatterns = [
 app_name = 'DreamedJobAI'
 urlpatterns = [
     path('', views.home, name='home'),
-    path('index/', views.index, name='index'),
+    path('submit_pdf/', views.submit_pdf, name='submit_pdf'),
 ]
