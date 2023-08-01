@@ -9,8 +9,12 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-import pretty_errors
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+load_dotenv('.env')
+email_password = os.getenv("PASSWORD_EMAIL")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -128,3 +132,10 @@ STATICFILES_DIRS = [BASE_DIR / 'DreamedJobAI/static/DreamedJobAI']
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+#Email
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'maddy@rolehounds.com'
+EMAIL_HOST_PASSWORD = 'buttercuP339!'
