@@ -1,18 +1,22 @@
 from django.shortcuts import render, redirect
 from .forms import UploadPDFForm
-from .models import UserText
-import io
-from pdfminer.converter import TextConverter
-from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
-from pdfminer.pdfpage import PDFPage
-from django.core.files.base import ContentFile
-import magic
 from .utils import summarise_cv, extract_text_from_pdf
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
+from django.contrib import messages
+from django.http import HttpRequest
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.shortcuts import render, redirect
+from django.views.generic.edit import FormView
+from django.contrib.auth.models import User
+from .forms import RegisterForm
 
-def home(request):
+
+def home(request: HttpRequest):
     return render(request, 'DreamedJobAI/home.html')
 
-def submit_pdf(request):
+def submit_pdf(request: HttpRequest):
     if request.method == 'POST':
         form = UploadPDFForm(request.POST, request.FILES)
         if form.is_valid():
@@ -28,3 +32,26 @@ def submit_pdf(request):
         form = UploadPDFForm()
     return render(request, 'DreamedJobAI/submit_pdf.html', {'form': form})
 
+
+class MyLoginView(LoginView):
+    redirect_authenticated_user = True
+    
+    def get_success_url(self):
+        return reverse_lazy('DreamedJobAI:submit_pdf') 
+    
+    def form_invalid(self, form):
+        messages.error(self.request,'Invalid username or password')
+        return self.render_to_response(self.get_context_data(form=form))
+
+class RegisterView(FormView):
+    template_name = 'DreamedJobAI/registration/register.html'
+    form_class = RegisterForm
+    redirect_authenticated_user = True
+    success_url = reverse_lazy('DreamedJobAI:submit_pdf')
+    
+    def form_valid(self, form):
+        user = form.save()
+        if user:
+            login(self.request, user)
+        
+        return super(RegisterView, self).form_valid(form)

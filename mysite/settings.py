@@ -127,3 +127,4 @@ STATICFILES_DIRS = [BASE_DIR / 'DreamedJobAI/static/DreamedJobAI']
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
