@@ -1,23 +1,15 @@
-from django.shortcuts import render, redirect
 from .forms import UploadPDFForm
 from .utils import summarise_cv, extract_text_from_pdf
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.http import HttpRequest
-from django.core.mail import EmailMessage, send_mail
-from django.contrib.auth.forms import UserCreationForm
+from django.core.mail import send_mail
 from django.contrib.auth import login
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views.generic.edit import FormView
-from django.contrib.auth.models import User
 from .forms import RegisterForm
-from django.contrib.auth.views import (
-    PasswordResetView, 
-    PasswordResetDoneView, 
-    PasswordResetConfirmView,
-    PasswordResetCompleteView
-)
+
 
 
 def home(request: HttpRequest):
@@ -49,22 +41,6 @@ class MyLoginView(LoginView):
     def form_invalid(self, form):
         messages.error(self.request,'Invalid username or password')
         return self.render_to_response(self.get_context_data(form=form))
-"""
-class RegisterView(FormView):
-    template_name = 'DreamedJobAI/registration/register.html'
-    form_class = RegisterForm
-    redirect_authenticated_user = True
-    success_url = reverse_lazy('DreamedJobAI:submit_pdf')
-    
-    def form_valid(self, form):
-        user = form.save()
-        if user:
-            login(self.request, user)
-        
-        return super(RegisterView, self).form_valid(form)
-"""
-
-
 
 class RegisterView(FormView):
     template_name = 'DreamedJobAI/registration/register.html'
