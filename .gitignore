@@ -4,3 +4,4 @@ pdf_files/
 env1/
 settings.py
 assets/
+*.DS_Store

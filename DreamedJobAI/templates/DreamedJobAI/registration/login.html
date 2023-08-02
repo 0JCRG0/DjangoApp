@@ -1,8 +1,8 @@
-{%extends 'DreamedJobAI/base.html'%}
+{%extends 'DreamedJobAI/inner-page.html'%}
 
 {%block content%}
-<div class="center">
-		<form method="post" class="card" novalidate>
+
+	<form method="post" class="card" novalidate>
 			{% csrf_token %}
 		<h2 class="text-center">Log in to your account</h2>
 			{% for field in form %}
@@ -18,6 +18,6 @@
 			<p class="text-center">Forgot your password <a href="{%url 'DreamedJobAI:password-reset'%}">Reset Password</a></p>
 			<p class="text-center">Don't have a account? <a href="{%url 'DreamedJobAI:register'%}">Join Now</a></p>
 	</form>
-</div>
+
 
 {%endblock content%}

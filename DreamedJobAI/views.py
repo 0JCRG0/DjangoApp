@@ -40,7 +40,7 @@ class MyLoginView(LoginView):
     
     def form_invalid(self, form):
         messages.error(self.request,'Invalid username or password')
-        return self.render_to_response(self.get_context_data(form=form))
+        return self.render_to_response(self.get_context_data(form=form, error_message='Invalid username or password'))
 
 class RegisterView(FormView):
     template_name = 'DreamedJobAI/registration/register.html'
