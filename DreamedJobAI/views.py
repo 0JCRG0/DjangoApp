@@ -26,10 +26,10 @@ def submit_pdf(request: HttpRequest):
             user_text.extracted_text = extracted_text
             user_text.save()
             summarised_cv = summarise_cv(extracted_text)
-            return render(request, 'DreamedJobAI/summarise.html', {'summarised_cv': summarised_cv})
+            return render(request, 'DreamedJobAI/user/summarise.html', {'summarised_cv': summarised_cv})
     else:
         form = UploadPDFForm()
-    return render(request, 'DreamedJobAI/submit_pdf.html', {'form': form})
+    return render(request, 'DreamedJobAI/user/submit_pdf.html', {'form': form})
 
 
 class MyLoginView(LoginView):
