@@ -1,23 +1,41 @@
 {%extends 'DreamedJobAI/inner-page.html'%}
 
 {%block content%}
+<!-- ======= Breadcrumbs ======= -->
+<section class="breadcrumbs">
+    <div class="container">
 
-	<form method="post" class="card" novalidate>
-			{% csrf_token %}
-		<h2 class="text-center">Log in to your account</h2>
-			{% for field in form %}
-					{{ field.label_tag }} 
-					{{ field }}
-					{% if field.errors %}
-						<small>{{ field.errors|striptags }}</small> 
-					{% endif %}
-			{% endfor %}
-		
-			<input type="submit" value="Login" class="btn btn-primary full-width">
-			<hr>
-			<p class="text-center">Forgot your password <a href="{%url 'DreamedJobAI:password-reset'%}">Reset Password</a></p>
-			<p class="text-center">Don't have a account? <a href="{%url 'DreamedJobAI:register'%}">Join Now</a></p>
-	</form>
+		<div class="d-flex justify-content-between align-items-center">
+			<h2>Login</h2>
+			<ol>
+				<li><a href="{% url 'DreamedJobAI:home' %}">Home</a></li>
+				<li><a href="{% url 'DreamedJobAI:register' %}">Register</a></li>
+				<li>Login</li>
+			</ol>
+		</div>
 
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section class="inner-page">
+    <div class="container">
+		<form method="post" class="card" novalidate>
+				{% csrf_token %}
+			<h2 class="text-center">Log in to your account</h2>
+				{% for field in form %}
+						{{ field.label_tag }} 
+						{{ field }}
+						{% if field.errors %}
+							<small>{{ field.errors|striptags }}</small> 
+						{% endif %}
+				{% endfor %}
+			
+				<input type="submit" value="Login" class="btn btn-primary full-width">
+				<hr>
+				<p class="text-center">Forgot your password <a href="{%url 'DreamedJobAI:password-reset'%}">Reset Password</a></p>
+				<p class="text-center">Don't have a account? <a href="{%url 'DreamedJobAI:register'%}">Join Now</a></p>
+		</form>
+	</div>
+</section>
 
 {%endblock content%}
