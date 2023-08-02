@@ -16,25 +16,26 @@
     </div>
 </section><!-- End Breadcrumbs -->
 
-<section class="inner-page">
-    <div class="container">
-		<div class="center">
-			<form method="post" novaldiate class="card">
-				{% csrf_token %}
-			<h2 class="text-center">Create your account</h2>
-			{% for field in form %}
-					{{ field.label_tag }} 
-					{{ field }}
-					{% if field.errors %}
-						<small class="error">{{ field.errors|striptags  }}</small> 
-					{% endif %}
-			{% endfor %}
-			
-			<input type="submit" value="Register" class="btn btn-primary full-width">
-			<hr>
-			<p class="text-center">Already have an account? <a href="{% url 'DreamedJobAI:login'%}">Login Here</a></p>
-			</form>
+<div class="container">
+	<div class="center">
+		<form method="post" novalidate class="form-signin w-100 m-auto">
+			{% csrf_token %}
+		<h2 class="text-center h3 mb-3 fw-normal">Create your account</h2>
+		<hr>
+		{% for field in form %}
+        <div class="form-floating mb-3">
+            <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.auto_id }}" name="{{ field.html_name }}" placeholder="{{ field.label }}" required>
+            <label for="{{ field.auto_id }}">{{ field.label }}</label>
+        </div>
+		{% endfor %}
+		
+		<div class="form-container">
+			<input type="submit" value="Register" class="form-btn">
 		</div>
+		<hr>
+		<p class="text-center">Already have an account? <a href="{% url 'DreamedJobAI:login'%}">Login Here</a></p>
+		</form>
 	</div>
-</section>
-{%endblock content%}
+</div>
+
+{% endblock content %}

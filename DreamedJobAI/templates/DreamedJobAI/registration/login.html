@@ -17,25 +17,27 @@
     </div>
 </section><!-- End Breadcrumbs -->
 
-<section class="inner-page">
-    <div class="container">
-		<form method="post" class="card" novalidate>
-				{% csrf_token %}
-			<h2 class="text-center">Log in to your account</h2>
-				{% for field in form %}
-						{{ field.label_tag }} 
-						{{ field }}
-						{% if field.errors %}
-							<small>{{ field.errors|striptags }}</small> 
-						{% endif %}
-				{% endfor %}
+
+<div class="container">
+	<form method="post" class="form-signin w-100 m-auto" novalidate>
+			{% csrf_token %}
+		<h2 class="text-center" class="h3 mb-3 fw-normal"> Login to your account</h2>
+			<hr>
+			{% for field in form %}
+			<div class="form-floating mb-3">
+				<input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.auto_id }}" name="{{ field.html_name }}" placeholder="{{ field.label }}" required>
+				<label for="{{ field.auto_id }}">{{ field.label }}</label>
+			</div>
+			{% endfor %}
 			
-				<input type="submit" value="Login" class="btn btn-primary full-width">
-				<hr>
-				<p class="text-center">Forgot your password? <a href="{%url 'DreamedJobAI:password-reset'%}">Reset Password</a></p>
-				<p class="text-center">Don't have a account? <a href="{%url 'DreamedJobAI:register'%}">Join Now</a></p>
-		</form>
-	</div>
-</section>
+			<div class="form-container">
+				<input type="submit" value="Login" class="form-btn">
+			</div>
+			<hr>
+			<p class="text-center">Forgot your password? <a href="{%url 'DreamedJobAI:password-reset'%}">Reset Password</a></p>
+			<p class="text-center">Don't have a account? <a href="{%url 'DreamedJobAI:register'%}">Join Now</a></p>
+	</form>
+</div>
+
 
 {%endblock content%}
