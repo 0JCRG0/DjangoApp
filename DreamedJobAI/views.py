@@ -13,7 +13,7 @@ from .forms import RegisterForm
 
 
 def home(request: HttpRequest):
-    return render(request, 'DreamedJobAI/home.html')
+    return render(request, 'DreamedJobAI/index.html')
 
 def submit_pdf(request: HttpRequest):
     if request.method == 'POST':
