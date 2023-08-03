@@ -9,6 +9,8 @@ from django.contrib.auth import login
 from django.shortcuts import render
 from django.views.generic.edit import FormView
 from .forms import RegisterForm
+from django.views.generic import TemplateView
+
 
 
 
@@ -61,3 +63,23 @@ class RegisterView(FormView):
             )
         
         return super(RegisterView, self).form_valid(form)
+    
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
+
+
+class LegalViews(TemplateView):
+    def get_template_names(self):
+        # Check the view name to determine which template to use
+        if self.request.path == '/terms-and-conditions/':
+            return 'DreamedJobAI/legal/TandC.html'
+        elif self.request.path == '/privacy-notice/':
+            return 'DreamedJobAI/legal/PrivacyNotice.html'
+        else:
+            # Default template if the view name doesn't match any of the above
+            return 'default_template.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Add any additional context data here if needed
+        return context

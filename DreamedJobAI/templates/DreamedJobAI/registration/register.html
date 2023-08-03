@@ -24,11 +24,23 @@
 		<hr>
 		{% for field in form %}
         <div class="form-floating mb-3">
-            <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.auto_id }}" name="{{ field.html_name }}" placeholder="{{ field.label }}" required>
+            <input type="{{ field.field.widget.input_type }}" class="form-control {% if field.errors %}is-invalid{% endif %}" id="{{ field.auto_id }}" name="{{ field.html_name }}" placeholder="{{ field.label }}" required>
             <label for="{{ field.auto_id }}">{{ field.label }}</label>
-        </div>
+			{% if field.errors %}
+				<div class="invalid-feedback">
+					{% for error in field.errors %}
+						{{ error }}
+					{% endfor %}
+				</div>
+			{% endif %}
 		{% endfor %}
-		
+		</div>
+		<div class="text-center form-check">
+			{{ form.accept_terms }}
+			<label class="form-check-label" for="{{ form.accept_terms.auto_id }}">
+				I agree and accept the <a href="{% url 'DreamedJobAI:TandC'%}"> Terms and Conditions</a> and <a href="{% url 'DreamedJobAI:privacy-notice'%}"> Privacy Notice</a>
+			</label>
+		</div>
 		<div class="form-container">
 			<input type="submit" value="Register" class="form-btn">
 		</div>
