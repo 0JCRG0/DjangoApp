@@ -5,3 +5,4 @@ env1/
 settings.py
 assets/
 *.DS_Store
+profile/
