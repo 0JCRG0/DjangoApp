@@ -1,0 +1,20 @@
+{% extends 'DreamedJobAI/user/base-user.html' %}
+
+{%block content%}
+<!-- Content -->
+<div class="content">
+    {% if user.is_authenticated %}
+        <h1> Hi, {{ user.username }} </h1>
+
+    {% else %}
+        <h1> Hi, Guest! Please log in. </h1>
+    {% endif %}
+</div>
+
+<!-- Sidebar right -->
+<div class="d-flex flex-column-right flex-shrink-0" style="width: 30%; height: 85vh;">
+        <ul class="nav flex-column mb-auto text-center flex-end"> </ul>
+    </div>
+</div>
+
+{%endblock content%}
