@@ -38,7 +38,7 @@ class MyLoginView(LoginView):
     redirect_authenticated_user = True
     
     def get_success_url(self):
-        return reverse_lazy('DreamedJobAI:profile-user') 
+        return reverse_lazy('DreamedJobAI:home-user') 
     
     def form_invalid(self, form):
         messages.error(self.request,'Invalid username or password')
@@ -48,7 +48,7 @@ class RegisterView(FormView):
     template_name = 'DreamedJobAI/registration/register.html'
     form_class = RegisterForm
     redirect_authenticated_user = True
-    success_url = reverse_lazy('DreamedJobAI:profile-user')
+    success_url = reverse_lazy('DreamedJobAI:home-user')
     
     def form_valid(self, form):
         user = form.save()
@@ -87,10 +87,10 @@ class LegalViews(TemplateView):
 class ProfileViews(TemplateView):
     def get_template_names(self):
         # Check the view name to determine which template to use
-        if self.request.path == '/profile-user/':
-            return 'DreamedJobAI/user/inner-user.html'
-        elif self.request.path == '/profile-overview/':
-            return 'DreamedJobAI/user/profile-overview.html'
+        if self.request.path == '/home-user/':
+            return 'DreamedJobAI/user/home-user.html'
+        elif self.request.path == '/profile-user/':
+            return 'DreamedJobAI/user/profile-user.html'
         else:
             # Default template if the view name doesn't match any of the above
             return 'default_template.html'
@@ -98,4 +98,5 @@ class ProfileViews(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Add any additional context data here if needed
+        context['user'] = self.request.user
         return context
