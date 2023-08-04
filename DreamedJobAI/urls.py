@@ -23,5 +23,7 @@ urlpatterns = [
     path('password-reset-confirm/<uidb64>/<token>/done',PasswordResetCompleteView.as_view(template_name='DreamedJobAI/password_reset/password_reset_complete.html'),name='password_reset_complete'),
     path('terms-and-conditions/', LegalViews.as_view(), name='TandC'),
     path('privacy-notice/', LegalViews.as_view(), name='privacy-notice'),
+    path('home-user/', ProfileViews.as_view(), name='home-user'),
     path('profile-user/', ProfileViews.as_view(), name='profile-user')
+
 ]
