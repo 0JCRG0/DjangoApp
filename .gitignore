@@ -3,6 +3,7 @@ pdf_files/
 .env
 env1/
 settings.py
-assets/
+vendor/
 *.DS_Store
 profile/
+img/
