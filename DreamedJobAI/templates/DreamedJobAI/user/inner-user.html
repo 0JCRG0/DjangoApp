@@ -57,57 +57,55 @@
         <symbol id="grid" viewBox="0 0 16 16">
         <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
         </symbol>
+        <symbol id="door" viewBox="0 0 16 16">
+            <path d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z"/>
+            <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/>
+        </symbol>
     </svg>
-
-    <div class="d-flex flex-column flex-shrink-0" style="width: 6.5rem;">
-        <a href="/" class="d-block p-3 link-body-emphasis text-decoration-none sunken-btn" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right">
-        <svg class="bi pe-none" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-        <span class="visually-hidden">Icon-only</span>
-        </a>
-        <ul class="nav flex-column mb-auto text-center">
-        <li class="nav-item">
-            <a href="{% url 'DreamedJobAI:profile-user' %}" class="sunken-btn {% if request.resolver_match.url_name == 'profile-user' %}active{% endif %}" aria-current="page" title="Home" data-bs-toggle="tooltip" data-bs-placement="right">
-            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Home"><use xlink:href="#home"/></svg>
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link py-3 border-bottom rounded-0 sunken-btn" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
-            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Dashboard"><use xlink:href="#speedometer2"/></svg>
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link py-3 border-bottom rounded-0 sunken-btn" title="Orders" data-bs-toggle="tooltip" data-bs-placement="right">
-            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Orders"><use xlink:href="#table"/></svg>
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link py-3 border-bottom rounded-0 sunken-btn" title="Products" data-bs-toggle="tooltip" data-bs-placement="right">
-            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Products"><use xlink:href="#grid"/></svg>
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link py-3 border-bottom rounded-0 sunken-btn" title="Customers" data-bs-toggle="tooltip" data-bs-placement="right">
-            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Customers"><use xlink:href="#people-circle"/></svg>
-            </a>
-        </li>
-        </ul>
-        <div class="dropdown border-top">
-        <a href="#" class="d-flex align-items-center justify-content-center p-3 link-body-emphasis text-decoration-none dropdown-toggle sunken-btn" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="{% static 'DreamedJobAI/assets/img/favicon.png' %}" alt="mdo" width="24" height="24" class="rounded-circle">      </a>
-        <ul class="dropdown-menu text-small shadow">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
-        </ul>
+    <div class="card-profile">
+        <div class="d-flex flex-column flex-shrink-0" style="width: 6.5rem; height: 85vh;">
+            <ul class="nav flex-column mb-auto text-center">
+                <li class="nav-item">
+                    <a href="/" class="bump-btn" title="Main page" data-bs-toggle="tooltip" data-bs-placement="right">
+                    <svg class="bi pe-none" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+                    <span class="visually-hidden">Landing page</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'DreamedJobAI:profile-user' %}" class="sunken-btn {% if request.resolver_match.url_name == 'profile-user' %}active{% endif %}" aria-current="page" title="Home" data-bs-toggle="tooltip" data-bs-placement="right">
+                    <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Home"><use xlink:href="#home"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link py-3 border-bottom rounded-0 sunken-btn" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
+                    <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Dashboard"><use xlink:href="#speedometer2"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link py-3 border-bottom rounded-0 sunken-btn" title="Orders" data-bs-toggle="tooltip" data-bs-placement="right">
+                    <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Orders"><use xlink:href="#table"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link py-3 border-bottom rounded-0 sunken-btn" title="Products" data-bs-toggle="tooltip" data-bs-placement="right">
+                    <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Products"><use xlink:href="#grid"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link py-3 border-bottom rounded-0 sunken-btn" title="Customers" data-bs-toggle="tooltip" data-bs-placement="right">
+                    <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Customers"><use xlink:href="#people-circle"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'DreamedJobAI:logout' %}" class="sunken-btm-btn" aria-current="page" title="Logout" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Logout"><use xlink:href="#door"/></svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-
  
 </main><!-- End #main -->
-
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-    <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
     <script src="{% static 'DreamedJobAI/assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
