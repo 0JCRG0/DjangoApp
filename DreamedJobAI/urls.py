@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import MyLoginView, RegisterView, LegalViews
+from .views import MyLoginView, RegisterView, LegalViews, ProfileViews
 from django.contrib.auth.views import (
     LogoutView,
     PasswordResetView, 
@@ -23,4 +23,5 @@ urlpatterns = [
     path('password-reset-confirm/<uidb64>/<token>/done',PasswordResetCompleteView.as_view(template_name='DreamedJobAI/password_reset/password_reset_complete.html'),name='password_reset_complete'),
     path('terms-and-conditions/', LegalViews.as_view(), name='TandC'),
     path('privacy-notice/', LegalViews.as_view(), name='privacy-notice'),
+    path('profile-user/', ProfileViews.as_view(), name='profile-user')
 ]
