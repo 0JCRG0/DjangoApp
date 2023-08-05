@@ -4,7 +4,8 @@
 <!-- Content -->
 <div class="content">
     {% if user.is_authenticated %}
-        <h1> Hi, {{ user.username }} </h1>
+        <h1> Hi, {{ user.first_name }} {{ user.last_name }}  </h1>
+        <h4> Let's get you a job</h4>
 
     {% else %}
         <h1> Hi, Guest! Please log in. </h1>

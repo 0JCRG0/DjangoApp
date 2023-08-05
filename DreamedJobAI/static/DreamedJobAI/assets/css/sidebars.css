@@ -584,12 +584,29 @@ h6 {
 
 
 /*  -----------------------------------------------------------
-# Sidebar
+# Main container
 --------------------------------------------------------------*/
+
+
+.card-profile {
+  width: 90%;  /* Set the width of the card */
+  height: 85%; /* Set the height of the card */
+  margin: auto;  /* Centers the card on page, provided the containing block has enough height */
+  border-radius: 15px; /* Make the corners of the card rounded */
+  box-sizing: border-box; /* To take padding and border into the box's total width and height */
+  position: relative; /* Use in case you want to use top, right, bottom, left properties for finer control */
+  background-color: rgb(255, 255, 255);
+}
 
 .d-flex {
   display: flex !important;
 }
+
+
+/*  -----------------------------------------------------------
+# Sidebar
+--------------------------------------------------------------*/
+
 
 .flex-column {
   flex-direction: column !important;
@@ -739,16 +756,19 @@ h6 {
   }
 }
 
-
-.card-profile {
-  width: 90%;  /* Set the width of the card */
-  height: 85%; /* Set the height of the card */
-  margin: auto;  /* Centers the card on page, provided the containing block has enough height */
-  border-radius: 15px; /* Make the corners of the card rounded */
-  box-sizing: border-box; /* To take padding and border into the box's total width and height */
-  position: relative; /* Use in case you want to use top, right, bottom, left properties for finer control */
-  background-color: rgb(255, 255, 255);
+a.sunken-btn svg {
+  fill: rgb(146, 148, 163);  /* Replace with your preferred color */
 }
+
+a.sunken-btm-btn svg {
+  fill: rgb(146, 148, 163);  /* Replace with your preferred color */
+}
+
+
+/*--------------------------------------------------------------
+# Reusable 
+--------------------------------------------------------------*/
+
 
 .content {
   flex-grow: 1;
@@ -760,10 +780,24 @@ div.content h1 {
   margin-right: 50px;
 }
 
-a.sunken-btn svg {
-  fill: rgb(146, 148, 163);  /* Replace with your preferred color */
+
+div.content h4 {
+  margin-left: 80px;
+  margin-top: 10px;
+  margin-right: 50px;
 }
 
-a.sunken-btm-btn svg {
-  fill: rgb(146, 148, 163);  /* Replace with your preferred color */
+/*--------------------------------------------------------------
+# Profile 
+--------------------------------------------------------------*/
+
+
+.card-profile .inner-card {
+  width: 340px;  /* Set the width of the inner card */
+  height: 260px; /* Set the height of the inner card */
+  border-radius: 15px; /* Make the corners of the inner card rounded */
+  box-sizing: border-box; /* To take padding and border into the inner card's total width and height */
+  margin-top: 5%;
+  margin-left: 5%;
+  background-color: rgb(239, 241, 245);
 }
