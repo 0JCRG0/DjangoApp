@@ -4,7 +4,8 @@
 <!-- Content -->
 <div class="content">
     {% if user.is_authenticated %}
-        <div class="card-profile inner-card "> 
+        <div class="card-profile inner-card ">
+            <a href="{% url 'DreamedJobAI:profile-user-edit' %}">EDIT</a>
             <h2>Kevin Anderson</h2>
             <h3>Web Designer</h3>
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
