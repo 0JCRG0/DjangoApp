@@ -27,14 +27,14 @@ User._meta.get_field('email')._unique = True
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    picture = models.ImageField(upload_to='DreamedJobAI/static/DreamedJobAI/assets/img/user_pp')
-    contact_number = models.CharField(max_length=250)
-    video_conference = models.CharField(max_length=250)
-    linkedin = models.CharField(max_length=250)
-    github = models.CharField(max_length=250)
-    website = models.CharField(max_length=250)
-    messages = models.CharField(max_length=250)
-    other = models.CharField(max_length=250)
+    picture = models.ImageField(default='user_pp/user.png', upload_to='user_pp/')
+    contact_number = models.CharField(blank=True, max_length=250)
+    video_conference = models.CharField(blank=True, max_length=250)
+    linkedin = models.CharField(blank=True, max_length=250)
+    github = models.CharField(blank=True, max_length=250)
+    website = models.CharField(blank=True, max_length=250)
+    messages = models.CharField(blank=True, max_length=250)
+    other = models.CharField(blank=True, max_length=250)
 
 
     def __str__(self):

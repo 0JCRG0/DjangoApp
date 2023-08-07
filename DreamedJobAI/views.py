@@ -8,9 +8,11 @@ from django.core.mail import send_mail
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.views.generic.edit import FormView
-from .forms import RegisterForm, ProfileForm
+from .forms import RegisterForm, ProfileForm, Profile
 from django.views.generic import TemplateView
 from django.views import View
+from django.shortcuts import get_object_or_404
+
 
 
 
@@ -108,11 +110,14 @@ class ProfileView(View):
 
     def get(self, request):
         form = ProfileForm()
-        return render(request, self.template_name, {'form': form})
+        profile, created = Profile.objects.get_or_create(user=request.user)
+        return render(request, self.template_name, {'form': form, 'profile': profile})
 
     def post(self, request):
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
+            profile, created = Profile.objects.get_or_create(user=request.user)
+            form = ProfileForm(request.POST, request.FILES, instance=profile)
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()

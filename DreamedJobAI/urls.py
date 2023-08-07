@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 from .views import MyLoginView, RegisterView, LegalViews, SidebarViews, ProfileView
 from django.contrib.auth.views import (
     LogoutView,
@@ -25,4 +27,4 @@ urlpatterns = [
     path('privacy-notice/', LegalViews.as_view(), name='privacy-notice'),
     path('home-user/', SidebarViews.as_view(), name='home-user'),
     path('profile-user/', ProfileView.as_view(), name='profile-user')
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
