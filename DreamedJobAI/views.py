@@ -10,6 +10,8 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import FormView
 from .forms import RegisterForm, ProfileForm
 from django.views.generic import TemplateView
+from django.views import View
+
 
 
 
@@ -100,14 +102,19 @@ class SidebarViews(TemplateView):
         context['user'] = self.request.user
         return context
 
-def profile_view(request: HttpRequest):
-    if request.method == 'POST':
+
+class ProfileView(View):
+    template_name = 'DreamedJobAI/user/profile-user.html'
+
+    def get(self, request):
+        form = ProfileForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
-            return redirect('DreamedJobAI:profile-user')  # replace 'success_url' with the name of the url you want to redirect to
-    else:
-        form = ProfileForm()
-    return render(request, 'DreamedJobAI/user/profile_view/personal.html', {'form': form})  # replace 'template_name.html' with the name of your template
+            return redirect('DreamedJobAI:profile-user')
+        return render(request, self.template_name, {'form': form})

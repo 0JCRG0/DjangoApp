@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import MyLoginView, RegisterView, LegalViews, SidebarViews, profile_view
+from .views import MyLoginView, RegisterView, LegalViews, SidebarViews, ProfileView
 from django.contrib.auth.views import (
     LogoutView,
     PasswordResetView, 
@@ -24,7 +24,5 @@ urlpatterns = [
     path('terms-and-conditions/', LegalViews.as_view(), name='TandC'),
     path('privacy-notice/', LegalViews.as_view(), name='privacy-notice'),
     path('home-user/', SidebarViews.as_view(), name='home-user'),
-    path('profile-user/', SidebarViews.as_view(), name='profile-user'),
-    path('profile-user-personal/', views.profile_view, name='profile-user-edit')
-
+    path('profile-user/', ProfileView.as_view(), name='profile-user')
 ]
