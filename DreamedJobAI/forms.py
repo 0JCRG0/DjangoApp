@@ -30,7 +30,6 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = [
             'picture',
-            'full_name',
             'contact_number',
             'video_conference',
             'linkedin',

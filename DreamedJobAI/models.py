@@ -28,7 +28,6 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     picture = models.ImageField(upload_to='DreamedJobAI/static/DreamedJobAI/assets/img/user_pp')
-    full_name = models.CharField(max_length=150)
     contact_number = models.CharField(max_length=250)
     video_conference = models.CharField(max_length=250)
     linkedin = models.CharField(max_length=250)
