@@ -13,11 +13,12 @@ html {
 
 main {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh; /* Change this line */
   margin: 0;
   padding: 0;
   background-color: rgb(217, 222, 231);
 }
+
 
 a {
   color: #5846f9;
@@ -589,8 +590,6 @@ h6 {
 
 
 .card-profile {
-  width: 90%;  /* Set the width of the card */
-  height: 85%; /* Set the height of the card */
   margin: auto;  /* Centers the card on page, provided the containing block has enough height */
   border-radius: 15px; /* Make the corners of the card rounded */
   box-sizing: border-box; /* To take padding and border into the box's total width and height */
@@ -608,12 +607,14 @@ h6 {
 --------------------------------------------------------------*/
 
 
-.flex-column {
+.flex-column-left {
   flex-direction: column !important;
   background-color: rgb(239, 241, 245);
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
+  padding: 10px;
 }
+
 .flex-shrink-0 {
   flex-shrink: 1 !important;
 }
@@ -642,8 +643,6 @@ h6 {
   --bs-nav-link-disabled-color: var(--bs-secondary-color);
   display: flex;
   flex-wrap: wrap;
-  padding-left: 0;
-  margin-bottom: 0;
   list-style: none;
 }
 
@@ -692,10 +691,9 @@ h6 {
 
 .sunken-btn {
   display: inline-block;
-  padding: 10px;
+  padding: 15px;
   border: none;
   border-radius: 50%;
-  text-align: center;
   line-height: 0;
 }
 
@@ -791,10 +789,9 @@ div.content h4 {
 # Profile 
 --------------------------------------------------------------*/
 
-
 .profile-container {
   display: flex;
-  justify-content: space-around; /* Adjusts the space between the cards */
+  justify-content: center; /* Adjusts the space between the cards */
   align-items: center; /* Vertically aligns the cards in the middle */
   gap: 2%; /* Adds space between the cards */
 }
@@ -835,3 +832,84 @@ div.content h4 {
   .navbar li {
       margin-left: 15%; /* Modify these values to adjust top and bottom margin */
   }
+
+
+/* Card */
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+}
+
+.card-body {
+  padding: 0px 20px 20px 20px;
+}
+
+.col-xl-4 .card-body {
+  background-color: rgb(239, 241, 245);
+}
+
+/*--------------------------------------------------------------
+# Profie Page
+--------------------------------------------------------------*/
+
+.profile-card img {
+  max-width: 180px;
+}
+
+.profile-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c384e;
+  margin: 10px 0 0 0;
+}
+
+.profile-card h3 {
+  font-size: 18px;
+}
+
+.profile-card .social-links a {
+  font-size: 15px;
+  display: inline-block;
+  color: rgba(1, 41, 112, 0.5);
+  line-height: 0;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.profile-card .social-links a:hover {
+  color: #012970;
+}
+
+.profile-overview .row {
+  font-size: 15px;
+}
+
+.profile-overview .card-title {
+  color: #012970;
+}
+
+.profile-overview .label {
+  font-weight: 600;
+  color: rgba(1, 41, 112, 0.6);
+}
+
+.profile-edit label {
+  font-weight: 600;
+  color: rgba(1, 41, 112, 0.6);
+}
+
+.profile-edit img {
+  max-width: 50px;
+}
+
+
+
+.flex-shrink-0 .flex-column img {
+  max-width: 150px;
+}
+
+.flex-shrink-0 .flex-column {
+  margin: 10px 10px 10px 10px;
+}
+
