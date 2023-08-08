@@ -1,4 +1,3 @@
-from .forms import UploadPDFForm
 from .utils import summarise_cv, extract_text_from_pdf
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
@@ -8,7 +7,8 @@ from django.core.mail import send_mail
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.views.generic.edit import FormView
-from .forms import RegisterForm, ProfileForm, Profile
+from .forms import RegisterForm, ProfileForm, UploadPDFForm, ProfilePreferencesForm
+from .models import UserText, Profile, ProfilePreferences
 from django.views.generic import TemplateView
 from django.views import View
 from django.shortcuts import get_object_or_404
@@ -57,6 +57,9 @@ class RegisterView(FormView):
     def form_valid(self, form):
         user = form.save()
         if user:
+            # Create a Profile instance for the new user
+            Profile.objects.create(user=user)
+            
             login(self.request, user)
             send_mail(
                 'Welcome to RoleHounds',
@@ -105,22 +108,58 @@ class SidebarViews(TemplateView):
         context['profile_picture'] = self.request.user.profile.picture.url
         return context
 
-
 class ProfileView(View):
     template_name = 'DreamedJobAI/user/replace-profile-user.html'
 
     def get(self, request):
-        form = ProfileForm()
         profile, created = Profile.objects.get_or_create(user=request.user)
-        return render(request, self.template_name, {'form': form, 'profile': profile})
+        profile_form = ProfileForm(instance=profile)
 
+        profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
+        preferences_form = ProfilePreferencesForm(instance=profile_preferences)
+
+        return render(request, self.template_name, {'profile_form': profile_form, 'preferences_form': preferences_form, 'profile': profile})
+    
     def post(self, request):
-        form = ProfileForm(request.POST, request.FILES)
+        profile, created = Profile.objects.get_or_create(user=request.user)
+        profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
+
+        if 'country' in request.POST:
+            profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
+            if profile_form.is_valid():
+                profile = profile_form.save(commit=False)
+                profile.user = request.user
+                profile.save()
+        else:
+            preferences_form = ProfilePreferencesForm(request.POST, instance=profile_preferences)
+            if preferences_form.is_valid():
+                profile_preferences = preferences_form.save(commit=False)
+                profile_preferences.user = request.user
+                profile_preferences.save()
+
+        if profile_form.is_valid() or preferences_form.is_valid():
+            return redirect('DreamedJobAI:profile-user')
+
+        return render(request, self.template_name, {'profile_form': profile_form, 'preferences_form': preferences_form, 'profile': profile})
+
+"""
+class ProfileView(View):
+    template_name = 'DreamedJobAI/user/replace-profile-user.html'
+
+    def get(self, request):
+        profile, created = Profile.objects.get_or_create(user=request.user)
+        form = ProfileForm(instance=profile)
+        return render(request, self.template_name, {'form': form, 'profile': profile})
+    
+    def post(self, request):
+        profile, created = Profile.objects.get_or_create(user=request.user)
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
-            profile, created = Profile.objects.get_or_create(user=request.user)
-            form = ProfileForm(request.POST, request.FILES, instance=profile)
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
             return redirect('DreamedJobAI:profile-user')
+        else:
+            print(form.errors)
         return render(request, self.template_name, {'form': form})
+"""
