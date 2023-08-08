@@ -13,8 +13,20 @@
 </div>
 
 <!-- Sidebar right -->
-<div class="d-flex flex-column-right flex-shrink-0" style="width: 30%; height: 85vh;">
-        <ul class="nav flex-column mb-auto text-center flex-end"> </ul>
+<div class="d-flex flex-column-right flex-shrink-0">
+        <ul class="nav flex-column mb-auto text-center flex-end">
+            <img src="{{ profile_picture }}" alt="Profile" class="img-fluid img-thumbnail mx-auto d-block border w-50 h-50">
+            <h2>{{ user.first_name }} {{ user.last_name }}  </h2>
+                    <div class="social-links mt-2">
+                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                </div>
+        
+        </ul>
     </div>
 </div>
 
