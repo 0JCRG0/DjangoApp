@@ -102,11 +102,12 @@ class SidebarViews(TemplateView):
         context = super().get_context_data(**kwargs)
         # Add any additional context data here if needed
         context['user'] = self.request.user
+        context['profile_picture'] = self.request.user.profile.picture.url
         return context
 
 
 class ProfileView(View):
-    template_name = 'DreamedJobAI/user/profile-user.html'
+    template_name = 'DreamedJobAI/user/replace-profile-user.html'
 
     def get(self, request):
         form = ProfileForm()
