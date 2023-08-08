@@ -903,13 +903,20 @@ div.content h4 {
   max-width: 50px;
 }
 
-
-
-.flex-shrink-0 .flex-column img {
-  max-width: 150px;
-}
-
 .flex-shrink-0 .flex-column {
   margin: 10px 10px 10px 10px;
 }
 
+.image-cropper {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.image-cropper img {
+  display: inline;
+  margin: 0 auto;
+  width: auto;
+}
