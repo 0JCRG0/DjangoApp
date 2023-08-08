@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserText, Profile
+from .models import UserText, Profile, ProfilePreferences
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -30,12 +30,36 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = [
             'picture',
+            'country',
+            'state',
             'contact_number',
-            'video_conference',
             'linkedin',
             'github',
             'website',
-            'messages',
             'other'
         ]
+        widgets = {
+            'country': forms.Select(attrs={'class': 'form-control'}),
+        }
 
+class ProfilePreferencesForm(forms.ModelForm):
+    class Meta:
+        model = ProfilePreferences
+        fields = [
+            'about',
+            'desired_job_title',
+            'desired_location',
+            'desired_job_description',
+            'desired_compensation',
+            'desired_benefits',
+            'desired_industry',
+            'desired_start_day',
+            'urgency',
+        ]
+        widgets = {
+            'desired_location': forms.Select(attrs={'class': 'form-control'}),
+            'desired_compensation': forms.Select(attrs={'class': 'form-control'}),
+            'desired_industry': forms.Select(attrs={'class': 'form-control'}),
+            'desired_start_day': forms.Select(attrs={'class': 'form-control'}),
+            'urgency': forms.Select(attrs={'class': 'form-control'}),
+        }
