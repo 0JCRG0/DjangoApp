@@ -9,8 +9,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.views.generic.edit import FormView
-from .forms import RegisterForm, ProfileForm, UploadPDFForm, ProfilePreferencesForm
-from .models import UserText, Profile, ProfilePreferences
+from .forms import RegisterForm, ProfileForm, ProfilePreferencesForm, UserCVForm
+from .models import Profile, ProfilePreferences, UserCV
 from django.views.generic import TemplateView
 from django.views import View
 from django.shortcuts import get_object_or_404
@@ -22,23 +22,6 @@ from django.shortcuts import get_object_or_404
 
 def home(request: HttpRequest):
     return render(request, 'DreamedJobAI/index.html')
-
-def submit_pdf(request: HttpRequest):
-    if request.method == 'POST':
-        form = UploadPDFForm(request.POST, request.FILES)
-        if form.is_valid():
-            user_text = form.save(commit=False)
-            pdf_file = request.FILES['pdf_file']
-            user_text.pdf_file = pdf_file
-            extracted_text = extract_text_from_pdf(pdf_file)
-            user_text.extracted_text = extracted_text
-            user_text.save()
-            summarised_cv = summarise_cv(extracted_text)
-            return render(request, 'DreamedJobAI/user/summarise.html', {'summarised_cv': summarised_cv})
-    else:
-        form = UploadPDFForm()
-    return render(request, 'DreamedJobAI/user/submit_pdf.html', {'form': form})
-
 
 class MyLoginView(LoginView):
     redirect_authenticated_user = True
@@ -113,7 +96,7 @@ class SidebarViews(TemplateView):
 class ProfileView(View):
     template_name = 'DreamedJobAI/user/profile-user.html'
 
-    def get(self, request):
+    def get(self, request: HttpRequest):
         profile, created = Profile.objects.get_or_create(user=request.user)
         profile_form = ProfileForm(instance=profile)
 
@@ -122,9 +105,12 @@ class ProfileView(View):
 
         password_form = PasswordChangeForm(request.user)
 
-        return render(request, self.template_name, {'profile_form': profile_form, 'preferences_form': preferences_form, 'password_form': password_form, 'profile': profile, 'profile_preferences': profile_preferences})
+        profile_cv, created = UserCV.objects.get_or_create(user=request.user)
+        cv_form = UserCVForm(instance=profile_cv)
+
+        return render(request, self.template_name, {'profile_form': profile_form, 'preferences_form': preferences_form, 'password_form': password_form, 'cv_form': cv_form, 'profile': profile, 'profile_preferences': profile_preferences, 'profile_cv': profile_cv})
     
-    def post(self, request):
+    def post(self, request: HttpRequest):
         profile, created = Profile.objects.get_or_create(user=request.user)
         profile_form = ProfileForm(instance=profile)
 
@@ -132,6 +118,14 @@ class ProfileView(View):
         preferences_form = ProfilePreferencesForm(instance=profile_preferences)
 
         password_form = PasswordChangeForm(request.user, request.POST)
+
+        profile_cv, created = UserCV.objects.get_or_create(user=request.user)
+        cv_form = UserCVForm(instance=profile_cv)
+
+        success_pdf = None
+        failure_pdf = None
+        success_password = None
+        failure_password = None
 
         if 'country' in request.POST:
             profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
@@ -145,16 +139,44 @@ class ProfileView(View):
                 profile_preferences = preferences_form.save(commit=False)
                 profile_preferences.user = request.user
                 profile_preferences.save()
+        if set(cv_form.fields.keys()).intersection(request.POST.keys()) or set(cv_form.fields.keys()).intersection(request.FILES.keys()):
+            cv_form = UserCVForm(request.POST, request.FILES, instance=profile_cv)
+            if cv_form.is_valid():
+                user_text = cv_form.save(commit=False)
+                if 'pdf_file' in request.FILES:
+                    pdf_file = request.FILES['pdf_file']
+                    user_text.pdf_file = pdf_file
+                    extracted_text = extract_text_from_pdf(pdf_file)
+                    user_text.extracted_text = extracted_text
+                    user_text.save()
+                    success_pdf = "Your CV was successfully uploaded!"
+                else:
+                    failure_pdf = "Oops! There was an error while submitting your CV. Please ensure your file is in PDF format and try again."
         else:  # Check if the password form is being submitted
             if password_form.is_valid():
                 user = password_form.save()
                 update_session_auth_hash(request, user)  # Important, to update the session with the new password
-                messages.success(request, 'Your password was successfully updated!')
-                #return redirect('DreamedJobAI:profile-user')
+                success_password = 'Your password was successfully updated!'
             else:
-                messages.error(request, 'Please correct the error below.')
+                failure_password="Uh-oh! Something went wrong while changing your password. Please check your input and try again."
 
         if profile_form.is_valid() or preferences_form.is_valid():
             return redirect('DreamedJobAI:profile-user')
 
-        return render(request, self.template_name, {'profile_form': profile_form, 'preferences_form': preferences_form, 'password_form': password_form, 'profile': profile, 'profile_preferences': profile_preferences})
+        return render(
+                        request,
+                        self.template_name,
+                            {
+                            'profile_form': profile_form,
+                            'preferences_form': preferences_form,
+                            'password_form': password_form,
+                            'cv_form': cv_form,
+                            'profile': profile,
+                            'profile_preferences': profile_preferences,
+                            'profile_cv': profile_cv,
+                            'success_pdf': success_pdf,
+                            'success_password': success_password,
+                            'failure_pdf': failure_pdf,
+                            'failure_password': failure_password
+                            }
+                    )
