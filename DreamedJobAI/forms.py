@@ -1,13 +1,12 @@
 from django import forms
-from .models import UserText, Profile, ProfilePreferences
+from .models import Profile, ProfilePreferences, UserCV
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 
-
-class UploadPDFForm(forms.ModelForm):
+class UserCVForm(forms.ModelForm):
     class Meta:
-        model = UserText
+        model = UserCV
         fields = ['pdf_file']
 
 class RegisterForm(UserCreationForm):
