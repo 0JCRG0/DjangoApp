@@ -3,7 +3,6 @@ import openai
 from dotenv import load_dotenv
 import pandas as pd
 import pretty_errors
-from .models import UserText
 import io
 from pdfminer.converter import TextConverter
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
