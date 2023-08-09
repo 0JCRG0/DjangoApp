@@ -6,6 +6,8 @@ from django.http import HttpRequest
 from django.core.mail import send_mail
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 from django.views.generic.edit import FormView
 from .forms import RegisterForm, ProfileForm, UploadPDFForm, ProfilePreferencesForm
 from .models import UserText, Profile, ProfilePreferences
@@ -118,7 +120,9 @@ class ProfileView(View):
         profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
         preferences_form = ProfilePreferencesForm(instance=profile_preferences)
 
-        return render(request, self.template_name, {'profile_form': profile_form, 'preferences_form': preferences_form, 'profile': profile, 'profile_preferences': profile_preferences})
+        password_form = PasswordChangeForm(request.user)
+
+        return render(request, self.template_name, {'profile_form': profile_form, 'preferences_form': preferences_form, 'password_form': password_form, 'profile': profile, 'profile_preferences': profile_preferences})
     
     def post(self, request):
         profile, created = Profile.objects.get_or_create(user=request.user)
@@ -127,42 +131,30 @@ class ProfileView(View):
         profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
         preferences_form = ProfilePreferencesForm(instance=profile_preferences)
 
+        password_form = PasswordChangeForm(request.user, request.POST)
+
         if 'country' in request.POST:
             profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
             if profile_form.is_valid():
                 profile = profile_form.save(commit=False)
                 profile.user = request.user
                 profile.save()
-        else:
+        elif 'desired_location' in request.POST:
             preferences_form = ProfilePreferencesForm(request.POST, instance=profile_preferences)
             if preferences_form.is_valid():
                 profile_preferences = preferences_form.save(commit=False)
                 profile_preferences.user = request.user
                 profile_preferences.save()
+        else:  # Check if the password form is being submitted
+            if password_form.is_valid():
+                user = password_form.save()
+                update_session_auth_hash(request, user)  # Important, to update the session with the new password
+                messages.success(request, 'Your password was successfully updated!')
+                #return redirect('DreamedJobAI:profile-user')
+            else:
+                messages.error(request, 'Please correct the error below.')
 
         if profile_form.is_valid() or preferences_form.is_valid():
             return redirect('DreamedJobAI:profile-user')
 
-        return render(request, self.template_name, {'profile_form': profile_form, 'preferences_form': preferences_form, 'profile': profile, 'profile_preferences': profile_preferences})
-
-"""
-class ProfileView(View):
-    template_name = 'DreamedJobAI/user/replace-profile-user.html'
-
-    def get(self, request):
-        profile, created = Profile.objects.get_or_create(user=request.user)
-        form = ProfileForm(instance=profile)
-        return render(request, self.template_name, {'form': form, 'profile': profile})
-    
-    def post(self, request):
-        profile, created = Profile.objects.get_or_create(user=request.user)
-        form = ProfileForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            profile = form.save(commit=False)
-            profile.user = request.user
-            profile.save()
-            return redirect('DreamedJobAI:profile-user')
-        else:
-            print(form.errors)
-        return render(request, self.template_name, {'form': form})
-"""
+        return render(request, self.template_name, {'profile_form': profile_form, 'preferences_form': preferences_form, 'password_form': password_form, 'profile': profile, 'profile_preferences': profile_preferences})
