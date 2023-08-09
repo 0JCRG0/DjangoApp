@@ -23,7 +23,6 @@
         </div>
 
         <div class="col-xl-9">
-
             <div class="card">
                 <div class="card-body">
                     <!-- Bordered Tabs -->
@@ -41,12 +40,38 @@
                         </li>
 
                         <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-cv"> CV zone</button>
+                        </li>
+
+                        <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
                         </li>
                     </ul>
                     
                     <div class="tab-content pt-2">
+                        <!-- Overview -->
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                            <!-- Error messages -->
+                            {% if success_password %}
+                            <div class="alert alert-success">
+                                {{ success_password }}
+                            </div>
+                            {% elif failure_password %}
+                                <div class="alert alert-danger">
+                                    {{ failure_password }}
+                                </div>
+                            {% endif %}
+
+                            {% if success_pdf %}
+                            <div class="alert alert-success">
+                                {{ success_pdf }}
+                            </div>
+                            {% elif failure_pdf %}
+                                <div class="alert alert-danger">
+                                    {{ failure_pdf }}
+                                </div>
+                            {% endif %}
+
                             <h5 class="card-title">Profile Details</h5>
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label "> Country </div>
@@ -81,12 +106,12 @@
                                 <div class="col-lg-3 col-md-4 label">Other</div>
                                 <div class="col-lg-9 col-md-8">{{ profile.other }}</div>
                             </div>
-
-                        </div>
-
-                        <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
                             
-                            <!-- Profile Edit Form -->
+                        </div>
+                        <!-- End Overview -->
+                        
+                        <!-- Edit Profile -->
+                        <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
                             <form method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="row mb-3">
@@ -150,12 +175,12 @@
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Save Changes</button>
                                 </div>
-                            </form><!-- End Profile Edit Form -->
+                            </form>
                         </div>
+                        <!-- End Profile Edit Form -->
                         
-                        <!-- Preferences Form -->
+                        <!-- Preferences -->
                         <div class="tab-pane fade profile-edit pt-3" id="profile-preferences">
-                            <!-- Profile Edit Form -->
                             <form method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
 
@@ -225,11 +250,32 @@
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Save Changes</button>
                                 </div>
-                            </form><!-- End Profile Edit Form -->
+                            </form>
                         </div>
+                        <!-- End Preferences -->
+                        
+                        <!-- CV -->
+                        <div class="tab-pane fade profile-edit pt-3" id="profile-cv">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ cv_form.as_p }}
+                                <button type="submit">Submit</button>
+                            </form> 
 
+                            {% if success_pdf %}
+                            <div class="alert alert-success">
+                                {{ success_pdf }}
+                            </div>
+                            {% elif failure_pdf %}
+                                <div class="alert alert-danger">
+                                    {{ failure_pdf }}
+                                </div>
+                            {% endif %}
+
+                        </div><!-- End CV -->
+
+                        <!-- Change Password -->
                         <div class="tab-pane fade profile-edit pt-3" id="profile-change-password">
-                            <!-- Change Password Form -->
                             <form method="post">
                                 {% csrf_token %}
 
@@ -252,23 +298,26 @@
                                         <input name="new_password2" type="password" class="form-control" id="new_password2">
                                     </div>
                                 </div>
-                                {% if messages %}
-                                    <ul class="messages">
-                                        {% for message in messages %}
-                                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                                        {% endfor %}
-                                    </ul>
+
+                                {% if success_password %}
+                                    <div class="alert alert-success">
+                                        {{ success_password }}
+                                    </div>
+                                {% elif failure_password %}
+                                    <div class="alert alert-danger">
+                                        {{ failure_password }}
+                                    </div>
                                 {% endif %}
 
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Change Password</button>
                                 </div>
-                            </form><!-- End Change Password Form -->
-                        </div>
+                            </form>
+                        </div><!-- End Change Password -->
                     </div><!-- End Bordered Tabs -->
                 </div>
             </div>
-        </div>
+        </div><!-- End main grid -->
     </div>
 
 {% else %}
