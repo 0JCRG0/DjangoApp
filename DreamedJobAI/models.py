@@ -343,7 +343,7 @@ class ProfilePreferences(models.Model):
     )
     desired_start_day = models.CharField(
         max_length=20,
-        choices=URGENCY_CHOICES,
+        choices=START_DAY_CHOICES,
         blank=True,
         null=True
     )

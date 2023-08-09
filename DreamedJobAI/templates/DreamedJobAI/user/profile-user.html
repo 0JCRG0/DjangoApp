@@ -1,62 +1,271 @@
 {% extends 'DreamedJobAI/user/base-user.html' %}
 
 {%block content%}
-<!-- Content -->
-<div class="content">
-    {% if user.is_authenticated %}
-        <div class="profile-container">
-            <div class="card-profile inner-card">
-                    <img src="{{ profile.picture.url }}" alt="Profile Picture" class="img-fluid img-thumbnail rounded-circle mx-auto d-block w-50 h-50" >
+
+{% if user.is_authenticated %}
+
+    <div class="p-3 row align-items-center">
+        <div class="col-xl-3">
+
+            <div class="card">
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+                    <img src="{{ profile.picture.url }}" alt="Profile" class="img-fluid rounded-circle mx-auto d-block border w-50 h-50" >
                     <h2>{{ user.first_name }} {{ user.last_name }}  </h2>
-                    <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-            </div>
-            <div class="card-profile right">
-                <!-- Sidebar -->
-                <nav id="navbar" class="navbar">
-                    <ul>
-                        <li>
-                            <a href="{% url 'DreamedJobAI:profile-user' %}" class="sunken-btn {% if request.resolver_match.url_name == 'profile-user' %}active{% endif %}" aria-current="page" title="Edit" data-bs-toggle="tooltip" data-bs-placement="right">
-                                <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Edit"><use xlink:href="#edit"/></svg>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'DreamedJobAI:home-user' %}" class="sunken-btn {% if request.resolver_match.url_name == 'home-user' %}active{% endif %}" aria-current="page" title="Home" data-bs-toggle="tooltip" data-bs-placement="right">
-                            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Home"><use xlink:href="#home"/></svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link py-3 border-bottom rounded-0 sunken-btn" title="Orders" data-bs-toggle="tooltip" data-bs-placement="right">
-                            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Orders"><use xlink:href="#table"/></svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link py-3 border-bottom rounded-0 sunken-btn" title="Products" data-bs-toggle="tooltip" data-bs-placement="right">
-                            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Products"><use xlink:href="#grid"/></svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link py-3 border-bottom rounded-0 sunken-btn" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
-                            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Customers"><use xlink:href="#speedometer2"/></svg>
-                            </a>
-                        </li>
-                    </ul>
-                    <i class="bi bi-list mobile-nav-toggle"></i>
-                </nav>
-                <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit">Save</button>
-                </form>
+                    <div class="social-links mt-2">
+                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
-    {% else %}
-        <h1> Hi, Guest! Please log in. </h1>
-    {% endif %}
-</div>
 
-<!-- Sidebar right -->
+        <div class="col-xl-9">
+
+            <div class="card">
+                <div class="card-body">
+                    <!-- Bordered Tabs -->
+                    <ul class="nav nav-tabs nav-tabs-bordered">
+                        <li class="nav-item">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-preferences">Preferences</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+                        </li>
+                    </ul>
+                    
+                    <div class="tab-content pt-2">
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                            <h5 class="card-title">Profile Details</h5>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label "> Country </div>
+                                <div class="col-lg-9 col-md-8"> {{ profile.country }} </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">State</div>
+                                <div class="col-lg-9 col-md-8">{{ profile.state }}</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Contact Number</div>
+                                <div class="col-lg-9 col-md-8">{{ profile.contact_number }}</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Linkedin</div>
+                                <div class="col-lg-9 col-md-8">{{ profile.linkedin }}</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">GitHub</div>
+                                <div class="col-lg-9 col-md-8">{{ profile.github }}</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Website</div>
+                                <div class="col-lg-9 col-md-8">{{ profile.website }}</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Other</div>
+                                <div class="col-lg-9 col-md-8">{{ profile.other }}</div>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                            
+                            <!-- Profile Edit Form -->
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row mb-3">
+                                    <label for="{{ profile_form.picture.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <img src="{{ profile.picture.url }}" alt="Profile" class="img-fluid img-thumbnail d-block w-50 h-50 border" >
+                                        <input type="file" name="{{ profile_form.picture.name }}" id="{{ profile_form.picture.id_for_label }}" class="form-control-file">
+                                    </div>
+                                </div>
+
+
+                                <div class="row mb-3">
+                                    <label for="{{ profile_form.country.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Country</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        {{ profile_form.country }}
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="{{ profile_form.state.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">State</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="state" type="text" class="form-control" id="state" placeholder="{{ profile.state }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="{{ profile_form.contact_number.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Phone Number</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="contact_number" type="text" class="form-control" id="contact_number" placeholder="{{ profile.contact_number }}" >
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="{{ profile_form.linkedin.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Linkedin</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="linkedin" type="text" class="form-control" id="linkedin" placeholder="{{ profile.linkedin }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="{{ profile_form.github.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">GitHub</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="github" type="text" class="form-control" id="github" placeholder="{{ profile.github }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="{{ profile_form.website.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Personal Website</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="website" type="text" class="form-control" id="website" placeholder="{{ profile.website }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="{{ profile_form.other.id_for_label  }}" class="col-md-4 col-lg-3 col-form-label">Other</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="other" type="text" class="form-control" id="other" placeholder="{{ profile.other }}">
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form><!-- End Profile Edit Form -->
+                        </div>
+                        
+                        <!-- Preferences Form -->
+                        <div class="tab-pane fade profile-edit pt-3" id="profile-preferences">
+                            <!-- Profile Edit Form -->
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+                                <div class="row mb-3">
+                                    <label for="{{ preferences_form.about.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">About</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <textarea name="about" class="form-control" id="about" style="height: 100px" placeholder="{{ profile_preferences.about }}"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="{{ preferences_form.desired_job_title.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Desired Job Title</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="desired_job_title" type="text" class="form-control" id="desired_job_title" placeholder="{{ profile_preferences.desired_job_title }}"> 
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="{{ preferences_form.desired_location.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Desired Location</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        {{ preferences_form.desired_location }}
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="{{ preferences_form.desired_job_description.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Desired Job Description</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="desired_job_description" type="text" class="form-control" id="desired_job_description" placeholder="{{ profile_preferences.desired_job_description }}"> 
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="{{ preferences_form.desired_compensation.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Desired Compensation</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        {{ preferences_form.desired_compensation }}
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="{{ preferences_form.desired_benefits.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Desired Benefits</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="desired_benefits" type="text" class="form-control" id="desired_benefits" placeholder="{{ profile_preferences.desired_benefits }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="{{ preferences_form.desired_industry.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Desired Industry</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        {{ preferences_form.desired_industry }}
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="{{ preferences_form.desired_start_day.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Desired Start Date</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        {{ preferences_form.desired_start_day }}
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="{{ preferences_form.urgency.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Urgency</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        {{ preferences_form.urgency }}
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form><!-- End Profile Edit Form -->
+                        </div>
+
+                        <div class="tab-pane fade pt-3" id="profile-change-password">
+                            <!-- Change Password Form -->
+                            <form>
+                                <div class="row mb-3">
+                                    <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="password" type="password" class="form-control" id="currentPassword">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="newpassword" type="password" class="form-control" id="newPassword">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Change Password</button>
+                                </div>
+                            </form><!-- End Change Password Form -->
+                        </div>
+                    </div><!-- End Bordered Tabs -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% else %}
+    <h1> Hi, Guest! Please log in. </h1>
+{% endif %}
 
 {%endblock content%}
+

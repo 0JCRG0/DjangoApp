@@ -109,7 +109,7 @@ class SidebarViews(TemplateView):
         return context
 
 class ProfileView(View):
-    template_name = 'DreamedJobAI/user/replace-profile-user.html'
+    template_name = 'DreamedJobAI/user/profile-user.html'
 
     def get(self, request):
         profile, created = Profile.objects.get_or_create(user=request.user)
@@ -118,11 +118,14 @@ class ProfileView(View):
         profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
         preferences_form = ProfilePreferencesForm(instance=profile_preferences)
 
-        return render(request, self.template_name, {'profile_form': profile_form, 'preferences_form': preferences_form, 'profile': profile})
+        return render(request, self.template_name, {'profile_form': profile_form, 'preferences_form': preferences_form, 'profile': profile, 'profile_preferences': profile_preferences})
     
     def post(self, request):
         profile, created = Profile.objects.get_or_create(user=request.user)
+        profile_form = ProfileForm(instance=profile)
+
         profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
+        preferences_form = ProfilePreferencesForm(instance=profile_preferences)
 
         if 'country' in request.POST:
             profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
@@ -140,7 +143,7 @@ class ProfileView(View):
         if profile_form.is_valid() or preferences_form.is_valid():
             return redirect('DreamedJobAI:profile-user')
 
-        return render(request, self.template_name, {'profile_form': profile_form, 'preferences_form': preferences_form, 'profile': profile})
+        return render(request, self.template_name, {'profile_form': profile_form, 'preferences_form': preferences_form, 'profile': profile, 'profile_preferences': profile_preferences})
 
 """
 class ProfileView(View):
