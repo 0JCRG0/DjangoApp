@@ -78,11 +78,12 @@ class LegalViews(TemplateView):
 
 class SidebarViews(TemplateView):
     def get_template_names(self):
-        # TODO: Add template view for the rest of the sidebar buttons
         if self.request.path == '/home-user/':
             return 'DreamedJobAI/user/home-user.html'
-        elif self.request.path == '/profile-user/':
-            return 'DreamedJobAI/user/profile-user.html'
+        elif self.request.path == '/calendar-user/':
+            return 'DreamedJobAI/user/calendar-user.html'
+        elif self.request.path == '/jobs-user/':
+            return 'DreamedJobAI/user/jobs-user.html'
         else:
             return 'default_template.html'
 
