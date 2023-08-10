@@ -26,5 +26,7 @@ urlpatterns = [
     path('terms-and-conditions/', LegalViews.as_view(), name='TandC'),
     path('privacy-notice/', LegalViews.as_view(), name='privacy-notice'),
     path('home-user/', SidebarViews.as_view(), name='home-user'),
+    path('calendar-user/', SidebarViews.as_view(), name='calendar-user'),
+    path('jobs-user/', SidebarViews.as_view(), name='jobs-user'),
     path('profile-user/', ProfileView.as_view(), name='profile-user')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
