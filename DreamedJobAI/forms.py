@@ -29,8 +29,6 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = [
             'picture',
-            'country',
-            'state',
             'contact_number',
             'linkedin',
             'github',
@@ -47,6 +45,7 @@ class ProfilePreferencesForm(forms.ModelForm):
         fields = [
             'about',
             'desired_job_title',
+            'desired_country',
             'desired_location',
             'desired_job_description',
             'desired_compensation',
@@ -56,6 +55,7 @@ class ProfilePreferencesForm(forms.ModelForm):
             'urgency',
         ]
         widgets = {
+            'desired_country': forms.Select(attrs={'class': 'form-control'}),
             'desired_location': forms.Select(attrs={'class': 'form-control'}),
             'desired_compensation': forms.Select(attrs={'class': 'form-control'}),
             'desired_industry': forms.Select(attrs={'class': 'form-control'}),

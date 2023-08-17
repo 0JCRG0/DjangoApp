@@ -229,12 +229,6 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     picture = models.ImageField(default='user_pp/user.png', upload_to='user_pp/', blank=True)
-    country = models.CharField(
-        max_length=35,
-        choices=COUNTRY_CHOICES,
-        blank=True
-    )
-    state = models.CharField(default='Not specified', blank=True)
     contact_number = models.CharField(default='Not specified', blank=True)
     linkedin = models.CharField(default='Not specified', blank=True)
     github = models.CharField(default='Not specified', blank=True)
@@ -323,6 +317,11 @@ class ProfilePreferences(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     about = models.TextField(default="Not specified", blank=True)
     desired_job_title = models.CharField(default="Not specified", max_length=100, blank=True)
+    desired_country = models.CharField(
+        max_length=35,
+        choices=COUNTRY_CHOICES,
+        blank=True
+    )
     desired_location = models.CharField(
         max_length=30,
         choices=LOCATION_CHOICES,

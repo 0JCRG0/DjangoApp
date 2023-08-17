@@ -105,21 +105,6 @@
                                     </div>
                                 </div>
 
-
-                                <div class="row mb-3">
-                                    <label for="{{ profile_form.country.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Country</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        {{ profile_form.country }}
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="{{ profile_form.state.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">State</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="state" type="text" class="form-control" id="state" placeholder="{{ profile.state }}">
-                                    </div>
-                                </div>
-
                                 <div class="row mb-3">
                                     <label for="{{ profile_form.contact_number.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Phone Number</label>
                                     <div class="col-md-8 col-lg-9">
@@ -178,6 +163,13 @@
                                     <label for="{{ preferences_form.desired_job_title.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Desired Job Title</label>
                                     <div class="col-md-8 col-lg-9">
                                         <input name="desired_job_title" type="text" class="form-control" id="desired_job_title" placeholder="{{ profile_preferences.desired_job_title }}"> 
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="{{ preferences_form.desired_country.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Desired Country</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        {{ preferences_form.desired_country }}
                                     </div>
                                 </div>
 

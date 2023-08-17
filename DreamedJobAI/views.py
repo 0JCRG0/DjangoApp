@@ -128,7 +128,7 @@ class ProfileView(View):
         success_password = None
         failure_password = None
 
-        if 'country' in request.POST:
+        if 'picture' in request.POST:
             profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
             if profile_form.is_valid():
                 profile = profile_form.save(commit=False)
