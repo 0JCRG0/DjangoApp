@@ -320,7 +320,7 @@ class ProfilePreferences(models.Model):
     desired_country = models.CharField(
         max_length=35,
         choices=COUNTRY_CHOICES,
-        blank=True
+        blank=False
     )
     desired_location = models.CharField(
         max_length=30,

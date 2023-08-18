@@ -181,3 +181,4 @@ class ProfileView(View):
                             'failure_password': failure_password
                             }
                     )
+
