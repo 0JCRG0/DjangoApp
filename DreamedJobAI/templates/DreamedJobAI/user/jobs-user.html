@@ -5,7 +5,29 @@
 <div class="content">
     {% if user.is_authenticated %}
         <h1> Hi, {{ user.first_name }} {{ user.last_name }}  </h1>
-        <h4> JOBS TABLE</h4>
+        <button id="myButton">Click me</button>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+        $(document).ready(function(){
+            $("#myButton").click(function(){
+                var user_id = "{{ user_id }}";  // Replace with how you obtain the user_id in your template
+                var desired_country = "{{ desired_country }}";  // Replace with how you obtain the desired_country in your template
+                $.ajax({
+                    url: '/jobs-user/',
+                    type: 'POST',
+                    data: {
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response){
+                        if(response.success){
+                            alert('Data saved successfully!');
+                        }
+                    }
+                });
+            });
+        });
+        </script>
 
     {% else %}
         <h1> Hi, Guest! Please log in. </h1>
