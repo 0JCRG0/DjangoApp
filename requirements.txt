@@ -12,3 +12,4 @@ langdetect
 pyarrow
 tqdm
 scipy
+torch
