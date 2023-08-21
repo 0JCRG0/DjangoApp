@@ -1,8 +1,9 @@
-from .utils import summarise_cv, extract_text_from_pdf
+from .others import summarise_cv, extract_text_from_pdf
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.http import HttpRequest
+from django.http import JsonResponse
 from django.core.mail import send_mail
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
@@ -12,10 +13,11 @@ from django.views.generic.edit import FormView
 from .forms import RegisterForm, ProfileForm, ProfilePreferencesForm, UserCVForm
 from .models import Profile, ProfilePreferences, UserCV
 from django.views.generic import TemplateView
+import logging
 from django.views import View
 from django.shortcuts import get_object_or_404
-
-
+from .gpt4_utils import main
+import asyncio
 
 
 
@@ -82,8 +84,8 @@ class SidebarViews(TemplateView):
             return 'DreamedJobAI/user/home-user.html'
         elif self.request.path == '/calendar-user/':
             return 'DreamedJobAI/user/calendar-user.html'
-        elif self.request.path == '/jobs-user/':
-            return 'DreamedJobAI/user/jobs-user.html'
+        #elif self.request.path == '/jobs-user/':
+            #return 'DreamedJobAI/user/jobs-user.html'
         else:
             return 'default_template.html'
 
@@ -181,4 +183,39 @@ class ProfileView(View):
                             'failure_password': failure_password
                             }
                     )
+
+class JobView(View):
+    template_name = "DreamedJobAI/user/jobs-user.html"
+    
+    def post(self, request):
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            profile, created = Profile.objects.get_or_create(user=request.user)
+            profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
+            
+            # Fetch the user_id and desired_country from the retrieved objects
+            user_id = profile.user_id
+            desired_country = profile_preferences.desired_country
+            
+
+            asyncio.run(main(user_id, desired_country))
+        
+            return JsonResponse({"success": True}, status=200)
+        return JsonResponse({"success": False}, status=400)
+
+    def get(self, request:HttpRequest):
+        profile, created = Profile.objects.get_or_create(user=request.user)
+        profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
+        
+        user_id = profile.user_id
+        desired_country = profile_preferences.desired_country
+        profile_picture = profile.picture.url
+
+        context = {
+            'user_id': user_id,
+            'desired_country': desired_country,
+            'profile_picture': profile_picture
+        }
+
+            # Pass the context to the template when rendering
+        return render(request, self.template_name, context)
 
