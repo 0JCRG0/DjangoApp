@@ -405,7 +405,7 @@ abstract_cv = """('Qualifications: \n- LLB Law degree from Universidad de las Am
 
 LoggingDjango()
 
-async def main(user_id:int, user_country:str):
+async def main(user_id:int, user_country:str, top_n_interval:int, num_suitable_jobs: int):
 
 	logging.info(f"USER ID: {user_id}. USER DESIRED COUNTRY: {user_country}")
 
@@ -579,7 +579,7 @@ async def main(user_id:int, user_country:str):
 
 	#Define the rows to classify
 	min_n=0
-	top_n=10
+	top_n=top_n_interval
 
 	# Define the suitable categories
 	suitable_categories = ['Highly Suitable', 'Moderately Suitable', 'Potentially Suitable']
@@ -601,9 +601,9 @@ async def main(user_id:int, user_country:str):
 
 		logging.info(f"Current min_n: {min_n}. Current top_n: {top_n}")
 
-		# Increment the counters
-		min_n += 10
-		top_n += 10
+		# Increment the counters depending on the desired top_n_interval 
+		min_n += top_n_interval
+		top_n += top_n_interval
 
 		# Filter the dataframe to only include the suitable jobs
 		df_most_suitable = df_appended[df_appended['suitability'].isin(suitable_categories)] if 'suitability' in df_appended.columns else pd.DataFrame()
@@ -611,11 +611,11 @@ async def main(user_id:int, user_country:str):
 		df_appended.to_parquet(SAVE_PATH + "/df_appended.parquet", index=False)
 		df_most_suitable.to_parquet(SAVE_PATH + "/df_most_suitable.parquet", index=False)
 
-		# Break the loop if we have 10 suitable jobs
-		if len(df_most_suitable) >= 10:
+		# Break the loop if we have x suitable jobs
+		if len(df_most_suitable) >= num_suitable_jobs:
 			break
 
-	logging.info(f"\nDF APPENDED:\n{df_appended}")
+	logging.info(f"\nDF APPENDED:\n{df_appended}. \nDF MOST SUITABLE:\n{df_most_suitable}")
 	
 	#Get the ids
 	def ids_df_most_suitable(df: pd.DataFrame = df_most_suitable) -> str:
@@ -661,7 +661,7 @@ async def main(user_id:int, user_country:str):
 
 	df_postgre = find_jobs_per_ids(ids=ids_most_suitable)
 
-	#Read the parquet with ids & summaries
+	#Read the parquet with ids, summaries & user_id
 	df_summaries = pd.read_parquet(SAVE_PATH + "/summaries.parquet")
 	#Merge it with the data in postgre
 	df_postgre_summaries = df_postgre.merge(df_summaries, on='id', how='inner')
@@ -689,7 +689,8 @@ async def main(user_id:int, user_country:str):
 	sorted_df.to_parquet(SAVE_PATH + f"{filename}.parquet", index=False)
 
 	logging.info(f"\nSORTED DF:\n{sorted_df}.\n\nThis df has been saved in ...{filename}.parquet\n\n\n")
-
+	
+	return sorted_df
 
 if __name__ == "__main__":
 	asyncio.run(main("37", "Mexico"))

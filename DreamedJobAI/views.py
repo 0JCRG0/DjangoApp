@@ -16,10 +16,8 @@ from django.views.generic import TemplateView
 import logging
 from django.views import View
 from django.shortcuts import get_object_or_404
-from .gpt4_utils import main
+from .gpt4_utils import main, LoggingDjango
 import asyncio
-
-
 
 
 def home(request: HttpRequest):
@@ -197,9 +195,25 @@ class JobView(View):
             desired_country = profile_preferences.desired_country
             
 
-            asyncio.run(main(user_id, desired_country))
-        
-            return JsonResponse({"success": True}, status=200)
+            df = asyncio.run(main(user_id=user_id, user_country=desired_country, top_n_interval=3, num_suitable_jobs=1))
+            
+            # Convert the DataFrame to JSON
+            df_dict = df.to_dict(orient='records')
+
+            print(df_dict, type(df_dict))
+
+            # Step 3: Write to a File
+            #with open('/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/data/data.json', 'w') as json_file:
+                #json_file.write(df_dict)
+
+            print("JSON data saved to 'data.json'.")
+
+            # Pass the JSON data to the template context
+            context = {
+                'df_json': df_dict,
+            }
+
+            return JsonResponse({"success": True, "df_json": df_dict}, status=200)
         return JsonResponse({"success": False}, status=400)
 
     def get(self, request:HttpRequest):

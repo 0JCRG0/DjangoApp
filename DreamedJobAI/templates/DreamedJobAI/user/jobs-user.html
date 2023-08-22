@@ -5,28 +5,95 @@
 <div class="content">
     {% if user.is_authenticated %}
         <h1> Hi, {{ user.first_name }} {{ user.last_name }}  </h1>
-        <button id="myButton">Click me</button>
+        <button id="JobsBtn">Click me</button>
+        <div id="preloader"></div>
+
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Link</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Summary</th>
+                            <th scope="col">User ID</th>
+                            <th scope="col">Suitability</th>
+                            <th scope="col">Explanation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- You will need to loop through your JSON data here and create a new row for each item -->
+                        <!-- End of loop -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-        $(document).ready(function(){
-            $("#myButton").click(function(){
-                var user_id = "{{ user_id }}";  // Replace with how you obtain the user_id in your template
-                var desired_country = "{{ desired_country }}";  // Replace with how you obtain the desired_country in your template
-                $.ajax({
-                    url: '/jobs-user/',
-                    type: 'POST',
-                    data: {
-                        'csrfmiddlewaretoken': '{{ csrf_token }}'
-                    },
-                    success: function(response){
-                        if(response.success){
-                            alert('Data saved successfully!');
+            $(document).ready(function(){
+                // Check if there's any data in the local storage
+                var data = localStorage.getItem('df_json');
+                if (data) {
+                    // If there's data, parse it and display it
+                    data = JSON.parse(data);
+                    displayData(data);
+                }
+
+                $("#JobsBtn").click(function(){
+                    // Display a loading message or spinner
+                    $("#preloader").show();
+                    
+                    var user_id = "{{ user_id }}";  // Replace with how you obtain the user_id in your template
+                    var desired_country = "{{ desired_country }}";  // Replace with how you obtain the desired_country in your template
+                    $.ajax({
+                        url: '/jobs-user/',
+                        type: 'POST',
+                        data: {
+                            'csrfmiddlewaretoken': '{{ csrf_token }}'
+                        },
+                        success: function(response){
+                            if(response.success){
+                                // Hide the loading indicator when the request is complete
+                                $("#preloader").hide();
+                                // Hide the button
+                                $("#JobsBtn").hide();
+
+                                // Save the data to the local storage
+                                localStorage.setItem('df_json', JSON.stringify(response.df_json));
+
+                                // Display the data
+                                displayData(response.df_json);
+                            }
+                        },
+                        error: function(){
+                            // Handle errors here if needed
+                            // Hide the loading indicator on error
+                            $("#preloader").hide();
                         }
-                    }
+                    });
                 });
             });
-        });
+
+            // Function to display the data
+            function displayData(data) {
+                // Loop through the data and create table rows
+                $.each(data, function(i, item) {
+                    var $tr = $('<tr>').append(
+                        $('<td>').text(item.id),
+                        $('<td>').text(item.title),
+                        $('<td>').html('<a href="' + item.link + '">Link</a>'),
+                        $('<td>').text(item.location),
+                        $('<td>').text(item.summary),
+                        $('<td>').text(item.user_id),
+                        $('<td>').text(item.suitability),
+                        $('<td>').text(item.explanation)
+                    );
+                    $('table').append($tr);
+                });
+            }
         </script>
 
     {% else %}
@@ -51,3 +118,5 @@
 </div>
 
 {% endblock content %}
+
+

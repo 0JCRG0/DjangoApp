@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import pandas as pd
 import pretty_errors
 import io
+import logging
 from pdfminer.converter import TextConverter
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfpage import PDFPage
@@ -12,7 +13,17 @@ import magic
 
 load_dotenv('.env')
 openai.api_key = os.getenv("OPENAI_API_KEY")
+LOGGER_DJANGO_VIEW = os.getenv("LOGGER_DJANGO_VIEW")
 
+
+def LoggingDjangoViews():
+	# Define a custom format with bold text
+	log_format = '%(asctime)s %(levelname)s: \n%(message)s\n'
+
+	# Configure the logger with the custom format
+	logging.basicConfig(filename=LOGGER_DJANGO_VIEW,
+						level=logging.INFO,
+						format=log_format)
 
 def summarise_cv(job_description: str) -> str:
     MODEL= "gpt-3.5-turbo-16k"
