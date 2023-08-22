@@ -6,3 +6,12 @@
     new bootstrap.Tooltip(tooltipTriggerEl)
   })
 })()
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const dataTable = new simpleDatatables.DataTable("#myTable", {
+    sortable: true, // Enable sorting
+    searchable: true, // Enable searching
+    perPage: 10, // Number of rows per page
+  });
+});

@@ -5616,3 +5616,999 @@ This df has been saved in .../final_user_df.parquet
 
 
 
+2023-08-21 21:10:34,777 INFO: 
+/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/models.py changed, reloading.
+
+2023-08-21 21:10:50,364 INFO: 
+/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/models.py changed, reloading.
+
+2023-08-21 21:11:00,869 INFO: 
+/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/models.py changed, reloading.
+
+2023-08-21 21:11:48,570 INFO: 
+/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/models.py changed, reloading.
+
+2023-08-21 21:12:30,597 INFO: 
+/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py changed, reloading.
+
+2023-08-21 21:13:20,497 INFO: 
+/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py changed, reloading.
+
+2023-08-21 21:13:25,748 INFO: 
+/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py changed, reloading.
+
+2023-08-21 21:13:32,066 INFO: 
+/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py changed, reloading.
+
+2023-08-21 21:13:37,951 INFO: 
+/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py changed, reloading.
+
+2023-08-21 21:13:46,222 INFO: 
+/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py changed, reloading.
+
+2023-08-21 21:13:51,355 INFO: 
+/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py changed, reloading.
+
+2023-08-21 21:14:05,355 INFO: 
+/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py changed, reloading.
+
+2023-08-21 21:14:45,517 INFO: 
+/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py changed, reloading.
+
+2023-08-21 21:32:35,596 INFO: 
+USER ID: 37. USER DESIRED COUNTRY: Mexico
+
+2023-08-21 21:32:44,407 INFO: 
+message='OpenAI API response' path=https://api.openai.com/v1/chat/completions processing_ms=5411 request_id=5d2acd16961318a00f5dbd5e8a978b19 response_code=200
+
+2023-08-21 21:32:47,572 INFO: 
+message='OpenAI API response' path=https://api.openai.com/v1/chat/completions processing_ms=8720 request_id=4d64ee4ef52abb5832e2462b895feaa9 response_code=200
+
+2023-08-21 21:32:48,593 INFO: 
+message='OpenAI API response' path=https://api.openai.com/v1/chat/completions processing_ms=9794 request_id=fa57e87388d321b3817d4124c2ea9069 response_code=200
+
+2023-08-21 21:32:48,670 INFO: 
+message='OpenAI API response' path=https://api.openai.com/v1/chat/completions processing_ms=9830 request_id=c30a34e351b5be56905ad88ac01a8bbb response_code=200
+
+2023-08-21 21:32:48,998 INFO: 
+Preexisting df:         id                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           summary  user_id
+0   244958                                                                                                                   Title: QA Analyst 100% remoto\nLocation: Remoto in Desde casa MX\nJob Objective: We are looking for a highly skilled QA Analyst to join our team. The successful candidate will be responsible for ensuring the quality of our software products through functional testing, integration testing, and optional load and stress testing.\nResponsibilities/Key duties:\n- Create and execute test cases and test plans for functional and integration testing.\n- Perform optional load and stress testing to ensure the software can handle high levels of traffic and usage.\n- Identify, document, and track errors and issues found during testing.\n- Collaborate with developers and other teams to ensure the software meets functional and performance requirements.\n- Ensure the software is compatible with various devices, platforms, and operating systems.\n- Continuously improve the testing process and procedures.\n- Provide regular reports and updates on the progress of testing.\nQualifications/Requirements/Experience:\n- 3-5 years of experience in testing with mobile applications.\n- 3-5 years of experience in testing with web applications.\n- 1-2 years of experience in writing requirements and acceptance criteria.\n- Knowledge of functional testing and integration testing.\n- Familiarity with testing tools such as Selenium, JIRA, and AIO Test Case Management Add-on for Jira.\n- Strong analytical and problem-solving skills.\n- Excellent written and verbal communication skills.\n- Ability to work independently and as part of a team.\n- Demonstrated ability to meet deadlines and deliver high-quality results.\n- Experience in Agile methodology is a plus.\n- Bonus if you have worked in a startup or have your own business.\n- Experience as a Freelance Founder, Independent, or contractor.\n- Reliable high-speed internet and webcam.\nPreferred Skills/Nice to Have: Experience in Agile methodology, working in a startup or having your own business.\nAbout the company: Founders Workshop is a company based in Arizona that creates web and mobile applications for non-technical startup founders. We collaborate with our clients to       37
+1   244960                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          Title: Teams Staffing Analyst Remote\nLocation: Remoto in Desde casa MX\nJob Objective: A Clients Staffing Analyst is responsible for creating resumes that highlight the skills, experience, and accomplishments of our Candidates.\nResponsibilities/Key duties: \n- Manage and review our candidate pipeline and keep track of each candidate's status in our ATS\n- Analysis of profiles and hiring strategies\n- Keep candidates updated on the status of their process\n- Assist in the preparation of candidate's documents and resumes\n- Update, maintain, and organize candidates' records\n- This role also requires you to be flexible and undertake duties outside of this role\nQualifications/Requirements/Experience: \n- Fluency in English near-native\n- Exceptional written and verbal communication skills\n- Time management skills and ability to prioritize\n- Technology savvy with an interest in new generation technology—comfortable doing things a different way, troubleshooting, and recommending new technology\n- Availability to work Full Time Remotely Mon-Fri/ 9AM-6PM\nPreferred Skills/Nice to Have: N/A\nAbout the company: N/A\nCompensation and Benefits: N/A       37
+2   244982                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Title: Remote Professional - Maintenance Dispatcher\nLocation: Remoto in Desde casa MX\nJob Objective: Estamos buscando un Coordinador de Desarrollo de Negocios de habla hispana para América Latina.\nResponsibilities/Key duties:\n1. Investigar y comprender el marco regulatorio de cada país.\n2. Preparar y presentar solicitudes y expedientes a las agencias reguladoras correspondientes.\n3. Comunicarse con los departamentos reguladores.\n4. Investigar el proceso de registro de productos de suplementos dietéticos alimentos y complementos alimenticios en cada país.\n5. Ayudar con las traducciones y la documentación al español.\n6. Apoyar a los equipos de marketing digital y comercio electrónico con el desarrollo de contenido y campañas publicitarias en español.\n7. Manejar la comunicación de front-end con cuentas clave en los respectivos países.\n8. Desarrollar y mantener relaciones profesionales con agencias reguladoras federales estatales y locales.\n9. Realizar otras funciones relacionadas que le sean asignadas.\nQualifications/Requirements/Experience: N/A (not provided in the description)\nPreferred Skills/Nice to Have: N/A (not provided in the description)\nAbout the company: N/A (not provided in the description)\nCompensation and Benefits: \n- Tipo de trabajo: medio tiempo remoto/trabajo desde casa\n- Horario: 4 horas al día\n- Tipo de puesto: Medio tiempo\n- Horas de medio tiempo: 20 por semana\n- Sueldo: $50.00 - $100.00 la hora\n- Horario: Diurno Lunes a viernes\n- Prestaciones: Horarios flexibles, Trabajo desde casa\n- Lugar de trabajo: Empleo remoto       37
+3   245038                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ####title: Senior Netsuite Developer#### ####location: Mexico#### ####description: ####       37
+4   244955                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Title: Applicants Staffing Analyst Remote\nLocation: Remoto in Desde casa MX\nJob Objective: Creating resumes that highlight the skills, experience, and accomplishments of candidates.\nResponsibilities/Key duties: \n- Managing and reviewing the candidate pipeline and tracking their status in the ATS\n- Explaining employment conditions and modalities in different countries\n- Negotiating offer packages\n- Keeping candidates updated on the status of their process\n- Assisting in the preparation of candidate's documents and resumes\n- Updating, maintaining, and organizing candidates' records\n- Participating in the client interview coordination process\n- Undertaking duties outside of this role as required\nQualifications/Requirements/Experience: \n- Fluency in English (near-native)\n- Exceptional written and verbal communication skills\n- Time management skills and ability to prioritize\n- Technology savvy with an interest in new generation technology\n- Availability to work full-time remotely, Monday to Friday, 9AM-6PM\nPreferred Skills/Nice to Have: N/A\nAbout the company: N/A\nCompensation and Benefits: N/A       37
+5   244964                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Title: UI/UX Designer 100% remoto\nLocation: Remoto in Desde casa MX\nJob Objective: Diseñador de UI/UX POSICIÓN 100% REMOTA\nResponsibilities/Key duties:\n- Leer mentes mientras traduces requisitos difusos en diseños de software intuitivos.\n- Establecer la marca y el carácter de un producto a menudo desde el principio.\n- Combinar conceptos de diseño tradicionales con innovaciones digitales.\n- Deleitar a los clientes mostrándoles sus ideas por primera vez.\n- Trabajar con un equipo multidisciplinario para dar vida a conceptos.\n- Diseñar para múltiples industrias y para diversas empresas mientras trabajas con nosotros.\n- Crear experiencias excelentes para los usuarios finales que cumplan con los objetivos comerciales de nuestros clientes.\n- Conceptualizar diseños para todo tipo de productos digitales incluidas aplicaciones móviles, sitios web receptivos, aplicaciones web progresivas, plataformas de escritorio, interfaces de RV, etc.\n- Crear rápidamente wireframes y maquetas para ilustrar funciones y pantallas.\n- Trabajar de manera iterativa para crear y mejorar diseños antes del desarrollo.\n- Equilibrar objetivos comerciales y necesidades técnicas con las necesidades de los usuarios finales.\n- Crear y gestionar activos.\n- Comunicar la intención de diseño y brindar apoyo al equipo del proyecto mientras trabajan.\n- Ayudar en la calidad del diseño con QA de Diseño en cada sprint.\n- Idear y ejecutar objetivos comerciales y requisitos de funciones en diseños para nuestro equipo.\n- Defender el diseño centrado en el ser humano / amigable para el usuario en cada proyecto.\n- Complementar diseños digitales con otros materiales de       37
+6   246069                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Title: Vendedor Técnico\nLocation: Remoto in Desde casa MX\nJob Objective: Estamos buscando un Coordinador de Desarrollo de Negocios de habla hispana para América Latina.\nResponsibilities/Key duties:\n1. Investigar y comprender el marco regulatorio de cada país.\n2. Preparar y presentar solicitudes y expedientes a las agencias reguladoras correspondientes.\n3. Comunicarse con los departamentos reguladores.\n4. Investigar el proceso de registro de productos de suplementos dietéticos alimentos y complementos alimenticios en cada país.\n5. Ayudar con las traducciones y la documentación al español.\n6. Apoyar a los equipos de marketing digital y comercio electrónico con el desarrollo de contenido y campañas publicitarias en español.\n7. Manejar la comunicación de front-end con cuentas clave en los respectivos países.\n8. Desarrollar y mantener relaciones profesionales con agencias reguladoras federales estatales y locales.\n9. Realizar otras funciones relacionadas que le sean asignadas.\nQualifications/Requirements/Experience: N/A (not provided in the description)\nPreferred Skills/Nice to Have: N/A (not provided in the description)\nAbout the company: Nuestra empresa tiene su sede en los EE. UU. y busca expandir nuestro negocio en países de América Latina.\nCompensation and Benefits: Sueldo: $50.00 - $100.00 la hora, Horarios flexibles, Trabajo desde casa       37
+7   246077                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Title: DESARROLLADOR .NET FRONT END\nLocation: MX\nJob Objective: Diseñador de UI/UX\nResponsibilities/Key duties: \n- Leer mentes mientras traduces requisitos difusos en diseños de software intuitivos.\n- Establecer la marca y el carácter de un producto a menudo desde el principio.\n- Combinar conceptos de diseño tradicionales con innovaciones digitales.\n- Deleitar a los clientes mostrándoles sus ideas por primera vez.\n- Trabajar con un equipo multidisciplinario para dar vida a conceptos.\n- Diseñar para múltiples industrias y para diversas empresas mientras trabajas con nosotros.\n- Crear experiencias excelentes para los usuarios finales que cumplan con los objetivos comerciales de nuestros clientes.\n- Conceptualizar diseños para todo tipo de productos digitales incluidas aplicaciones móviles, sitios web receptivos, aplicaciones web progresivas, plataformas de escritorio, interfaces de RV, etc.\n- Crear rápidamente wireframes y maquetas para ilustrar funciones y pantallas.\n- Trabajar de manera iterativa para crear y mejorar diseños antes del desarrollo.\n- Equilibrar objetivos comerciales y necesidades técnicas con las necesidades de los usuarios finales.\n- Crear y gestionar activos.\n- Comunicar la intención de diseño y brindar apoyo al equipo del proyecto mientras trabajan.\n- Ayudar en la calidad del diseño con QA de Diseño en cada sprint.\n- Idear y ejecutar objetivos comerciales y requisitos de funciones en diseños para nuestro equipo.\n- Defender el diseño centrado en el ser humano / amigable para el usuario en cada proyecto.\n- Complementar diseños digitales con otros materiales de marketing como diseño gráfico de marca, impresión y piezas       37
+8   244953                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          Title: KAM Jr\nLocation: Remoto in Desde casa MX\nJob Objective: EMPRESA IMPORTANTE COMERCIALIZADORA BUSCA: KAM jr.\nResponsibilities/Key duties: Enfocado a Resultados, Dinamico, Muy Proactivo\nQualifications/Requirements/Experience: Experiencia deseable en Tiendas de Autoservicio\nPreferred Skills/Nice to Have: N/A\nAbout the company: N/A\nCompensation and Benefits: Sueldo Base 18 a 25 mil mensuales mas atractivo esquema de comisiones.       37
+9   244963                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          Title: Ejecutivo comercial para venta de servicios de reclutamiento FREELANCE\nLocation: Remoto in Desde casa MX\nJob Objective: Venta B2B de servicios de Recursos Humanos\nResponsibilities/Key duties: Prospección de clientes, búsqueda y análisis de clientes, prospección y llamadas en frío, generación de leads\nQualifications/Requirements/Experience: Experiencia de 1 año en prospección de clientes, excelente manejo de Office\nPreferred Skills/Nice to Have: N/A\nAbout the company: N/A\nCompensation and Benefits: N/A       37
+10  246058                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Title: Agente Telefónico Cobranza Preventiva Fin de Semana\nLocation: Remoto in Desde casa MX\nJob Objective: N/A\nResponsibilities/Key duties: N/A\nQualifications/Requirements/Experience: Edad mínima de 19 en adelante, Contar con documentación completa, Bachillerato concluido, Experiencia deseable de 3 meses en Call Center cualquier rama, Disponibilidad para conectarte a capacitación día viernes de 08:50 a 2:00 p.m\nPreferred Skills/Nice to Have: N/A\nAbout the company: Empresa líder en el sector financiero\nCompensation and Benefits: Salario: $500.00 - $10000.00 al día, Horario: Fines de semana, Lugar de trabajo: Empleo remoto       37
+11  244971  Title: .Net C# Developer 100% remoto\nLocation: MX (found in the "location" section)\nJob Objective: USI is looking for a driven individual to join our growing IT Team. This role will be front line to ensure highest service standards delivered to USI employees and customers with IT technical issues and able to provide the necessary technical support to fix the problems and providing user instructions by email phone in person or remote access. (found in the "description" section)\nResponsibilities/Key duties: Communicate with clients to diagnose technical issues, provide step-by-step instructions to fix technological issues, provide backup solutions whenever necessary, provide training sessions for new hardware or software products, keep detailed logs of client problems solutions and customer satisfaction, provide instructions in simple terms, work together with other Technical Support Specialists to find solutions to more complex issues. (found in the "description" section)\nQualifications/Requirements/Experience: In-depth knowledge of a wide range of software and hardware products, knowledge and experience of email administration, PRTG knowledge is a plus, on-site visits to remedy issues / configure equipment, updates and maintains ticketing system, network cabling knowledge and troubleshooting, proficient in cell and tablet technology, strong analytical skills, strong problem-solving skills, excellent written and verbal communication skills, excellent customer service skills, understanding of standard networking protocols DHCP DNS Firewalls LAN WAN ISP, configuration and maintenance of routers / firewalls / VPN / switches / wireless APs / network printers, familiar with IP subnetting, experience with VOIP telephony, Windows Server and Active Directory experience to support customer virtual cloud environment, Linux basic knowledge a plus, Windows and NAS file server administration, backup and recover, Veeam and others Backup solution is a plus, Hyper-V and VMware knowledge and hands-on. (found in the "description" section)\nPreferred Skills/Nice to Have: Working knowledge of computer systems peripherals and communications equipment, working knowledge of computer networking and cabling infrastructure,       37
+12  244956                                                                         Title: IT Technical Support - VOIP Specialist\nLocation: Remoto in Desde casa MX\nJob Objective: USI is looking for a driven individual to join our growing IT Team. This role will be front line to ensure highest service standards delivered to USI employees and customers with IT technical issues and able to provide the necessary technical support to fix the problems and providing user instructions by email phone in person or remote access.\nResponsibilities/Key duties: \n- Communicate with clients to diagnose technical issues\n- Provide step-by-step instructions to fix technological issues\n- Provide backup solutions whenever necessary\n- Provide training sessions for new hardware or software products\n- Keep detailed logs of client problems solutions and customer satisfaction\n- Provide instructions in simple terms\n- Work together with other Technical Support Specialists to find solutions to more complex issues\nQualifications/Requirements/Experience: \n- In-depth knowledge of a wide range of software and hardware products\n- Knowledge and experience of email administration\n- PRTG knowledge is a plus\n- On site visits to remedy issues / configure equipment\n- Updates and maintains ticketing system\n- Network cabling knowledge and troubleshooting\n- Proficient in cell and tablet technology\n- Strong analytical skills\n- Strong problem-solving skills\n- Excellent written and verbal communication skills\n- Excellent customer service skills\n- Network and Systems Administration\n- Understand standard networking protocols DHCP DNS Firewalls LAN WAN ISP\n- Configuration and maintenance of routers / firewalls / VPN / switches / wireless APs / network printers\n- Familiar with IP subnetting\n- Experience with VOIP telephony\n- Build back end and configure infrastructure\n- Windows Server and Active Directory experience to support customer virtual cloud environment\n- Linux basic knowledge a plus\n- Windows and NAS file server administration\n- Backup and recover. Veeam and others Backup solution is a plus\n- Hyper-V and VMware knowledge and hands on\nPreferred Skills/Nice to Have: \n- Working knowledge of computer systems peripherals and       37
+13  244962                                                                                                                                                                                                                                                                                                                          Title: Technical Interviewer Remote\nLocation: Remoto in Desde casa MX\nJob Objective: A Technical Interviewer is responsible for managing the complete recruitment cycle at Sophilabs, from identifying potential hires to interviewing and evaluating candidates. They play an important part in building and maintaining a strong employer brand to attract, hire, and retain qualified employees.\nResponsibilities/Key duties: \n- Screen incoming resumes and application forms\n- Interview candidates via phone and video conference\n- Prepare and distribute assignments, language assessments, and numerical and logical reasoning tests\n- Advertise job openings internally and on various platforms\n- Provide shortlists of qualified candidates to hiring managers\n- Send job offer emails and answer queries about compensation and benefits\n- Monitor key HR metrics, such as time-to-fill, time-to-hire, and source of hire\n- Participate in job fairs and host recruitment events\n- Collaborate with managers to identify future hiring needs\n- Act as a consultant to new hires and assist them during the onboarding process\n\nQualifications/Requirements/Experience: \n- At least 1 year of proven work experience in HR, Psychology, IT Recruitment, or customer service\n- Fluent in English (near-native)\n- Time management skills and ability to prioritize\n- Ability to multitask and work effectively in a fast-paced environment\n- Tech-savvy with an interest in new generation technology\n- Exceptional written and oral communication skills\n- Solid interpersonal skills and a strong team spirit\n- Highly organized and detail-oriented\n- Availability to work remotely Mon-Fri 9 AM- 6 PM\n\nPreferred Skills/Nice to Have: N/A\n\nAbout the company: Sophilabs is a company that focuses on managing the complete recruitment cycle and building a strong employer brand to attract and retain qualified employees.\n\nCompensation and Benefits: N/A       37
+14  246053                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       Title: Remote Sales Representative Customer Success Analyst\nLocation: Remoto in Desde casa MX\nJob Objective: The objective of this position is to serve as a remote Sales Representative Customer Success Analyst for a Canadian software developing company.\nResponsibilities/Key duties: \n- Work with Business Development Finance and Operations in following the current sales strategy\n- Lead generation\n- Weekly and monthly reports preparation\n- Cold email and follow-up\n- Client database and records CRM maintenance\nQualifications/Requirements/Experience: \n- Bachelor's degree in business marketing economics or related field\n- Proven experience as a Remote Sales Representative\n- 2+ years experience with lead generation and follow-up\n- 2+ years of experience working with CRM software\n- 1+ year of remote work experience\nPreferred Skills/Nice to Have: \n- Business English and Spanish proficiency\n- Proficiency in email and calendar management tools\n- Experience with online meeting platforms and meeting notes\n- Outstanding communication skills (interpersonal, written, and verbal)\n- Attention to detail and solution-driven performance\n- Time management, prioritization, and organization experience with time-tracking apps\n- Collaboration, teamwork, and empathy\nAbout the company: The company is a Canadian software developing company.\nCompensation and Benefits: This is a three-month contract full-time position with the possibility of an extension. The compensation includes a base salary plus commission.\n       37
+15  245022                                                                                                                                                                                                                                 Title: Proyect Manager for Animation and Design Studio\nLocation: Remoto in Desde casa MX\nJob Objective: A Technical Interviewer is responsible for managing the complete recruitment cycle at Sophilabs, from identifying potential hires to interviewing and evaluating candidates. They play an important part in building and maintaining a strong employer brand that ensures attracting, hiring, and retaining the most qualified employees.\nResponsibilities/Key duties: \n- Screening incoming resumes and application forms\n- Interviewing candidates via phone and video conference\n- Preparing and distributing assignments, language assessments, and numerical and logical reasoning tests\n- Advertising job openings internally and on the company's careers page, social media, and job boards\n- Providing shortlists of qualified candidates to hiring managers\n- Sending job offer emails and answering queries about compensation and benefits\n- Monitoring key HR metrics, including time-to-fill, time-to-hire, and source of hire\n- Participating in job fairs and hosting in-house recruitment events\n- Collaborating with managers to identify future hiring needs\n- Acting as a consultant to new hires and helping them during the onboarding process\nQualifications/Requirements/Experience: \n- At least 1 year of proven work experience in HR, Psychology, IT Recruitment, or customer service\n- Fluent in English (near-native)\n- Time management skills and ability to prioritize\n- Ability to multitask and work effectively in an open, highly energetic, and fast-paced environment\n- Tech-savvy with an interest in new generation technology - comfortable doing things a different way, troubleshooting, and recommending new technology\n- Exceptional written and oral communication skills\n- Solid interpersonal skills and a strong team spirit\n- Highly organized and detail-oriented\n- Availability to work remotely Mon-Fri 9 AM- 6 PM\nPreferred Skills/Nice to Have: N/A\nAbout the company: N/A\nCompensation and Benefits: N/A       37
+16  246067                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Title: Arquitecto Renderista\nLocation: Remoto in Desde casa MX\nJob Objective: ARQUITECTO RENDERISTA - Mínimo 3 años de experiencia - Representación 3D principalmente de interiores. - Remoto. - Trabajo por hora. - Contratación inmediata. Enviar CV y portafolio de diseño. Asunto: RENDERISTA. whiteline.arquitectura@gmail.com\nResponsibilities/Key duties: Representación 3D principalmente de interiores.\nQualifications/Requirements/Experience: Mínimo 3 años de experiencia.\nPreferred Skills/Nice to Have: N/A\nAbout the company: N/A\nCompensation and Benefits: Tipo de puesto: Por tiempo indeterminado Salario: $13000.00 - $15000.00 al mes Horario: Lunes a viernes Lugar de trabajo: Empleo remoto       37
+17  246073                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          Title: VACANTE DE PRÁCTICAS PROFESIONALES CIENCIAS DE LA COMUNICACIÓN\nLocation: MX\nJob Objective: Empresa líder en el sector financiero esta en busca de personal para laboral en modalidad HOME OFFCICE. NUESTRAS VACANTES SON 100% COMISIONISTAS  _ LOS PAGOS SE BRINDAN A SEMANA DESFASADA _ VACANTE UNICAMENTE DE FIN DE SEMANA!! SOLO LABORA SABADOS Y DOMINGOS!!!\nResponsibilities/Key duties: No specific responsibilities/key duties mentioned.\nQualifications/Requirements/Experience: Edad mínima de 19 en adelante, Contar con documentación completa, Bachillerato concluido, Experiencia deseable de 3 meses en Call Center cualquier rama, Disponibilidad para conectarte a capacitación día viernes de 08:50 a 2:00 p.m\nPreferred Skills/Nice to Have: No specific preferred skills/nice to have mentioned.\nAbout the company: No specific information about the company mentioned.\nCompensation and Benefits: Tipo de puesto: Medio tiempo, Horas de medio tiempo: 5-6 por semana, Salario: $500.00 - $10000.00 al día, Horario: Fines de semana, Lugar de trabajo: Empleo remoto       37
+18  244968                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Title: SAP Security Consultant\nLocation: Remoto MX\nJob Objective: EMPRESA IMPORTANTE COMERCIALIZADORA BUSCA: KAM jr. Trabajo Home Oficce Preferentemente radique en Cd de Mexico Guadalajara o Monterrey. Experiencia deseable en Tiendas de Autoservicio Enfocado a Resultados Dinamico Muy Proactivo Sueldo Base 18 a 25 mil mensuales mas atractivo esquema de comisiones. Interesados que cubran perfil postularse. Tipo de puesto: Tiempo completo Salario: $18000.00 - $25000.00 al mes Horario: Turno de 8 horas Lugar de trabajo: Empleo remoto\nResponsibilities/Key duties: N/A (not provided in the description)\nQualifications/Requirements/Experience: N/A (not provided in the description)\nPreferred Skills/Nice to Have: N/A (not provided in the description)\nAbout the company: N/A (not provided in the description)\nCompensation and Benefits: Sueldo Base 18 a 25 mil mensuales mas atractivo esquema de comisiones.       37
+19  244970                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Title: Desarrollador Netsuite\nLocation: MX\nJob Objective: A Typical Day A Applicants Staffing Analyst is responsible for creating resumes that highlight the skills experience and accomplishments of our Candidates.\nResponsibilities/Key duties: \n- Manage and review our candidate pipeline and keep track of each candidate's status in our ATS\n- Explain employment conditions and modalities in different countries\n- Negotiate offers packages\n- Keep candidates updated on the status of their process\n- Assist in the preparation of candidate's documents and resumes\n- Update, maintain, and organize candidates' records\n- Participate in the client interview coordination process\n- This role also requires you to be flexible and undertake duties outside of this role\nQualifications/Requirements/Experience: \n- Fluency in English near-native\n- Exceptional written and verbal communication skills\n- Time management skills and ability to prioritize\n- Technology savvy with an interest in new generation technology—comfortable doing things a different way, troubleshooting, and recommending new technology\n- Availability to work Full Time Remotely Mon-Fri/ 9AM-6PM\nPreferred Skills/Nice to Have: N/A\nAbout the company: N/A\nCompensation and Benefits: N/A       37
+20  246072                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           Title: Coordinador de Ventas\nLocation: MX\nJob Objective: Creating resumes that highlight the skills, experience, and accomplishments of candidates.\nResponsibilities/Key duties: \n- Managing and reviewing the candidate pipeline and keeping track of each candidate's status in the ATS\n- Explaining employment conditions and modalities in different countries\n- Negotiating offers packages\n- Keeping candidates updated on the status of their process\n- Assisting in the preparation of candidate's documents and resumes\n- Updating, maintaining, and organizing candidates' records\n- Participating in the client interview coordination process\n- Undertaking duties outside of this role as required\nQualifications/Requirements/Experience: \n- Fluency in English (near-native)\n- Exceptional written and verbal communication skills\n- Time management skills and ability to prioritize\n- Technology savvy with an interest in new generation technology\n- Availability to work full-time remotely, Monday to Friday, 9AM-6PM\nPreferred Skills/Nice to Have: N/A\nAbout the company: N/A\nCompensation and Benefits: N/A       37
+24  244975                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Title: Web Developer\nLocation: MX\nJob Objective: A Typical Day A Clients Staffing Analyst is responsible for creating resumes that highlight the skills experience and accomplishments of our Candidates.\nResponsibilities/Key duties: \n- Manage and review our candidate pipeline and keep track of each candidate's status in our ATS\n- Analysis of profiles and hiring strategies\n- Keep candidates updated on the status of their process\n- Assist in the preparation of candidate's documents and resumes\n- Update, maintain, and organize candidates' records\n- This role also requires you to be flexible and undertake duties outside of this role\nQualifications/Requirements/Experience: \n- Fluency in English near-native\n- Exceptional written and verbal communication skills\n- Time management skills and ability to prioritize\n- Technology savvy with an interest in new generation technology—comfortable doing things a different way, troubleshooting, and recommending new technology\n- Availability to work Full Time Remotely Mon-Fri/ 9AM-6PM\nPreferred Skills/Nice to Have: N/A\nAbout the company: N/A\nCompensation and Benefits: N/A       37
+25  244952                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           Title: Coordinador de Desarrollo de Negocios\nLocation: Remoto in Desde casa MX\nJob Objective: Estamos buscando un Coordinador de Desarrollo de Negocios de habla hispana para América Latina.\nResponsibilities/Key duties:\n1. Investigar y comprender el marco regulatorio de cada país.\n2. Preparar y presentar solicitudes y expedientes a las agencias reguladoras correspondientes.\n3. Comunicarse con los departamentos reguladores.\n4. Investigar el proceso de registro de productos de suplementos dietéticos alimentos y complementos alimenticios en cada país.\n5. Ayudar con las traducciones y la documentación al español.\n6. Apoyar a los equipos de marketing digital y comercio electrónico con el desarrollo de contenido y campañas publicitarias en español.\n7. Manejar la comunicación de front-end con cuentas clave en los respectivos países.\n8. Desarrollar y mantener relaciones profesionales con agencias reguladoras federales estatales y locales.\n9. Realizar otras funciones relacionadas que le sean asignadas.\nQualifications/Requirements/Experience: N/A (not provided in the description)\nPreferred Skills/Nice to Have: N/A (not provided in the description)\nAbout the company: N/A (not provided in the description)\nCompensation and Benefits: \n- Tipo de trabajo: medio tiempo remoto/trabajo desde casa\n- Horario: 4 horas al día\n- Tipo de puesto: Medio tiempo\n- Horas de medio tiempo: 20 por semana\n- Sueldo: $50.00 - $100.00 la hora\n- Horario: Diurno Lunes a viernes\n- Prestaciones: Horarios flexibles, Trabajo desde casa\n- Lugar de trabajo: Empleo remoto       37
+26  245030                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ####title: Unity & Unreal Developer#### ####location: Mexico#### ####description: Fullstack Developer with experience in Unity  Unreal More than 4 years of experience Native English Open to negotiate####       37
+27  246081                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Title: VACANTE DE PRÁCTICAS PROFESIONALES DISEÑO GRÁFICO\nLocation: MX\nJob Objective: Azka IT Consulting empresa de consultoría y Servicios de Tecnologías de la Información. Nos encargamos de conectar al talento como tu con empresas TI. Actualmente contamos con una posición como Java Support.\nResponsibilities/Key duties: Resolución de problemas en un entorno de desarrollo. Análisis de causas raíz. Dominio de aspectos técnicos y funcionales de un problema de desarrollo para ayudar a implementar soluciones.\nQualifications/Requirements/Experience: Carrera culminada. Nivel de inglés avanzado Conversacional. Más de 3 años de experiencia en: Resolución de problemas en un entorno de desarrollo. Análisis de causas raíz. Dominio de aspectos técnicos y funcionales de un problema de desarrollo para ayudar a implementar soluciones. Tecnologías como son: Java Unix Shell Scripting SQL\nPreferred Skills/Nice to Have: N/A\nAbout the company: Azka IT Consulting empresa de consultoría y Servicios de Tecnologías de la Información. Nos encargamos de conectar al talento como tu con empresas TI.\nCompensation and Benefits: Contratación directa con cliente. Esquema de trabajo remoto México. Esquema de pago 100% Nómina. Prestaciones de ley + beneficios superiores como: SGMM Certificaciones Vales de despensa Aguinaldo superior y más.       37
+28  244954                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Title: Analista de Requerimientos\nLocation: Remoto in Desde casa MX\nJob Objective: Importante empresa de Tecnología solicita: ¨Analista de Procesos Software ¨ Escolaridad: Ing. en Sistemas Comunicacionales o carreras afines Experiencia mínima de 3 años en el puesto similar y en las siguientes Experiencia · Análisis y Levantamiento de Requerimiento · Documentación · Conocimientos en UML · Experiencia en el manejo de UX User experience/UI User interface específicamente con los siguientes elementos. · Experiencia en la generación de matriz de pruebas · Experiencia en la gestión de incidentes en ambientes QA y UAT. · Generación de bitácora de reuniones con el cliente. · Análisis detallado de requerimiento\nResponsibilities/Key duties: Análisis y Levantamiento de Requerimiento, Documentación, Conocimientos en UML, Experiencia en el manejo de UX User experience/UI User interface, generación de matriz de pruebas, gestión de incidentes en ambientes QA y UAT, generación de bitácora de reuniones con el cliente, análisis detallado de requerimiento.\nQualifications/Requirements/Experience: Escolaridad: Ing. en Sistemas Comunicacionales o carreras afines, Experiencia mínima de 3 años en el puesto similar y en las siguientes Experiencia · Análisis y Levantamiento de Requerimiento · Documentación · Conocimientos en UML · Experiencia en el manejo de UX User experience/UI User interface específicamente con los siguientes elementos. · Experiencia en la generación de matriz de pruebas · Experiencia en la gestión de incidentes en ambientes QA y UAT. · Generación de bitácora       37
+29  246056                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Title: Ejecutivo en monitoreo logístico Nocturno\nLocation: Remoto in Desde casa MX\nJob Objective: Sumarse a work one solutions significa que te estás uniendo a la compañía de Logística más innovadora de México.\nResponsibilities/Key duties: Enviar reportes con los movimientos programados a todos los clientes. Asegurar la localización y estado de las unidades de manera continua. Identificar y corregir anormalidades en el avance de las unidades. Notificar en tiempo cualquier demora de la unidad. Comunicarse con proveedores carriers clientes ejecutivos aduanales etc. Para obtener y/o proveer información respecto al proceso logístico. Llevar registro de las unidades en tránsito así como de tiempos ubicaciones datos de cruce etc. Seguimiento desde recolección hasta entrega y recopilación documental.\nQualifications/Requirements/Experience: Contar con una carrera en logística comercio exterior negocios Internacionales o afín. Inglés conversacional. Disponibilidad para trabajar en horario nocturno.\nPreferred Skills/Nice to Have: Atención servicio al cliente. Solución de problemas. Análisis oportuno. Sentido de urgencia. Razonamiento lógico. Capacidad de trabajo en equipo. Toma de decisiones. Actitudes que te darán un plus: Amabilidad, Servicial, Proactividad.\nAbout the company: Sumarse a work one solutions significa que te estás uniendo a la compañía de Logística más innovadora de México.\nCompensation and Benefits: Uniformes gratuitos, 5% del salario en vales de despensa, Días de descanso superiores a la Ley, Flexibilidad laboral, Capacitación y desarrollo, Plan de carrera, Estacionamiento gratuito.\n       37
+
+2023-08-21 21:32:48,998 INFO: 
+df to append:        id                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     summary  user_id
+0  246081                                                                                                                                                                                                                                                                                                       Title: VACANTE DE PRÁCTICAS PROFESIONALES DISEÑO GRÁFICO\nLocation: MX\nJob Objective: Azka IT Consulting empresa de consultoría y Servicios de Tecnologías de la Información. Nos encargamos de conectar al talento como tu con empresas TI. Actualmente contamos con una posición como Java Support.\nResponsibilities/Key duties: Resolución de problemas en un entorno de desarrollo. Análisis de causas raíz. Dominio de aspectos técnicos y funcionales de un problema de desarrollo para ayudar a implementar soluciones.\nQualifications/Requirements/Experience: Carrera culminada. Nivel de inglés avanzado Conversacional. Más de 3 años de experiencia en: Resolución de problemas en un entorno de desarrollo. Análisis de causas raíz. Dominio de aspectos técnicos y funcionales de un problema de desarrollo para ayudar a implementar soluciones. Tecnologías como son: Java Unix Shell Scripting SQL\nPreferred Skills/Nice to Have: N/A\nAbout the company: Azka IT Consulting empresa de consultoría y Servicios de Tecnologías de la Información. Nos encargamos de conectar al talento como tu con empresas TI.\nCompensation and Benefits: Contratación directa con cliente. Esquema de trabajo remoto México. Esquema de pago 100% Nómina. Prestaciones de ley + beneficios superiores como: SGMM Certificaciones Vales de despensa Aguinaldo superior y más.       37
+1  244954                                              Title: Analista de Requerimientos\nLocation: Remoto in Desde casa MX\nJob Objective: Importante empresa de Tecnología solicita: ¨Analista de Procesos Software ¨ Escolaridad: Ing. en Sistemas Comunicacionales o carreras afines Experiencia mínima de 3 años en el puesto similar y en las siguientes Experiencia · Análisis y Levantamiento de Requerimiento · Documentación · Conocimientos en UML · Experiencia en el manejo de UX User experience/UI User interface específicamente con los siguientes elementos. · Experiencia en la generación de matriz de pruebas · Experiencia en la gestión de incidentes en ambientes QA y UAT. · Generación de bitácora de reuniones con el cliente. · Análisis detallado de requerimiento\nResponsibilities/Key duties: Análisis y Levantamiento de Requerimiento, Documentación, Conocimientos en UML, Experiencia en el manejo de UX User experience/UI User interface, generación de matriz de pruebas, gestión de incidentes en ambientes QA y UAT, generación de bitácora de reuniones con el cliente, análisis detallado de requerimiento.\nQualifications/Requirements/Experience: Escolaridad: Ing. en Sistemas Comunicacionales o carreras afines, Experiencia mínima de 3 años en el puesto similar y en las siguientes Experiencia · Análisis y Levantamiento de Requerimiento · Documentación · Conocimientos en UML · Experiencia en el manejo de UX User experience/UI User interface específicamente con los siguientes elementos. · Experiencia en la generación de matriz de pruebas · Experiencia en la gestión de incidentes en ambientes QA y UAT. · Generación de bitácora       37
+2  246056  Title: Ejecutivo en monitoreo logístico Nocturno\nLocation: Remoto in Desde casa MX\nJob Objective: Sumarse a work one solutions significa que te estás uniendo a la compañía de Logística más innovadora de México.\nResponsibilities/Key duties: Enviar reportes con los movimientos programados a todos los clientes. Asegurar la localización y estado de las unidades de manera continua. Identificar y corregir anormalidades en el avance de las unidades. Notificar en tiempo cualquier demora de la unidad. Comunicarse con proveedores carriers clientes ejecutivos aduanales etc. Para obtener y/o proveer información respecto al proceso logístico. Llevar registro de las unidades en tránsito así como de tiempos ubicaciones datos de cruce etc. Seguimiento desde recolección hasta entrega y recopilación documental.\nQualifications/Requirements/Experience: Contar con una carrera en logística comercio exterior negocios Internacionales o afín. Inglés conversacional. Disponibilidad para trabajar en horario nocturno.\nPreferred Skills/Nice to Have: Atención servicio al cliente. Solución de problemas. Análisis oportuno. Sentido de urgencia. Razonamiento lógico. Capacidad de trabajo en equipo. Toma de decisiones. Actitudes que te darán un plus: Amabilidad, Servicial, Proactividad.\nAbout the company: Sumarse a work one solutions significa que te estás uniendo a la compañía de Logística más innovadora de México.\nCompensation and Benefits: Uniformes gratuitos, 5% del salario en vales de despensa, Días de descanso superiores a la Ley, Flexibilidad laboral, Capacitación y desarrollo, Plan de carrera, Estacionamiento gratuito.\n       37
+3  244975                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Title: Web Developer\nLocation: MX\nJob Objective: A Typical Day A Clients Staffing Analyst is responsible for creating resumes that highlight the skills experience and accomplishments of our Candidates.\nResponsibilities/Key duties: \n- Manage and review our candidate pipeline and keep track of each candidate's status in our ATS\n- Analysis of profiles and hiring strategies\n- Keep candidates updated on the status of their process\n- Assist in the preparation of candidate's documents and resumes\n- Update, maintain, and organize candidates' records\n- This role also requires you to be flexible and undertake duties outside of this role\nQualifications/Requirements/Experience: \n- Fluency in English near-native\n- Exceptional written and verbal communication skills\n- Time management skills and ability to prioritize\n- Technology savvy with an interest in new generation technology—comfortable doing things a different way, troubleshooting, and recommending new technology\n- Availability to work Full Time Remotely Mon-Fri/ 9AM-6PM\nPreferred Skills/Nice to Have: N/A\nAbout the company: N/A\nCompensation and Benefits: N/A       37
+
+2023-08-21 21:32:49,009 INFO: 
+summaries.parquet has been updated
+
+2023-08-21 21:32:49,009 INFO: 
+[{'role': 'system', 'content': "\n\nYou are a job recruiter for a large recruitment agency./\nYou will be provided with a candidate's CV./\nThe CV will be delimited with #### characters./\nYou will also be provided with the Job IDs (delimited by angle brackets) /\nand corresponding descriptions (delimited by triple dashes)/\nfor the available job openings./\n\nPerform the following steps:/\n\nStep 1 - Classify the provided CV into a suitability category for each job opening./\nStep 2 - For each ID briefly explain in one sentence your reasoning behind the chosen suitability category./\nStep 3 - Only provide your output in json format with the keys: id, suitability and explanation./\n\nDo not classify a CV into a suitability category until you have classify the CV yourself.\n\nSuitability categories: Highly Suitable, Moderately Suitable, Potentially Suitable, Marginally Suitable and Not Suitable./\n\nHighly Suitable: CVs in this category closely align with the job opening, demonstrating extensive relevant experience, skills, and qualifications. The candidate possesses all or most of the necessary requirements and is an excellent fit for the role./\nModerately Suitable: CVs falling into this category show a reasonable match to the job opening. The candidate possesses some relevant experience, skills, and qualifications that align with the role, but there may be minor gaps or areas for improvement. With some additional training or development, they could become an effective candidate./\nPotentially Suitable: CVs in this category exhibit potential and may possess transferable skills or experience that could be valuable for the job opening. Although they may not meet all the specific requirements, their overall profile suggests that they could excel with the right support and training./\nMarginally Suitable: CVs falling into this category show limited alignment with the job opening. The candidate possesses a few relevant skills or experience, but there are significant gaps or deficiencies in their qualifications. They may require substantial training or experience to meet the requirements of the role./\nNot Suitable: CVs in this category do not match the requirements and qualifications of the job opening. The candidate lacks the necessary skills, experience, or qualifications, making them unsuitable for the role./\n"}, {'role': 'user', 'content': '####(\'Qualifications: \n- LLB Law degree from Universidad de las Américas Puebla (UDLAP) with an accumulated average of 9.4/10.\n- Currently on an international exchange at the University of Bristol for the final year of studying Law.\n- Member of the Honours Program at UDLAP, conducting research on FinTech, Financial Inclusion, Blockchain, Cryptocurrencies, and Smart Contracts.\n\nPrevious job titles:\n- Data Analyst at Tata Consultancy Services México, where I cleansed, interpreted, and analyzed data using Python and SQL Server to produce visual reports with Power BI.\n- Legal Assistant at BLACKSHIIP Venture Capital, responsible for proofreading and drafting legal documents, as well as assisting with negotiations of International Share Purchase Agreements.\n\nResponsibilities/Key Duties:\n- Developed and introduced A/B testing to make data-driven business decisions as a Data Analyst Jr. at AMATL GRÁFICOS.\n- Taught mental arithmetic as a Mathematics Instructor at ALOHA Mental Arithmetic.\n- Led and assisted individuals with physical and mental disabilities as a Special Needs Counsellor at Camp Merrywood and YMCA Camp Independence.\n\nSkills:\n- Proficient in Python, SQL Server, Tableau, Power BI, Bash/Command Line, Git & GitHub, and Office 365.\n- Strong written and verbal communication skills, teamwork, ability to work under pressure, attention to detail, and leadership skills.\n- Knowledge in machine learning, probabilities & statistics, and proofreading.\n\nOther Achievements:\n- Published paper on "Smart Legal Contracts: From Theory to Reality" and participated in the IDEAS Summer Program on Intelligence, Data, Ethics, and Society at the University of California, San Diego.####'}, {'role': 'assistant', 'content': "\n\n\n\n Available job openings:\n\n\n\nID:<246081>\nJob Description:---Title: VACANTE DE PRÁCTICAS PROFESIONALES DISEÑO GRÁFICO\nLocation: MX\nJob Objective: Azka IT Consulting empresa de consultoría y Servicios de Tecnologías de la Información. Nos encargamos de conectar al talento como tu con empresas TI. Actualmente contamos con una posición como Java Support.\nResponsibilities/Key duties: Resolución de problemas en un entorno de desarrollo. Análisis de causas raíz. Dominio de aspectos técnicos y funcionales de un problema de desarrollo para ayudar a implementar soluciones.\nQualifications/Requirements/Experience: Carrera culminada. Nivel de inglés avanzado Conversacional. Más de 3 años de experiencia en: Resolución de problemas en un entorno de desarrollo. Análisis de causas raíz. Dominio de aspectos técnicos y funcionales de un problema de desarrollo para ayudar a implementar soluciones. Tecnologías como son: Java Unix Shell Scripting SQL\nPreferred Skills/Nice to Have: N/A\nAbout the company: Azka IT Consulting empresa de consultoría y Servicios de Tecnologías de la Información. Nos encargamos de conectar al talento como tu con empresas TI.\nCompensation and Benefits: Contratación directa con cliente. Esquema de trabajo remoto México. Esquema de pago 100% Nómina. Prestaciones de ley + beneficios superiores como: SGMM Certificaciones Vales de despensa Aguinaldo superior y más.---\n\nID:<244954>\nJob Description:---Title: Analista de Requerimientos\nLocation: Remoto in Desde casa MX\nJob Objective: Importante empresa de Tecnología solicita: ¨Analista de Procesos Software ¨ Escolaridad: Ing. en Sistemas Comunicacionales o carreras afines Experiencia mínima de 3 años en el puesto similar y en las siguientes Experiencia · Análisis y Levantamiento de Requerimiento · Documentación · Conocimientos en UML · Experiencia en el manejo de UX User experience/UI User interface específicamente con los siguientes elementos. · Experiencia en la generación de matriz de pruebas · Experiencia en la gestión de incidentes en ambientes QA y UAT. · Generación de bitácora de reuniones con el cliente. · Análisis detallado de requerimiento\nResponsibilities/Key duties: Análisis y Levantamiento de Requerimiento, Documentación, Conocimientos en UML, Experiencia en el manejo de UX User experience/UI User interface, generación de matriz de pruebas, gestión de incidentes en ambientes QA y UAT, generación de bitácora de reuniones con el cliente, análisis detallado de requerimiento.\nQualifications/Requirements/Experience: Escolaridad: Ing. en Sistemas Comunicacionales o carreras afines, Experiencia mínima de 3 años en el puesto similar y en las siguientes Experiencia · Análisis y Levantamiento de Requerimiento · Documentación · Conocimientos en UML · Experiencia en el manejo de UX User experience/UI User interface específicamente con los siguientes elementos. · Experiencia en la generación de matriz de pruebas · Experiencia en la gestión de incidentes en ambientes QA y UAT. · Generación de bitácora---\n\nID:<246056>\nJob Description:---Title: Ejecutivo en monitoreo logístico Nocturno\nLocation: Remoto in Desde casa MX\nJob Objective: Sumarse a work one solutions significa que te estás uniendo a la compañía de Logística más innovadora de México.\nResponsibilities/Key duties: Enviar reportes con los movimientos programados a todos los clientes. Asegurar la localización y estado de las unidades de manera continua. Identificar y corregir anormalidades en el avance de las unidades. Notificar en tiempo cualquier demora de la unidad. Comunicarse con proveedores carriers clientes ejecutivos aduanales etc. Para obtener y/o proveer información respecto al proceso logístico. Llevar registro de las unidades en tránsito así como de tiempos ubicaciones datos de cruce etc. Seguimiento desde recolección hasta entrega y recopilación documental.\nQualifications/Requirements/Experience: Contar con una carrera en logística comercio exterior negocios Internacionales o afín. Inglés conversacional. Disponibilidad para trabajar en horario nocturno.\nPreferred Skills/Nice to Have: Atención servicio al cliente. Solución de problemas. Análisis oportuno. Sentido de urgencia. Razonamiento lógico. Capacidad de trabajo en equipo. Toma de decisiones. Actitudes que te darán un plus: Amabilidad, Servicial, Proactividad.\nAbout the company: Sumarse a work one solutions significa que te estás uniendo a la compañía de Logística más innovadora de México.\nCompensation and Benefits: Uniformes gratuitos, 5% del salario en vales de despensa, Días de descanso superiores a la Ley, Flexibilidad laboral, Capacitación y desarrollo, Plan de carrera, Estacionamiento gratuito.\n---\n\nID:<244975>\nJob Description:---Title: Web Developer\nLocation: MX\nJob Objective: A Typical Day A Clients Staffing Analyst is responsible for creating resumes that highlight the skills experience and accomplishments of our Candidates.\nResponsibilities/Key duties: \n- Manage and review our candidate pipeline and keep track of each candidate's status in our ATS\n- Analysis of profiles and hiring strategies\n- Keep candidates updated on the status of their process\n- Assist in the preparation of candidate's documents and resumes\n- Update, maintain, and organize candidates' records\n- This role also requires you to be flexible and undertake duties outside of this role\nQualifications/Requirements/Experience: \n- Fluency in English near-native\n- Exceptional written and verbal communication skills\n- Time management skills and ability to prioritize\n- Technology savvy with an interest in new generation technology—comfortable doing things a different way, troubleshooting, and recommending new technology\n- Availability to work Full Time Remotely Mon-Fri/ 9AM-6PM\nPreferred Skills/Nice to Have: N/A\nAbout the company: N/A\nCompensation and Benefits: N/A---\n"}]
+
+2023-08-21 21:33:09,037 INFO: 
+
+OPERATION: GPT-3.5 TURBO SUMMARISING. 
+TOTAL COST: $0.007 USD
+
+2023-08-21 21:33:09,037 INFO: 
+
+OPERATION: gpt-4 CLASSIFICATION 
+PROMPT TOKENS USED:2193
+COMPLETION TOKENS USED:203
+TOTAL TOKENS USED:2396
+COST FOR CLASSIFYING: $0.078 USD
+
+2023-08-21 21:33:10,627 INFO: 
+ID: 246081 has the following relatedness=0.836
+
+2023-08-21 21:33:10,627 INFO: 
+ID: 244954 has the following relatedness=0.820
+
+2023-08-21 21:33:10,627 INFO: 
+ID: 246056 has the following relatedness=0.810
+
+2023-08-21 21:33:10,627 INFO: 
+ID: 244975 has the following relatedness=0.809
+
+2023-08-21 21:33:10,627 INFO: 
+
+GPT-3.5 TURBO & GPT-4 finished summarising and classifying! all in: 18.29 minutes 
+
+
+2023-08-21 21:33:10,627 INFO: 
+Response is a valid json object. Done in loop number: 1
+
+2023-08-21 21:33:10,634 INFO: 
+Looking for suitable jobs. Current loop: 1
+
+2023-08-21 21:33:10,634 INFO: 
+Current min_n: 0. Current top_n: 4
+
+2023-08-21 21:33:10,639 INFO: 
+
+DF APPENDED:
+       id           suitability                                                                                                                                                                                      explanation
+0  246081   Moderately Suitable                         The candidate has experience in data analysis and is proficient in SQL, which aligns with the job's requirements, but lacks experience in Java and Unix Shell Scripting.
+1  244954  Potentially Suitable                              The candidate has experience in data analysis and is proficient in Python, which could be transferable to the role, but lacks specific experience in UML and UX/UI.
+2  246056          Not Suitable                                                                                   The candidate's skills and experience do not align with the logistics and customer service focus of this role.
+3  244975  Potentially Suitable  The candidate has strong communication skills and experience in data analysis, which could be transferable to the role, but lacks specific experience in web development and staffing analysis.. 
+DF MOST SUITABLE:
+       id           suitability                                                                                                                                                                                      explanation
+0  246081   Moderately Suitable                         The candidate has experience in data analysis and is proficient in SQL, which aligns with the job's requirements, but lacks experience in Java and Unix Shell Scripting.
+1  244954  Potentially Suitable                              The candidate has experience in data analysis and is proficient in Python, which could be transferable to the role, but lacks specific experience in UML and UX/UI.
+3  244975  Potentially Suitable  The candidate has strong communication skills and experience in data analysis, which could be transferable to the role, but lacks specific experience in web development and staffing analysis.
+
+2023-08-21 21:33:10,639 INFO: 
+Getting the ids from the json object: <class 'str'>, ('246081', '244954', '244975')
+
+2023-08-21 21:33:10,741 INFO: 
+
+ALL ROWS:
+       id                                              title                                                                                                                                    link                 location                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         summary  user_id           suitability                                                                                                                                                                                      explanation
+0  244954                         Analista de Requerimientos                 https://mx.indeed.com/company/Grupo-PerTi/jobs/Analista-de-requerimientos-a868c084e49bde66?fccid=7701dff43dfc10d4&vjs=3  Remoto in Desde casa MX  Title: Analista de Requerimientos\nLocation: Remoto in Desde casa MX\nJob Objective: Importante empresa de Tecnología solicita: ¨Analista de Procesos Software ¨ Escolaridad: Ing. en Sistemas Comunicacionales o carreras afines Experiencia mínima de 3 años en el puesto similar y en las siguientes Experiencia · Análisis y Levantamiento de Requerimiento · Documentación · Conocimientos en UML · Experiencia en el manejo de UX User experience/UI User interface específicamente con los siguientes elementos. · Experiencia en la generación de matriz de pruebas · Experiencia en la gestión de incidentes en ambientes QA y UAT. · Generación de bitácora de reuniones con el cliente. · Análisis detallado de requerimiento\nResponsibilities/Key duties: Análisis y Levantamiento de Requerimiento, Documentación, Conocimientos en UML, Experiencia en el manejo de UX User experience/UI User interface, generación de matriz de pruebas, gestión de incidentes en ambientes QA y UAT, generación de bitácora de reuniones con el cliente, análisis detallado de requerimiento.\nQualifications/Requirements/Experience: Escolaridad: Ing. en Sistemas Comunicacionales o carreras afines, Experiencia mínima de 3 años en el puesto similar y en las siguientes Experiencia · Análisis y Levantamiento de Requerimiento · Documentación · Conocimientos en UML · Experiencia en el manejo de UX User experience/UI User interface específicamente con los siguientes elementos. · Experiencia en la generación de matriz de pruebas · Experiencia en la gestión de incidentes en ambientes QA y UAT. · Generación de bitácora       37  Potentially Suitable                              The candidate has experience in data analysis and is proficient in Python, which could be transferable to the role, but lacks specific experience in UML and UX/UI.
+1  244975                                      Web Developer                                                           https://mx.indeed.com/rc/clk?jk=c704c9e097ebdc0b&fccid=0efe095bd70f0645&vjs=3                       MX                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Title: Web Developer\nLocation: MX\nJob Objective: A Typical Day A Clients Staffing Analyst is responsible for creating resumes that highlight the skills experience and accomplishments of our Candidates.\nResponsibilities/Key duties: \n- Manage and review our candidate pipeline and keep track of each candidate's status in our ATS\n- Analysis of profiles and hiring strategies\n- Keep candidates updated on the status of their process\n- Assist in the preparation of candidate's documents and resumes\n- Update, maintain, and organize candidates' records\n- This role also requires you to be flexible and undertake duties outside of this role\nQualifications/Requirements/Experience: \n- Fluency in English near-native\n- Exceptional written and verbal communication skills\n- Time management skills and ability to prioritize\n- Technology savvy with an interest in new generation technology—comfortable doing things a different way, troubleshooting, and recommending new technology\n- Availability to work Full Time Remotely Mon-Fri/ 9AM-6PM\nPreferred Skills/Nice to Have: N/A\nAbout the company: N/A\nCompensation and Benefits: N/A       37  Potentially Suitable  The candidate has strong communication skills and experience in data analysis, which could be transferable to the role, but lacks specific experience in web development and staffing analysis.
+2  246081  VACANTE DE PRÁCTICAS PROFESIONALES DISEÑO GRÁFICO  https://mx.indeed.com/company/Cinemotion-Group/jobs/Practicante-dise%C3%B1o-gr%C3%A1fico-07415cd2b82fd353?fccid=e82749bdd248386e&vjs=3                       MX                                                                                                                                                                                                                                                           Title: VACANTE DE PRÁCTICAS PROFESIONALES DISEÑO GRÁFICO\nLocation: MX\nJob Objective: Azka IT Consulting empresa de consultoría y Servicios de Tecnologías de la Información. Nos encargamos de conectar al talento como tu con empresas TI. Actualmente contamos con una posición como Java Support.\nResponsibilities/Key duties: Resolución de problemas en un entorno de desarrollo. Análisis de causas raíz. Dominio de aspectos técnicos y funcionales de un problema de desarrollo para ayudar a implementar soluciones.\nQualifications/Requirements/Experience: Carrera culminada. Nivel de inglés avanzado Conversacional. Más de 3 años de experiencia en: Resolución de problemas en un entorno de desarrollo. Análisis de causas raíz. Dominio de aspectos técnicos y funcionales de un problema de desarrollo para ayudar a implementar soluciones. Tecnologías como son: Java Unix Shell Scripting SQL\nPreferred Skills/Nice to Have: N/A\nAbout the company: Azka IT Consulting empresa de consultoría y Servicios de Tecnologías de la Información. Nos encargamos de conectar al talento como tu con empresas TI.\nCompensation and Benefits: Contratación directa con cliente. Esquema de trabajo remoto México. Esquema de pago 100% Nómina. Prestaciones de ley + beneficios superiores como: SGMM Certificaciones Vales de despensa Aguinaldo superior y más.       37   Moderately Suitable                         The candidate has experience in data analysis and is proficient in SQL, which aligns with the job's requirements, but lacks experience in Java and Unix Shell Scripting.
+
+2023-08-21 21:33:10,746 INFO: 
+
+SORTED DF:
+       id                                              title                                                                                                                                    link                 location                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         summary  user_id           suitability                                                                                                                                                                                      explanation
+2  246081  VACANTE DE PRÁCTICAS PROFESIONALES DISEÑO GRÁFICO  https://mx.indeed.com/company/Cinemotion-Group/jobs/Practicante-dise%C3%B1o-gr%C3%A1fico-07415cd2b82fd353?fccid=e82749bdd248386e&vjs=3                       MX                                                                                                                                                                                                                                                           Title: VACANTE DE PRÁCTICAS PROFESIONALES DISEÑO GRÁFICO\nLocation: MX\nJob Objective: Azka IT Consulting empresa de consultoría y Servicios de Tecnologías de la Información. Nos encargamos de conectar al talento como tu con empresas TI. Actualmente contamos con una posición como Java Support.\nResponsibilities/Key duties: Resolución de problemas en un entorno de desarrollo. Análisis de causas raíz. Dominio de aspectos técnicos y funcionales de un problema de desarrollo para ayudar a implementar soluciones.\nQualifications/Requirements/Experience: Carrera culminada. Nivel de inglés avanzado Conversacional. Más de 3 años de experiencia en: Resolución de problemas en un entorno de desarrollo. Análisis de causas raíz. Dominio de aspectos técnicos y funcionales de un problema de desarrollo para ayudar a implementar soluciones. Tecnologías como son: Java Unix Shell Scripting SQL\nPreferred Skills/Nice to Have: N/A\nAbout the company: Azka IT Consulting empresa de consultoría y Servicios de Tecnologías de la Información. Nos encargamos de conectar al talento como tu con empresas TI.\nCompensation and Benefits: Contratación directa con cliente. Esquema de trabajo remoto México. Esquema de pago 100% Nómina. Prestaciones de ley + beneficios superiores como: SGMM Certificaciones Vales de despensa Aguinaldo superior y más.       37   Moderately Suitable                         The candidate has experience in data analysis and is proficient in SQL, which aligns with the job's requirements, but lacks experience in Java and Unix Shell Scripting.
+0  244954                         Analista de Requerimientos                 https://mx.indeed.com/company/Grupo-PerTi/jobs/Analista-de-requerimientos-a868c084e49bde66?fccid=7701dff43dfc10d4&vjs=3  Remoto in Desde casa MX  Title: Analista de Requerimientos\nLocation: Remoto in Desde casa MX\nJob Objective: Importante empresa de Tecnología solicita: ¨Analista de Procesos Software ¨ Escolaridad: Ing. en Sistemas Comunicacionales o carreras afines Experiencia mínima de 3 años en el puesto similar y en las siguientes Experiencia · Análisis y Levantamiento de Requerimiento · Documentación · Conocimientos en UML · Experiencia en el manejo de UX User experience/UI User interface específicamente con los siguientes elementos. · Experiencia en la generación de matriz de pruebas · Experiencia en la gestión de incidentes en ambientes QA y UAT. · Generación de bitácora de reuniones con el cliente. · Análisis detallado de requerimiento\nResponsibilities/Key duties: Análisis y Levantamiento de Requerimiento, Documentación, Conocimientos en UML, Experiencia en el manejo de UX User experience/UI User interface, generación de matriz de pruebas, gestión de incidentes en ambientes QA y UAT, generación de bitácora de reuniones con el cliente, análisis detallado de requerimiento.\nQualifications/Requirements/Experience: Escolaridad: Ing. en Sistemas Comunicacionales o carreras afines, Experiencia mínima de 3 años en el puesto similar y en las siguientes Experiencia · Análisis y Levantamiento de Requerimiento · Documentación · Conocimientos en UML · Experiencia en el manejo de UX User experience/UI User interface específicamente con los siguientes elementos. · Experiencia en la generación de matriz de pruebas · Experiencia en la gestión de incidentes en ambientes QA y UAT. · Generación de bitácora       37  Potentially Suitable                              The candidate has experience in data analysis and is proficient in Python, which could be transferable to the role, but lacks specific experience in UML and UX/UI.
+1  244975                                      Web Developer                                                           https://mx.indeed.com/rc/clk?jk=c704c9e097ebdc0b&fccid=0efe095bd70f0645&vjs=3                       MX                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Title: Web Developer\nLocation: MX\nJob Objective: A Typical Day A Clients Staffing Analyst is responsible for creating resumes that highlight the skills experience and accomplishments of our Candidates.\nResponsibilities/Key duties: \n- Manage and review our candidate pipeline and keep track of each candidate's status in our ATS\n- Analysis of profiles and hiring strategies\n- Keep candidates updated on the status of their process\n- Assist in the preparation of candidate's documents and resumes\n- Update, maintain, and organize candidates' records\n- This role also requires you to be flexible and undertake duties outside of this role\nQualifications/Requirements/Experience: \n- Fluency in English near-native\n- Exceptional written and verbal communication skills\n- Time management skills and ability to prioritize\n- Technology savvy with an interest in new generation technology—comfortable doing things a different way, troubleshooting, and recommending new technology\n- Availability to work Full Time Remotely Mon-Fri/ 9AM-6PM\nPreferred Skills/Nice to Have: N/A\nAbout the company: N/A\nCompensation and Benefits: N/A       37  Potentially Suitable  The candidate has strong communication skills and experience in data analysis, which could be transferable to the role, but lacks specific experience in web development and staffing analysis..
+
+This df has been saved in .../final_user_df.parquet
+
+
+
+
+2023-08-21 22:15:47,444 ERROR: 
+Internal Server Error: /home-user/
+Traceback (most recent call last):
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/views/generic/base.py", line 226, in get
+    context = self.get_context_data(**kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py", line 94, in get_context_data
+    context['profile_picture'] = self.request.user.profile.picture.url
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+AttributeError: 'AnonymousUser' object has no attribute 'profile'
+2023-08-21 22:43:07,097 ERROR: 
+Internal Server Error: /jobs-user/
+Traceback (most recent call last):
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/__init__.py", line 2053, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'SimpleLazyObject'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py", line 210, in get
+    profile, created = Profile.objects.get_or_create(user=request.user)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 916, in get_or_create
+    return self.get(**kwargs), False
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 623, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1534, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1565, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1480, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1307, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/related_lookups.py", line 166, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/__init__.py", line 2055, in get_prep_value
+    raise e.__class__(
+TypeError: Field 'id' expected a number but got <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x1775756f0>>.
+2023-08-21 22:43:08,004 ERROR: 
+Internal Server Error: /jobs-user/
+Traceback (most recent call last):
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/__init__.py", line 2053, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'SimpleLazyObject'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py", line 210, in get
+    profile, created = Profile.objects.get_or_create(user=request.user)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 916, in get_or_create
+    return self.get(**kwargs), False
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 623, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1534, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1565, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1480, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1307, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/related_lookups.py", line 166, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/__init__.py", line 2055, in get_prep_value
+    raise e.__class__(
+TypeError: Field 'id' expected a number but got <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x1778b66b0>>.
+2023-08-21 22:53:51,734 ERROR: 
+Internal Server Error: /jobs-user/
+Traceback (most recent call last):
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/__init__.py", line 2053, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'SimpleLazyObject'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py", line 210, in get
+    profile, created = Profile.objects.get_or_create(user=request.user)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 916, in get_or_create
+    return self.get(**kwargs), False
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 623, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1534, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1565, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1480, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1307, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/related_lookups.py", line 166, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/__init__.py", line 2055, in get_prep_value
+    raise e.__class__(
+TypeError: Field 'id' expected a number but got <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x177575f30>>.
+2023-08-21 23:11:20,825 ERROR: 
+Internal Server Error: /jobs-user/
+Traceback (most recent call last):
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/__init__.py", line 2053, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'SimpleLazyObject'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py", line 210, in get
+    profile, created = Profile.objects.get_or_create(user=request.user)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 916, in get_or_create
+    return self.get(**kwargs), False
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 623, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1534, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1565, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1480, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1307, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/related_lookups.py", line 166, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/__init__.py", line 2055, in get_prep_value
+    raise e.__class__(
+TypeError: Field 'id' expected a number but got <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x158114e20>>.
+2023-08-21 23:16:28,288 ERROR: 
+Internal Server Error: /jobs-user/
+Traceback (most recent call last):
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/__init__.py", line 2053, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'SimpleLazyObject'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py", line 210, in get
+    profile, created = Profile.objects.get_or_create(user=request.user)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 916, in get_or_create
+    return self.get(**kwargs), False
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 623, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1534, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1565, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1480, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1307, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/related_lookups.py", line 166, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/__init__.py", line 2055, in get_prep_value
+    raise e.__class__(
+TypeError: Field 'id' expected a number but got <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x1585a6230>>.
+2023-08-21 23:22:20,738 INFO: 
+/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py changed, reloading.
+
+2023-08-21 23:22:27,751 INFO: 
+/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py changed, reloading.
+
+2023-08-21 23:46:17,098 ERROR: 
+Internal Server Error: /jobs-user/
+Traceback (most recent call last):
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/__init__.py", line 2053, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'SimpleLazyObject'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/views.py", line 210, in get
+    profile, created = Profile.objects.get_or_create(user=request.user)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 916, in get_or_create
+    return self.get(**kwargs), False
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 623, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1534, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1565, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1480, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1307, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/related_lookups.py", line 166, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/env1/lib/python3.10/site-packages/django/db/models/fields/__init__.py", line 2055, in get_prep_value
+    raise e.__class__(
+TypeError: Field 'id' expected a number but got <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x1671e1030>>.
+2023-08-22 00:04:25,318 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 00:04:25,322 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 00:04:28,513 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:04:28,516 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:04:31,721 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:04:31,723 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:04:59,643 WARNING: 
+Not Found: /home-user/index.html
+
+2023-08-22 00:05:36,886 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:05:36,887 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:05:50,157 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 00:05:50,158 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 00:05:51,398 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 00:05:51,400 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 00:05:53,319 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:05:53,321 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:08:14,459 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 00:08:14,461 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 00:11:16,065 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 00:11:16,067 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 00:11:20,463 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:11:20,469 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:11:22,068 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 00:11:22,069 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 00:11:23,216 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 00:11:23,218 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 00:11:24,264 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 00:11:24,264 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 00:11:24,776 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:11:24,777 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:11:45,904 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:11:45,905 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:11:46,837 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:11:46,838 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:11:47,350 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:11:47,353 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:11:47,581 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:11:47,582 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:11:47,788 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:11:47,793 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:11:48,009 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:11:48,011 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:17:41,891 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:17:41,905 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:21:42,769 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:21:42,772 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:23:08,949 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:23:08,951 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:23:09,890 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:23:09,893 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:23:10,335 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:23:10,338 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:23:10,597 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:23:10,600 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:23:10,831 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:23:10,834 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:24:31,292 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:24:31,294 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:24:54,091 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 00:24:54,093 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 00:24:56,121 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 00:24:56,124 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 00:28:38,274 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 00:28:38,286 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 00:29:08,053 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 00:29:08,055 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 00:29:11,718 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:29:11,721 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:29:12,982 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 00:29:12,982 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 00:29:13,805 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 00:29:13,807 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 00:29:14,480 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:29:14,483 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:31:51,051 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:31:51,052 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:33:59,727 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:33:59,729 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:34:57,404 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:34:57,406 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:35:09,155 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:35:09,160 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:35:10,010 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:35:10,013 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:35:10,630 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:35:10,634 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:35:11,038 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:35:11,040 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:36:47,584 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:36:47,586 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:38:30,253 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:38:30,255 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:40:06,818 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:40:06,819 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:40:07,954 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:40:07,955 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:40:08,477 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:40:08,479 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:41:37,811 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 00:41:37,812 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 00:47:49,462 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 00:47:49,465 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 00:48:36,388 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 00:48:36,390 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 00:52:34,404 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 00:52:34,406 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 00:52:38,947 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 00:52:38,948 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 00:52:40,130 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:52:40,135 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:52:41,203 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 00:52:41,203 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 00:52:41,920 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 00:52:41,921 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 00:52:42,837 WARNING: 
+Not Found: /calendar-user/assets/img/profile-img.jpg
+
+2023-08-22 00:52:42,841 WARNING: 
+Not Found: /calendar-user/assets/img/logo.png
+
+2023-08-22 00:52:52,643 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 00:52:52,644 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 00:53:06,085 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 00:53:06,088 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 00:53:07,942 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 00:53:07,944 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 01:01:05,982 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 01:01:05,993 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 01:01:08,864 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 01:01:08,867 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 01:01:09,728 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 01:01:09,731 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 01:01:31,636 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 01:01:31,638 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 01:01:35,151 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 01:01:35,152 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 01:01:37,150 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 01:01:37,153 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 01:01:38,251 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 01:01:38,251 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 01:01:44,530 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 01:01:44,533 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 01:08:25,971 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 01:08:25,972 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 01:08:33,289 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 01:08:33,290 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 01:08:38,822 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 01:08:38,823 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 01:09:17,104 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 01:09:17,105 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 01:11:47,222 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 01:11:47,233 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 01:11:48,393 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 01:11:48,394 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 01:11:50,065 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 01:11:50,067 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 01:16:44,564 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 01:16:44,569 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 01:19:44,787 WARNING: 
+Not Found: /jobs-user/index.html
+
+2023-08-22 01:22:50,816 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 01:22:50,817 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 01:23:57,814 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 01:23:57,817 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 01:24:46,106 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 01:24:46,107 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 01:24:47,778 WARNING: 
+Not Found: /home-user/assets/img/logo.png
+
+2023-08-22 01:24:47,780 WARNING: 
+Not Found: /home-user/assets/img/profile-img.jpg
+
+2023-08-22 01:24:49,201 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 01:24:49,203 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 01:25:41,870 WARNING: 
+Not Found: /profile-user/assets/img/logo.png
+
+2023-08-22 01:25:41,873 WARNING: 
+Not Found: /profile-user/assets/img/profile-img.jpg
+
+2023-08-22 01:26:29,364 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 01:26:29,366 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 01:26:53,815 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 01:26:53,816 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+
+2023-08-22 01:28:27,766 WARNING: 
+Not Found: /jobs-user/assets/img/logo.png
+
+2023-08-22 01:28:27,768 WARNING: 
+Not Found: /jobs-user/assets/img/profile-img.jpg
+

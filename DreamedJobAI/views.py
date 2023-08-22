@@ -11,7 +11,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.views.generic.edit import FormView
 from .forms import RegisterForm, ProfileForm, ProfilePreferencesForm, UserCVForm
-from .models import Profile, ProfilePreferences, UserCV
+from .models import Profile, ProfilePreferences, UserCV, Job
 from django.views.generic import TemplateView
 import logging
 from django.views import View
@@ -193,27 +193,17 @@ class JobView(View):
             # Fetch the user_id and desired_country from the retrieved objects
             user_id = profile.user_id
             desired_country = profile_preferences.desired_country
-            
 
-            df = asyncio.run(main(user_id=user_id, user_country=desired_country, top_n_interval=3, num_suitable_jobs=1))
+            df = asyncio.run(main(user_id=user_id, user_country=desired_country, top_n_interval=4, num_suitable_jobs=1))
             
-            # Convert the DataFrame to JSON
+            # Convert the DataFrame to a dictionary
             df_dict = df.to_dict(orient='records')
 
-            print(df_dict, type(df_dict))
+            # Save the data to the database
+            for item in df_dict:
+                Job.objects.create(**item)
 
-            # Step 3: Write to a File
-            #with open('/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/data/data.json', 'w') as json_file:
-                #json_file.write(df_dict)
-
-            print("JSON data saved to 'data.json'.")
-
-            # Pass the JSON data to the template context
-            context = {
-                'df_json': df_dict,
-            }
-
-            return JsonResponse({"success": True, "df_json": df_dict}, status=200)
+            return JsonResponse({"success": True}, status=200)
         return JsonResponse({"success": False}, status=400)
 
     def get(self, request:HttpRequest):
@@ -224,12 +214,18 @@ class JobView(View):
         desired_country = profile_preferences.desired_country
         profile_picture = profile.picture.url
 
+        # Retrieve the data from the database
+        jobs = Job.objects.all()
+
+        filtered_jobs = jobs.filter(user_id=user_id)
+
         context = {
             'user_id': user_id,
             'desired_country': desired_country,
-            'profile_picture': profile_picture
+            'profile_picture': profile_picture,
+            'jobs': filtered_jobs
         }
 
-            # Pass the context to the template when rendering
+        # Pass the context to the template when rendering
         return render(request, self.template_name, context)
 

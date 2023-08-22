@@ -160,3 +160,17 @@ class ProfilePreferences(models.Model):
 
     def __str__(self):
         return self.user.username
+
+# ----------------------------------------------/
+# Job --------------------------------------/
+#-----------------------------------------------/
+
+class Job(models.Model):
+    id = models.IntegerField(primary_key=True)
+    title = models.CharField(max_length=200)
+    link = models.URLField()
+    location = models.CharField(max_length=200)
+    summary = models.TextField()
+    user_id = models.IntegerField()
+    suitability = models.CharField(max_length=200)
+    explanation = models.TextField()
