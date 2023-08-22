@@ -1,10 +1,20 @@
 {% extends 'DreamedJobAI/user/base-user.html' %}
 
-{%block content%}
-<!-- Content -->
 {% if user.is_authenticated %}
+    {% block pic_username %}
+        <img src="{{ profile_picture }}" alt="Profile" class="rounded-circle">
+        <span class="d-none d-md-block dropdown-toggle ps-2">{{ user.username }}</span>
+    {% endblock pic_username%}
+
+    {% block user_names %}
+        <h6>{{ user.first_name }} {{ user.last_name }}</h6>
+    {% endblock user_names%}
+
+    {%block content%}
+    <!-- Content -->
+
         <div class="pagetitle">
-            <h1> Hi, {{ user.first_name }} {{ user.last_name }}  </h1>
+            <h1> Suitable jobs </h1>
             <button id="JobsBtn">Click me</button>
         </div>
         <section class="section">
@@ -12,74 +22,75 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Your jobs!</h5>
-                            <p>Fresh jobsss </p>
-                            <table id="myTable">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Location</th>
-                                        <th scope="col">Summary</th>
-                                        <th scope="col">Suitability</th>
-                                        <th scope="col">Explanation</th>
-                                        <th scope="col">Link</th>
-                                    </tr>
-                                </thead>
-                                    <tbody>
-                                        {% for job in jobs %}
-                                            <tr>
-                                                <td>{{ job.title }}</td>
-                                                <td>{{ job.location }}</td>
-                                                <td>{{ job.summary }}</td>
-                                                <td>{{ job.suitability }}</td>
-                                                <td>{{ job.explanation }}</td>
-                                                <td><a href="{{ job.link }}">Apply now!</a></td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Location</th>
+                                            <th scope="col">Summary</th>
+                                            <th scope="col">Suitability</th>
+                                            <th scope="col">Explanation</th>
+                                            <th scope="col">Link</th>
+                                        </tr>
+                                    </thead>
+                                        <tbody>
+                                            {% for job in jobs %}
+                                                <tr>
+                                                    <td>{{ job.title }}</td>
+                                                    <td>{{ job.location }}</td>
+                                                    <td>{{ job.summary }}</td>
+                                                    <td>{{ job.suitability }}</td>
+                                                    <td>{{ job.explanation }}</td>
+                                                    <td><a href="{{ job.link }}">Apply now!</a></td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script>
+                    $(document).ready(function(){
+
+                        $("#JobsBtn").click(function(){
+                            // Display a loading message or spinner
+                            $("#preloader").show();
+                            
+                            $.ajax({
+                                url: '/jobs-user/',
+                                type: 'POST',
+                                data: {
+                                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                                },
+                                success: function(response){
+                                    if(response.success){
+                                        // Hide the loading indicator when the request is complete
+                                        $("#preloader").hide();
+                                        // Hide the button
+                                        $("#JobsBtn").hide();
+
+                                    }
+                                },
+                                error: function(){
+
+                                    $("#preloader").hide();
+                                }
+                            });
+                        });
+                    });
+                </script>
+
             </div>
         </section>
+    {% endblock content %}
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-            $(document).ready(function(){
+{% else %}
+    <h1> Hi, Guest! Please log in. </h1>
+{% endif %}
 
-                $("#JobsBtn").click(function(){
-                    // Display a loading message or spinner
-                    $("#preloader").show();
-                    
-                    $.ajax({
-                        url: '/jobs-user/',
-                        type: 'POST',
-                        data: {
-                            'csrfmiddlewaretoken': '{{ csrf_token }}'
-                        },
-                        success: function(response){
-                            if(response.success){
-                                // Hide the loading indicator when the request is complete
-                                $("#preloader").hide();
-                                // Hide the button
-                                $("#JobsBtn").hide();
 
-                            }
-                        },
-                        error: function(){
-
-                            $("#preloader").hide();
-                        }
-                    });
-                });
-            });
-        </script>
-
-    {% else %}
-        <h1> Hi, Guest! Please log in. </h1>
-    {% endif %}
-
-{% endblock content %}
 
 
