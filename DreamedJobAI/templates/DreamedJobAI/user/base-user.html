@@ -33,106 +33,93 @@
 
 </head>
 
-<body data-new-gr-c-s-check-loaded="14.1120.0" data-gr-ext-installed class>
-<header id="header" class="header fixed-top d-flex align-items-center">
+<body>
+    <header id="header" class="header fixed-top d-flex align-items-center">
 
-    <div class="d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
-            <img src="assets/img/logo.png" alt="">
-            <span class="d-none d-lg-block">NiceAdmin</span>
-        </a>
-        <i class="bi bi-list toggle-sidebar-btn">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="/" class=" bump-btn-header d-flex align-items-center" title="Main page" data-bs-toggle="tooltip" data-bs-placement="right">
+                <svg class="bi pe-none" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+                <span class="d-none d-lg-bloc visually-hidden">Landing page</span>
+            </a>
 
-        </i>
-    </div><!-- End Logo -->
-    <nav class="header-nav ms-auto">
-        <ul class="d-flex align-items-center">
-            <li class="nav-item dropdown pe-3">
-                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-                </a><!-- End Profile Iamge Icon -->
-    
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                    <li class="dropdown-header">
-                        <h6>Kevin Anderson</h6>
-                        <span>Web Designer</span>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
+            <i class="bi bi-list toggle-sidebar-btn">
+
+            </i>
+        </div><!-- End Logo -->
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li class="nav-item dropdown pe-3">
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        {% block pic_username %}
+
+                        {% endblock %}
+                    </a><!-- End Profile Iamge Icon -->
         
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                            <i class="bi bi-person"></i>
-                            <span>My Profile</span>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            {% block user_names %}
+
+                            {% endblock %}
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+            
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{% url 'DreamedJobAI:profile-user' %}">
+                                <i class="bi bi-person"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                        <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                            <i class="bi bi-question-circle"></i>
+                            <span>Need Help?</span>
                         </a>
-                    </li>
-                    <li>
+                        </li>
+                        <li>
                         <hr class="dropdown-divider">
-                    </li>
-        
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                            <i class="bi bi-gear"></i>
-                            <span>Account Settings</span>
+                        </li>
+            
+                        <li>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Sign Out</span>
                         </a>
-                    </li>
-                    <li>
-                    <hr class="dropdown-divider">
-                    </li>
-        
-                    <li>
-                    <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                        <i class="bi bi-question-circle"></i>
-                        <span>Need Help?</span>
-                    </a>
-                    </li>
-                    <li>
-                    <hr class="dropdown-divider">
-                    </li>
-        
-                    <li>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                        <i class="bi bi-box-arrow-right"></i>
-                        <span>Sign Out</span>
-                    </a>
-                    </li>
-                </ul><!-- End Profile Dropdown Items -->
-            </li><!-- End Profile Nav -->
-        </ul>
-    </nav><!-- End Icons Navigation -->
-</header>
+                        </li>
+                    </ul><!-- End Profile Dropdown Items -->
+                </li><!-- End Profile Nav -->
+            </ul>
+        </nav><!-- End Icons Navigation -->
+    </header>
+
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
             <li class="nav-item">
-                <a href="/" class="bump-btn" title="Main page" data-bs-toggle="tooltip" data-bs-placement="right">
-                <svg class="bi pe-none" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-                <span class="visually-hidden">Landing page</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{% url 'DreamedJobAI:home-user' %}" class="sunken-btn {% if request.resolver_match.url_name == 'home-user' %}active{% endif %}" aria-current="page" title="Home" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{% url 'DreamedJobAI:home-user' %}" class="sunken-btn {% if request.resolver_match.url_name == 'home-user' %}active{% endif %} mb-5 mt-5" aria-current="page" title="Home" data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Home"><use xlink:href="#home"/></svg>
                 </a>
             </li>
             <li>
-                <a href="{% url 'DreamedJobAI:profile-user' %}" class="sunken-btn {% if request.resolver_match.url_name == 'profile-user' %}active{% endif %}" aria-current="page" title="Profile" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{% url 'DreamedJobAI:profile-user' %}" class="sunken-btn {% if request.resolver_match.url_name == 'profile-user' %}active{% endif %} mb-3 mt-3" aria-current="page" title="Profile" data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Profile"><use xlink:href="#person"/></svg>
                 </a>
             </li>
             <li>
-                <a href="{% url 'DreamedJobAI:jobs-user' %}" class="sunken-btn {% if request.resolver_match.url_name == 'jobs-user' %}active{% endif %}" aria-current="page" title="Profile" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{% url 'DreamedJobAI:jobs-user' %}" class="sunken-btn {% if request.resolver_match.url_name == 'jobs-user' %}active{% endif %} mb-3 mt-3" aria-current="page" title="Jobs" data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Jobs"><use xlink:href="#briefcase"/></svg>
                 </a>
             </li>
             <li>
-                <a href="{% url 'DreamedJobAI:calendar-user' %}" class="sunken-btn {% if request.resolver_match.url_name == 'calendar-user' %}active{% endif %}" aria-current="page" title="Profile" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{% url 'DreamedJobAI:calendar-user' %}" class="sunken-btn {% if request.resolver_match.url_name == 'calendar-user' %}active{% endif %} mb-5 mt-3" aria-current="page" title="Calendar" data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Calendar"><use xlink:href="#calendar"/></svg>
                 </a>
             </li>
             <li>
-                <a href="{% url 'DreamedJobAI:logout' %}" class="sunken-btm-btn" aria-current="page" title="Logout" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{% url 'DreamedJobAI:logout' %}" class="sunken-btm-btn mb-4 mt-5" aria-current="page" title="Logout" data-bs-toggle="tooltip" data-bs-placement="right">
                     <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Logout"><use xlink:href="#door"/></svg>
                 </a>
             </li>
