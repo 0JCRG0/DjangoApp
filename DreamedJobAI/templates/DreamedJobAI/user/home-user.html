@@ -1,31 +1,42 @@
 {% extends 'DreamedJobAI/user/base-user.html' %}
 
-{%block content%}
-<!-- Content -->
-<div class="content">
-    {% if user.is_authenticated %}
-        <h1> Hi, {{ user.first_name }} {{ user.last_name }}  </h1>
-        <h4> Let's get you a job</h4>
+{% if user.is_authenticated %}
 
-    {% else %}
-        <h1> Hi, Guest! Please log in. </h1>
-    {% endif %}
-</div>
+    {% block pic_username %}
+        <img src="{{ profile_picture }}" alt="Profile" class="rounded-circle">
+        <span class="d-none d-md-block dropdown-toggle ps-2">{{ user.username }}</span>
+    {% endblock pic_username%}
 
-<!-- Sidebar right -->
-<div class="d-flex flex-column-right flex-shrink-0">
-        <ul class="nav flex-column mb-auto text-center flex-end">
-            <div class="image-cropper mx-auto d-block">
-                <img src="{{ profile_picture }}" alt="Profile" class="img-fluid">
-            </div>
-                    <div class="social-links mt-2">
-                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                    </div>
-        </ul>
+        {% block user_names %}
+            <h6>{{ user.first_name }} {{ user.last_name }}</h6>
+        {% endblock user_names%}
+
+    {%block content%}
+
+    <div class="pagetitle">
+        <h1>HOME</h1>
     </div>
-</div>
-
-{%endblock content%}
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <h1> Hi, {{ user.first_name }} {{ user.last_name }}  </h1>
+                    <h4> Let's get you a job</h4>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="image-cropper mx-auto d-block">
+                            <img src="{{ profile_picture }}" alt="Profile" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {%endblock content%}
+    
+{% else %}
+    <h1> Hi, Guest! Please log in. </h1>
+{% endif %}
