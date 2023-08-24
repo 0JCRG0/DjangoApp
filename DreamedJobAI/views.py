@@ -11,7 +11,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.views.generic.edit import FormView
 from .forms import RegisterForm, ProfileForm, ProfilePreferencesForm, UserCVForm
-from .models import Profile, ProfilePreferences, UserCV, Job
+from .models import Profile, ProfilePreferences, UserCV, SuitableJobs
 from django.views.generic import TemplateView
 import logging
 from django.views import View
@@ -201,7 +201,8 @@ class JobView(View):
 
             # Save the data to the database
             for item in df_dict:
-                Job.objects.create(**item)
+                item['job_id'] = item.pop('id')  # This line changes the key 'id' to 'job_id'
+                SuitableJobs.objects.create(**item)
 
             return JsonResponse({"success": True}, status=200)
         return JsonResponse({"success": False}, status=400)
@@ -215,7 +216,7 @@ class JobView(View):
         profile_picture = profile.picture.url
 
         # Retrieve the data from the database
-        jobs = Job.objects.all()
+        jobs = SuitableJobs.objects.all()
 
         filtered_jobs = jobs.filter(user_id=user_id)
 
