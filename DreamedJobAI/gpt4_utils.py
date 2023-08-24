@@ -11,11 +11,6 @@ import asyncio
 from openai.error import OpenAIError
 import json
 from dotenv import load_dotenv
-#from DreamedJobAI.utils.prompts import *
-#from DreamedJobAI.utils.AsyncSummariseJob import async_summarise_description
-#from DreamedJobAI.utils.handy import e5_base_v2_query, filter_last_two_weeks, append_parquet, num_tokens, set_dataframe_display_options, filter_df_per_country, LoggingDjango
-#from all import *
-
 from openai.error import ServiceUnavailableError
 import logging
 from aiohttp import ClientSession
@@ -39,34 +34,31 @@ port = os.getenv("port")
 database = os.getenv("database")
 SAVE_PATH = os.getenv("SAVE_PATH")
 E5_BASE_V2_DATA = os.getenv("E5_BASE_V2_DATA")
-""" OTHERS """
 COUNTRIES_JSON_DATA = os.getenv("COUNTRIES_JSON_DATA")
 LOGGER_DJANGO = os.getenv("LOGGER_DJANGO")
 MODEL= "gpt-3.5-turbo"
+EMBEDDING_MODEL = "text-embedding-ada-002"
+GPT_MODEL = "gpt-4"
+
 
 #Start the timer
 start_time = timeit.default_timer()
 
-# models
-EMBEDDING_MODEL = "text-embedding-ada-002"
-#GPT_MODEL = "gpt-3.5-turbo"
-GPT_MODEL = "gpt-4"
-#GPT_MODEL = "gpt-3.5-turbo-16k"
 """"
 Load the embedded file
 """
 
 
-delimiters = "----"
+delimiters_summary = "----"
 delimiters_job_info = '####'
 
-system_query = f""" 
+system_prompt_summary = f""" 
 
 Your task is to extract the specified information from a job opening/
 posted by a company, with the aim of effectively matching /
 potential candidates for the position./
 
-The job opening below is delimited by {delimiters} characters./
+The job opening below is delimited by {delimiters_summary} characters./
 Within each job opening there are three sections delimited by {delimiters_job_info} characters: title, location and description./
 
 Extract the following information from its respective section and output your response in the following format:/
@@ -97,8 +89,8 @@ async def async_summarise_job_gpt(session, job_description: str) -> Tuple[str, f
 	openai.aiosession.set(session)
 	response = await openai.ChatCompletion.acreate(
 		messages=[
-			{'role': 'user', 'content': system_query},
-			{'role': 'user', 'content': f"Job Opening: {delimiters}{job_description}{delimiters}"},
+			{'role': 'user', 'content': system_prompt_summary},
+			{'role': 'user', 'content': f"Job Opening: {delimiters_summary}{job_description}{delimiters_summary}"},
 		],
 		model=MODEL,
 		temperature=0,
@@ -121,52 +113,6 @@ async def async_summarise_job_gpt(session, job_description: str) -> Tuple[str, f
 		total_cost = prompt_cost + completion_cost
 		#print(f"COST FOR SUMMARISING: ${total_cost:.2f} USD")
 	return response_message, total_cost
-
-"""
-async def summarise_descriptions(descriptions: list) -> list:
-	#start timer
-	start_time = asyncio.get_event_loop().time()
-	total_cost = 0
-
-	async def process_description(session, i, text):
-		attempts = 0
-		while attempts < 5:
-			try:
-				words_per_text = count_words(text)
-				if words_per_text > 50:
-					description_summary, cost = await async_summarise_job_gpt(session, text)
-					print(f"Description with index {i} just added.")
-					logging.info(f"Description's index {i} just added.")
-					return i, description_summary, cost
-				else:
-					logging.warning(f"Description with index {i} is too short for being summarised. Number of words: {words_per_text}")
-					print(f"Description with index {i} is too short for being summarised. Number of words: {words_per_text}")
-					return i, text, 0
-			except (Exception, ServiceUnavailableError) as e:
-				attempts += 1
-				print(f"{e}. Retrying attempt {attempts}...")
-				logging.warning(f"{e}. Retrying attempt {attempts}...")
-				await asyncio.sleep(5**attempts)  # exponential backoff
-		else:
-			print(f"Description with index {i} could not be summarised after 5 attempts.")
-			return i, text, 0
-
-	async with ClientSession() as session:
-		tasks = [process_description(session, i, text) for i, text in enumerate(descriptions)]
-		results = await asyncio.gather(*tasks)
-
-	# Sort the results by the index and extract the summaries and costs
-	results.sort()
-	descriptions_summarised = [result[1] for result in results]
-	costs = [result[2] for result in results]
-	total_cost = sum(costs)
-
-	#await close_session()
-	#processed_time = timeit.default_timer() - start_time
-	elapsed_time = asyncio.get_event_loop().time() - start_time
-
-	return descriptions_summarised, total_cost, elapsed_time
-"""
 
 async def async_summarise_description(description: str) -> tuple:
 	#start timer
@@ -203,12 +149,6 @@ async def async_summarise_description(description: str) -> tuple:
 	elapsed_time = asyncio.get_event_loop().time() - start_time
 
 	return result[0], total_cost, elapsed_time
-
-
-load_dotenv(".env")
-SAVE_PATH = os.getenv("SAVE_PATH")
-COUNTRIES_JSON_DATA = os.getenv("COUNTRIES_JSON_DATA")
-LOGGER_DJANGO = os.getenv("LOGGER_DJANGO")
 
 def clean_rows(s):
 	if not isinstance(s, str):
@@ -341,7 +281,7 @@ def filter_df_per_country(df: pd.DataFrame, user_desired_country:str) -> pd.Data
 	df['location'] = df['location'].str.lower()
 
 	# Convert all country values to lowercase
-	country_values = [value.lower() for value in country_values]
+	country_values = [re.escape(value.lower()) for value in country_values]
 
 	# Create a mask with all False
 	mask = pd.Series(False, index=df.index)
