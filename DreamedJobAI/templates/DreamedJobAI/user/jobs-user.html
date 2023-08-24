@@ -11,80 +11,91 @@
     {% endblock user_names%}
 
     {%block content%}
-    <!-- Content -->
-
-        <div class="pagetitle">
-            <h1> Suitable jobs </h1>
-            <button id="JobsBtn">Click me</button>
-        </div>
-        <section class="section">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="myTable">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Location</th>
-                                            <th scope="col">Summary</th>
-                                            <th scope="col">Suitability</th>
-                                            <th scope="col">Explanation</th>
-                                            <th scope="col">Link</th>
-                                        </tr>
-                                    </thead>
-                                        <tbody>
-                                            {% for job in jobs %}
-                                                <tr>
-                                                    <td>{{ job.title }}</td>
-                                                    <td>{{ job.location }}</td>
-                                                    <td>{{ job.summary }}</td>
-                                                    <td>{{ job.suitability }}</td>
-                                                    <td>{{ job.explanation }}</td>
-                                                    <td><a href="{{ job.link }}">Apply now!</a></td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                </table>
+        {% if jobs %}
+            <div class="pagetitle">
+                <h1> Suitable jobs </h1>
+            </div>
+            <section class="section">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="myTable">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Location</th>
+                                                <th scope="col">Summary</th>
+                                                <th scope="col">Suitability</th>
+                                                <th scope="col">Explanation</th>
+                                                <th scope="col">Link</th>
+                                            </tr>
+                                        </thead>
+                                            <tbody>
+                                                {% for job in jobs %}
+                                                    <tr>
+                                                        <td>{{ job.title }}</td>
+                                                        <td>{{ job.location }}</td>
+                                                        <td>{{ job.summary }}</td>
+                                                        <td>{{ job.suitability }}</td>
+                                                        <td>{{ job.explanation }}</td>
+                                                        <td><a href="{{ job.link }}">Apply now!</a></td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                <script>
-                    $(document).ready(function(){
-
-                        $("#JobsBtn").click(function(){
-                            // Display a loading message or spinner
-                            $("#preloader").show();
-                            
-                            $.ajax({
-                                url: '/jobs-user/',
-                                type: 'POST',
-                                data: {
-                                    'csrfmiddlewaretoken': '{{ csrf_token }}'
-                                },
-                                success: function(response){
-                                    if(response.success){
-                                        // Hide the loading indicator when the request is complete
-                                        $("#preloader").hide();
-                                        // Hide the button
-                                        $("#JobsBtn").hide();
-
-                                    }
-                                },
-                                error: function(){
-
-                                    $("#preloader").hide();
-                                }
-                            });
-                        });
-                    });
-                </script>
-
+            </section>
+        {% else %}
+            <div class="pagetitle">
+                <h1> Suitable jobs </h1>
             </div>
-        </section>
+            <section class="section text-center">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card" style="background: transparent; border: none;">
+                            <div class="card-body bg-transparent">
+                                <button id="JobsBtn">Get your jobs!</button>
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                            <script>
+                                $(document).ready(function(){
+
+                                    $("#JobsBtn").click(function(){
+                                        // Display a loading message or spinner
+                                        $("#preloader").show();
+                                        
+                                        $.ajax({
+                                            url: '/jobs-user/',
+                                            type: 'POST',
+                                            data: {
+                                                'csrfmiddlewaretoken': '{{ csrf_token }}'
+                                            },
+                                            success: function(response){
+                                                if(response.success){
+                                                    // Hide the loading indicator when the request is complete
+                                                    $("#preloader").hide();
+
+                                                }
+                                            },
+                                            error: function(){
+
+                                                $("#preloader").hide();
+                                            }
+                                        });
+                                    });
+                                });
+                            </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
     {% endblock content %}
 
 {% else %}
