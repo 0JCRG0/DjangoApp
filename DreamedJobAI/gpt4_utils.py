@@ -345,9 +345,14 @@ abstract_cv = """('Qualifications: \n- LLB Law degree from Universidad de las Am
 
 LoggingDjango()
 
-async def main(user_id:int, user_country:str, top_n_interval:int, num_suitable_jobs: int):
+async def main(user_id:int, user_country:str, user_cv:str, top_n_interval:int, num_suitable_jobs: int):
 
-	logging.info(f"USER ID: {user_id}. USER DESIRED COUNTRY: {user_country}")
+	if user_cv:
+		user_cv_bool = True
+	else:
+		user_cv_bool = False
+
+	logging.info(f"USER ID: {user_id}. USER DESIRED COUNTRY: {user_country}. USER CV: {user_cv_bool}")
 
 	df_unfiltered = pd.read_parquet(E5_BASE_V2_DATA)
 
@@ -530,7 +535,7 @@ async def main(user_id:int, user_country:str, top_n_interval:int, num_suitable_j
 	# Continue to call the function until we have 10 suitable jobs
 	counter = 0
 	while True:
-		json_output_GPT4 = await check_output_GPT4(input_cv=abstract_cv, min_n=min_n, top_n=top_n)
+		json_output_GPT4 = await check_output_GPT4(input_cv=user_cv, min_n=min_n, top_n=top_n)
 		
 		# Convert the JSON to a dataframe and append it to the existing dataframe
 		df_json_output_GPT4 = pd.read_json(json.dumps(json_output_GPT4))
