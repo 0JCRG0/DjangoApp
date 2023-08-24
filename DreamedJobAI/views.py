@@ -149,6 +149,8 @@ class ProfileView(View):
                     user_text.pdf_file = pdf_file
                     extracted_text = extract_text_from_pdf(pdf_file)
                     user_text.extracted_text = extracted_text
+                    summary = summarise_cv(extracted_text)
+                    user_text.summary = summary
                     user_text.save()
                     success_pdf = "Your CV was successfully uploaded!"
                 else:
@@ -189,22 +191,30 @@ class JobView(View):
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
             profile, created = Profile.objects.get_or_create(user=request.user)
             profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
+            profile_cv, created = UserCV.objects.get_or_create(user=request.user)
+
             
             # Fetch the user_id and desired_country from the retrieved objects
-            user_id = profile.user_id
-            desired_country = profile_preferences.desired_country
+            USER_ID = profile.user_id
+            USER_COUNTRY = profile_preferences.desired_country
+            USER_CV = profile_cv.summary
 
-            df = asyncio.run(main(user_id=user_id, user_country=desired_country, top_n_interval=4, num_suitable_jobs=1))
+            #Summarise the raw user cv
+
+            if USER_COUNTRY and USER_CV:
+                df = asyncio.run(main(user_id=USER_ID, user_country=USER_COUNTRY, user_cv=USER_CV, top_n_interval=4, num_suitable_jobs=1))
             
-            # Convert the DataFrame to a dictionary
-            df_dict = df.to_dict(orient='records')
+                # Convert the DataFrame to a dictionary
+                df_dict = df.to_dict(orient='records')
 
-            # Save the data to the database
-            for item in df_dict:
-                item['job_id'] = item.pop('id')  # This line changes the key 'id' to 'job_id'
-                SuitableJobs.objects.create(**item)
+                # Save the data to the database
+                for item in df_dict:
+                    item['job_id'] = item.pop('id')  # This line changes the key 'id' to 'job_id'
+                    SuitableJobs.objects.create(**item)
 
-            return JsonResponse({"success": True}, status=200)
+                return JsonResponse({"success": True}, status=200)
+            else:
+                return JsonResponse({"success": False}, status=400)
         return JsonResponse({"success": False}, status=400)
 
     def get(self, request:HttpRequest):
