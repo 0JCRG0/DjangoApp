@@ -184,8 +184,8 @@ class ProfileView(View):
                             }
                     )
 
-class JobView(View):
-    template_name = "DreamedJobAI/user/jobs-user.html"
+class InitialJobRequestView(View):
+    template_name = "DreamedJobAI/user/request-jobs.html"
     
     def post(self, request):
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
@@ -240,3 +240,58 @@ class JobView(View):
         # Pass the context to the template when rendering
         return render(request, self.template_name, context)
 
+class UserJobsView(View):
+    template_name = "DreamedJobAI/user/jobs-user.html"
+    
+    def post(self, request):
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            profile, created = Profile.objects.get_or_create(user=request.user)
+            profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
+            profile_cv, created = UserCV.objects.get_or_create(user=request.user)
+
+            
+            # Fetch the user_id and desired_country from the retrieved objects
+            USER_ID = profile.user_id
+            USER_COUNTRY = profile_preferences.desired_country
+            USER_CV = profile_cv.summary
+
+            #Summarise the raw user cv
+
+            if USER_COUNTRY and USER_CV:
+                df = asyncio.run(main(user_id=USER_ID, user_country=USER_COUNTRY, user_cv=USER_CV, top_n_interval=4, num_suitable_jobs=1))
+            
+                # Convert the DataFrame to a dictionary
+                df_dict = df.to_dict(orient='records')
+
+                # Save the data to the database
+                for item in df_dict:
+                    item['job_id'] = item.pop('id')  # This line changes the key 'id' to 'job_id'
+                    SuitableJobs.objects.create(**item)
+
+                return JsonResponse({"success": True}, status=200)
+            else:
+                return JsonResponse({"success": False}, status=400)
+        return JsonResponse({"success": False}, status=400)
+
+    def get(self, request:HttpRequest):
+        profile, created = Profile.objects.get_or_create(user=request.user)
+        profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
+        
+        user_id = profile.user_id
+        desired_country = profile_preferences.desired_country
+        profile_picture = profile.picture.url
+
+        # Retrieve the data from the database
+        jobs = SuitableJobs.objects.all()
+
+        filtered_jobs = jobs.filter(user_id=user_id)
+
+        context = {
+            'user_id': user_id,
+            'desired_country': desired_country,
+            'profile_picture': profile_picture,
+            'jobs': filtered_jobs
+        }
+
+        # Pass the context to the template when rendering
+        return render(request, self.template_name, context)
