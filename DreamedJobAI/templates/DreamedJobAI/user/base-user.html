@@ -109,7 +109,7 @@
                 </a>
             </li>
             <li>
-                <a href="{% url 'DreamedJobAI:jobs-user' %}" class="sunken-btn {% if request.resolver_match.url_name == 'jobs-user' %}active{% endif %} mb-3 mt-3" aria-current="page" title="Jobs" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{% if has_jobs %}{% url 'DreamedJobAI:jobs-user' %}{% else %}{% url 'DreamedJobAI:request-jobs' %}{% endif %}" class="sunken-btn {% if request.resolver_match.url_name == 'jobs-user' %}active{% endif %} mb-3 mt-3" aria-current="page" title="Jobs" data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Jobs"><use xlink:href="#briefcase"/></svg>
                 </a>
             </li>
