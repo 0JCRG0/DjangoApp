@@ -11,124 +11,116 @@
     {% endblock user_names%}
 
     {%block content%}
-        {% if jobs %}
-            <div class="pagetitle">
-                <h1> Suitable jobs </h1>
-            </div>
-            <section class="section">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="myTable">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Title</th>
-                                                <th scope="col">Location</th>
-                                                <th scope="col">Summary</th>
-                                                <th scope="col">Suitability</th>
-                                                <th scope="col">Explanation</th>
-                                                <th scope="col">Link</th>
-                                            </tr>
-                                        </thead>
-                                            <tbody>
-                                                {% for job in jobs %}
-                                                    <tr>
-                                                        <td>{{ job.title }}</td>
-                                                        <td>{{ job.location }}</td>
-                                                        <td>{{ job.summary }}</td>
-                                                        <td>{{ job.suitability }}</td>
-                                                        <td>{{ job.explanation }}</td>
-                                                        <td><a href="{{ job.link }}">Apply now!</a></td>
-                                                    </tr>
-                                                {% endfor %}
-                                            </tbody>
-                                    </table>
-                                </div>
+        <div class="pagetitle">
+            <h1> Suitable jobs </h1>
+        </div>
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Location</th>
+                                            <th scope="col">Summary</th>
+                                            <th scope="col">Suitability</th>
+                                            <th scope="col">Explanation</th>
+                                            <th scope="col">Link</th>
+                                        </tr>
+                                    </thead>
+                                        <tbody>
+                                            {% for job in jobs %}
+                                                <tr>
+                                                    <td>{{ job.title }}</td>
+                                                    <td>{{ job.location }}</td>
+                                                    <td>{{ job.summary }}</td>
+                                                    <td>{{ job.suitability }}</td>
+                                                    <td>{{ job.explanation }}</td>
+                                                    <td><a href="{{ job.link }}">Apply now!</a></td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        {% else %}
-            <div class="pagetitle">
-                <h1> Suitable jobs </h1>
-            </div>
-            <section class="section text-center">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card" style="background: transparent; border: none;">
-                            <div class="card-body bg-transparent">
-                                <button id="JobsBtn">Get your jobs!</button>
-                                <div id="loading" class="d-none text-center">
-                                    <div class="spinner-border text-primary" role="status">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </div>
-                                    <p>Scouring the web for your jobs...</p>
-                                    <p>This might take a couple of minutes. Please do not refresh the page.</p>
+                <div class="col-md-3">
+                    <div class="card" style="background: transparent; border: none;">
+                        <div class="card-body bg-transparent">
+                            <button id="JobsBtn">Get more jobs!</button>
+                            <div id="loading" class="d-none text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
                                 </div>
-                                <div id="error-args" class="alert alert-danger mt-3 d-none">
-                                    <p>Did you forget to either select a desired country or submit your CV?</p>
-                                    <p>You can do that in your <a href="{% url 'DreamedJobAI:profile-user' %}">Profile.</a></p>
-                                </div>
-                                <div id="error-function" class="alert alert-danger mt-3 d-none">
-                                    <p>An error occurred while processing your request. Please try again later.</p>
-                                </div>
+                                <p>Scouring the web for your jobs...</p>
+                                <p>This might take a couple of minutes. Please do not refresh the page.</p>
+                            </div>
+                            <div id="error-args" class="alert alert-danger mt-3 d-none">
+                                <p>Did you forget to either select a desired country or submit your CV?</p>
+                                <p>You can do that in your <a href="{% url 'DreamedJobAI:profile-user' %}">Profile.</a></p>
+                            </div>
+                            <div id="error-function" class="alert alert-danger mt-3 d-none">
+                                <p>An error occurred while processing your request. Please try again later.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                <script>
-                $(document).ready(function(){
+            </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script>
+            $(document).ready(function(){
 
-                    $("#JobsBtn").click(function(){
-                        // Display a loading message or spinner
-                        $(this).hide();
-                        
-                        // Show the loading indicator and message
-                        $("#loading").removeClass("d-none");
+                $("#JobsBtn").click(function(){
+                    // Display a loading message or spinner
+                    $(this).hide();
+                    
+                    // Show the loading indicator and message
+                    $("#loading").removeClass("d-none");
 
-                        $.ajax({
-                            url: '/jobs-user/',
-                            type: 'POST',
-                            data: {
-                                'csrfmiddlewaretoken': '{{ csrf_token }}'
-                            },
-                            success: function(response){
-                                if(response.success){
-                                    // Hide the loading indicator when the request is complete
-                                    $("#loading").addClass("d-none");
-                                    
-                                    // Reload the page on success
-                                    location.reload();
-                                }
-                                else {
-                                    $("#loading").addClass("d-none");
-                                    // $("#error-args").text("An error occurred. Please s to \"Preferences\" and select a \"Desired Country\" and submit a valid CV.");
-                                    $("#error-function").removeClass("d-none");
-                                }
-                            },
-                            error: function(){
-                                // Handle errors if needed
-
-                                // Hide the loading indicator on error
+                    $.ajax({
+                        url: '/jobs-user/',
+                        type: 'POST',
+                        data: {
+                            'csrfmiddlewaretoken': '{{ csrf_token }}'
+                        },
+                        success: function(response){
+                            if(response.success){
+                                // Hide the loading indicator when the request is complete
                                 $("#loading").addClass("d-none");
+                                
+                                // Reload the page on success
+                                location.reload();
+                                // window.location.href = '/jobs-user/'; // Replace with the desired URL
 
-                                // Show the button again
-                                $("#JobsBtn").show();
-
-                                // Show an error message using Bootstrap alert
-                                // $("#error-args").text("An error occurred. Please go to \"Preferences\" and select a \"Desired Country\" and submit a valid CV.");
-                                $("#error-args").removeClass("d-none");
                             }
-                        });
+                            else {
+                                $("#loading").addClass("d-none");
+                                // $("#error-args").text("An error occurred. Please s to \"Preferences\" and select a \"Desired Country\" and submit a valid CV.");
+                                $("#error-function").removeClass("d-none");
+                            }
+                        },
+                        error: function(){
+                            // Handle errors if needed
+
+                            // Hide the loading indicator on error
+                            $("#loading").addClass("d-none");
+
+                            // Show the button again
+                            $("#JobsBtn").show();
+
+                            // Show an error message using Bootstrap alert
+                            // $("#error-args").text("An error occurred. Please go to \"Preferences\" and select a \"Desired Country\" and submit a valid CV.");
+                            $("#error-args").removeClass("d-none");
+                        }
                     });
                 });
-                </script>
-            </section>
-        {% endif %}
+            });
+            </script>
+        </section>
     {% endblock content %}
 
 {% else %}
