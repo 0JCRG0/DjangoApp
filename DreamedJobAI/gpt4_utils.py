@@ -36,6 +36,7 @@ SAVE_PATH = os.getenv("SAVE_PATH")
 E5_BASE_V2_DATA = os.getenv("E5_BASE_V2_DATA")
 COUNTRIES_JSON_DATA = os.getenv("COUNTRIES_JSON_DATA")
 LOGGER_DJANGO = os.getenv("LOGGER_DJANGO")
+LOGGER_DIR_PATH = os.getenv("LOGGER_DIR_PATH")
 MODEL= "gpt-3.5-turbo"
 EMBEDDING_MODEL = "text-embedding-ada-002"
 GPT_MODEL = "gpt-4"
@@ -150,30 +151,6 @@ async def async_summarise_description(description: str) -> tuple:
 
 	return result[0], total_cost, elapsed_time
 
-def clean_rows(s):
-	if not isinstance(s, str):
-		print(f"{s} is not a string! Returning unmodified")
-		return s
-	s = re.sub(r'\(', '', s)
-	s = re.sub(r'\)', '', s)
-	s = re.sub(r"'", '', s)
-	s = re.sub(r",", '', s)
-	return s
-
-def truncated_string(
-	string: str,
-	model: str,
-	max_tokens: int,
-	print_warning: bool = False,
-) -> str:
-	"""Truncate a string to a maximum number of tokens."""
-	encoding = tiktoken.encoding_for_model(model)
-	encoded_string = encoding.encode(string)
-	truncated_string = encoding.decode(encoded_string[:max_tokens])
-	if print_warning and len(encoded_string) > max_tokens:
-		print(f"Warning: Truncated string from {len(encoded_string)} tokens to {max_tokens} tokens.")
-	return truncated_string
-
 def num_tokens(text: str, model: str ="gpt-3.5-turbo") -> int:
 	#Return the number of tokens in a string.
 	encoding = tiktoken.encoding_for_model(model)
@@ -188,15 +165,14 @@ def LoggingDjango():
 						level=logging.INFO,
 						format=log_format)
 
-def count_words(text: str) -> int:
-	# Remove leading and trailing whitespaces
-	text = text.strip()
+def LoggingTest():
+	# Define a custom format with bold text
+	log_format = '%(asctime)s %(levelname)s: \n%(message)s\n'
 
-	# Split the text into words using whitespace as a delimiter
-	words = text.split()
-
-	# Return the count of words
-	return len(words)
+	# Configure the logger with the custom format
+	logging.basicConfig(filename=LOGGER_DIR_PATH + "/LoggingTest.log",
+						level=logging.INFO,
+						format=log_format)
 
 def append_parquet(new_df: pd.DataFrame, filename: str):
 	# Ensure user_id is int
@@ -242,10 +218,6 @@ def filter_last_two_weeks(df:pd.DataFrame) -> pd.DataFrame:
 	filtered_df = df[df["timestamp"].dt.date >= two_weeks_ago]
 	
 	return filtered_df
-
-def passage_e5_format(raw_descriptions):
-	formatted_batches = ["passage: {}".format(raw_description) for raw_description in raw_descriptions]
-	return formatted_batches
 
 def set_dataframe_display_options():
 	# Call the function to set the desired display options
@@ -295,6 +267,30 @@ def filter_df_per_country(df: pd.DataFrame, user_desired_country:str) -> pd.Data
 
 	return filtered_df
 
+def preexisting_ids_postgre(user_id:int) -> list :
+	conn = psycopg2.connect(user=user, password=password, host=host, port=port, database=database)
+
+	# Create a cursor object
+	cur = conn.cursor()
+
+	# Fetch new data from the table where id is greater than max_id
+	cur.execute(f"SELECT job_id FROM \"DreamedJobAI_suitablejobs\" WHERE user_id = {user_id}")
+	
+	data = cur.fetchall()
+
+	cur.close()
+	conn.close()
+	
+	# Separate the columns into individual lists
+	job_ids = [row[0] for row in data]
+
+	return job_ids
+
+def find_unique_ids(ids: tuple, preexisting_ids: list) -> list:
+    # Use a list comprehension to find the numbers in ids that are not in preexisting_ids
+    unique_ids = [id for id in ids if id not in preexisting_ids]
+    return unique_ids
+
 delimiters = "####"
 
 system_prompt=f"""
@@ -330,17 +326,48 @@ introduction_prompt = """
 
 """
 
+cv = """ Qualifications:
+- LLB Law from the University of Bristol (2022 - present)
+- Member of the Honours Program at UDLAP, researching FinTech, Financial Inclusion, Blockchain, Distributed Ledger Technologies, Cryptocurrencies, and Smart Contracts
+- TOEFL® iBT score of 107 out of 120
 
-abstract_cv_past = """Data Analyst: Cleansed, analyzed, and visualized data using Python, SQL Server, and Power BI.
-Legal Assistant: Drafted legal documents, collaborated on negotiation outlines, and handled trademark registrations.
-Data Analyst Jr.: Implemented A/B testing, utilized data analysis tools, and developed real-time visualizations.
-Special Needs Counselor: Led and assisted individuals with disabilities, provided personal care, and facilitated camp activities.
-Total years of professional experience: 3 years."""
+Previous job titles:
+- Data Analyst at Tata Consultancy Services México (June 2022 – September 2022)
+- Legal Assistant at BLACKSHIIP Venture Capital (May 2022 – July 2022)
+- Data Analyst Jr. at AMATL GRÁFICOS (January 2020 – May 2022)
+- Mathematics Instructor at ALOHA Mental Arithmetic (December 2019 – January 2020)
+- Special Needs Counsellor at Camp Merrywood (O)
+- Special Needs Counsellor at Camp Merrywood (Ontario, Canada) (May 2019 - August 2019)
+- Special Needs Counsellor at YMCA Camp Independence (Chicago, USA) (June 2018 - August 2018)
+- Coordinator of Volunteers at NAHUI OLLIN (November 2017 - May 2019)
 
-abstract_cv = """('Qualifications: \n- LLB Law degree from Universidad de las Américas Puebla (UDLAP) with an accumulated average of 9.4/10.\n- Currently on an international exchange at the University of Bristol for the final year of studying Law.\n- Member of the Honours Program at UDLAP, conducting research on FinTech, Financial Inclusion, Blockchain, Cryptocurrencies, and Smart Contracts.\n\nPrevious job titles:\n- Data Analyst at Tata Consultancy Services México, where I cleansed, interpreted, and analyzed data using Python and SQL Server to produce visual reports with Power BI.\n- Legal Assistant at BLACKSHIIP Venture Capital, responsible for proofreading and drafting legal documents, as well as assisting with negotiations of International Share Purchase Agreements.\n\nResponsibilities/Key Duties:\n- Developed and introduced A/B testing to make data-driven business decisions as a Data Analyst Jr. at AMATL GRÁFICOS.\n- Taught mental arithmetic as a Mathematics Instructor at ALOHA Mental Arithmetic.\n- Led and assisted individuals with physical and mental disabilities as a Special Needs Counsellor at Camp Merrywood and YMCA Camp Independence.\n\nSkills:\n- Proficient in Python, SQL Server, Tableau, Power BI, Bash/Command Line, Git & GitHub, and Office 365.\n- Strong written and verbal communication skills, teamwork, ability to work under pressure, attention to detail, and leadership skills.\n- Knowledge in machine learning, probabilities & statistics, and proofreading.\n\nOther Achievements:\n- Published paper on "Smart Legal Contracts: From Theory to Reality" and participated in the IDEAS Summer Program on Intelligence, Data, Ethics, and Society at the University of California, San Diego."""
+Responsibilities/Key Duties:
+- Cleansed, interpreted, and analyzed data with Python and SQL Server to produce visual reports using Power BI
+- Proofread, drafted, and simplified legal documents such as Memorandums of Understanding, Terms & Conditions, Data Processing Agreements, Privacy Policies, etc.
+- Developed and introduced A/B testing to make data-backed decisions and achieve increased Net Profit Margin
+- Taught mental arithmetic to students and trained gifted children for national competitions
+- Led and assisted individuals with physical and mental disabilities in camp settings
+- Coordinated and supervised volunteers for an organization, increasing the number of volunteers by 400%
+
+Skills:
+- Written and verbal communication skills
+- Teamwork and ability to work under pressure
+- Attention to detail and judgment
+- Leadership and people skills
+- Python, SQL Server, MySQL/PostgreSQL, Tableau, Power BI, Bash/Command Line, Git & GitHub, Office 365, Machine Learning, Probabilities & Statistics
+
+Other Achievements:
+- Published paper on Smart Legal Contracts: From Theory to Reality
+- Participated in the IDEAS Summer Program on Intelligence, Data, Ethics, and Society at the University of California, San Diego. """
 
 
-"""   begin   """
+"""   
+
+
+START
+
+
+"""
 
 
 LoggingDjango()
@@ -637,5 +664,308 @@ async def main(user_id:int, user_country:str, user_cv:str, top_n_interval:int, n
 	
 	return sorted_df
 
+
+async def additional_suitable_jobs(user_id:int, user_country:str, user_cv:str, top_n_interval:int, num_suitable_jobs: int):
+
+	if user_cv:
+		user_cv_bool = True
+	else:
+		user_cv_bool = False
+
+	logging.info(f"USER ID: {user_id}. USER DESIRED COUNTRY: {user_country}. USER CV: {user_cv_bool}")
+
+	df_unfiltered = pd.read_parquet(E5_BASE_V2_DATA)
+
+	df_two_weeks = filter_last_two_weeks(df_unfiltered)
+
+	df = filter_df_per_country(df=df_two_weeks, user_desired_country=user_country)
+	
+	def ids_ranked_by_relatedness_e5(query: str,
+		df: pd.DataFrame,
+		min_n: int,
+		top_n: int,
+		relatedness_fn=lambda x, y: 1 - spatial.distance.cosine(x, y),
+	) -> tuple[list[str], list[float]]:
+		
+		#the query is embedded using e5
+		query_embedding = e5_base_v2_query(query=query)
+
+		ids_and_relatednesses = [
+			(row["id"], relatedness_fn(query_embedding, row["embedding"]))
+			for i, row in df.iterrows()
+		]
+		ids_and_relatednesses.sort(key=lambda x: x[1], reverse=True)
+		ids, relatednesses = zip(*ids_and_relatednesses)
+		return ids[min_n:top_n], relatednesses[min_n:top_n]     
+		#Returns a list of strings and relatednesses, sorted from most related to least.
+
+	async def async_query_summary(
+		query: str,
+		df: pd.DataFrame,
+		model: str,
+		token_budget: int,
+		min_n: int,
+		top_n: int
+	) -> str:
+		#Return a message for GPT, with relevant source texts pulled from a dataframe.
+		top_n_ids, relatednesses = ids_ranked_by_relatedness_e5(query, df, min_n=min_n, top_n=top_n)
+		logging.info(f"IDs FROM ids_ranked_by_relatedness_e5(): {top_n_ids} \nNumber of IDs: {len(top_n_ids)}")
+		
+		#Get the preexisting ids from postgre to check against the ids from ids_ranked_by_relatedness_e5()
+		preexisting_ids = preexisting_ids_postgre(user_id=user_id)
+		logging.info(f"IDs FROM preexisting_ids_postgre(): {preexisting_ids} \nNumber of IDs: {len(preexisting_ids)}")
+
+		#Get unique ids
+		ids = find_unique_ids(ids=top_n_ids, preexisting_ids=preexisting_ids)
+		logging.info(f"Unique IDs: {ids} \nNumber of IDs: {len(ids)}")
+
+		#Basically giving the most relevant IDs from the previous function
+		introduction = introduction_prompt
+		query_user = f"{query}"
+		message = introduction
+		# Create a list of tasks
+		tasks = [async_summarise_description(df[df['id'] == id]['description'].values[0]) for id in ids]
+
+		# Run the tasks concurrently
+		results = await asyncio.gather(*tasks)
+		job_summaries = []
+		total_cost_summaries = 0    
+
+		for id, result in zip(ids, results):
+			job_description_summary, cost, elapsed_time = result
+			
+			# Append summary to the list
+			job_summaries.append({
+				"id": id,
+				"summary": job_description_summary,
+				"user_id": user_id
+			})
+
+			#all_users_ids.extend([user_id] * len(job_summaries))
+
+			#Append total cost
+			total_cost_summaries += cost
+
+			next_id = f'\nID:<{id}>\nJob Description:---{job_description_summary}---\n'
+			if (
+				num_tokens(message + next_id + query_user, model=model)
+				> token_budget
+			):
+				break
+			else:
+				message += next_id
+		return query_user, message, job_summaries, total_cost_summaries
+
+	#@retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6))
+	async def ask(
+		#This query is your question, only parameter to fill in function
+		query: str,
+		min_n: int,
+		top_n: int,
+		df: pd.DataFrame = df,
+		model: str = GPT_MODEL,
+		token_budget: int = 8192,
+		log_gpt_messages: bool = True,
+	) -> str:
+		#Answers a query using GPT and a dataframe of relevant texts and embeddings.
+		query_user, job_id_description, job_summaries, total_cost_summaries = await async_query_summary(query, df, model=model, token_budget=token_budget, min_n=min_n, top_n=top_n)
+
+		#Save summaries in a df & then parquet -> append data if function called more than once
+		df_summaries = pd.DataFrame(job_summaries)
+		append_parquet(df_summaries, 'summaries')
+		
+		messages = [
+			{"role": "system", "content": system_prompt},
+			{"role": "user", "content": f"{delimiters}{query_user}{delimiters}"},
+			{"role": "assistant", "content": job_id_description}
+		]
+		
+		if log_gpt_messages:
+			logging.info(messages)
+		response = openai.ChatCompletion.create(
+			model=model,
+			messages=messages,
+			temperature=0
+		)
+		response_message = response["choices"][0]["message"]["content"]
+		
+		#if print_cost_and_relatednesses:
+		total_tokens = response['usage']['total_tokens']
+		prompt_tokens = response['usage']['prompt_tokens']
+		completion_tokens = response['usage']['completion_tokens']
+		logging.info(f"\nOPERATION: GPT-3.5 TURBO SUMMARISING. \nTOTAL COST: ${total_cost_summaries} USD")
+
+		#Approximate cost
+		if GPT_MODEL == "gpt-4":
+			prompt_cost = round((prompt_tokens / 1000) * 0.03, 3)
+			completion_cost = round((completion_tokens / 1000) * 0.06, 3)
+			cost_classify = prompt_cost + completion_cost
+			logging.info(f"\nOPERATION: {GPT_MODEL} CLASSIFICATION \nPROMPT TOKENS USED:{prompt_tokens}\nCOMPLETION TOKENS USED:{completion_tokens}\nTOTAL TOKENS USED:{total_tokens}\nCOST FOR CLASSIFYING: ${cost_classify} USD")
+		elif GPT_MODEL == "gpt-3.5-turbo":
+			prompt_cost = round((prompt_tokens / 1000) * 0.0015, 3)
+			completion_cost = round((completion_tokens / 1000) * 0.002, 3)
+			cost_classify = prompt_cost + completion_cost
+			logging.info(f"\nOPERATION: {GPT_MODEL} CLASSIFICATION \nPROMPT TOKENS USED:{prompt_tokens}\nCOMPLETION TOKENS USED:{completion_tokens}\nTOTAL TOKENS USED:{total_tokens}\nCOST FOR CLASSIFYING: ${cost_classify} USD")
+		elif GPT_MODEL == "gpt-3.5-turbo-16k":
+			prompt_cost = round((prompt_tokens / 1000) * 0.003, 3)
+			completion_cost = round((completion_tokens / 1000) * 0.004, 3)
+			cost_classify = prompt_cost + completion_cost
+			logging.info(f"\nOPERATION: {GPT_MODEL} CLASSIFICATION \nPROMPT TOKENS USED:{prompt_tokens}\nCOMPLETION TOKENS USED:{completion_tokens}\nTOTAL TOKENS USED:{total_tokens}\nCOST FOR CLASSIFYING: ${cost_classify} USD")
+
+		#relatednesses
+		ids, relatednesses = ids_ranked_by_relatedness_e5(query=query, df=df, min_n=min_n, top_n=top_n)
+		for id, relatedness in zip(ids, relatednesses):
+			logging.info(f"ID: {id} has the following {relatedness=:.3f}")
+		
+		elapsed_time = (timeit.default_timer() - start_time) / 60
+		logging.info(f"\nGPT-3.5 TURBO & GPT-4 finished summarising and classifying! all in: {elapsed_time:.2f} minutes \n")
+		
+		return response_message
+
+	async def check_output_GPT4(input_cv: str, min_n:int, top_n:int) -> str:
+		default = '[{"id": "", "suitability": "", "explanation": ""}]'
+		default_json = json.loads(default)
+		
+		for _ in range(6):
+			i = _ + 1
+			try:
+				python_string = await ask(query=input_cv, min_n=min_n, top_n=top_n)
+				try:
+					data = json.loads(python_string)
+					logging.info(f"Response is a valid json object. Done in loop number: {i}")
+					return data
+				except json.JSONDecodeError:
+					pass
+			except OpenAIError as e:
+				logging.warning(f"{e}. Retrying in 10 seconds. Number of retries: {i}")
+				time.sleep(10)
+				pass
+			except Exception as e:
+				logging.warning(f"{e}. Retrying in 5 seconds. Number of retries: {i}", exc_info=True)
+				time.sleep(5)
+				pass
+
+		logging.error("Check logs!!!! Main function was not callable. Setting json to default")
+		return default_json
+
+	#Modify df options - useful for logging
+	set_dataframe_display_options()
+
+	#Define the rows to classify
+	min_n=0
+	top_n=top_n_interval
+
+	# Define the suitable categories
+	suitable_categories = ['Highly Suitable', 'Moderately Suitable', 'Potentially Suitable']
+
+	# Initialize the dataframe
+	df_appended = pd.DataFrame()
+
+	# Continue to call the function until we have 10 suitable jobs
+	counter = 0
+	while True:
+		json_output_GPT4 = await check_output_GPT4(input_cv=user_cv, min_n=min_n, top_n=top_n)
+		
+		# Convert the JSON to a dataframe and append it to the existing dataframe
+		df_json_output_GPT4 = pd.read_json(json.dumps(json_output_GPT4))
+		df_appended = pd.concat([df_appended, df_json_output_GPT4], ignore_index=True)
+		
+		counter += 1
+		logging.info(f"Looking for suitable jobs. Current loop: {counter}")
+
+		logging.info(f"Current min_n: {min_n}. Current top_n: {top_n}")
+
+		# Increment the counters depending on the desired top_n_interval 
+		min_n += top_n_interval
+		top_n += top_n_interval
+
+		# Filter the dataframe to only include the suitable jobs
+		df_most_suitable = df_appended[df_appended['suitability'].isin(suitable_categories)] if 'suitability' in df_appended.columns else pd.DataFrame()
+		
+		df_appended.to_parquet(SAVE_PATH + "/df_appended.parquet", index=False)
+		df_most_suitable.to_parquet(SAVE_PATH + "/df_most_suitable.parquet", index=False)
+
+		# Break the loop if we have x suitable jobs
+		if len(df_most_suitable) >= num_suitable_jobs:
+			break
+
+	logging.info(f"\nDF APPENDED:\n{df_appended}. \nDF MOST SUITABLE:\n{df_most_suitable}")
+	
+	#Get the ids
+	def ids_df_most_suitable(df: pd.DataFrame = df_most_suitable) -> str:
+		ids = ""
+		for _, row in df.iterrows():
+			if "id" in row:
+				if ids:
+					ids += ", "
+				ids += f"'{row['id']}'"
+
+		return f"({ids})"
+
+	ids_most_suitable = ids_df_most_suitable()
+	logging.info(f"Getting the ids from the json object: {type(ids_most_suitable)}, {ids_most_suitable}")
+
+	def find_jobs_per_ids(ids:str, table: str = "main_jobs") -> pd.DataFrame:
+		conn = psycopg2.connect(user=user, password=password, host=host, port=port, database=database)
+		# Create a cursor object
+		cur = conn.cursor()
+		#TABLE SHOULD EITHER BE "main_jobs" or "test"
+		cur.execute( f"SELECT id, title, link, location FROM {table} WHERE id IN {ids}")
+
+		# Fetch all rows from the table
+		rows = cur.fetchall()
+
+		# Separate the columns into individual lists
+		all_ids = [row[0] for row in rows]
+		all_titles = [row[1] for row in rows]
+		all_links = [row[2] for row in rows]
+		all_locations = [row[3] for row in rows]
+
+		df = pd.DataFrame({
+			'id': all_ids,
+			'title': all_titles,
+			'link': all_links,
+			'location': all_locations
+		})
+				# Close the database connection
+		cur.close()
+		conn.close()
+
+		return df
+
+	df_postgre = find_jobs_per_ids(ids=ids_most_suitable)
+
+	#Read the parquet with ids, summaries & user_id
+	df_summaries = pd.read_parquet(SAVE_PATH + "/summaries.parquet")
+	#Merge it with the data in postgre
+	df_postgre_summaries = df_postgre.merge(df_summaries, on='id', how='inner')
+	#Merge with most suitable df so you have all the rows
+	df = df_postgre_summaries.merge(df_most_suitable, on="id", how='inner')
+
+	logging.info(f"\nALL ROWS:\n{df}")
+
+
+	def sort_df_by_suitability(df: pd.DataFrame = df) -> pd.DataFrame:
+		custom_order = {
+			'Highly Suitable': 1,
+			'Moderately Suitable': 2,
+			'Potentially Suitable': 3
+		}
+		df['suitability_rank'] = df['suitability'].map(custom_order)
+		sorted_df = df.sort_values(by='suitability_rank')
+		sorted_df = sorted_df.drop(columns='suitability_rank')
+		return sorted_df
+
+	sorted_df = sort_df_by_suitability()
+
+	filename = "/final_user_df"
+	
+	sorted_df.to_parquet(SAVE_PATH + f"{filename}.parquet", index=False)
+
+	logging.info(f"\nSORTED DF:\n{sorted_df}.\n\nThis df has been saved in ...{filename}.parquet\n\n\n")
+	
+	return sorted_df
+
 if __name__ == "__main__":
-	asyncio.run(main("37", "Mexico"))
+	#asyncio.run(main("37", "Mexico"))
+	asyncio.run(additional_suitable_jobs(user_id=37, user_country="Mexico", user_cv=cv, top_n_interval=4, num_suitable_jobs=1))
