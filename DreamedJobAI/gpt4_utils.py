@@ -608,7 +608,7 @@ async def main(user_id:int, user_country:str, user_cv:str, top_n_interval:int, n
 		# Create a cursor object
 		cur = conn.cursor()
 		#TABLE SHOULD EITHER BE "main_jobs" or "test"
-		cur.execute( f"SELECT id, title, link, location FROM {table} WHERE id IN {ids}")
+		cur.execute( f"SELECT id, title, link, location, pubdate FROM {table} WHERE id IN {ids}")
 
 		# Fetch all rows from the table
 		rows = cur.fetchall()
@@ -618,12 +618,14 @@ async def main(user_id:int, user_country:str, user_cv:str, top_n_interval:int, n
 		all_titles = [row[1] for row in rows]
 		all_links = [row[2] for row in rows]
 		all_locations = [row[3] for row in rows]
+		all_pubdates = [row[4] for row in rows]
 
 		df = pd.DataFrame({
 			'id': all_ids,
 			'title': all_titles,
 			'link': all_links,
-			'location': all_locations
+			'location': all_locations,
+			'pubdate': all_pubdates
 		})
 				# Close the database connection
 		cur.close()
@@ -663,6 +665,11 @@ async def main(user_id:int, user_country:str, user_cv:str, top_n_interval:int, n
 	logging.info(f"\nSORTED DF:\n{sorted_df}.\n\nThis df has been saved in ...{filename}.parquet\n\n\n")
 	
 	return sorted_df
+
+
+
+"""  ADDITIONAL SUITABLE JOBS  """
+
 
 
 async def additional_suitable_jobs(user_id:int, user_country:str, user_cv:str, top_n_interval:int, num_suitable_jobs: int):
@@ -910,7 +917,7 @@ async def additional_suitable_jobs(user_id:int, user_country:str, user_cv:str, t
 		# Create a cursor object
 		cur = conn.cursor()
 		#TABLE SHOULD EITHER BE "main_jobs" or "test"
-		cur.execute( f"SELECT id, title, link, location FROM {table} WHERE id IN {ids}")
+		cur.execute( f"SELECT id, title, link, location, pubdate FROM {table} WHERE id IN {ids}")
 
 		# Fetch all rows from the table
 		rows = cur.fetchall()
@@ -920,12 +927,14 @@ async def additional_suitable_jobs(user_id:int, user_country:str, user_cv:str, t
 		all_titles = [row[1] for row in rows]
 		all_links = [row[2] for row in rows]
 		all_locations = [row[3] for row in rows]
+		all_pubdates = [row[4] for row in rows]
 
 		df = pd.DataFrame({
 			'id': all_ids,
 			'title': all_titles,
 			'link': all_links,
-			'location': all_locations
+			'location': all_locations,
+			'pubdate': all_pubdates
 		})
 				# Close the database connection
 		cur.close()
