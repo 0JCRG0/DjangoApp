@@ -1,6 +1,6 @@
 {% extends 'DreamedJobAI/user/base-user.html' %}
 
-{% if user.is_authenticated %}
+
 
     {% block pic_username %}
         <img src="{{ profile_picture }}" alt="Profile" class="rounded-circle">
@@ -37,6 +37,5 @@
     </section>
     {%endblock content%}
     
-{% else %}
-    <h1> Hi, Guest! Please log in. </h1>
-{% endif %}
+
+    

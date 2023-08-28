@@ -4,14 +4,10 @@
 
 <!-- Content -->
 <div class="content">
-    {% if user.is_authenticated %}
-        <h1> Hi, {{ user.first_name }} {{ user.last_name }}  </h1>
-        <h4> CALENDAR</h4>
-
-    {% else %}
-        <h1> Hi, Guest! Please log in. </h1>
-    {% endif %}
+    <h1> Hi, {{ user.first_name }} {{ user.last_name }}  </h1>
+    <h4> CALENDAR</h4>
 </div>
+
 
 <!-- Sidebar right -->
 <div class="d-flex flex-column-right flex-shrink-0">

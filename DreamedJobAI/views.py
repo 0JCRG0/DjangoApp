@@ -1,5 +1,6 @@
 from .others import summarise_cv, extract_text_from_pdf
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.http import HttpRequest
@@ -76,7 +77,9 @@ class LegalViews(TemplateView):
         # Add any additional context data here if needed
         return context
 
-class SidebarViews(TemplateView):
+class SidebarViews(LoginRequiredMixin, TemplateView):
+    login_url = '/login/'
+
     def get_template_names(self):
         if self.request.path == '/home-user/':
             return 'DreamedJobAI/user/home-user.html'
@@ -89,12 +92,22 @@ class SidebarViews(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Add any additional context data here if needed
-        context['user'] = self.request.user
-        context['profile_picture'] = self.request.user.profile.picture.url
+        
+        if self.request.user.is_authenticated:
+            # Only access user's profile if authenticated
+            context['user'] = self.request.user
+            if hasattr(self.request.user, 'profile'):
+                context['profile_picture'] = self.request.user.profile.picture.url
+            else:
+                context['profile_picture'] = None
+        else:
+            context['user'] = None
+            context['profile_picture'] = None
+
         return context
 
-class ProfileView(View):
+class ProfileView(LoginRequiredMixin, View):
+    login_url = '/login/'
     template_name = 'DreamedJobAI/user/profile-user.html'
 
     def get(self, request: HttpRequest):
@@ -184,7 +197,8 @@ class ProfileView(View):
                             }
                     )
 
-class InitialJobRequestView(View):
+class InitialJobRequestView(LoginRequiredMixin, View):
+    login_url = '/login/'
     template_name = "DreamedJobAI/user/request-jobs.html"
     
     def post(self, request):
@@ -240,7 +254,8 @@ class InitialJobRequestView(View):
         # Pass the context to the template when rendering
         return render(request, self.template_name, context)
 
-class UserJobsView(View):
+class UserJobsView(LoginRequiredMixin, View):
+    login_url = '/login/'
     template_name = "DreamedJobAI/user/jobs-user.html"
     
     def post(self, request):
