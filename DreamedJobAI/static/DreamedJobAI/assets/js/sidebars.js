@@ -54,3 +54,17 @@ document.addEventListener("DOMContentLoaded", function() {
     perPage: 10, // Number of rows per page
   });
 });
+
+window.onload = function () {
+  function showSpinner() {
+      document.getElementById("loading").classList.remove("d-none");
+      document.getElementById("submit-button").setAttribute("disabled", "true");
+  }
+
+  // Add an event listener to the form to trigger the spinner when submitted
+  document.getElementById("cv-form").addEventListener("submit", function (event) {
+      showSpinner();
+      // Optionally, you can prevent the form from submitting immediately
+      // event.preventDefault();
+  });
+};

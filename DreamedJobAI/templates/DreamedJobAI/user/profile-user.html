@@ -244,11 +244,18 @@
                             
                             <!-- CV -->
                             <div class="tab-pane fade profile-edit pt-3" id="profile-cv">
-                                <form method="post" enctype="multipart/form-data">
+                                <form method="post" enctype="multipart/form-data" id="cv-form">
                                     {% csrf_token %}
                                     {{ cv_form.as_p }}
-                                    <button type="submit">Submit</button>
-                                </form> 
+                                    <button type="submit" id="submit-button" class="btn btn-primary">Submit</button>
+                                    <div id="loading" class="d-none text-center">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <p>Submitting & summarizing CV...</p>
+                                        <p>This might take a minute. Please do not refresh the page.</p>
+                                    </div>
+                                </form>
 
                                 {% if success_pdf %}
                                 <div class="alert alert-success">
