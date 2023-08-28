@@ -16,7 +16,7 @@ from django.views.generic import TemplateView
 import logging
 from django.views import View
 from django.shortcuts import get_object_or_404
-from .gpt4_utils import main, LoggingDjango
+from .gpt4_utils import main, additional_suitable_jobs
 import asyncio
 
 
@@ -258,7 +258,7 @@ class UserJobsView(View):
             #Summarise the raw user cv
 
             if USER_COUNTRY and USER_CV:
-                df = asyncio.run(main(user_id=USER_ID, user_country=USER_COUNTRY, user_cv=USER_CV, top_n_interval=4, num_suitable_jobs=1))
+                df = asyncio.run(additional_suitable_jobs(user_id=USER_ID, user_country=USER_COUNTRY, user_cv=USER_CV, top_n_interval=4, num_suitable_jobs=1))
             
                 # Convert the DataFrame to a dictionary
                 df_dict = df.to_dict(orient='records')
