@@ -175,3 +175,4 @@ class SuitableJobs(models.Model):
     user_id = models.IntegerField()
     suitability = models.CharField(max_length=200)
     explanation = models.TextField()
+    pubdate = models.DateTimeField()
