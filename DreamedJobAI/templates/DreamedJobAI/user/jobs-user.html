@@ -29,6 +29,7 @@
                                             <th scope="col">Suitability</th>
                                             <th scope="col">Explanation</th>
                                             <th scope="col">Link</th>
+                                            <th scope="col">Publication Date</th>
                                         </tr>
                                     </thead>
                                         <tbody>
@@ -40,6 +41,7 @@
                                                     <td>{{ job.suitability }}</td>
                                                     <td>{{ job.explanation }}</td>
                                                     <td><a href="{{ job.link }}">Apply now!</a></td>
+                                                    <td>{{ job.pubdate }}</td>
                                                 </tr>
                                             {% endfor %}
                                         </tbody>
