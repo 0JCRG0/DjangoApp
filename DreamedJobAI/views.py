@@ -11,8 +11,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.views.generic.edit import FormView
-from .forms import RegisterForm, ProfileForm, ProfilePreferencesForm, UserCVForm
-from .models import Profile, ProfilePreferences, UserCV, SuitableJobs
+from .forms import RegisterForm, ProfileForm, UserCVForm, UserProfilePreferencesForm
+from .models import Profile, UserCV, SuitableJobs, UserProfilePreferences
 from django.views.generic import TemplateView
 import logging
 from django.views import View
@@ -114,8 +114,8 @@ class ProfileView(LoginRequiredMixin, View):
         profile, created = Profile.objects.get_or_create(user=request.user)
         profile_form = ProfileForm(instance=profile)
 
-        profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
-        preferences_form = ProfilePreferencesForm(instance=profile_preferences)
+        profile_preferences, created = UserProfilePreferences.objects.get_or_create(user=request.user)
+        preferences_form = UserProfilePreferencesForm(instance=profile_preferences)
 
         password_form = PasswordChangeForm(request.user)
 
@@ -128,8 +128,8 @@ class ProfileView(LoginRequiredMixin, View):
         profile, created = Profile.objects.get_or_create(user=request.user)
         profile_form = ProfileForm(instance=profile)
 
-        profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
-        preferences_form = ProfilePreferencesForm(instance=profile_preferences)
+        profile_preferences, created = UserProfilePreferences.objects.get_or_create(user=request.user)
+        preferences_form = UserProfilePreferencesForm(instance=profile_preferences)
 
         password_form = PasswordChangeForm(request.user, request.POST)
 
@@ -148,7 +148,7 @@ class ProfileView(LoginRequiredMixin, View):
                 profile.user = request.user
                 profile.save()
         elif 'desired_location' in request.POST:
-            preferences_form = ProfilePreferencesForm(request.POST, instance=profile_preferences)
+            preferences_form = UserProfilePreferencesForm(request.POST, instance=profile_preferences)
             if preferences_form.is_valid():
                 profile_preferences = preferences_form.save(commit=False)
                 profile_preferences.user = request.user
@@ -204,7 +204,7 @@ class InitialJobRequestView(LoginRequiredMixin, View):
     def post(self, request):
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
             profile, created = Profile.objects.get_or_create(user=request.user)
-            profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
+            profile_preferences, created = UserProfilePreferences.objects.get_or_create(user=request.user)
             profile_cv, created = UserCV.objects.get_or_create(user=request.user)
 
             
@@ -233,7 +233,7 @@ class InitialJobRequestView(LoginRequiredMixin, View):
 
     def get(self, request:HttpRequest):
         profile, created = Profile.objects.get_or_create(user=request.user)
-        profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
+        profile_preferences, created = UserProfilePreferences.objects.get_or_create(user=request.user)
         
         user_id = profile.user_id
         desired_country = profile_preferences.desired_country
@@ -261,7 +261,7 @@ class UserJobsView(LoginRequiredMixin, View):
     def post(self, request):
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
             profile, created = Profile.objects.get_or_create(user=request.user)
-            profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
+            profile_preferences, created = UserProfilePreferences.objects.get_or_create(user=request.user)
             profile_cv, created = UserCV.objects.get_or_create(user=request.user)
 
             
@@ -290,7 +290,7 @@ class UserJobsView(LoginRequiredMixin, View):
 
     def get(self, request:HttpRequest):
         profile, created = Profile.objects.get_or_create(user=request.user)
-        profile_preferences, created = ProfilePreferences.objects.get_or_create(user=request.user)
+        profile_preferences, created = UserProfilePreferences.objects.get_or_create(user=request.user)
         
         user_id = profile.user_id
         desired_country = profile_preferences.desired_country
