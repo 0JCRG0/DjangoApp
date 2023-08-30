@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile, ProfilePreferences, UserCV
+from .models import Profile, UserCV, UserProfilePreferences
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -39,13 +39,14 @@ class ProfileForm(forms.ModelForm):
             'country': forms.Select(attrs={'class': 'form-control'}),
         }
 
-class ProfilePreferencesForm(forms.ModelForm):
+class UserProfilePreferencesForm(forms.ModelForm):
     class Meta:
-        model = ProfilePreferences
+        model = UserProfilePreferences
         fields = [
             'about',
             'desired_job_title',
             'desired_country',
+            'second_desired_country',
             'desired_location',
             'desired_job_description',
             'desired_compensation',
@@ -56,6 +57,7 @@ class ProfilePreferencesForm(forms.ModelForm):
         ]
         widgets = {
             'desired_country': forms.Select(attrs={'class': 'form-control'}),
+            'second_desired_country': forms.Select(attrs={'class': 'form-control'}),
             'desired_location': forms.Select(attrs={'class': 'form-control'}),
             'desired_compensation': forms.Select(attrs={'class': 'form-control'}),
             'desired_industry': forms.Select(attrs={'class': 'form-control'}),
