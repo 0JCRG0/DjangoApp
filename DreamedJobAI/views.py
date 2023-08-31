@@ -210,13 +210,14 @@ class InitialJobRequestView(LoginRequiredMixin, View):
             
             # Fetch the user_id and desired_country from the retrieved objects
             USER_ID = profile.user_id
-            USER_COUNTRY = profile_preferences.desired_country
+            USER_COUNTRY_1 = profile_preferences.desired_country
+            USER_COUNTRY_2 = profile_preferences.second_desired_country
             USER_CV = profile_cv.summary
 
             #Summarise the raw user cv
 
-            if USER_COUNTRY and USER_CV:
-                df = asyncio.run(main(user_id=USER_ID, user_country=USER_COUNTRY, user_cv=USER_CV, top_n_interval=4, num_suitable_jobs=1))
+            if USER_COUNTRY_1 and USER_CV:
+                df = asyncio.run(main(user_id=USER_ID, user_country_1=USER_COUNTRY_1, user_country_2=USER_COUNTRY_2, user_cv=USER_CV, top_n_interval=4, num_suitable_jobs=1))
             
                 # Convert the DataFrame to a dictionary
                 df_dict = df.to_dict(orient='records')
@@ -267,13 +268,14 @@ class UserJobsView(LoginRequiredMixin, View):
             
             # Fetch the user_id and desired_country from the retrieved objects
             USER_ID = profile.user_id
-            USER_COUNTRY = profile_preferences.desired_country
+            USER_COUNTRY_1 = profile_preferences.desired_country
+            USER_COUNTRY_2 = profile_preferences.second_desired_country
             USER_CV = profile_cv.summary
 
             #Summarise the raw user cv
 
-            if USER_COUNTRY and USER_CV:
-                df = asyncio.run(additional_suitable_jobs(user_id=USER_ID, user_country=USER_COUNTRY, user_cv=USER_CV, top_n_interval=4, num_suitable_jobs=1))
+            if USER_COUNTRY_1 and USER_CV:
+                df = asyncio.run(additional_suitable_jobs(user_id=USER_ID, user_country_1=USER_COUNTRY_1, user_country_2=USER_COUNTRY_2, user_cv=USER_CV, top_n_interval=4, num_suitable_jobs=1))
             
                 # Convert the DataFrame to a dictionary
                 df_dict = df.to_dict(orient='records')
