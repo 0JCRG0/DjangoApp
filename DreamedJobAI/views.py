@@ -1,4 +1,4 @@
-from .others import summarise_cv, extract_text_from_pdf
+from .handy_utils import summarise_cv, extract_text_from_pdf
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -83,8 +83,8 @@ class SidebarViews(LoginRequiredMixin, TemplateView):
     def get_template_names(self):
         if self.request.path == '/home-user/':
             return 'DreamedJobAI/user/home-user.html'
-        elif self.request.path == '/calendar-user/':
-            return 'DreamedJobAI/user/calendar-user.html'
+        elif self.request.path == '/help-user/':
+            return 'DreamedJobAI/user/help-user.html'
         #elif self.request.path == '/jobs-user/':
             #return 'DreamedJobAI/user/jobs-user.html'
         else:
