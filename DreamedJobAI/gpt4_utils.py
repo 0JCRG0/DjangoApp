@@ -49,7 +49,6 @@ start_time = timeit.default_timer()
 Load the embedded file
 """
 
-
 delimiters_summary = "----"
 delimiters_job_info = '####'
 
@@ -233,7 +232,7 @@ def filter_df_per_countries(df: pd.DataFrame, user_desired_country: str, user_se
         data = json.load(f)
 
     # Function to get country information
-    def get_country_info(user_country: str):
+    def get_country_info(user_country):
         values = []
         for continent, details in data.items():
             for country in details['Countries']:
@@ -241,9 +240,19 @@ def filter_df_per_countries(df: pd.DataFrame, user_desired_country: str, user_se
                     values.append(country['country_name'])
                     values.append(country['country_code'])
                     values.append(country['capital_english'])
-                    for subdivision in country['subdivisions']:
-                        values.append(subdivision['subdivisions_code'])
-                        values.append(subdivision['subdivisions_name'])
+                    subdivisions = country.get('subdivisions')  # Use get() to safely access the key
+                    if subdivisions:
+                        if isinstance(subdivisions, list):
+                            for subdivision in subdivisions:
+                                if isinstance(subdivision, dict) and 'subdivisions_code' in subdivision and 'subdivisions_name' in subdivision:
+                                    values.append(subdivision['subdivisions_code'])
+                                    values.append(subdivision['subdivisions_name'])
+                                else:
+                                    pass
+                        else:
+                            pass
+                    else:
+                        pass
         return values
 
     # Get information for the first desired country
