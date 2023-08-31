@@ -227,45 +227,55 @@ def set_dataframe_display_options():
 	pd.set_option('display.expand_frame_repr', False)  # Disable wrapping to multiple lines
 	pd.set_option('display.max_colwidth', None)  # Display full contents of each column
 
-def filter_df_per_country(df: pd.DataFrame, user_desired_country:str) -> pd.DataFrame:
-	# Load the JSON file into a Python dictionary
-	with open(COUNTRIES_JSON_DATA, 'r') as f:
-		data = json.load(f)
+def filter_df_per_countries(df: pd.DataFrame, user_desired_country: str, user_second_desired_country: str) -> pd.DataFrame:
+    # Load the JSON file into a Python dictionary
+    with open(COUNTRIES_JSON_DATA, 'r') as f:
+        data = json.load(f)
 
-	# Function to get country information
-	def get_country_info(user_desired_country):
-		values = []
-		for continent, details in data.items():
-			for country in details['Countries']:
-				if country['country_name'] == user_desired_country:
-					values.append(country['country_name'])
-					values.append(country['country_code'])
-					values.append(country['capital_english'])
-					for subdivision in country['subdivisions']:
-						values.append(subdivision['subdivisions_code'])
-						values.append(subdivision['subdivisions_name'])
-		return values
+    # Function to get country information
+    def get_country_info(user_country: str):
+        values = []
+        for continent, details in data.items():
+            for country in details['Countries']:
+                if country['country_name'] == user_country:
+                    values.append(country['country_name'])
+                    values.append(country['country_code'])
+                    values.append(country['capital_english'])
+                    for subdivision in country['subdivisions']:
+                        values.append(subdivision['subdivisions_code'])
+                        values.append(subdivision['subdivisions_name'])
+        return values
 
-	# Get information for a specific country
-	country_values = get_country_info(user_desired_country)
+    # Get information for the first desired country
+    country_values1 = get_country_info(user_desired_country)
 
-	# Convert 'location' column to lowercase
-	df['location'] = df['location'].str.lower()
+    # Initialize country_values2 as an empty list
+    country_values2 = []
 
-	# Convert all country values to lowercase
-	country_values = [re.escape(value.lower()) for value in country_values]
+    # Check if the second desired country is not empty
+    if user_second_desired_country:
+        country_values2 = get_country_info(user_second_desired_country)
 
-	# Create a mask with all False
-	mask = pd.Series(False, index=df.index)
+    # Combine both sets of country values
+    all_country_values = country_values1 + country_values2
 
-	# Update the mask if 'location' column contains any of the country values
-	for value in country_values:
-		mask |= df['location'].str.contains(value, na=False)
+    # Convert 'location' column to lowercase
+    df['location'] = df['location'].str.lower()    
 
-	# Filter DataFrame
-	filtered_df = df[mask]
+    # Convert all country values to lowercase and escape special characters
+    country_values_lower = [re.escape(value.lower()) for value in all_country_values]
+    
+    # Create a mask with all False
+    mask = pd.Series(False, index=df.index)
 
-	return filtered_df
+    # Update the mask if 'location' column contains any of the country values
+    for value in country_values_lower:
+        mask |= df['location'].str.contains(value, na=False)
+
+    # Filter DataFrame
+    filtered_df = df[mask]
+
+    return filtered_df
 
 def preexisting_ids_postgre(user_id:int) -> list :
 	conn = psycopg2.connect(user=user, password=password, host=host, port=port, database=database)
@@ -358,13 +368,35 @@ Skills:
 
 Other Achievements:
 - Published paper on Smart Legal Contracts: From Theory to Reality
-- Participated in the IDEAS Summer Program on Intelligence, Data, Ethics, and Society at the University of California, San Diego. """
+- Participated in the IDEAS Summer Program on Intelligence, Data, Ethics, and Society at the University of California, San Diego. 
+
+"""
 
 
 """   
 
 
+
+
+
+
+
+
+
+
+
 START
+
+
+
+
+
+
+
+
+
+
+
 
 
 """
@@ -372,21 +404,23 @@ START
 
 LoggingDjango()
 
-async def main(user_id:int, user_country:str, user_cv:str, top_n_interval:int, num_suitable_jobs: int):
+async def main(user_id:int, user_country_1:str, user_country_2:str, user_cv:str, top_n_interval:int, num_suitable_jobs: int):
 
 	if user_cv:
 		user_cv_bool = True
 	else:
 		user_cv_bool = False
 
-	logging.info(f"USER ID: {user_id}. USER DESIRED COUNTRY: {user_country}. USER CV: {user_cv_bool}")
+	logging.info(f"USER ID: {user_id}. USER DESIRED COUNTRY: {user_country_1} & {user_country_2}. USER CV: {user_cv_bool}")
 
 	df_unfiltered = pd.read_parquet(E5_BASE_V2_DATA)
 
 	df_two_weeks = filter_last_two_weeks(df_unfiltered)
 
-	df = filter_df_per_country(df=df_two_weeks, user_desired_country=user_country)
+	df = filter_df_per_countries(df=df_two_weeks, user_desired_country=user_country_1, user_second_desired_country=user_country_2)
 	
+	logging.info(f"Output of filter_df_per_countries(): {df} \n")
+
 	def ids_ranked_by_relatedness_e5(query: str,
 		df: pd.DataFrame,
 		min_n: int,
@@ -668,24 +702,43 @@ async def main(user_id:int, user_country:str, user_cv:str, top_n_interval:int, n
 
 
 
-"""  ADDITIONAL SUITABLE JOBS  """
+"""  
 
 
 
-async def additional_suitable_jobs(user_id:int, user_country:str, user_cv:str, top_n_interval:int, num_suitable_jobs: int):
+
+
+
+
+
+ADDITIONAL SUITABLE JOBS
+
+
+
+
+
+
+
+
+
+"""
+
+
+
+async def additional_suitable_jobs(user_id:int, user_country_1:str, user_country_2:str, user_cv:str, top_n_interval:int, num_suitable_jobs: int):
 
 	if user_cv:
 		user_cv_bool = True
 	else:
 		user_cv_bool = False
 
-	logging.info(f"USER ID: {user_id}. USER DESIRED COUNTRY: {user_country}. USER CV: {user_cv_bool}")
+	logging.info(f"USER ID: {user_id}. USER DESIRED COUNTRY: {user_country_1} & {user_country_2}. USER CV: {user_cv_bool}")
 
 	df_unfiltered = pd.read_parquet(E5_BASE_V2_DATA)
 
 	df_two_weeks = filter_last_two_weeks(df_unfiltered)
 
-	df = filter_df_per_country(df=df_two_weeks, user_desired_country=user_country)
+	df = filter_df_per_countries(df=df_two_weeks, user_desired_country=user_country_1, user_second_desired_country=user_country_2)
 	
 	def ids_ranked_by_relatedness_e5(query: str,
 		df: pd.DataFrame,
