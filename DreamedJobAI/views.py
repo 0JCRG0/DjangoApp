@@ -14,6 +14,7 @@ from django.views.generic.edit import FormView
 from .forms import RegisterForm, ProfileForm, UserCVForm, UserProfilePreferencesForm
 from .models import Profile, UserCV, SuitableJobs, UserProfilePreferences
 from django.views.generic import TemplateView
+from django.templatetags.static import static  # Import the static function
 import logging
 from django.views import View
 from django.shortcuts import get_object_or_404
@@ -121,8 +122,31 @@ class ProfileView(LoginRequiredMixin, View):
 
         profile_cv, created = UserCV.objects.get_or_create(user=request.user)
         cv_form = UserCVForm(instance=profile_cv)
+        
+        #Get the image
+        image_url = static('DreamedJobAI/assets/img/linkedin_pdf_upload.png')
 
-        return render(request, self.template_name, {'profile_form': profile_form, 'preferences_form': preferences_form, 'password_form': password_form, 'cv_form': cv_form, 'profile': profile, 'profile_preferences': profile_preferences, 'profile_cv': profile_cv})
+        user_id = profile.user_id
+        # Retrieve the data from the database
+        jobs = SuitableJobs.objects.all()
+
+        filtered_jobs = jobs.filter(user_id=user_id)
+
+
+        return render(request, self.template_name,
+            {
+                'profile_form': profile_form,
+                'preferences_form': preferences_form,
+                'password_form': password_form,
+                'cv_form': cv_form,
+                'profile': profile,
+                'jobs': filtered_jobs,
+                'profile_preferences': profile_preferences,
+                'profile_cv': profile_cv,
+                'image_url': image_url,  # Pass the image URL to the child template
+            }
+        )
+
     
     def post(self, request: HttpRequest):
         profile, created = Profile.objects.get_or_create(user=request.user)
@@ -141,13 +165,13 @@ class ProfileView(LoginRequiredMixin, View):
         success_password = None
         failure_password = None
 
-        if 'picture' in request.POST:
+        if 'picture' in request.FILES:
             profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
             if profile_form.is_valid():
                 profile = profile_form.save(commit=False)
                 profile.user = request.user
                 profile.save()
-        elif 'desired_location' in request.POST:
+        elif 'desired_country' in request.POST:
             preferences_form = UserProfilePreferencesForm(request.POST, instance=profile_preferences)
             if preferences_form.is_valid():
                 profile_preferences = preferences_form.save(commit=False)
