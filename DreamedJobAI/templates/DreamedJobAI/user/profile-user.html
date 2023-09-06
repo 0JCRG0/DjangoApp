@@ -334,7 +334,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     {% for field in cv_form %}
-                                                    <div class="mb-3">                                                
+                                                    <div id="form-local-pdf" class="mb-3">                                                
                                                         {% if field.name == 'pdf_file' %}
                                                         <input type="file" class="form-control" id="{{ field.id_for_label }}" name="{{ field.name }}">
                                                         {% elif field.field.widget.input_type == 'file' %}
@@ -344,10 +344,6 @@
                                                         {% endif %}
                                                     </div>
                                                     {% endfor %}
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" id="submit-button" class="btn btn-primary">Submit</button>
                                                     <div id="loading" class="d-none text-center">
                                                         <div class="spinner-border text-primary" role="status">
                                                             <span class="visually-hidden">Loading...</span>
@@ -355,6 +351,10 @@
                                                         <p>Submitting & summarizing CV...</p>
                                                         <p>This might take a minute. Please do not refresh the page.</p>
                                                     </div>
+                                                </div>
+                                                <div id="modal-footer-local-pdf" class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" id="submit-button" class="btn btn-primary">Submit</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -367,11 +367,13 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p class="mb-3"> <strong>Step 1:</strong> If you haven't already, save your LinkedIn profile as a PDF. Here's how:</p>
-                                                    <img src="{{ image_url }}" alt="LinkedIn Upload PDF" class="img-fluid">
-                                                    <p class="m-3"> <strong>Step 2:</strong> Upload the PDF file below:</p>
+                                                    <div id="img-linkedin-pdf" class="container">
+                                                        <p class="mb-3"> <strong>Step 1:</strong> If you haven't already, save your LinkedIn profile as a PDF. Here's how:</p>
+                                                        <img src="{{ image_url }}" alt="LinkedIn Upload PDF" class="img-fluid">
+                                                        <p class="m-3"> <strong>Step 2:</strong> Upload the PDF file below:</p>
+                                                    </div>
                                                     {% for field in cv_form %}
-                                                    <div class="mb-3">
+                                                    <div id="form-linkedin-pdf" class="mb-3">
 
                                                         {% if field.name == 'pdf_file' %}
                                                         <input type="file" class="form-control" id="{{ field.id_for_label }}" name="{{ field.name }}">
@@ -382,17 +384,17 @@
                                                         {% endif %}
                                                     </div>
                                                     {% endfor %}
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" id="submit-button" class="btn btn-primary">Submit</button>
-                                                    <div id="loading" class="d-none text-center">
+                                                    <div id="loading-2" class="d-none text-center">
                                                         <div class="spinner-border text-primary" role="status">
                                                             <span class="visually-hidden">Loading...</span>
                                                         </div>
                                                         <p>Submitting & summarizing CV...</p>
                                                         <p>This might take a minute. Please do not refresh the page.</p>
                                                     </div>
+                                                </div>
+                                                <div id="modal-footer-linkedin" class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" id="submit-button-2" class="btn btn-primary">Submit</button>
                                                 </div>
                                             </div>
                                         </div>
