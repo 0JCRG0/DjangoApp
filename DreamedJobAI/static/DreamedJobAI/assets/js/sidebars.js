@@ -56,14 +56,23 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 window.onload = function () {
-  function showSpinner() {
-      document.getElementById("loading").classList.remove("d-none");
-      document.getElementById("submit-button").setAttribute("disabled", "true");
+  function showSpinner(buttonId1, loadingId1, buttonId2, loadingId2) {
+      document.getElementById(loadingId1).classList.remove("d-none");
+      document.getElementById(buttonId1).setAttribute("disabled", "true");
+      document.getElementById(loadingId2).classList.remove("d-none");
+      document.getElementById(buttonId2).setAttribute("disabled", "true");
+
+      // Add "d-none" class to the specified elements
+      document.getElementById("form-local-pdf").classList.add("d-none");
+      document.getElementById("modal-footer-local-pdf").classList.add("d-none");
+      document.getElementById("form-linkedin-pdf").classList.add("d-none");
+      document.getElementById("img-linkedin-pdf").classList.add("d-none");
+      document.getElementById("modal-footer-linkedin").classList.add("d-none");
   }
 
   // Add an event listener to the form to trigger the spinner when submitted
   document.getElementById("cv-form").addEventListener("submit", function (event) {
-      showSpinner();
+      showSpinner("submit-button", "loading", "submit-button-2", "loading-2");
       // Optionally, you can prevent the form from submitting immediately
       // event.preventDefault();
   });
