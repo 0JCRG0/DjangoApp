@@ -1,75 +1,43 @@
 {% extends 'DreamedJobAI/user/base-user.html' %}
 
-{% if user.is_authenticated %}
-    {% block pic_username %}
-        <img src="{{ profile_picture }}" alt="Profile" class="rounded-circle">
-        <span class="d-none d-md-block dropdown-toggle ps-2">{{ user.username }}</span>
-    {% endblock pic_username%}
 
-    {% block user_names %}
-        <h6>{{ user.first_name }} {{ user.last_name }}</h6>
-    {% endblock user_names%}
+{% block pic_username %}
+    <img src="{{ profile_picture }}" alt="Profile" class="rounded-circle">
+    <span class="d-none d-md-block dropdown-toggle ps-2">{{ user.username }}</span>
+{% endblock pic_username%}
 
-    {%block content%}
-        <div class="pagetitle">
-            <h1> Suitable jobs </h1>
-        </div>
-        <section class="section">
-            <div class="row">
-                <div class="col-lg-9">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="myTable">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Location</th>
-                                            <th scope="col">Suitability</th>
-                                            <th scope="col">Explanation</th>
-                                            <th scope="col">Publication Date</th>
-                                            <th scope="col">Link</th>
-                                        </tr>
-                                    </thead>
-                                        <tbody>
-                                            {% for job in jobs %}
-                                                <tr>
-                                                    <td>{{ job.title }}</td>
-                                                    <td>{{ job.location }}</td>
-                                                    <td>{{ job.suitability }}</td>
-                                                    <td>{{ job.explanation }}</td>
-                                                    <td>{{ job.pubdate }}</td>
-                                                    <td><a href="{{ job.link }}">Apply now!</a></td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                </table>
+{% block user_names %}
+    <h6>{{ user.first_name }} {{ user.last_name }}</h6>
+{% endblock user_names%}
+
+{%block content%}
+    <div class="pagetitle">
+        <h1> Suitable jobs </h1>
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card" style="background: transparent; border: none;">
+                    <div class="card-body bg-transparent">
+                        <button id="JobsBtn">Get more jobs!</button>
+                        <div id="loading" class="d-none text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
                             </div>
+                            <p>Scouring the web for your jobs...</p>
+                            <p>This might take a couple of minutes. Please do not refresh the page.</p>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card" style="background: transparent; border: none;">
-                        <div class="card-body bg-transparent">
-                            <button id="JobsBtn">Get more jobs!</button>
-                            <div id="loading" class="d-none text-center">
-                                <div class="spinner-border text-primary" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                                <p>Scouring the web for your jobs...</p>
-                                <p>This might take a couple of minutes. Please do not refresh the page.</p>
-                            </div>
-                            <div id="error-args" class="alert alert-danger mt-3 d-none">
-                                <p>Did you forget to either select a desired country or submit your CV?</p>
-                                <p>You can do that in your <a href="{% url 'DreamedJobAI:profile-user' %}">Profile.</a></p>
-                            </div>
-                            <div id="error-function" class="alert alert-danger mt-3 d-none">
-                                <p>An error occurred while processing your request. Please try again later.</p>
-                            </div>
+                        <div id="error-args" class="alert alert-danger mt-3 d-none">
+                            <p>Did you forget to either select a desired country or submit your CV?</p>
+                            <p>You can do that in your <a href="{% url 'DreamedJobAI:profile-user' %}">Profile.</a></p>
+                        </div>
+                        <div id="error-function" class="alert alert-danger mt-3 d-none">
+                            <p>An error occurred while processing your request. Please try again later.</p>
                         </div>
                     </div>
                 </div>
             </div>
+        
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script>
             $(document).ready(function(){
@@ -120,12 +88,42 @@
                 });
             });
             </script>
-        </section>
-    {% endblock content %}
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="myTable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Location</th>
+                                        <th scope="col">Suitability</th>
+                                        <th scope="col">Explanation</th>
+                                        <th scope="col">Publication Date</th>
+                                        <th scope="col">Link</th>
+                                    </tr>
+                                </thead>
+                                    <tbody>
+                                        {% for job in jobs %}
+                                            <tr>
+                                                <td>{{ job.title }}</td>
+                                                <td>{{ job.location }}</td>
+                                                <td>{{ job.suitability }}</td>
+                                                <td>{{ job.explanation }}</td>
+                                                <td>{{ job.pubdate }}</td>
+                                                <td><a href="{{ job.link }}">Apply now!</a></td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
 
-{% else %}
-    <h1> Hi, Guest! Please log in. </h1>
-{% endif %}
 
 
 
