@@ -310,6 +310,23 @@ def find_unique_ids(ids: tuple, preexisting_ids: list) -> list:
     unique_ids = [id for id in ids if id not in preexisting_ids]
     return unique_ids
 
+def list_or_dict_json_output_GPT4(json_output_GPT4):
+	if isinstance(json_output_GPT4, list):
+		# If json_output_GPT4 is a list, it contains multiple records
+		logging.info("json_output_GPT4 is a list of dictionaries, it contains multiple records")
+		df_json_output_GPT4 = pd.read_json(json.dumps(json_output_GPT4))
+		return df_json_output_GPT4	
+	elif isinstance(json_output_GPT4, dict):
+		# If json_output_GPT4 is a dictionary, it contains a single record
+		logging.info("json_output_GPT4 is a dictionary, it contains a single record")
+		data = [json_output_GPT4]
+		df = pd.DataFrame(data)
+		df['id'] = df['id'].astype(int)
+		return df
+	else:
+		# Handle other cases if necessary
+		pass
+
 delimiters = "####"
 
 system_prompt=f"""
@@ -935,10 +952,13 @@ async def additional_suitable_jobs(user_id:int, user_country_1:str, user_country
 	while True:
 		json_output_GPT4 = await check_output_GPT4(input_cv=user_cv, min_n=min_n, top_n=top_n)
 		
+		#Check whether json_output_GPT4 is a list or dict
+		df_json_output_GPT4 = list_or_dict_json_output_GPT4(json_output_GPT4)
 		# Convert the JSON to a dataframe and append it to the existing dataframe
-		df_json_output_GPT4 = pd.read_json(json.dumps(json_output_GPT4))
+		#df_json_output_GPT4 = pd.read_json(json.dumps(json_output_GPT4))
 		df_appended = pd.concat([df_appended, df_json_output_GPT4], ignore_index=True)
-		
+		df_appended['id'] = df_appended['id'].astype(int)
+
 		counter += 1
 		logging.info(f"Looking for suitable jobs. Current loop: {counter}")
 
