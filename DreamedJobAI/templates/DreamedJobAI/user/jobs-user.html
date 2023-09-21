@@ -11,15 +11,37 @@
 {% endblock user_names%}
 
 {%block content%}
-    <div class="pagetitle">
-        <h1> Suitable jobs </h1>
-    </div>
+
     <section class="section">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-lg-12">
                 <div class="card" style="background: transparent; border: none;">
                     <div class="card-body bg-transparent">
-                        <button id="JobsBtn">Get more jobs!</button>
+                        <div class="card-title">
+                            <h3>Suitable jobs</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="fs-8 mb-3">
+                                    <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Profile">
+                                        <use xlink:href="#geo-alt"/>
+                                    </svg>
+                                    {{ desired_country }}
+                                    <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Profile">
+                                        <use xlink:href="#geo-alt"/>
+                                    </svg>
+                                    {{ second_desired_country }}
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <button id="CvPreviewBtn" type="button" class="btn btn-secondary btn-sm">
+                                    Preview CV
+                                </button>
+                                <button id="JobsBtn" type="button" class="btn btn-primary btn-sm">
+                                    Get more jobs!
+                                </button>
+                            </div>
+                        </div>
                         <div id="loading" class="d-none text-center">
                             <div class="spinner-border text-primary" role="status">
                                 <span class="visually-hidden">Loading...</span>
@@ -27,11 +49,12 @@
                             <p>Scouring the web for your jobs...</p>
                             <p>This might take a couple of minutes. Please do not refresh the page.</p>
                         </div>
-                        <div id="error-args" class="alert alert-danger mt-3 d-none">
+                        <div id="error-args" class="alert alert-danger mt-3 d-none text-center">
                             <p>Did you forget to either select a desired country or submit your CV?</p>
                             <p>You can do that in your <a href="{% url 'DreamedJobAI:profile-user' %}">Profile.</a></p>
+                            <p>If this continues to happen please contact us at <a href="{% url 'DreamedJobAI:help-user' %}">help</a> or send us an email to customer_support@rolehounds.com</p>
                         </div>
-                        <div id="error-function" class="alert alert-danger mt-3 d-none">
+                        <div id="error-function" class="alert alert-danger mt-3 d-none text-center">
                             <p>An error occurred while processing your request. Please try again later.</p>
                         </div>
                     </div>
