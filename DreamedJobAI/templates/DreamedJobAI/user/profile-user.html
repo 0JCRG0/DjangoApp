@@ -156,8 +156,33 @@
                                     <div class="row mb-3">
                                         <label for="{{ profile_form.picture.id_for_label }}" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <img src="{{ profile.picture.url }}" alt="Profile" class="img-fluid img-thumbnail d-block w-50 h-50 border" >
-                                            <input type="file" name="{{ profile_form.picture.name }}" id="{{ profile_form.picture.id_for_label }}" class="form-control-file">
+                                            <div class="col-md-6 text-center mb-3">
+                                                <img src="{{ profile.picture.url }}" alt="Profile" class="img-fluid img-thumbnail d-block w-50 h-50 border">
+                                            </div>
+                                            <div class="col-md-6 text-center">
+                                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#user-profile-image">
+                                                    Choose image
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                                    
+                                    
+                                    <div class="modal fade" id="user-profile-image" tabindex="-1">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Choose image</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <input type="file" name="{{ profile_form.picture.name }}" id="{{ profile_form.picture.id_for_label }}" class="form-control-file">
+                                                </div>
+                                                <div id="modal-footer-local-pdf" class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
