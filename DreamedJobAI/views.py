@@ -318,19 +318,21 @@ class UserJobsView(LoginRequiredMixin, View):
         profile, created = Profile.objects.get_or_create(user=request.user)
         profile_preferences, created = UserProfilePreferences.objects.get_or_create(user=request.user)
         
-        user_id = profile.user_id
-        desired_country = profile_preferences.desired_country
-        profile_picture = profile.picture.url
+        USER_ID = profile.user_id
+        USER_COUNTRY_1 = profile_preferences.desired_country
+        USER_COUNTRY_2 = profile_preferences.second_desired_country
+        USER_PP = profile.picture.url
 
         # Retrieve the data from the database
         jobs = SuitableJobs.objects.all()
 
-        filtered_jobs = jobs.filter(user_id=user_id)
+        filtered_jobs = jobs.filter(user_id=USER_ID)
 
         context = {
-            'user_id': user_id,
-            'desired_country': desired_country,
-            'profile_picture': profile_picture,
+            'user_id': USER_ID,
+            'desired_country': USER_COUNTRY_1,
+            'second_desired_country': USER_COUNTRY_2,
+            'profile_picture': USER_PP,
             'jobs': filtered_jobs
         }
 
