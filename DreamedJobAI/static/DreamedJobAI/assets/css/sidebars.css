@@ -697,6 +697,7 @@ div.content h4 {
   width: auto;
 }
 
+/*
 #JobsBtn {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
@@ -708,15 +709,15 @@ div.content h4 {
   transition: 0.5s;
   margin: 0 auto;
   color: #fffffffd;
-  background: blue; /* Set the initial background color to blue */
+  background: blue; 
   border: 2px solid #fffffffd;
 }
 
 #JobsBtn:hover {
-  background: white; /* Change the background color to white on hover */
-  color: blue; /* Change the text color to blue on hover */
+  background: white; 
+  color: blue; 
 }
-
+*/
 
 
 
