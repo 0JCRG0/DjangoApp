@@ -1,11 +1,3 @@
-/**
-* Template Name: Techie
-* Updated: Jul 27 2023 with Bootstrap v5.3.1
-* Template URL: https://bootstrapmade.com/techie-free-skin-bootstrap-3/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -15,24 +7,28 @@ color: #444444;
 }
 
 a {
-color: #5846f9;
+color: rgb(145, 168, 242);
 text-decoration: none;
 }
 
 a:hover {
-color: #8577fb;
+color: rgb(145, 168, 242);
 text-decoration: none;
 }
 
 h1,
 h2,
-h3,
+h3
+    {
+font-family: "Poppins", sans-serif;
+color: rgb(36, 0, 105);
+}
+
 h4,
 h5,
 h6 {
-font-family: "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
-
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
@@ -43,7 +39,7 @@ opacity: 0;
 right: 15px;
 bottom: 15px;
 z-index: 996;
-background: #5846f9;
+background: rgb(145, 168, 242);
 width: 40px;
 height: 40px;
 border-radius: 4px;
@@ -57,7 +53,7 @@ line-height: 0;
 }
 
 .back-to-top:hover {
-background: #7b27d8;
+background: rgb(217, 105, 240);
 color: #fff;
 }
 
@@ -85,7 +81,7 @@ content: "";
 position: fixed;
 top: calc(50% - 30px);
 left: calc(50% - 30px);
-border: 6px solid #5846f9;
+border: 6px solid rgb(145, 168, 242);
 border-top-color: #e7e4fe;
 border-radius: 50%;
 width: 60px;
@@ -123,7 +119,8 @@ padding: 20px 0;
 
 #header.header-scrolled,
 #header.header-inner-pages {
-background: rgba(78, 61, 228, 0.8);
+background:
+    white;
 padding: 12px 0;
 }
 
@@ -138,7 +135,7 @@ text-transform: uppercase;
 }
 
 #header .logo a {
-color: #fff;
+    color: rgb(36, 0, 105);
 }
 
 #header .logo img {
@@ -180,7 +177,7 @@ padding: 0 3px;
 font-family: "Poppins", sans-serif;
 font-size: 15px;
 font-weight: 600;
-color: rgba(255, 255, 255, 0.7);
+color: rgb(36, 0, 105);
 white-space: nowrap;
 transition: 0.3s;
 position: relative;
@@ -200,7 +197,7 @@ width: 100%;
 height: 2px;
 bottom: -5px;
 left: 0;
-background-color: #fff;
+background-color: rgb(145, 168, 242);
 visibility: hidden;
 width: 0px;
 transition: all 0.3s ease-in-out 0s;
@@ -213,11 +210,11 @@ visibility: visible;
 width: 100%;
 }
 
-.navbar a:hover,
+
 .navbar .active,
 .navbar .active:focus,
-.navbar li:hover>a {
-color: #fff;
+.navbar>ul>li>.nav-link:hover {
+color: rgb(145, 168, 242);
 }
 
 .navbar .getstarted,
@@ -225,17 +222,20 @@ color: #fff;
 padding: 8px 25px;
 margin-left: 30px;
 border-radius: 5px;
-color: #fff;
 transition: 0.3s;
 font-size: 14px;
 font-weight: 600;
-border: 2px solid rgba(255, 255, 255, 0.5);
+color: rgb(254, 254, 254);
+background:
+    linear-gradient(to top right, rgb(217, 105, 240), rgb(96, 231, 246));
+
 }
 
 .navbar .getstarted:hover,
 .navbar .getstarted:focus:hover {
-color: #fff;
-border-color: #fff;
+    color: rgb(254, 252, 254);
+    background:
+        linear-gradient(to top left, rgb(217, 105, 240), rgb(96, 231, 246));
 }
 
 .navbar .getstarted:before,
@@ -253,8 +253,8 @@ padding: 10px 0;
 z-index: 99;
 opacity: 0;
 visibility: hidden;
-background: #fff;
-box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+background: #db2f2f;
+box-shadow: 0px 0px 30px rgba(2, 71, 230, 0.25);
 transition: 0.3s;
 }
 
@@ -265,7 +265,7 @@ min-width: 200px;
 .navbar .dropdown ul a {
 padding: 10px 20px;
 font-size: 14px;
-color: #2c4964;
+color: #1079da;
 }
 
 .navbar .dropdown ul a i {
@@ -311,7 +311,7 @@ visibility: visible;
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
-color: #fff;
+color: #000000;
 font-size: 28px;
 cursor: pointer;
 display: none;
@@ -336,7 +336,8 @@ top: 0;
 right: 0;
 left: 0;
 bottom: 0;
-background: rgba(28, 47, 65, 0.9);
+background:
+    white;
 transition: 0.3s;
 z-index: 999;
 }
@@ -355,7 +356,8 @@ right: 15px;
 bottom: 15px;
 left: 15px;
 padding: 10px 0;
-background-color: #fff;
+background:
+white;
 overflow-y: auto;
 transition: 0.3s;
 }
@@ -380,7 +382,7 @@ visibility: hidden;
 .navbar-mobile a:hover,
 .navbar-mobile .active,
 .navbar-mobile li:hover>a {
-color: #5846f9;
+color: rgb(217, 105, 240);
 }
 
 .navbar-mobile .getstarted,
@@ -396,7 +398,7 @@ padding: 10px 0;
 z-index: 99;
 opacity: 1;
 visibility: visible;
-background: #fff;
+background: #000000;
 box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
 }
 
@@ -426,10 +428,14 @@ display: block;
 # Hero Section
 --------------------------------------------------------------*/
 #hero {
-width: 100%;
-height: 100vh;
-background: linear-gradient(45deg, rgba(86, 58, 250, 0.9) 0%, rgba(116, 15, 214, 0.9) 100%), url("../img/hero-bg.jpg") center center no-repeat;
-background-size: cover;
+    width: 100%;
+    height: 100vh;
+    background: 
+    radial-gradient(circle at 90% 90%, transparent 77%, rgb(217, 105, 240) 180%),
+    radial-gradient(circle at 10% 90%, transparent 77%, rgb(96, 231, 246) 180%),
+    white;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #hero .container,
@@ -442,11 +448,11 @@ margin: 0;
 font-size: 52px;
 font-weight: 700;
 line-height: 64px;
-color: #fff;
+color: rgb(36, 0, 105);
 }
 
 #hero h2 {
-color: rgba(255, 255, 255, 0.8);
+color: rgb(36, 0, 105);
 margin: 10px 0 0 0;
 font-size: 20px;
 }
@@ -461,13 +467,16 @@ padding: 10px 28px;
 border-radius: 5px;
 transition: 0.5s;
 margin-top: 30px;
-color: #fff;
-border: 2px solid #fff;
+color: rgb(254, 254, 254);
+background:
+    linear-gradient(to top right, rgb(217, 105, 240), rgb(96, 231, 246));
+
 }
 
 #hero .btn-get-started:hover {
-background: #fff;
-color: #5846f9;
+    color: rgb(254, 254, 254);
+    background:
+        linear-gradient(to top left, rgb(217, 105, 240), rgb(96, 231, 246));    
 }
 
 #hero .animated {
@@ -489,10 +498,11 @@ animation: up-down 2s ease-in-out infinite alternate-reverse both;
 #hero .container-fluid {
     padding-top: 68px;
 }
-
+/*
 #hero .animated {
     animation: none;
 }
+*/
 
 #hero .hero-img {
     text-align: center;
@@ -505,7 +515,7 @@ animation: up-down 2s ease-in-out infinite alternate-reverse both;
 
 @media (max-width: 768px) {
 #hero h1 {
-    font-size: 26px;
+    font-size: 30px;
     line-height: 36px;
 }
 
@@ -515,7 +525,7 @@ animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
 
 #hero .hero-img img {
-    width: 60%;
+    width: 50%;
 }
 }
 
@@ -551,7 +561,7 @@ overflow: hidden;
 }
 
 .section-bg {
-background-color: #f9f8ff;
+background-color: #ffffff;
 }
 
 .section-title {
@@ -574,7 +584,7 @@ position: absolute;
 display: block;
 width: 50px;
 height: 3px;
-background: #5846f9;
+background: rgb(145, 168, 242);
 bottom: 0;
 left: calc(50% - 25px);
 }
@@ -587,13 +597,17 @@ margin-bottom: 0;
 # About
 --------------------------------------------------------------*/
 .about {
+background: 
+    radial-gradient(circle at 90% 10%, transparent 77%, rgb(217, 105, 240) 180%),
+    radial-gradient(circle at 10% 10%, transparent 77%, rgb(96, 231, 246) 180%),
+    white;
 padding: 120px 0;
 }
 
 .about .content h3 {
 font-weight: 600;
 font-size: 32px;
-color: #2c4964;
+color: rgb(36, 0, 105);
 }
 
 .about .content ul {
@@ -608,7 +622,7 @@ padding-bottom: 10px;
 .about .content ul i {
 font-size: 20px;
 padding-right: 4px;
-color: #5846f9;
+color: rgb(145, 168, 242);
 }
 
 .about .content p:last-child {
@@ -625,12 +639,15 @@ padding: 10px 50px 10px 28px;
 border-radius: 5px;
 transition: 0.5s;
 color: #fff;
-background: linear-gradient(45deg, #5846f9 0%, #7b27d8 100%);
+background:     
+    linear-gradient(to top right, rgb(217, 105, 240), rgb(145, 168, 242));
+
 position: relative;
 }
 
 .about .content .read-more:hover {
-background: linear-gradient(180deg, #5846f9 0%, #7b27d8 100%);
+background: 
+linear-gradient(to top left, rgb(217, 105, 240), rgb(145, 168, 242));
 }
 
 .about .content .read-more i {
@@ -644,14 +661,16 @@ top: 12px;
 # Counts
 --------------------------------------------------------------*/
 .counts {
-background: linear-gradient(90deg, rgba(88, 70, 249, 0.5) 0%, rgba(123, 39, 216, 0.5) 100%), url("../img/counts-bg.png") center center no-repeat;
-padding: 80px 0 60px 0;
+background: 
+linear-gradient(to top right, rgb(217, 105, 240), rgb(96, 231, 246));
+
+    padding: 80px 0 60px 0;
 }
 
 .counts .counters span {
 font-size: 48px;
 display: block;
-color: #fff;
+color: #ffffff;
 font-weight: 600;
 font-family: "Poppins", sans-serif;
 }
@@ -660,12 +679,13 @@ font-family: "Poppins", sans-serif;
 padding: 0;
 margin: 0 0 20px 0;
 font-size: 15px;
-color: rgba(255, 255, 255, 0.8);
+color: rgb(255, 255, 255);
 }
 
 /*--------------------------------------------------------------
 # Services
 --------------------------------------------------------------*/
+
 .services .icon-box {
 text-align: center;
 padding: 70px 20px 80px 20px;
@@ -807,7 +827,7 @@ margin: 5px 0 10px 60px;
 .features .icon-box i {
 font-size: 48px;
 float: left;
-color: #5846f9;
+color: rgb(145, 168, 242);
 }
 
 .features .icon-box p {
@@ -850,18 +870,18 @@ box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
 font-size: 18px;
 font-weight: bold;
 margin: 10px 0 5px 45px;
-color: #2c4964;
+color: #000000;
 }
 
 .testimonials .testimonial-item h4 {
 font-size: 14px;
-color: #999;
+color: #848484;
 margin: 0 0 0 45px;
 }
 
 .testimonials .testimonial-item .quote-icon-left,
 .testimonials .testimonial-item .quote-icon-right {
-color: #b1a9fc;
+color: rgb(145, 168, 242);
 font-size: 26px;
 }
 
@@ -900,11 +920,11 @@ width: 12px;
 height: 12px;
 background-color: #fff;
 opacity: 1;
-border: 1px solid #5846f9;
+border: 1px solid rgb(145, 168, 242);
 }
 
 .testimonials .swiper-pagination .swiper-pagination-bullet-active {
-background-color: #5846f9;
+background-color: rgb(145, 168, 242);
 }
 
 @media (max-width: 767px) {
@@ -937,7 +957,7 @@ font-size: 14px;
 font-weight: 600;
 line-height: 1;
 text-transform: uppercase;
-color: #444444;
+color: #000000;
 margin-bottom: 5px;
 transition: all 0.3s ease-in-out;
 border-radius: 5px;
@@ -947,7 +967,7 @@ font-family: "Poppins", sans-serif;
 .portfolio #portfolio-flters li:hover,
 .portfolio #portfolio-flters li.filter-active {
 color: #fff;
-background: #5846f9;
+background: rgb(145, 168, 242);
 }
 
 .portfolio #portfolio-flters li:last-child {
@@ -963,7 +983,7 @@ z-index: 1;
 
 .portfolio .portfolio-wrap::before {
 content: "";
-background: rgba(88, 70, 249, 0.8);
+background: rgba(145, 168, 242, 0.8);
 position: absolute;
 left: 30px;
 right: 30px;
@@ -1059,16 +1079,16 @@ width: 12px;
 height: 12px;
 background-color: #fff;
 opacity: 1;
-border: 1px solid #5846f9;
+border: 1px solid rgb(145, 168, 242);
 }
 
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
-background-color: #5846f9;
+background-color: rgb(145, 168, 242);
 }
 
 .portfolio-details .portfolio-info {
 padding: 30px;
-box-shadow: 0px 0 30px rgba(44, 73, 100, 0.08);
+box-shadow: 0px 0 30px rgba(0, 0, 0, 0.08);
 }
 
 .portfolio-details .portfolio-info h3 {
@@ -1106,6 +1126,13 @@ padding: 0;
 /*--------------------------------------------------------------
 # Pricing
 --------------------------------------------------------------*/
+.pricing {
+    background:   
+        radial-gradient(circle at 90% 10%, transparent 77%, rgb(217, 105, 240) 180%),
+        radial-gradient(circle at 10% 10%, transparent 77%, rgb(96, 231, 246) 180%),
+        white;
+}
+
 .pricing .box {
 padding: 20px;
 background: #fff;
@@ -1122,13 +1149,13 @@ margin: -20px -20px 20px -20px;
 padding: 20px 15px;
 font-size: 16px;
 font-weight: 600;
-color: #2c4964;
+color: #000000;
 background: #f8f8f8;
 }
 
 .pricing h4 {
 font-size: 36px;
-color: #5846f9;
+color: rgb(145, 168, 242);
 font-weight: 600;
 font-family: "Roboto", sans-serif;
 margin-bottom: 20px;
@@ -1160,7 +1187,7 @@ padding-bottom: 16px;
 }
 
 .pricing ul i {
-color: #5846f9;
+color: rgb(145, 168, 242);
 font-size: 18px;
 padding-right: 4px;
 }
@@ -1178,7 +1205,7 @@ text-align: center;
 }
 
 .pricing .btn-buy {
-background: linear-gradient(42deg, #5846f9 0%, #7b27d8 100%);
+background: linear-gradient(42deg, rgb(145, 168, 242) 0%, #7b27d8 100%);
 display: inline-block;
 padding: 10px 35px;
 border-radius: 4px;
@@ -1217,7 +1244,8 @@ color: #fff;
 # Frequently Asked Questions
 --------------------------------------------------------------*/
 .faq {
-background: linear-gradient(42deg, #5846f9 0%, #7b27d8 100%);
+background: linear-gradient(to top right, rgb(217, 105, 240), rgb(96, 231, 246));
+;
 }
 
 .faq .section-title h2,
@@ -1226,7 +1254,7 @@ color: #fff;
 }
 
 .faq .section-title h2::after {
-background: rgba(255, 255, 255, 0.6);
+background: rgb(255, 255, 255);
 }
 
 .faq .faq-list {
@@ -1266,7 +1294,7 @@ font-size: 24px;
 position: absolute;
 right: 0;
 left: 20px;
-color: #8577fb;
+color: rgb(145, 168, 242);
 }
 
 .faq .faq-list .icon-show,
@@ -1287,11 +1315,11 @@ display: none;
 }
 
 .faq .faq-list a.collapsed {
-color: #2c4964;
+color: rgb(36, 0, 105);
 }
 
 .faq .faq-list a.collapsed:hover {
-color: #5846f9;
+color: rgb(145, 168, 242);
 }
 
 .faq .faq-list a.collapsed .icon-show {
@@ -1311,6 +1339,13 @@ display: none;
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
+.contact {
+    background: 
+        radial-gradient(circle at 90% 10%, transparent 77%, rgb(217, 105, 240) 180%),
+        radial-gradient(circle at 10% 10%, transparent 77%, rgb(96, 231, 246) 180%),
+        white;
+}
+
 .contact .info-box {
 color: #444444;
 text-align: center;
@@ -1491,8 +1526,8 @@ content: "/";
 #footer {
 color: #fff;
 font-size: 14px;
-background: linear-gradient(45deg, rgba(86, 58, 250, 0.9) 0%, rgba(116, 15, 214, 0.9) 100%), url("../img/hero-bg.jpg") center center no-repeat;
-background-size: cover;
+background: 
+linear-gradient(to top right, rgb(217, 105, 240), rgb(96, 231, 246));
 }
 
 #footer .footer-top {
