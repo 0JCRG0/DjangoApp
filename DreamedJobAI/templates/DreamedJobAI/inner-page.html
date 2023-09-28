@@ -27,21 +27,14 @@
   <link href="{% static 'DreamedJobAI/assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="{% static 'DreamedJobAI/assets/css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'DreamedJobAI/assets/css/original_style_index.css' %}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Techie
-  * Updated: Jul 27 2023 with Bootstrap v5.3.1
-  * Template URL: https://bootstrapmade.com/techie-free-skin-bootstrap-3/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top header-inner-pages">
+  <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
       <h1 class="logo"><a href="{% url 'DreamedJobAI:home' %}">RoleHounds</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
@@ -59,7 +52,7 @@
     </div>
   </header><!-- End Header -->
 
-  <main id="main">
+  <main id="main-inner-page">
     {% block content %}
     {% endblock %}
     
@@ -125,10 +118,6 @@
             &copy; Copyright <strong><span>JCRG</span></strong>. All Rights Reserved
           </div>
           <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/techie-free-skin-bootstrap-3/ -->
             Designed by <a href="https://www.linkedin.com/in/jcrg3312/">JCRG</a>
           </div>
         </div>
