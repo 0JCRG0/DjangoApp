@@ -127,6 +127,7 @@ class ProfileView(LoginRequiredMixin, View):
         image_url = static('DreamedJobAI/assets/img/linkedin_pdf_upload.png')
 
         user_id = profile.user_id
+        user_cv = profile_cv.pdf_file.url
         # Retrieve the data from the database
         jobs = SuitableJobs.objects.all()
 
@@ -143,6 +144,7 @@ class ProfileView(LoginRequiredMixin, View):
                 'jobs': filtered_jobs,
                 'profile_preferences': profile_preferences,
                 'profile_cv': profile_cv,
+                'user_cv': user_cv,
                 'image_url': image_url,  # Pass the image URL to the child template
             }
         )
@@ -317,11 +319,14 @@ class UserJobsView(LoginRequiredMixin, View):
     def get(self, request:HttpRequest):
         profile, created = Profile.objects.get_or_create(user=request.user)
         profile_preferences, created = UserProfilePreferences.objects.get_or_create(user=request.user)
-        
+        profile_cv, created = UserCV.objects.get_or_create(user=request.user)
+
         USER_ID = profile.user_id
         USER_COUNTRY_1 = profile_preferences.desired_country
         USER_COUNTRY_2 = profile_preferences.second_desired_country
         USER_PP = profile.picture.url
+        USER_CV = profile_cv.pdf_file.url
+
 
         # Retrieve the data from the database
         jobs = SuitableJobs.objects.all()
@@ -333,6 +338,7 @@ class UserJobsView(LoginRequiredMixin, View):
             'desired_country': USER_COUNTRY_1,
             'second_desired_country': USER_COUNTRY_2,
             'profile_picture': USER_PP,
+            'user_cv': USER_CV,
             'jobs': filtered_jobs
         }
 
