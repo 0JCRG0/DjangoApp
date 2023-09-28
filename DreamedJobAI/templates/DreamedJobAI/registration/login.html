@@ -1,57 +1,45 @@
 {%extends 'DreamedJobAI/inner-page.html'%}
 
 {%block content%}
-<!-- ======= Breadcrumbs ======= -->
-<section class="breadcrumbs">
-    <div class="container">
 
-		<div class="d-flex justify-content-between align-items-center">
-			<h2>Login</h2>
-			<ol>
-				<li><a href="{% url 'DreamedJobAI:home' %}">Home</a></li>
-				<li><a href="{% url 'DreamedJobAI:register' %}">Register</a></li>
-				<li>Login</li>
-			</ol>
-		</div>
-
-    </div>
-</section><!-- End Breadcrumbs -->
-
-
-<div class="container">
-	<form method="post" class="form-signin w-100 m-auto" novalidate>
-		{% csrf_token %}
-		
-		<h2 class="text-center" class="h3 mb-3 fw-normal"> Login to your account</h2>
-			<hr>
-			{% for field in form %}
-			<div class="form-floating">
-				<input type="{{ field.field.widget.input_type }}" class="form-control {% if field.errors %}is-invalid{% endif %}" id="{{ field.auto_id }}" name="{{ field.html_name }}" placeholder="{{ field.label }}" required>
-				<label for="{{ field.auto_id }}">{{ field.label }}</label>
-				{% if field.errors %}
-					<div class="invalid-feedback">
-						{% for error in field.errors %}
-							{{ error }}
-						{% endfor %}
-					</div>
-				{% endif %}
-			{% endfor %}
-			</div>
-			<div class="form-container">
-				<input type="submit" value="Login" class="form-btn">
-			</div>
-			{% if messages %}
-				{% for message in messages %}
-					<div class="text-center error alert-{{ message.tags }}">
-						{{ message }}
-					</div>
+<section>
+	
+	<div class="container">
+		<form method="post" class="form-signin w-100 m-auto" novalidate>
+			{% csrf_token %}
+			
+			<h2 class="text-center" class="h3 mb-3 fw-normal"> Login to your account</h2>
+				<hr>
+				{% for field in form %}
+				<div class="form-floating">
+					<input type="{{ field.field.widget.input_type }}" class="form-control {% if field.errors %}is-invalid{% endif %}" id="{{ field.auto_id }}" name="{{ field.html_name }}" placeholder="{{ field.label }}" required>
+					<label for="{{ field.auto_id }}">{{ field.label }}</label>
+					{% if field.errors %}
+						<div class="invalid-feedback">
+							{% for error in field.errors %}
+								{{ error }}
+							{% endfor %}
+						</div>
+					{% endif %}
 				{% endfor %}
-			{% endif %}
-			<hr>
-			<p class="text-center">Forgot your password? <a href="{%url 'DreamedJobAI:password-reset'%}">Reset Password</a></p>
-			<p class="text-center">Don't have a account? <a href="{%url 'DreamedJobAI:register'%}">Join Now</a></p>
-	</form>
-</div>
+				</div>
+				<div class="form-container">
+					<input type="submit" value="Login" class="form-btn">
+				</div>
+				{% if messages %}
+					{% for message in messages %}
+						<div class="text-center error alert-{{ message.tags }}">
+							{{ message }}
+						</div>
+					{% endfor %}
+				{% endif %}
+				<hr>
+				<p class="text-center">Forgot your password? <a href="{%url 'DreamedJobAI:password-reset'%}">Reset Password</a></p>
+				<p class="text-center">Don't have a account? <a href="{%url 'DreamedJobAI:register'%}">Join Now</a></p>
+		</form>
+	</div>
 
-
+		
+</section>
+<section></section>
 {%endblock content%}
