@@ -1,100 +1,92 @@
 {% extends 'DreamedJobAI/user/base-user.html' %}
 
-{% if user.is_authenticated %}
-    {% block pic_username %}
-        <img src="{{ profile_picture }}" alt="Profile" class="rounded-circle">
-        <span class="d-none d-md-block dropdown-toggle ps-2">{{ user.username }}</span>
-    {% endblock pic_username%}
-
-    {% block user_names %}
-        <h6>{{ user.first_name }} {{ user.last_name }}</h6>
-    {% endblock user_names%}
+{% block pic_username %}
+    <img src="{{ profile_picture }}" alt="Profile" class="rounded-circle">
+    <span class="d-none d-md-block dropdown-toggle ps-2">{{ user.username }}</span>
+{% endblock pic_username%}
 
     
-    {%block content%}
-        <div class="pagetitle">
-            <h1> Suitable jobs </h1>
-        </div>
-        <section class="section text-center">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card" style="background: transparent; border: none;">
-                        <div class="card-body bg-transparent">
-                            <button id="JobsBtn">Get your jobs!</button>
-                            <div id="loading" class="d-none text-center">
-                                <div class="spinner-border text-primary" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                                <p>Scouring the web for your jobs...</p>
-                                <p>This might take a couple of minutes. Please do not refresh the page.</p>
+{%block content%}
+    <div class="pagetitle">
+        <h1> Suitable jobs </h1>
+    </div>
+    <section class="section text-center">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card" style="background: transparent; border: none;">
+                    <div class="card-body bg-transparent">
+                        <button id="JobsBtn">Get your jobs!</button>
+                        <div id="loading" class="d-none text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
                             </div>
-                            <div id="error-args" class="alert alert-danger mt-3 d-none">
-                                <p>Did you forget to either select a desired country or submit your CV?</p>
-                                <p>You can do that in your <a href="{% url 'DreamedJobAI:profile-user' %}">Profile.</a></p>
-                            </div>
-                            <div id="error-function" class="alert alert-danger mt-3 d-none">
-                                <p>An error occurred while processing your request. Please try again later.</p>
-                            </div>
+                            <p>Scouring the web for your jobs...</p>
+                            <p>This might take a couple of minutes. Please do not refresh the page.</p>
+                        </div>
+                        <div id="error-args" class="alert alert-danger mt-3 d-none">
+                            <p>Did you forget to either select a desired country or submit your CV?</p>
+                            <p>You can do that in your <a href="{% url 'DreamedJobAI:profile-user' %}">Profile.</a></p>
+                        </div>
+                        <div id="error-function" class="alert alert-danger mt-3 d-none">
+                            <p>An error occurred while processing your request. Please try again later.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script>
-            $(document).ready(function(){
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+        $(document).ready(function(){
 
-                $("#JobsBtn").click(function(){
-                    // Display a loading message or spinner
-                    $(this).hide();
-                    
-                    // Show the loading indicator and message
-                    $("#loading").removeClass("d-none");
+            $("#JobsBtn").click(function(){
+                // Display a loading message or spinner
+                $(this).hide();
+                
+                // Show the loading indicator and message
+                $("#loading").removeClass("d-none");
 
-                    $.ajax({
-                        url: '/request-jobs/',
-                        type: 'POST',
-                        data: {
-                            'csrfmiddlewaretoken': '{{ csrf_token }}'
-                        },
-                        success: function(response){
-                            if(response.success){
-                                // Hide the loading indicator when the request is complete
-                                $("#loading").addClass("d-none");
-                                
-                                // Reload the page on success
-                                // location.reload();
-                                window.location.href = '/jobs-user/'; // Replace with the desired URL
-
-                            }
-                            else {
-                                $("#loading").addClass("d-none");
-                                // $("#error-args").text("An error occurred. Please s to \"Preferences\" and select a \"Desired Country\" and submit a valid CV.");
-                                $("#error-function").removeClass("d-none");
-                            }
-                        },
-                        error: function(){
-                            // Handle errors if needed
-
-                            // Hide the loading indicator on error
+                $.ajax({
+                    url: '/request-jobs/',
+                    type: 'POST',
+                    data: {
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response){
+                        if(response.success){
+                            // Hide the loading indicator when the request is complete
                             $("#loading").addClass("d-none");
+                            
+                            // Reload the page on success
+                            // location.reload();
+                            window.location.href = '/jobs-user/'; // Replace with the desired URL
 
-                            // Show the button again
-                            $("#JobsBtn").show();
-
-                            // Show an error message using Bootstrap alert
-                            // $("#error-args").text("An error occurred. Please go to \"Preferences\" and select a \"Desired Country\" and submit a valid CV.");
-                            $("#error-args").removeClass("d-none");
                         }
-                    });
+                        else {
+                            $("#loading").addClass("d-none");
+                            // $("#error-args").text("An error occurred. Please s to \"Preferences\" and select a \"Desired Country\" and submit a valid CV.");
+                            $("#error-function").removeClass("d-none");
+                        }
+                    },
+                    error: function(){
+                        // Handle errors if needed
+
+                        // Hide the loading indicator on error
+                        $("#loading").addClass("d-none");
+
+                        // Show the button again
+                        $("#JobsBtn").show();
+
+                        // Show an error message using Bootstrap alert
+                        // $("#error-args").text("An error occurred. Please go to \"Preferences\" and select a \"Desired Country\" and submit a valid CV.");
+                        $("#error-args").removeClass("d-none");
+                    }
                 });
             });
-            </script>
-        </section>
-    {% endblock content %}
+        });
+        </script>
+    </section>
+{% endblock content %}
 
-{% else %}
-    <h1> Hi, Guest! Please log in. </h1>
-{% endif %}
 
 
 
