@@ -40,27 +40,29 @@ class RegisterView(FormView):
     form_class = RegisterForm
     redirect_authenticated_user = True
     success_url = reverse_lazy('DreamedJobAI:home-user')
-    
+
     def form_valid(self, form):
-        user = form.save()
+        user = form.save(commit=False)
+        user.username = form.cleaned_data['email']  # Set the email as the username
+        user.save()
+
         if user:
             # Create a Profile instance for the new user
             Profile.objects.create(user=user)
-            
+
             login(self.request, user)
             send_mail(
                 'Welcome to RoleHounds',
-                f'Thank you for registering to RoleHounds! Your now ready to login using your username: {user.username}. ',
+                f'Thank you for registering to RoleHounds! You are now ready to login using your email: {user.email}. ',
                 'maddy@rolehounds.com',
                 [user.email],
                 fail_silently=False,
             )
-        
-        return super(RegisterView, self).form_valid(form)
-    
+
+        return super().form_valid(form)
+
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data(form=form))
-
 
 class LegalViews(TemplateView):
     def get_template_names(self):
@@ -127,7 +129,10 @@ class ProfileView(LoginRequiredMixin, View):
         image_url = static('DreamedJobAI/assets/img/linkedin_pdf_upload.png')
 
         user_id = profile.user_id
-        user_cv = profile_cv.pdf_file.url
+        if profile_cv.pdf_file:
+            user_cv = profile_cv.pdf_file.url
+        else:
+            user_cv = None
         # Retrieve the data from the database
         jobs = SuitableJobs.objects.all()
 

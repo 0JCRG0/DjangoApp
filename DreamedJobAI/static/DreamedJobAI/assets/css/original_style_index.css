@@ -1133,12 +1133,6 @@ padding: 0;
 /*--------------------------------------------------------------
 # Pricing
 --------------------------------------------------------------*/
-.pricing {
-    background:   
-        radial-gradient(circle at 90% 10%, transparent 77%, rgb(217, 105, 240) 180%),
-        radial-gradient(circle at 10% 10%, transparent 77%, rgb(96, 231, 246) 180%),
-        white;
-}
 
 .pricing .box {
 padding: 20px;
