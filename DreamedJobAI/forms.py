@@ -11,7 +11,11 @@ class UserCVForm(forms.ModelForm):
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(max_length=254)
-    accept_terms = forms.BooleanField(required=False, widget=forms.CheckboxInput(), label="Have you read our T&C and Privacy Notice?")  # Explicitly set it to render a checkbox
+    accept_terms = forms.BooleanField(required=False, widget=forms.CheckboxInput(), label="Have you read our T&C and Privacy Notice?")
+
+    def clean_username(self):
+        username = self.cleaned_data.get('email')  # Set the email as the username
+        return username
 
     def clean(self):
         cleaned_data = super().clean()
@@ -19,10 +23,11 @@ class RegisterForm(UserCreationForm):
 
         if not accept_terms:
             self.add_error('accept_terms', 'You must accept the terms and conditions to proceed.')
-    
+
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name',  'email', 'password1', 'password2', )
+        fields = ('email', 'password1', 'password2',)
+
 
 class ProfileForm(forms.ModelForm):
     class Meta:
