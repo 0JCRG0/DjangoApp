@@ -763,9 +763,13 @@ async def additional_suitable_jobs(user_id:int, user_country_1:str, user_country
 	df_unfiltered = pd.read_parquet(E5_BASE_V2_DATA)
 
 	df_two_weeks = filter_last_two_weeks(df_unfiltered)
+	df_two_weeks_total_entries = df_two_weeks.count().sum()
+	if df_two_weeks_total_entries > 0:
+		df = filter_df_per_countries(df=df_two_weeks, user_desired_country=user_country_1, user_second_desired_country=user_country_2)
+	else:
+		logging.error("""THERE ARE NO ENTRIES IN "df_two_weeks". \nPopulate E5_BASE_V2_DATA with current jobs ASAP. """)
+		raise
 
-	df = filter_df_per_countries(df=df_two_weeks, user_desired_country=user_country_1, user_second_desired_country=user_country_2)
-	
 	def ids_ranked_by_relatedness_e5(query: str,
 		df: pd.DataFrame,
 		min_n: int,
