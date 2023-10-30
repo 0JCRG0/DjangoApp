@@ -6,6 +6,9 @@ set -o errexit
 python3 -m venv env1
 source env1/bin/activate
 
+# upgrade pip
+python3 -m pip install --upgrade pip
+
 # install dependencies
 pip install -r requirements.txt
 
