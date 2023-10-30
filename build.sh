@@ -2,7 +2,8 @@
 # exit on error
 set -o errexit
 
-# activate the virtual environment
+# create and activate the virtual environment
+python3 -m venv env1
 source env1/bin/activate
 
 # install dependencies
