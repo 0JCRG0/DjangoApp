@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import dj_database_url
 
 load_dotenv('.env')
 email_password = os.getenv("PASSWORD_EMAIL")
@@ -25,7 +26,7 @@ email_host = os.getenv("EMAIL_HOST")
 email_port = os.getenv("EMAIL_PORT")
 email_host_user = os.getenv("EMAIL_HOST_USER")
 email_host_password = os.getenv("EMAIL_HOST_PASSWORD")
-
+RENDER_POSTGRE_INTERNAL_URL = os.getenv("RENDER_POSTGRE_INTERNAL_URL")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 #BASE_DIR = Path(__file__).resolve().parent.parent
@@ -106,16 +107,21 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": user,
-        "USER": user,
-        "PASSWORD": password,
-        "HOST": host,
-        "PORT": port,
+if not DEBUG:
+    DATABASES = {
+        'default': dj_database_url.config(RENDER_POSTGRE_INTERNAL_URL,conn_max_age=600)
+        }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": user,
+            "USER": user,
+            "PASSWORD": password,
+            "HOST": host,
+            "PORT": port,
+        }
     }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
