@@ -18,6 +18,7 @@ construct==2.10.68
 cryptography==41.0.1
 debugpy==1.6.7.post1
 decorator==5.1.1
+dj-database-url==2.1.0
 Django==4.2.2
 executing==1.2.0
 filelock==3.12.2
