@@ -180,7 +180,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = email_host_user
 EMAIL_HOST_PASSWORD = email_host_password
 
-#MEDIA - NOT SUITABLE FOR PROD?
+#MEDIA - NOT SUITABLE FOR PROD - change for SW3 BUCKET
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
