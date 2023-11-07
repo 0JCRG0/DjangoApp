@@ -1062,5 +1062,5 @@ async def additional_suitable_jobs(user_id:int, user_country_1:str, user_country
 	return sorted_df
 
 if __name__ == "__main__":
-	#asyncio.run(main("37", "Mexico"))
-	asyncio.run(additional_suitable_jobs(user_id=37, user_country="Mexico", user_cv=cv, top_n_interval=4, num_suitable_jobs=1))
+	asyncio.run(main(user_id=40, user_country_1="Mexico", user_country_2="Anywhere", user_cv=True, top_n_interval=4, num_suitable_jobs=1))
+	#asyncio.run(additional_suitable_jobs(user_id=37, user_country="Mexico", user_cv=cv, top_n_interval=4, num_suitable_jobs=1))
