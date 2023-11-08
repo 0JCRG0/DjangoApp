@@ -55,7 +55,7 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 	
 	start_time = asyncio.get_event_loop().time()
 
-	logging.info(f"\nArguments.\n\nuser_id: {user_id}.\nuser_country_1: {user_country_1}. user_country_2: {user_country_2}\ntop_n_interval: {top_n_interval}\nnum_suitable_jobs: {num_suitable_jobs}")
+	logging.info(f"\nStarting main().\n\nArguments.\nuser_id: {user_id}.\nuser_country_1: {user_country_1}. user_country_2: {user_country_2}\ntop_n_interval: {top_n_interval}\nnum_suitable_jobs: {num_suitable_jobs}")
 
 	#Get all the country values that match user's input
 	all_country_values = fetch_all_country_values(user_country_1, user_country_2)
@@ -89,13 +89,30 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 
 	1. Concurrently summarizes job descriptions 
 	2. Tracks the cost of each summary.
-	2. Constructs a message for GPT, including job summaries and user CV text, while respecting a token budget.
+	2. Constructs a message for GPT, including ids, job summaries and user CV text, while respecting a token budget.
 	
-	Returns a tuple containing the constructed message, a list of job summaries, and the total cost of the summaries. 
+	Returns a tuple containing the constructed message and a list of job summaries
 	"""
 
-	message, job_summaries, total_cost_summaries = await async_format_top_jobs_summarize(user_id, user_cv, df, gpt_model="gpt-3.5-turbo-1106")
+	formatted_message, job_summaries = await async_format_top_jobs_summarize(
+															user_id,
+															user_cv,
+															df,
+															summarize_gpt_model="gpt-3.5-turbo-1106",
+															classify_gpt_model="gpt-4"
+														)
 
+
+	#TODO: Modify. Job summaries need to go in postgre
+	#df_summaries = pd.DataFrame(job_summaries)
+	#append_parquet(df_summaries, 'summaries')
+	
+	gpt4_response = await async_classify_jobs_gpt_4(
+												user_cv,
+												formatted_message,
+												classify_gpt_model = "gpt-4",
+												log_gpt_messages= True
+											)
 
 	
 	#This is just to see. We are probs not gonna use df
@@ -108,7 +125,7 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 	conn.close()
 
 	#print(df, df.info())
-	print(message, job_summaries, total_cost_summaries)
+	print(gpt4_response, type(gpt4_response))
 
 	elapsed_time = asyncio.get_event_loop().time() - start_time
 
