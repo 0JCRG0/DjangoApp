@@ -551,6 +551,7 @@ async def main(user_id:int, user_country_1:str, user_country_2:str, user_cv:str,
 		total_tokens = response['usage']['total_tokens']
 		prompt_tokens = response['usage']['prompt_tokens']
 		completion_tokens = response['usage']['completion_tokens']
+		
 		logging.info(f"\nOPERATION: GPT-3.5 TURBO SUMMARISING. \nTOTAL COST: ${total_cost_summaries} USD")
 
 		#Approximate cost
