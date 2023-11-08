@@ -79,40 +79,47 @@ def count_words(text: str) -> int:
 	# Return the count of words
 	return len(words)
 
-async def async_summarise_job_gpt(session, job_description: str) -> Tuple[str, float]:
+async def async_summarise_job_gpt(session, job_description: str, gpt_model: str="gpt-3.5-turbo-1106") -> Tuple[str, float]:
+	
 	await asyncio.sleep(.5)
 	openai.aiosession.set(session)
+	
 	response = await openai.ChatCompletion.acreate(
 		messages=[
 			{'role': 'user', 'content': system_prompt_summary},
 			{'role': 'user', 'content': f"Job Opening: {delimiters_summary}{job_description}{delimiters_summary}"},
 		],
-		model=MODEL,
+		model=gpt_model,
 		temperature=0,
 		max_tokens = 400
 	)
 	response_message = response['choices'][0]['message']['content']
-	total_cost = 0
+	
+	cost_per_summary = 0
 	prompt_tokens = response['usage']['prompt_tokens']
 	completion_tokens = response['usage']['completion_tokens']
-	#print(f"\nSUMMARISE JOBS FUNCTION\n", f"\nPROMPT TOKENS USED:{prompt_tokens}\n", f"COMPLETION TOKENS USED:{completion_tokens}\n" )
-	#Approximate cost
-	if MODEL == "gpt-3.5-turbo":
-		prompt_cost = round((prompt_tokens / 1000) * 0.0015, 3)
-		completion_cost = round((completion_tokens / 1000) * 0.002, 3)
-		total_cost = prompt_cost + completion_cost
-		#print(f"COST FOR SUMMARISING: ${total_cost:.2f} USD")
-	elif MODEL == "gpt-3.5-turbo-16k":
-		prompt_cost = round((prompt_tokens / 1000) * 0.003, 3)
-		completion_cost = round((completion_tokens / 1000) * 0.004, 3)
-		total_cost = prompt_cost + completion_cost
-		#print(f"COST FOR SUMMARISING: ${total_cost:.2f} USD")
-	return response_message, total_cost
 
-async def async_summarise_description(description: str) -> tuple:
-	#start timer
-	start_time = asyncio.get_event_loop().time()
-	total_cost = 0
+	cost_per_token = {
+		"gpt-3.5-turbo-1106": (0.001, 0.002),
+		"gpt-3.5-turbo": (0.0015, 0.002),
+		"gpt-3.5-turbo-16k": (0.003, 0.004)
+	}
+
+	if gpt_model in cost_per_token:
+		prompt_cost_per_k = cost_per_token[gpt_model][0]
+		completion_cost_per_k = cost_per_token[gpt_model][1]
+		prompt_cost = round((prompt_tokens / 1000) * prompt_cost_per_k, 3)
+		completion_cost = round((completion_tokens / 1000) * completion_cost_per_k, 3)
+		cost_per_summary = prompt_cost + completion_cost
+		# logging.info(f"COST FOR SUMMARISING: ${total_cost:.4f} USD")
+	else:
+		logging.error("The gpt_model selected in invalid. Choose a valid option. See https://openai.com/blog/new-models-and-developer-products-announced-at-devday")
+		raise Exception("The gpt_model selected in invalid. Choose a valid option. See https://openai.com/blog/new-models-and-developer-products-announced-at-devday")
+	return response_message, cost_per_summary
+
+async def async_summarise_description(description: str, gpt_model: str="gpt-3.5-turbo-1106") -> tuple:
+
+	cost_per_summary = 0
 
 	async def process_description(session, text):
 		attempts = 0
@@ -120,8 +127,8 @@ async def async_summarise_description(description: str) -> tuple:
 			try:
 				words_per_text = count_words(text)
 				if words_per_text > 50:
-					description_summary, cost = await async_summarise_job_gpt(session, text)
-					return description_summary, cost
+					description_summary, cost_per_summary = await async_summarise_job_gpt(session=session, job_description=text, gpt_model=gpt_model)
+					return description_summary, cost_per_summary
 				else:
 					logging.warning(f"Description is too short for being summarised. Number of words: {words_per_text}")
 					return text, 0
@@ -137,15 +144,12 @@ async def async_summarise_description(description: str) -> tuple:
 	async with ClientSession() as session:
 		result = await process_description(session, description)
 
-	total_cost = result[1]
+	cost_per_summary = result[1]
 
-	#await close_session()
-	#processed_time = timeit.default_timer() - start_time
-	elapsed_time = asyncio.get_event_loop().time() - start_time
 
-	return result[0], total_cost, elapsed_time
+	return result[0], cost_per_summary
 
-def num_tokens(text: str, model: str ="gpt-3.5-turbo") -> int:
+def num_tokens(text: str, model: str ="gpt-3.5-turbo-1106") -> int:
 	#Return the number of tokens in a string.
 	encoding = tiktoken.encoding_for_model(model)
 	return len(encoding.encode(text))
@@ -391,7 +395,21 @@ def filter_pgvector_two_weeks_country(all_country_values:str, cursor: cursor, ta
 
 	return rows
 
-def testing(embedding: np.ndarray, all_country_values:str, cursor: cursor, table_name:str="embeddings_e5_base_v2"):
+def fetch_top_n_matching_jobs(user_cv_embedding: np.ndarray, all_country_values:str, cursor: cursor, top_n: str, similarity_or_distance_metric: str = "NN", table_name: str ="embeddings_e5_base_v2", interval_days: str = '\'15 days\'') -> pd.DataFrame:
+	
+	metric_mapping = {
+		"NN": "<->",
+		"inner_product": "<#>",
+		"cosine": "<=>"
+	}
+
+	# Check if the provided value exists in the dictionary
+	if similarity_or_distance_metric in metric_mapping:
+		similarity_metric = metric_mapping[similarity_or_distance_metric]
+	else:
+		logging.error("""Invalid similarity_or_distance_metric. Choose "NN", "inner_product" or "cosine" """)
+		raise Exception("""Invalid similarity_or_distance_metric. Choose "NN", "inner_product" or "cosine" """)
+
 	country_values_str = "{" + ",".join(all_country_values).lower() + "}"
 
 	query = f"""
@@ -399,19 +417,86 @@ def testing(embedding: np.ndarray, all_country_values:str, cursor: cursor, table
     FROM (
         SELECT *
         FROM {table_name}
-        WHERE timestamp >= (current_date - interval '15 days')
+        WHERE timestamp >= (current_date - interval {interval_days})
     ) AS two_weeks
     WHERE substring(lower(job_info) from '#### location: (.*?) ####') = ANY(%s::text[])
-    ORDER BY embedding <-> %s
-    LIMIT 2;
+    ORDER BY embedding {similarity_metric} %s
+    LIMIT {top_n};
 	"""
-	cursor.execute(query.format(table_name="embeddings_e5_base_v2"), (country_values_str, embedding))
+	cursor.execute(query.format(table_name="embeddings_e5_base_v2"), (country_values_str, user_cv_embedding))
 
 	# Fetch all the rows
 	rows = cursor.fetchall()
 
-	return rows
+	# Separate the columns into individual lists
+	ids = [row[0] for row in rows]
+	jobs_info = [row[1] for row in rows]
 
+	df = pd.DataFrame({'id': ids, 'job_info': jobs_info})
+
+	return df
+
+
+async def async_format_top_jobs_summarize(
+	user_id: int,
+	user_cv: str,
+	df: pd.DataFrame,
+	gpt_model: str
+) -> Tuple[str, list[str], int]:
+	
+
+	context_window_per_model = {
+		"gpt-3.5-turbo-1106": 16385,
+		"gpt-3.5-turbo": 4096,
+		"gpt-3.5-turbo-16k": 16385
+		}
+	
+	if gpt_model in context_window_per_model:
+		token_budget = context_window_per_model[gpt_model]
+	
+	ids = df['id'].tolist()
+	if ids:
+		#Basically giving the most relevant IDs from the previous function
+		message = introduction_prompt
+
+		start_time = asyncio.get_event_loop().time()
+
+		tasks = [async_summarise_description(df[df['id'] == id]['job_info'].values[0], gpt_model=gpt_model) for id in ids]
+
+		# Run the tasks concurrently
+		results = await asyncio.gather(*tasks)
+		job_summaries = []
+		total_cost_summaries = 0    
+
+		for id, result in zip(ids, results):
+			job_description_summary, cost = result
+			
+			# Append summary to the list
+			job_summaries.append({
+				"id": id,
+				"summary": job_description_summary,
+				"user_id": user_id
+			})
+
+			#Append total cost
+			total_cost_summaries += cost
+
+			next_id = f'\nID:<{id}>\nJob Description:---{job_description_summary}---\n'
+			if (
+				num_tokens(message + next_id + user_cv, model=gpt_model)
+				> token_budget
+			):
+				break
+			else:
+				message += next_id
+		
+		elapsed_time = asyncio.get_event_loop().time() - start_time
+		logging.info(f"Elapsed time summarising all matching jobs: {elapsed_time}")
+		
+		return message, job_summaries, total_cost_summaries
+	else:
+		logging.error("DF does not have ids. Check fetch_top_n_matching_jobs().")
+		raise Exception("DF does not have ids. Check fetch_top_n_matching_jobs().")
 
 
 delimiters = "####"
