@@ -8,10 +8,8 @@ import timeit
 import logging
 import time
 import asyncio
-from openai.error import OpenAIError
 import json
 from dotenv import load_dotenv
-from openai.error import ServiceUnavailableError
 import logging
 from aiohttp import ClientSession
 from typing import Tuple
@@ -114,6 +112,7 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 												log_gpt_messages= True
 											)
 
+	logging.info(gpt4_response)
 	
 	#This is just to see. We are probs not gonna use df
 	#df = pd.DataFrame(matching_embeddings, columns=["id", "job_info", "timestamp", "embedding"])
@@ -125,7 +124,7 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 	conn.close()
 
 	#print(df, df.info())
-	print(gpt4_response, type(gpt4_response))
+	print()
 
 	elapsed_time = asyncio.get_event_loop().time() - start_time
 
