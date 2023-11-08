@@ -8,10 +8,9 @@ import timeit
 import logging
 import time
 import asyncio
-from openai.error import OpenAIError
+from typing import Dict, Any
 import json
 from dotenv import load_dotenv
-from openai.error import ServiceUnavailableError
 import logging
 from aiohttp import ClientSession
 from typing import Tuple
@@ -595,7 +594,7 @@ async def main(user_id:int, user_country_1:str, user_country_2:str, user_cv:str,
 					return data
 				except json.JSONDecodeError:
 					pass
-			except OpenAIError as e:
+			except openai.RateLimitError as e:
 				logging.warning(f"{e}. Retrying in 10 seconds. Number of retries: {i}")
 				time.sleep(10)
 				pass
@@ -913,32 +912,26 @@ async def additional_suitable_jobs(user_id:int, user_country_1:str, user_country
 		
 		return response_message
 
-	async def check_output_GPT4(input_cv: str, min_n:int, top_n:int) -> str:
+	async def ensure_json_object(input_cv: str, min_n: int, top_n: int) -> dict:
 		default = '[{"id": "", "suitability": "", "explanation": ""}]'
-		default_json = json.loads(default)
-		
-		for _ in range(6):
-			i = _ + 1
+
+		for i in range(1, 5):
 			try:
 				python_string = await ask(query=input_cv, min_n=min_n, top_n=top_n)
-				try:
-					data = json.loads(python_string)
-					logging.info(f"Response is a valid json object. Done in loop number: {i}")
-					return data
-				except json.JSONDecodeError:
-					pass
-			except OpenAIError as e:
+				data = json.loads(python_string)
+				logging.info(f"Response is a valid JSON object. Done in loop number: {i}")
+				return data
+			except openai.RateLimitError as e:
 				logging.warning(f"{e}. Retrying in 10 seconds. Number of retries: {i}")
 				time.sleep(10)
-				pass
 			except Exception as e:
 				logging.warning(f"{e}. Retrying in 5 seconds. Number of retries: {i}", exc_info=True)
 				time.sleep(5)
-				pass
 
-		logging.error("Check logs!!!! Main function was not callable. Setting json to default")
-		return default_json
+		logging.error("Setting JSON to default. Look at async_classify_jobs_gpt_4().")
+		return json.loads(default)
 
+	ensure_json_object()
 	#Modify df options - useful for logging
 	set_dataframe_display_options()
 
