@@ -43,6 +43,7 @@ MODEL= "gpt-3.5-turbo"
 EMBEDDING_MODEL = "text-embedding-ada-002"
 GPT_MODEL = "gpt-4"
 
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 
 
@@ -87,7 +88,8 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 
 	1. Concurrently summarizes job descriptions 
 	2. Tracks the cost of each summary.
-	2. Constructs a message for GPT, including ids, job summaries and user CV text, while respecting a token budget.
+	3. Constructs a message for GPT, including ids, 
+	job summaries and user CV text, while respecting a token budget.
 	
 	Returns a tuple containing the constructed message and a list of job summaries
 	"""
@@ -104,6 +106,12 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 	#TODO: Modify. Job summaries need to go in postgre
 	#df_summaries = pd.DataFrame(job_summaries)
 	#append_parquet(df_summaries, 'summaries')
+	"""
+	This function asynchronously classifies job-related
+	information using the GPT-4 model.
+	
+	Returns the GPT-4 model's generated response for the given input.
+	"""
 	
 	gpt4_response = await async_classify_jobs_gpt_4(
 												user_cv,
@@ -111,8 +119,26 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 												classify_gpt_model = "gpt-4",
 												log_gpt_messages= True
 											)
-
 	logging.info(gpt4_response)
+	
+	#Whether the output is a json object
+	json_object = whether_json_object(gpt4_response)
+
+	"""
+	If the output is not a json object.
+
+	Try with all the different models.
+	
+	"""
+
+	if json_object:
+		gpt4_response_json_object = json.loads(gpt4_response)
+	else:
+		gpt4_response_json_object = await retrying_async_classify_jobs_gpt_4(async_classify_jobs_gpt_4, user_cv, formatted_message, log_gpt_messages=True)
+	
+	logging.info(gpt4_response_json_object)
+
+	print(type(gpt4_response), type(gpt4_response_json_object))
 	
 	#This is just to see. We are probs not gonna use df
 	#df = pd.DataFrame(matching_embeddings, columns=["id", "job_info", "timestamp", "embedding"])
@@ -124,7 +150,6 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 	conn.close()
 
 	#print(df, df.info())
-	print()
 
 	elapsed_time = asyncio.get_event_loop().time() - start_time
 
