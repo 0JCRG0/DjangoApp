@@ -370,32 +370,15 @@ def fetch_all_country_values(user_desired_country: str, user_second_desired_coun
 
 	return all_country_values
 
-def filter_pgvector_two_weeks_country(all_country_values:str, cursor: cursor, table_name:str="embeddings_e5_base_v2"):
-
-	# Convert the list to a PostgreSQL array
-	country_values_str = "{" + ",".join(all_country_values).lower() + "}"
-
-	# Write the SQL query
-	query = f"""
-		SELECT *
-		FROM (
-			SELECT *
-			FROM {table_name}
-			WHERE timestamp >= (current_date - interval '15 days')
-		) AS two_weeks
-		WHERE substring(lower(job_info) from '#### location: (.*?) ####') = ANY(%s::text[]);
-	"""
-
-
-	# Execute the query
-	cursor.execute(query.format(table_name="embeddings_e5_base_v2"), (country_values_str,))
-
-	# Fetch all the rows
-	rows = cursor.fetchall()
-
-	return rows
-
-def fetch_top_n_matching_jobs(user_cv_embedding: np.ndarray, all_country_values:str, cursor: cursor, top_n: str, similarity_or_distance_metric: str = "NN", table_name: str ="embeddings_e5_base_v2", interval_days: str = '\'15 days\'') -> pd.DataFrame:
+def fetch_top_n_matching_jobs(
+		user_cv_embedding: np.ndarray,
+		all_country_values:str,
+		cursor: cursor,
+		top_n: str,
+		similarity_or_distance_metric: str = "NN",
+		table_name: str ="embeddings_e5_base_v2",
+		interval_days: str = '\'15 days\''
+	) -> pd.DataFrame:
 	
 	metric_mapping = {
 		"NN": "<->",
@@ -441,18 +424,24 @@ async def async_format_top_jobs_summarize(
 	user_id: int,
 	user_cv: str,
 	df: pd.DataFrame,
-	gpt_model: str
+	summarize_gpt_model: str,
+	classify_gpt_model: str,
 ) -> Tuple[str, list[str], int]:
 	
 
-	context_window_per_model = {
-		"gpt-3.5-turbo-1106": 16385,
-		"gpt-3.5-turbo": 4096,
-		"gpt-3.5-turbo-16k": 16385
-		}
-	
-	if gpt_model in context_window_per_model:
-		token_budget = context_window_per_model[gpt_model]
+	specs_per_model = {
+		"gpt-4-1106-preview": (128000, 0.01, 0.03),
+		"gpt-4-vision-preview": (128000, 0.01, 0.03),
+		"gpt-4": (8192, 0.03, 0.06),
+		"gpt-4-32k": (32768, 0.06, 0.12),
+		"gpt-3.5-turbo-1106": (16385, 0.001, 0.002),
+		"gpt-3.5-turbo": (4096, 0.0015, 0.002),
+		"gpt-3.5-turbo-16k": (16385, 0.003, 0.004)
+	}
+
+		
+	if classify_gpt_model in specs_per_model:
+		token_budget = specs_per_model[classify_gpt_model][0]
 	
 	ids = df['id'].tolist()
 	if ids:
@@ -461,7 +450,7 @@ async def async_format_top_jobs_summarize(
 
 		start_time = asyncio.get_event_loop().time()
 
-		tasks = [async_summarise_description(df[df['id'] == id]['job_info'].values[0], gpt_model=gpt_model) for id in ids]
+		tasks = [async_summarise_description(df[df['id'] == id]['job_info'].values[0], gpt_model=summarize_gpt_model) for id in ids]
 
 		# Run the tasks concurrently
 		results = await asyncio.gather(*tasks)
@@ -483,20 +472,76 @@ async def async_format_top_jobs_summarize(
 
 			next_id = f'\nID:<{id}>\nJob Description:---{job_description_summary}---\n'
 			if (
-				num_tokens(message + next_id + user_cv, model=gpt_model)
+				num_tokens(message + next_id + user_cv, model=classify_gpt_model)
 				> token_budget
 			):
 				break
 			else:
 				message += next_id
 		
+		logging.info(f"Total cost for summarising: ${total_cost_summaries} USD")
+
 		elapsed_time = asyncio.get_event_loop().time() - start_time
-		logging.info(f"Elapsed time summarising all matching jobs: {elapsed_time}")
-		
-		return message, job_summaries, total_cost_summaries
+		logging.info(f"\nElapsed time in async_format_top_jobs_summarize(). \nAll matching jobs summarised in: {elapsed_time:.2f} seconds")
+
+		return message, job_summaries
 	else:
 		logging.error("DF does not have ids. Check fetch_top_n_matching_jobs().")
 		raise Exception("DF does not have ids. Check fetch_top_n_matching_jobs().")
+
+async def async_classify_jobs_gpt_4(
+	#This query is your question, only parameter to fill in function
+	user_cv: str,
+	formatted_message: str,
+	classify_gpt_model: str = "gpt-4",
+	log_gpt_messages: bool = True
+):
+	
+	start_time = timeit.default_timer()
+
+	
+	specs_per_model = {
+		"gpt-4-1106-preview": (128000, 0.01, 0.03),
+		"gpt-4-vision-preview": (128000, 0.01, 0.03),
+		"gpt-4": (8192, 0.03, 0.06),
+		"gpt-4-32k": (32768, 0.06, 0.12)
+	}
+
+	if classify_gpt_model in specs_per_model:
+		input_cost = specs_per_model[classify_gpt_model][1]
+		output_cost = specs_per_model[classify_gpt_model][2]
+	else:
+		logging.error("The gpt_model selected in invalid. Choose a valid option. See https://openai.com/blog/new-models-and-developer-products-announced-at-devday")
+		raise Exception("The gpt_model selected in invalid. Choose a valid option. See https://openai.com/blog/new-models-and-developer-products-announced-at-devday")
+
+	messages = [
+		{"role": "system", "content": system_prompt},
+		{"role": "user", "content": f"{delimiters}{user_cv}{delimiters}"},
+		{"role": "assistant", "content": formatted_message}
+	]
+	
+	if log_gpt_messages:
+		logging.info(messages)
+	response = openai.ChatCompletion.create(
+		model=classify_gpt_model,
+		messages=messages,
+		temperature=0
+	)
+	response_message = response["choices"][0]["message"]["content"]
+	
+	total_tokens = response['usage']['total_tokens']
+	prompt_tokens = response['usage']['prompt_tokens']
+	completion_tokens = response['usage']['completion_tokens']
+
+	prompt_cost = round((prompt_tokens / 1000) * input_cost, 3)
+	completion_cost = round((completion_tokens / 1000) * output_cost, 3)
+	total_classifying_cost = prompt_cost + completion_cost
+	logging.info(f"""\nUSING: "{classify_gpt_model}" FOR CLASSIFICATION \n\nINPUT:\nTOKENS USED: {prompt_tokens}.\nPROMP COST: ${prompt_cost}USD\n\nOUTPUT:\nTOKENS USED:{completion_tokens}\nCOMPLETION COST: {completion_cost}.\n\nTOTAL TOKENS USED:{total_tokens}\nTOTAL COST FOR CLASSIFYING: ${total_classifying_cost:.3f} USD""")
+
+	elapsed_time = timeit.default_timer() - start_time
+	logging.info(f"""\n"{classify_gpt_model}" finished classifying! all in: {elapsed_time:.2f} seconds \n""")
+	
+	return response_message
 
 
 delimiters = "####"
