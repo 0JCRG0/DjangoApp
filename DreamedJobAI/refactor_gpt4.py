@@ -53,32 +53,54 @@ LoggingDjango()
 
 async def main(user_id: int, user_country_1: str, user_country_2: str | None, user_cv:str, top_n_interval: int, num_suitable_jobs: int):
 	
-	#TODO: Timer needs to be async
-	start_time = timeit.default_timer()
+	start_time = asyncio.get_event_loop().time()
 
 	logging.info(f"\nArguments.\n\nuser_id: {user_id}.\nuser_country_1: {user_country_1}. user_country_2: {user_country_2}\ntop_n_interval: {top_n_interval}\nnum_suitable_jobs: {num_suitable_jobs}")
 
-	# create a connection to the PostgreSQL database
+	#Get all the country values that match user's input
+	all_country_values = fetch_all_country_values(user_country_1, user_country_2)
+	
+	#Embed user's query
+	user_query_embedding = e5_base_v2_query(user_cv)
+
+	#Make connection and enable pgvector
 	conn = psycopg2.connect(LOCAL_POSTGRE_URL)
 	cursor = conn.cursor()
 	cursor.execute('CREATE EXTENSION IF NOT EXISTS vector')
-
-	#Register the vector type with your connection or cursor
 	register_vector(conn)
 	
-	all_country_values = fetch_all_country_values(user_country_1, user_country_2)
+	"""
+	This function performs three actions:
+
+	1. Filters user's country
+	2. Filters to only query rows < 2 weeks from current date
+	3. Performs similarity search depending on metric
+
+	Returns a df containing the matching ids and respective jobs_info
+	"""
 	
-	#It can be all the rows or simply the ids
-	#rows = filter_pgvector_two_weeks_country(all_country_values, cursor)
+	df = fetch_top_n_matching_jobs(user_query_embedding, all_country_values, cursor, top_n="1", similarity_or_distance_metric="NN")
+	
+	#TODO: Have a function that will output the distance and the rows.
+	# To compare outputs depending on metric.
 
-	#Embed user's query
-	query_embedding = e5_base_v2_query(user_cv)
+	"""
+	This function performs the following actions:
 
-	rows = testing(query_embedding, all_country_values, cursor)
+	1. Concurrently summarizes job descriptions 
+	2. Tracks the cost of each summary.
+	2. Constructs a message for GPT, including job summaries and user CV text, while respecting a token budget.
+	
+	Returns a tuple containing the constructed message, a list of job summaries, and the total cost of the summaries. 
+	"""
 
+	message, job_summaries, total_cost_summaries = await async_format_top_jobs_summarize(user_id, user_cv, df, gpt_model="gpt-3.5-turbo-1106")
+
+
+	
 	#This is just to see. We are probs not gonna use df
-	#df = pd.DataFrame(rows, columns=["id", "job_info", "timestamp", "embedding"])
-	print(rows)
+	#df = pd.DataFrame(matching_embeddings, columns=["id", "job_info", "timestamp", "embedding"])
+	#print(rows)
 
 	# Close the database connection
 	conn.commit()
@@ -86,7 +108,9 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 	conn.close()
 
 	#print(df, df.info())
-	
+	print(message, job_summaries, total_cost_summaries)
+
+	elapsed_time = asyncio.get_event_loop().time() - start_time
 
 if __name__ == "__main__":
 	asyncio.run(main(user_id=40, user_country_1="India", user_country_2=None, user_cv=cv, top_n_interval=4, num_suitable_jobs=1))
