@@ -12,6 +12,7 @@ import time
 import asyncio
 import asyncio
 from openai import AsyncOpenAI
+from openai import APIError, APIConnectionError, Timeout, RateLimitError
 import json
 from dotenv import load_dotenv
 import logging
@@ -19,6 +20,7 @@ from aiohttp import ClientSession
 from typing import Tuple
 import re
 import tiktoken
+from typing import Callable
 import pandas as pd
 from datetime import datetime, timedelta
 from torch import Tensor
@@ -68,6 +70,16 @@ About the company: found in the "description" section.
 Compensation and Benefits: found in the "description" section.
 
 """
+
+#Specs from 8/11/23
+specs_gpt4_models = {
+	"gpt-4-1106-preview": (128000, 0.01, 0.03, "json_object"),
+	"gpt-4-vision-preview": (128000, 0.01, 0.03, "json_object"),
+	"gpt-4": (8192, 0.03, 0.06, "text"),
+	"gpt-4-0613": (8192, 0.03, 0.06, "text"),
+	"gpt-4-32k": (32768, 0.06, 0.12, "text"),
+	"gpt-4-32k-0613	": (32768, 0.06, 0.12, "text")
+}
 
 def count_words(text: str) -> int:
 	# Remove leading and trailing whitespaces
@@ -499,7 +511,8 @@ async def async_classify_jobs_gpt_4(
 	user_cv: str,
 	formatted_message: str,
 	classify_gpt_model: str = "gpt-4",
-	log_gpt_messages: bool = True
+	log_gpt_messages: bool = True,
+	specs_gpt4_models: dict=specs_gpt4_models,
 ):
 	
 	client = AsyncOpenAI(
@@ -507,19 +520,12 @@ async def async_classify_jobs_gpt_4(
 		api_key=OPENAI_API_KEY,
 	)
 
-	start_time = timeit.default_timer()
+	start_time = asyncio.get_event_loop().time()
 
-	
-	specs_per_model = {
-		"gpt-4-1106-preview": (128000, 0.01, 0.03),
-		"gpt-4-vision-preview": (128000, 0.01, 0.03),
-		"gpt-4": (8192, 0.03, 0.06),
-		"gpt-4-32k": (32768, 0.06, 0.12)
-	}
-
-	if classify_gpt_model in specs_per_model:
-		input_cost = specs_per_model[classify_gpt_model][1]
-		output_cost = specs_per_model[classify_gpt_model][2]
+	if classify_gpt_model in specs_gpt4_models:
+		input_cost = specs_gpt4_models[classify_gpt_model][1]
+		output_cost = specs_gpt4_models[classify_gpt_model][2]
+		response_format_enabled = specs_gpt4_models[classify_gpt_model][3]
 	else:
 		logging.error("The gpt_model selected in invalid. Choose a valid option. See https://openai.com/blog/new-models-and-developer-products-announced-at-devday")
 		raise Exception("The gpt_model selected in invalid. Choose a valid option. See https://openai.com/blog/new-models-and-developer-products-announced-at-devday")
@@ -533,7 +539,9 @@ async def async_classify_jobs_gpt_4(
 		
 		model=classify_gpt_model,
 		temperature=0,
-		max_tokens = 1000
+		max_tokens = 1000,
+		#To use this you either need the newer gpt4 or turbo 1106
+		response_format= { "type":f"{response_format_enabled}" }
 	)
 	response_message = response.choices[0].message.content
 	
@@ -551,10 +559,61 @@ async def async_classify_jobs_gpt_4(
 	total_classifying_cost = prompt_cost + completion_cost
 	logging.info(f"""\nUSING: "{classify_gpt_model}" FOR CLASSIFICATION \n\nINPUT:\nTOKENS USED: {prompt_tokens}.\nPROMP COST: ${prompt_cost}USD\n\nOUTPUT:\nTOKENS USED:{completion_tokens}\nCOMPLETION COST: {completion_cost}.\n\nTOTAL TOKENS USED:{total_tokens}\nTOTAL COST FOR CLASSIFYING: ${total_classifying_cost:.3f} USD""")
 
-	elapsed_time = timeit.default_timer() - start_time
+	elapsed_time = asyncio.get_event_loop().time() - start_time
 	logging.info(f"""\n"{classify_gpt_model}" finished classifying! all in: {elapsed_time:.2f} seconds \n""")
 	
 	return response_message
+
+def whether_json_object(gpt4_response: str) -> bool:
+	try:
+		json.loads(gpt4_response)
+		logging.info(f"Response is a valid JSON object. Continuing...")
+		return True
+	except json.JSONDecodeError as e:
+		logging.warning(f"JSON decoding error: {e}. Retrying async_classify_jobs_gpt_4()", exc_info=True)
+		return False
+
+
+async def retrying_async_classify_jobs_gpt_4(
+		async_classify_jobs_gpt_4: Callable,
+		user_cv: str,
+		formatted_message: str,
+		log_gpt_messages: bool,
+		):
+	
+	default = '[{"id": "", "suitability": "", "explanation": ""}]'
+	default_json = json.loads(default)
+
+	#specs_gpt4_models is initialised in the beginning
+	for model_name, model_specs in specs_gpt4_models.items():
+		retries = 6  
+		for i in range(retries):
+			logging.info(f"""Using "{model_name}" for loop number: {i + 1}...""")
+			try:
+				gpt4_response = await async_classify_jobs_gpt_4(
+											user_cv,
+											formatted_message,
+											model_name,
+											log_gpt_messages
+										)
+				try:
+					data = json.loads(gpt4_response)
+					logging.info(f"""Response is a valid json object.\nModel used: "{model_name}"" Done in loop number: {i + 1}""")
+					return data
+				except json.JSONDecodeError:
+					pass
+			except openai.RateLimitError as e:
+				logging.warning(f"{e}. Retrying in 10 seconds. Model: {model_name}, Number of retries: {i + 1}")
+				time.sleep(10)
+			except Exception as e:
+				logging.warning(f"{e}. Retrying in 5 seconds. Model: {model_name}, Number of retries: {i + 1}", exc_info=True)
+				time.sleep(5)
+
+	logging.error("Check logs!!!! Main function was not callable. Setting json to default")
+	return default_json
+
+
+
 
 
 delimiters = "####"
