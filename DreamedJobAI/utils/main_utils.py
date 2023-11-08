@@ -10,10 +10,10 @@ import timeit
 import logging
 import time
 import asyncio
-from openai.error import OpenAIError
+import asyncio
+from openai import AsyncOpenAI
 import json
 from dotenv import load_dotenv
-from openai.error import ServiceUnavailableError
 import logging
 from aiohttp import ClientSession
 from typing import Tuple
@@ -28,7 +28,7 @@ from aiohttp import ClientSession
 import os
 
 load_dotenv('.env')
-openai.api_key = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 user = os.getenv("user")
 password = os.getenv("password")
 host = os.getenv("host")
@@ -79,25 +79,30 @@ def count_words(text: str) -> int:
 	# Return the count of words
 	return len(words)
 
-async def async_summarise_job_gpt(session, job_description: str, gpt_model: str="gpt-3.5-turbo-1106") -> Tuple[str, float]:
+async def async_summarise_job_gpt(job_description: str, gpt_model: str="gpt-3.5-turbo-1106") -> Tuple[str, float]:
 	
-	await asyncio.sleep(.5)
-	openai.aiosession.set(session)
+	client = AsyncOpenAI(
+		# defaults to os.environ.get("OPENAI_API_KEY")
+		api_key=OPENAI_API_KEY,
+	)
 	
-	response = await openai.ChatCompletion.acreate(
+	response = await client.chat.completions.create(
+		model=gpt_model,
 		messages=[
 			{'role': 'user', 'content': system_prompt_summary},
 			{'role': 'user', 'content': f"Job Opening: {delimiters_summary}{job_description}{delimiters_summary}"},
 		],
-		model=gpt_model,
+		
 		temperature=0,
 		max_tokens = 400
 	)
-	response_message = response['choices'][0]['message']['content']
+	response_message = response.choices[0].message.content
+
+	usage = dict(response).get('usage')
 	
 	cost_per_summary = 0
-	prompt_tokens = response['usage']['prompt_tokens']
-	completion_tokens = response['usage']['completion_tokens']
+	prompt_tokens = usage.prompt_tokens
+	completion_tokens = usage.completion_tokens
 
 	cost_per_token = {
 		"gpt-3.5-turbo-1106": (0.001, 0.002),
@@ -127,12 +132,12 @@ async def async_summarise_description(description: str, gpt_model: str="gpt-3.5-
 			try:
 				words_per_text = count_words(text)
 				if words_per_text > 50:
-					description_summary, cost_per_summary = await async_summarise_job_gpt(session=session, job_description=text, gpt_model=gpt_model)
+					description_summary, cost_per_summary = await async_summarise_job_gpt(job_description=text, gpt_model=gpt_model)
 					return description_summary, cost_per_summary
 				else:
 					logging.warning(f"Description is too short for being summarised. Number of words: {words_per_text}")
 					return text, 0
-			except (Exception, ServiceUnavailableError) as e:
+			except (Exception) as e:
 				attempts += 1
 				print(f"{e}. Retrying attempt {attempts}...")
 				logging.warning(f"{e}. Retrying attempt {attempts}...")
@@ -497,6 +502,11 @@ async def async_classify_jobs_gpt_4(
 	log_gpt_messages: bool = True
 ):
 	
+	client = AsyncOpenAI(
+		# defaults to os.environ.get("OPENAI_API_KEY")
+		api_key=OPENAI_API_KEY,
+	)
+
 	start_time = timeit.default_timer()
 
 	
@@ -513,25 +523,28 @@ async def async_classify_jobs_gpt_4(
 	else:
 		logging.error("The gpt_model selected in invalid. Choose a valid option. See https://openai.com/blog/new-models-and-developer-products-announced-at-devday")
 		raise Exception("The gpt_model selected in invalid. Choose a valid option. See https://openai.com/blog/new-models-and-developer-products-announced-at-devday")
-
-	messages = [
-		{"role": "system", "content": system_prompt},
-		{"role": "user", "content": f"{delimiters}{user_cv}{delimiters}"},
-		{"role": "assistant", "content": formatted_message}
-	]
+	
+	response = await client.chat.completions.create(
+		messages = [
+			{"role": "system", "content": system_prompt},
+			{"role": "user", "content": f"{delimiters}{user_cv}{delimiters}"},
+			{"role": "assistant", "content": formatted_message}
+		],
+		
+		model=classify_gpt_model,
+		temperature=0,
+		max_tokens = 1000
+	)
+	response_message = response.choices[0].message.content
 	
 	if log_gpt_messages:
-		logging.info(messages)
-	response = openai.ChatCompletion.create(
-		model=classify_gpt_model,
-		messages=messages,
-		temperature=0
-	)
-	response_message = response["choices"][0]["message"]["content"]
-	
-	total_tokens = response['usage']['total_tokens']
-	prompt_tokens = response['usage']['prompt_tokens']
-	completion_tokens = response['usage']['completion_tokens']
+		logging.info(system_prompt + delimiters + user_cv + delimiters + formatted_message)
+
+	usage = dict(response).get('usage')
+
+	total_tokens = usage.total_tokens
+	prompt_tokens = usage.prompt_tokens
+	completion_tokens = usage.completion_tokens
 
 	prompt_cost = round((prompt_tokens / 1000) * input_cost, 3)
 	completion_cost = round((completion_tokens / 1000) * output_cost, 3)
