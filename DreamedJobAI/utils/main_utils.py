@@ -420,8 +420,7 @@ def fetch_top_n_matching_jobs(
         WHERE timestamp >= (current_date - interval {interval_days})
     ) AS two_weeks
     WHERE substring(lower(job_info) from '#### location: (.*?) ####') = ANY(%s::text[])
-    ORDER BY embedding {similarity_metric} %s
-    LIMIT {top_n};
+    ORDER BY embedding {similarity_metric} %s;
 	"""
 	cursor.execute(query.format(table_name="embeddings_e5_base_v2"), (country_values_str, user_cv_embedding))
 
@@ -504,7 +503,8 @@ async def async_format_top_jobs_summarize(
 		return message, job_summaries
 	else:
 		logging.error("DF does not have ids. Check fetch_top_n_matching_jobs().")
-		raise Exception("DF does not have ids. Check fetch_top_n_matching_jobs().")
+		#raise Exception("DF does not have ids. Check fetch_top_n_matching_jobs().")
+		pass
 
 async def async_classify_jobs_gpt_4(
 	#This query is your question, only parameter to fill in function
@@ -612,7 +612,114 @@ async def retrying_async_classify_jobs_gpt_4(
 	logging.error("Check logs!!!! Main function was not callable. Setting json to default")
 	return default_json
 
+#Get the ids
+def ids_df_most_suitable(df: pd.DataFrame) -> str:
+	ids = ""
+	for _, row in df.iterrows():
+		if "id" in row:
+			if ids:
+				ids += ", "
+			ids += f"'{row['id']}'"
 
+	return f"({ids})"
+
+def find_jobs_main_jobs_per_ids(cur: cursor, ids:str, table: str = "main_jobs") -> pd.DataFrame:
+	#TABLE SHOULD EITHER BE "main_jobs" or "test"
+	cur.execute( f"SELECT id, title, link, location, pubdate FROM {table} WHERE id IN {ids}")
+
+	# Fetch all rows from the table
+	rows = cur.fetchall()
+
+	# Separate the columns into individual lists
+	all_ids = [row[0] for row in rows]
+	all_titles = [row[1] for row in rows]
+	all_links = [row[2] for row in rows]
+	all_locations = [row[3] for row in rows]
+	all_pubdates = [row[4] for row in rows]
+
+	df = pd.DataFrame({
+		'id': all_ids,
+		'title': all_titles,
+		'link': all_links,
+		'location': all_locations,
+		'pubdate': all_pubdates
+	})
+
+	return df
+
+def postgre_insert_matched_jobs(cursor: cursor, df: pd.DataFrame(), table_name: str = "matched_jobs"):
+
+	start_time = timeit.default_timer()
+
+	create_table = f"""
+		CREATE TABLE IF NOT EXISTS {table_name} (
+			id INTEGER UNIQUE,
+			title TEXT,
+			link TEXT,
+			location TEXT,
+			pubdate TIMESTAMP,
+			summary TEXT,
+			user_id INTEGER,
+			suitability TEXT,
+			explanation TEXT
+		);
+		"""
+	
+	cursor.execute(create_table)
+
+	# execute the initial count query and retrieve the result
+	initial_count_query = f"""
+		SELECT COUNT(*) FROM {table_name}
+	"""
+	cursor.execute(initial_count_query)
+	initial_count_result = cursor.fetchone()
+	
+	""" INDISCRIMANTELY INSERT THE VALUES """
+
+	jobs_added = []
+	for index, row in df.iterrows():
+		insert_query = f"""
+			INSERT INTO {table_name} (id, title, link, location, pubdate, summary, user_id, suitability, explanation)
+			VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+			RETURNING *
+		"""
+		values = (row['id'], row['title'], row['link'], row['location'], row['pubdate'], row['summary'], row['user_id'], row['suitability'], row['explanation'])
+		cursor.execute(insert_query, values)
+		affected_rows = cursor.rowcount
+		if affected_rows > 0:
+			jobs_added.append(cursor.fetchone())
+
+
+	""" LOGGING/PRINTING RESULTS"""
+
+	final_count_query = f"""
+		SELECT COUNT(*) FROM {table_name}
+	"""
+	# execute the count query and retrieve the result
+	cursor.execute(final_count_query)
+	final_count_result = cursor.fetchone()
+
+	# calculate the number of unique jobs that were added
+	if initial_count_result is not None:
+		initial_count = initial_count_result[0]
+	else:
+		initial_count = 0
+	jobs_added_count = len(jobs_added)
+	if final_count_result is not None:
+		final_count = final_count_result[0]
+	else:
+		final_count = 0
+
+	elapsed_time = timeit.default_timer() - start_time
+
+	postgre_report = f"""
+		{table_name} report:\n
+		Total count of jobs before crawling: {initial_count}
+		Total number of unique jobs: {jobs_added_count}
+		Current total count of jobs in PostgreSQL: {final_count}
+		Duration: {elapsed_time:.2f}
+		"""
+	logging.info(postgre_report)
 
 
 
