@@ -4,7 +4,6 @@ import psycopg2
 from psycopg2.extensions import cursor
 import numpy as np
 import pandas as pd
-from scipy import spatial
 import pretty_errors
 import timeit
 import logging
@@ -25,8 +24,8 @@ import pandas as pd
 from datetime import datetime, timedelta
 from torch import Tensor
 from transformers import AutoTokenizer, AutoModel
-import pyarrow.parquet as pq
 from aiohttp import ClientSession
+from .prompts import *
 import os
 
 load_dotenv('.env')
@@ -37,48 +36,39 @@ host = os.getenv("host")
 port = os.getenv("port")
 database = os.getenv("database")
 SAVE_PATH = os.getenv("SAVE_PATH")
-E5_BASE_V2_DATA = os.getenv("E5_BASE_V2_DATA")
 COUNTRIES_JSON_DATA = os.getenv("COUNTRIES_JSON_DATA")
 LOGGER_DJANGO = os.getenv("LOGGER_DJANGO")
 LOGGER_DIR_PATH = os.getenv("LOGGER_DIR_PATH")
-MODEL= "gpt-3.5-turbo"
-EMBEDDING_MODEL = "text-embedding-ada-002"
-GPT_MODEL = "gpt-4"
 
-
-delimiters_summary = "----"
-delimiters_job_info = '####'
-
-system_prompt_summary = f""" 
-
-Your task is to extract the specified information from a job opening/
-posted by a company, with the aim of effectively matching /
-potential candidates for the position./
-
-The job opening below is delimited by {delimiters_summary} characters./
-Within each job opening there are three sections delimited by {delimiters_job_info} characters: title, location and description./
-
-Extract the following information from its respective section and output your response in the following format:/
-
-Title: found in the "title" section.
-Location: found in the "location" section or in the "description" section.
-Job Objective: found in the "description" section.
-Responsibilities/Key duties: found in the "description" section.
-Qualifications/Requirements/Experience: found in the "description" section.
-Preferred Skills/Nice to Have: found in the "description" section.
-About the company: found in the "description" section.
-Compensation and Benefits: found in the "description" section.
-
-"""
 
 #Specs from 8/11/23
 specs_gpt4_models = {
+	"gpt-4-1106-preview": (128000, 0.01, 0.03, "json_object"),
+	"gpt-4-0613": (8192, 0.03, 0.06, "text"),
+	"gpt-4-vision-preview": (128000, 0.01, 0.03, "json_object"),
+	"gpt-4": (8192, 0.03, 0.06, "text"),
+	"gpt-4-32k": (32768, 0.06, 0.12, "text"),
+	"gpt-4-32k-0613	": (32768, 0.06, 0.12, "text")
+}
+
+#Specs from 8/11/23
+specs_gpt3_model = {
+	"gpt-3.5-turbo-1106": (16385, 0.001, 0.002, "json_object"),
+	"gpt-3.5-turbo": (4096, 0.0015, 0.002, "text"),
+	"gpt-3.5-turbo-16k": (16385, 0.003, 0.004, "text")
+}
+
+#Specs from 8/11/23
+specs_all_models = {
 	"gpt-4-1106-preview": (128000, 0.01, 0.03, "json_object"),
 	"gpt-4-vision-preview": (128000, 0.01, 0.03, "json_object"),
 	"gpt-4": (8192, 0.03, 0.06, "text"),
 	"gpt-4-0613": (8192, 0.03, 0.06, "text"),
 	"gpt-4-32k": (32768, 0.06, 0.12, "text"),
-	"gpt-4-32k-0613	": (32768, 0.06, 0.12, "text")
+	"gpt-4-32k-0613	": (32768, 0.06, 0.12, "text"),
+	"gpt-3.5-turbo-1106": (16385, 0.001, 0.002, "json_object"),
+	"gpt-3.5-turbo": (4096, 0.0015, 0.002, "text"),
+	"gpt-3.5-turbo-16k": (16385, 0.003, 0.004, "text")
 }
 
 def count_words(text: str) -> int:
@@ -116,15 +106,9 @@ async def async_summarise_job_gpt(job_description: str, gpt_model: str="gpt-3.5-
 	prompt_tokens = usage.prompt_tokens
 	completion_tokens = usage.completion_tokens
 
-	cost_per_token = {
-		"gpt-3.5-turbo-1106": (0.001, 0.002),
-		"gpt-3.5-turbo": (0.0015, 0.002),
-		"gpt-3.5-turbo-16k": (0.003, 0.004)
-	}
-
-	if gpt_model in cost_per_token:
-		prompt_cost_per_k = cost_per_token[gpt_model][0]
-		completion_cost_per_k = cost_per_token[gpt_model][1]
+	if gpt_model in specs_gpt3_model:
+		prompt_cost_per_k = specs_gpt3_model[gpt_model][1]
+		completion_cost_per_k = specs_gpt3_model[gpt_model][2]
 		prompt_cost = round((prompt_tokens / 1000) * prompt_cost_per_k, 3)
 		completion_cost = round((completion_tokens / 1000) * completion_cost_per_k, 3)
 		cost_per_summary = prompt_cost + completion_cost
@@ -387,6 +371,21 @@ def fetch_all_country_values(user_desired_country: str, user_second_desired_coun
 
 	return all_country_values
 
+def check_matched_jobs(cursor: cursor, user_id: str, ):
+
+	query = f"""
+		SELECT id
+		FROM matched_jobs
+		WHERE id in ('{user_id}')
+		"""
+	
+	cursor.execute(query.format(table_name="embeddings_e5_base_v2"), (country_values_str, user_cv_embedding))
+
+	# Fetch all the rows
+	rows = cursor.fetchall()
+
+
+
 def fetch_top_n_matching_jobs(
 		user_cv_embedding: np.ndarray,
 		all_country_values:str,
@@ -444,20 +443,9 @@ async def async_format_top_jobs_summarize(
 	classify_gpt_model: str,
 ) -> Tuple[str, list[str], int]:
 	
-
-	specs_per_model = {
-		"gpt-4-1106-preview": (128000, 0.01, 0.03),
-		"gpt-4-vision-preview": (128000, 0.01, 0.03),
-		"gpt-4": (8192, 0.03, 0.06),
-		"gpt-4-32k": (32768, 0.06, 0.12),
-		"gpt-3.5-turbo-1106": (16385, 0.001, 0.002),
-		"gpt-3.5-turbo": (4096, 0.0015, 0.002),
-		"gpt-3.5-turbo-16k": (16385, 0.003, 0.004)
-	}
-
 		
-	if classify_gpt_model in specs_per_model:
-		token_budget = specs_per_model[classify_gpt_model][0]
+	if classify_gpt_model in specs_all_models:
+		token_budget = specs_all_models[classify_gpt_model][0]
 	
 	ids = df['id'].tolist()
 	if ids:
@@ -486,7 +474,7 @@ async def async_format_top_jobs_summarize(
 			#Append total cost
 			total_cost_summaries += cost
 
-			next_id = f'\nID:<{id}>\nJob Description:---{job_description_summary}---\n'
+			next_id = f'\n<ID:{id}>\n---Job Description: {job_description_summary}---\n'
 			if (
 				num_tokens(message + next_id + user_cv, model=classify_gpt_model)
 				> token_budget
@@ -512,7 +500,7 @@ async def async_classify_jobs_gpt_4(
 	formatted_message: str,
 	classify_gpt_model: str = "gpt-4",
 	log_gpt_messages: bool = True,
-	specs_gpt4_models: dict=specs_gpt4_models,
+	specs_all_models: dict=specs_all_models,
 ):
 	
 	client = AsyncOpenAI(
@@ -522,10 +510,10 @@ async def async_classify_jobs_gpt_4(
 
 	start_time = asyncio.get_event_loop().time()
 
-	if classify_gpt_model in specs_gpt4_models:
-		input_cost = specs_gpt4_models[classify_gpt_model][1]
-		output_cost = specs_gpt4_models[classify_gpt_model][2]
-		response_format_enabled = specs_gpt4_models[classify_gpt_model][3]
+	if classify_gpt_model in specs_all_models:
+		input_cost = specs_all_models[classify_gpt_model][1]
+		output_cost = specs_all_models[classify_gpt_model][2]
+		response_format_enabled = specs_all_models[classify_gpt_model][3]
 	else:
 		logging.error("The gpt_model selected in invalid. Choose a valid option. See https://openai.com/blog/new-models-and-developer-products-announced-at-devday")
 		raise Exception("The gpt_model selected in invalid. Choose a valid option. See https://openai.com/blog/new-models-and-developer-products-announced-at-devday")
@@ -570,7 +558,7 @@ def whether_json_object(gpt4_response: str) -> bool:
 		logging.info(f"Response is a valid JSON object. Continuing...")
 		return True
 	except json.JSONDecodeError as e:
-		logging.warning(f"JSON decoding error: {e}. Retrying async_classify_jobs_gpt_4()", exc_info=True)
+		logging.warning(f"JSON decoding error: {e}.\nRetrying async_classify_jobs_gpt_4()\n\n", exc_info=True)
 		return False
 
 
@@ -588,7 +576,7 @@ async def retrying_async_classify_jobs_gpt_4(
 	for model_name, model_specs in specs_gpt4_models.items():
 		retries = 6  
 		for i in range(retries):
-			logging.info(f"""Using "{model_name}" for loop number: {i + 1}...""")
+			logging.info(f"""\nCalling retrying_async_classify_jobs_gpt_4().\nUsing "{model_name}" for loop number: {i + 1}...""")
 			try:
 				gpt4_response = await async_classify_jobs_gpt_4(
 											user_cv,
@@ -598,7 +586,7 @@ async def retrying_async_classify_jobs_gpt_4(
 										)
 				try:
 					data = json.loads(gpt4_response)
-					logging.info(f"""Response is a valid json object.\nModel used: "{model_name}"" Done in loop number: {i + 1}""")
+					logging.info(f"""Response is a valid json object.\nResponse: {gpt4_response}.\nModel used: "{model_name}".\nDone in loop number: {i + 1}""")
 					return data
 				except json.JSONDecodeError:
 					pass
@@ -720,76 +708,3 @@ def postgre_insert_matched_jobs(cursor: cursor, df: pd.DataFrame(), table_name: 
 		Duration: {elapsed_time:.2f}
 		"""
 	logging.info(postgre_report)
-
-
-
-delimiters = "####"
-
-system_prompt=f"""
-
-You are a job recruiter for a large recruitment agency./
-You will be provided with a candidate's CV./
-The CV will be delimited with {delimiters} characters./
-You will also be provided with the Job IDs (delimited by angle brackets) /
-and corresponding descriptions (delimited by triple dashes)/
-for the available job openings./
-
-Perform the following steps:/
-
-Step 1 - Classify the provided CV into a suitability category for each job opening./
-Step 2 - For each ID briefly explain in one sentence your reasoning behind the chosen suitability category./
-Step 3 - Only provide your output in json format with the keys: id, suitability and explanation./
-
-Do not classify a CV into a suitability category until you have classify the CV yourself.
-
-Suitability categories: Highly Suitable, Moderately Suitable, Potentially Suitable, Marginally Suitable and Not Suitable./
-
-Highly Suitable: CVs in this category closely align with the job opening, demonstrating extensive relevant experience, skills, and qualifications. The candidate possesses all or most of the necessary requirements and is an excellent fit for the role./
-Moderately Suitable: CVs falling into this category show a reasonable match to the job opening. The candidate possesses some relevant experience, skills, and qualifications that align with the role, but there may be minor gaps or areas for improvement. With some additional training or development, they could become an effective candidate./
-Potentially Suitable: CVs in this category exhibit potential and may possess transferable skills or experience that could be valuable for the job opening. Although they may not meet all the specific requirements, their overall profile suggests that they could excel with the right support and training./
-Marginally Suitable: CVs falling into this category show limited alignment with the job opening. The candidate possesses a few relevant skills or experience, but there are significant gaps or deficiencies in their qualifications. They may require substantial training or experience to meet the requirements of the role./
-Not Suitable: CVs in this category do not match the requirements and qualifications of the job opening. The candidate lacks the necessary skills, experience, or qualifications, making them unsuitable for the role./
-"""
-
-introduction_prompt = """
-
-
-\n Available job openings:\n
-
-"""
-
-cv = """ Qualifications:
-- LLB Law from the University of Bristol (2022 - present)
-- Member of the Honours Program at UDLAP, researching FinTech, Financial Inclusion, Blockchain, Distributed Ledger Technologies, Cryptocurrencies, and Smart Contracts
-- TOEFL® iBT score of 107 out of 120
-
-Previous job titles:
-- Data Analyst at Tata Consultancy Services México (June 2022 – September 2022)
-- Legal Assistant at BLACKSHIIP Venture Capital (May 2022 – July 2022)
-- Data Analyst Jr. at AMATL GRÁFICOS (January 2020 – May 2022)
-- Mathematics Instructor at ALOHA Mental Arithmetic (December 2019 – January 2020)
-- Special Needs Counsellor at Camp Merrywood (O)
-- Special Needs Counsellor at Camp Merrywood (Ontario, Canada) (May 2019 - August 2019)
-- Special Needs Counsellor at YMCA Camp Independence (Chicago, USA) (June 2018 - August 2018)
-- Coordinator of Volunteers at NAHUI OLLIN (November 2017 - May 2019)
-
-Responsibilities/Key Duties:
-- Cleansed, interpreted, and analyzed data with Python and SQL Server to produce visual reports using Power BI
-- Proofread, drafted, and simplified legal documents such as Memorandums of Understanding, Terms & Conditions, Data Processing Agreements, Privacy Policies, etc.
-- Developed and introduced A/B testing to make data-backed decisions and achieve increased Net Profit Margin
-- Taught mental arithmetic to students and trained gifted children for national competitions
-- Led and assisted individuals with physical and mental disabilities in camp settings
-- Coordinated and supervised volunteers for an organization, increasing the number of volunteers by 400%
-
-Skills:
-- Written and verbal communication skills
-- Teamwork and ability to work under pressure
-- Attention to detail and judgment
-- Leadership and people skills
-- Python, SQL Server, MySQL/PostgreSQL, Tableau, Power BI, Bash/Command Line, Git & GitHub, Office 365, Machine Learning, Probabilities & Statistics
-
-Other Achievements:
-- Published paper on Smart Legal Contracts: From Theory to Reality
-- Participated in the IDEAS Summer Program on Intelligence, Data, Ethics, and Society at the University of California, San Diego. 
-
-"""
