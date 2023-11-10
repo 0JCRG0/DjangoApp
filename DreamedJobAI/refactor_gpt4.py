@@ -1,30 +1,13 @@
 import os
 import openai
 import psycopg2
-import pandas as pd
-from scipy import spatial
-import pretty_errors
-import timeit
 import logging
-import time
 import asyncio
 import json
 from dotenv import load_dotenv
-import logging
-from aiohttp import ClientSession
-from typing import Tuple
-import re
-import tiktoken
 import pandas as pd
-from datetime import datetime, timedelta
-from torch import Tensor
-from transformers import AutoTokenizer, AutoModel
-import pyarrow.parquet as pq
-from sqlalchemy import create_engine, text
-from aiohttp import ClientSession
 from pgvector.psycopg2 import register_vector
 from utils.main_utils import *
-import os
 
 load_dotenv('.env')
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -34,14 +17,6 @@ host = os.getenv("host")
 port = os.getenv("port")
 database = os.getenv("database")
 LOCAL_POSTGRE_URL = os.environ.get("LOCAL_POSTGRE_URL")
-SAVE_PATH = os.getenv("SAVE_PATH")
-E5_BASE_V2_DATA = os.getenv("E5_BASE_V2_DATA")
-COUNTRIES_JSON_DATA = os.getenv("COUNTRIES_JSON_DATA")
-LOGGER_DJANGO = os.getenv("LOGGER_DJANGO")
-LOGGER_DIR_PATH = os.getenv("LOGGER_DIR_PATH")
-MODEL= "gpt-3.5-turbo"
-EMBEDDING_MODEL = "text-embedding-ada-002"
-GPT_MODEL = "gpt-4"
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
@@ -117,17 +92,15 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 		
 		Returns a tuple containing the constructed message and a list of job summaries
 		"""
-
+		#TODO: Wrapper that will change the model if time is > 10s
 		formatted_message, job_summaries = await async_format_top_jobs_summarize(
 																user_id,
 																user_cv,
 																sliced_df,
 																summarize_gpt_model="gpt-3.5-turbo-1106",
-																classify_gpt_model="gpt-4"
+																classify_gpt_model="gpt-3.5-turbo-1106"
 															)
 
-
-		#TODO: Modify. Job summaries need to go in postgre
 		
 		df_summaries = pd.DataFrame(job_summaries)
 		#append_parquet(df_summaries, 'summaries')
@@ -139,10 +112,11 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 		Returns the GPT-4 model's generated response for the given input.
 		"""
 
+		#TODO: Wrapper that will change the model if time is > 70s
 		gpt4_response = await async_classify_jobs_gpt_4(
 													user_cv,
 													formatted_message,
-													classify_gpt_model = "gpt-4-1106-preview",
+													classify_gpt_model = "gpt-3.5-turbo-1106",
 													log_gpt_messages= True
 												)
 		logging.info(gpt4_response)
@@ -161,9 +135,9 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 		else:
 			gpt4_response_json_object = await retrying_async_classify_jobs_gpt_4(async_classify_jobs_gpt_4, user_cv, formatted_message, log_gpt_messages=True)
 		
-		logging.info(f"""Results of iteration number {counter}:\n{gpt4_response_json_object}""")		
-
-		df_gpt4_response_json_object = pd.read_json(json.dumps(gpt4_response_json_object))
+		logging.info(f"""Results of iteration number {counter}:\n\n{gpt4_response_json_object}""")		
+		
+		df_gpt4_response_json_object = pd.DataFrame(len(gpt4_response_json_object), type(gpt4_response_json_object), gpt4_response_json_object)
 		accumulator_df = pd.concat([accumulator_df, df_gpt4_response_json_object], ignore_index=True)
 		
 		# Filter the dataframe to only include the suitable jobs
@@ -204,6 +178,7 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 
 	logging.info(f"""\nmain() finished! all in: {elapsed_time:.2f} seconds \n""")
 
+
 if __name__ == "__main__":
-	asyncio.run(main(user_id=40, user_country_1="United States", user_country_2="Anywhere", user_cv=cv, limit_interval=5, num_suitable_jobs=5))
+	asyncio.run(main(user_id=40, user_country_1="United States", user_country_2="Anywhere", user_cv=cv, limit_interval=5, num_suitable_jobs=2))
 	#asyncio.run(main(top_n_interval=4, num_suitable_jobs=1))
