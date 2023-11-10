@@ -10111,3 +10111,47 @@ HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2023-11-10 01:25:26,968 INFO: 
 HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 
+2023-11-10 01:49:41,881 INFO: 
+
+Starting main().
+
+Arguments.
+user_id: 40.
+user_country_1: United States. user_country_2: Anywhere
+num_suitable_jobs: 2
+
+2023-11-10 01:50:21,910 WARNING: 
+'HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /intfloat/e5-base-v2/resolve/main/tokenizer_config.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x159db1570>, 'Connection to huggingface.co timed out. (connect timeout=10)'))' thrown while requesting HEAD https://huggingface.co/intfloat/e5-base-v2/resolve/main/tokenizer_config.json
+
+2023-11-10 01:51:01,961 WARNING: 
+'HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /intfloat/e5-base-v2/resolve/main/config.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x159db2d40>, 'Connection to huggingface.co timed out. (connect timeout=10)'))' thrown while requesting HEAD https://huggingface.co/intfloat/e5-base-v2/resolve/main/config.json
+
+2023-11-10 01:51:04,116 INFO: 
+Incremental values:
+
+Starting on row number 0.
+Stopping on row number 5.
+Total number of rows from the df: 12
+
+2023-11-10 02:04:15,253 INFO: 
+
+Starting main().
+
+Arguments.
+user_id: 40.
+user_country_1: United States. user_country_2: Anywhere
+num_suitable_jobs: 2
+
+2023-11-10 02:04:55,296 WARNING: 
+'HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /intfloat/e5-base-v2/resolve/main/tokenizer_config.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x1625b15d0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))' thrown while requesting HEAD https://huggingface.co/intfloat/e5-base-v2/resolve/main/tokenizer_config.json
+
+2023-11-10 02:05:35,369 WARNING: 
+'HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /intfloat/e5-base-v2/resolve/main/config.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x1625b2da0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))' thrown while requesting HEAD https://huggingface.co/intfloat/e5-base-v2/resolve/main/config.json
+
+2023-11-10 02:05:37,374 INFO: 
+Incremental values:
+
+Starting on row number 0.
+Stopping on row number 5.
+Total number of rows from the df: 12
+
