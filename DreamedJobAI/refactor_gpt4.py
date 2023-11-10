@@ -131,30 +131,30 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 		"""
 
 		if json_object:
-			gpt4_response_json_object = json.loads(gpt4_response)
+			gpt4_response_python_object = json.loads(gpt4_response)
+			df_gpt4_response = list_or_dict_python_object(gpt4_response_python_object)
 		else:
-			gpt4_response_json_object = await retrying_async_classify_jobs_gpt_4(async_classify_jobs_gpt_4, user_cv, formatted_message, log_gpt_messages=True)
+			df_gpt4_response = await retrying_async_classify_jobs_gpt_4(async_classify_jobs_gpt_4, user_cv, formatted_message, log_gpt_messages=True)
 		
-		logging.info(f"""Results of iteration number {counter}:\n\n{gpt4_response_json_object}""")		
+		logging.info(f"""Results of iteration number {counter}:\n\n{df_gpt4_response}""")		
 		
-		df_gpt4_response_json_object = pd.DataFrame(len(gpt4_response_json_object), type(gpt4_response_json_object), gpt4_response_json_object)
-		accumulator_df = pd.concat([accumulator_df, df_gpt4_response_json_object], ignore_index=True)
+		accumulator_df = pd.concat([accumulator_df, df_gpt4_response], ignore_index=True)
 		
 		# Filter the dataframe to only include the suitable jobs
-		df_most_suitable = df_gpt4_response_json_object[df_gpt4_response_json_object['suitability'].isin(MOST_SUITABLE_CATEGORIES)] if 'suitability' in df_gpt4_response_json_object.columns else pd.DataFrame()
+		df_most_suitable = df_gpt4_response[df_gpt4_response['suitability'].isin(MOST_SUITABLE_CATEGORIES)] if 'suitability' in df_gpt4_response.columns else pd.DataFrame()
 
 		logging.info(f"""Number of suitable jobs found so far: {len(df_most_suitable)}\nNumber of jobs to find: {num_suitable_jobs}""")
-		
-		# Increasing values for next iteration
-		counter += 1
-		start += limit_interval
-		limit += limit_interval
 		
 		# Break the loop if we have x suitable jobs
 		if len(df_most_suitable) >= num_suitable_jobs:
 			logging.info(f"While loop is done.\nFound jobs: {len(df_most_suitable)}\nTarget: {num_suitable_jobs}")
 			break
 		
+		# Increasing values for next iteration
+		counter += 1
+		start += limit_interval
+		limit += limit_interval
+
 		logging.info(f"Increasing values for next iteration.\n\nLoop number {counter}\nStarting on row {start}.\nStopping on row {limit}")
 	
 	ids_most_suitable = ids_df_most_suitable(df=df_most_suitable)
