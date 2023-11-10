@@ -312,15 +312,15 @@ def find_unique_ids(ids: tuple, preexisting_ids: list) -> list:
 def list_or_dict_json_output_GPT4(json_output_GPT4):
 	if isinstance(json_output_GPT4, list):
 		# If json_output_GPT4 is a list, it contains multiple records
-		logging.info("json_output_GPT4 is a list of dictionaries, it contains multiple records")
+		logging.info("json_output_GPT4 is a list of dictionaries. Continuing...")
 		df_json_output_GPT4 = pd.read_json(json.dumps(json_output_GPT4))
 		return df_json_output_GPT4	
 	elif isinstance(json_output_GPT4, dict):
 		# If json_output_GPT4 is a dictionary, it contains a single record
-		logging.info("json_output_GPT4 is a dictionary, it contains a single record")
+		logging.info("json_output_GPT4 is a dictionary.\nEither contains a single record or gpt fucked up")
 		data = [json_output_GPT4]
 		df = pd.DataFrame(data)
-		df['id'] = df['id'].astype(int)
+		#df['id'] = df['id'].astype(int)
 		return df
 	else:
 		# Handle other cases if necessary
