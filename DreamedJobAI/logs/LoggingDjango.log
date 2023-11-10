@@ -4901,3 +4901,5213 @@ HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2023-11-09 01:21:29,923 INFO: 
 HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 
+2023-11-09 01:45:58,102 INFO: 
+
+Starting main().
+
+Arguments.
+user_id: 40.
+user_country_1: United States. user_country_2: Anywhere
+num_suitable_jobs: 3
+
+2023-11-09 01:46:00,818 INFO: 
+Incremental values:
+
+Starting on row number 0.
+Stopping on row number 5.
+Total number of rows from the df: 12
+
+2023-11-09 01:46:04,950 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-09 01:46:06,315 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-09 01:46:06,896 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-09 01:46:06,999 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-09 23:23:49,542 INFO: 
+
+Starting main().
+
+Arguments.
+user_id: 40.
+user_country_1: United States. user_country_2: Anywhere
+num_suitable_jobs: 3
+
+2023-11-09 23:23:51,987 INFO: 
+Incremental values:
+
+Starting on row number 0.
+Stopping on row number 5.
+Total number of rows from the df: 12
+
+2023-11-09 23:23:55,688 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-09 23:23:55,691 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-09 23:23:56,102 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-09 23:23:56,105 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-09 23:23:56,182 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-09 23:23:57,200 INFO: 
+Total cost for summarising: $0.01 USD
+
+2023-11-09 23:23:57,200 INFO: 
+
+Elapsed time in async_format_top_jobs_summarize(). 
+All matching jobs summarised in: 5.21 seconds
+
+2023-11-09 23:24:23,545 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-09 23:24:23,550 INFO: 
+
+
+You are a job recruiter for a large recruitment agency./
+You will be provided with a candidate's CV./
+The CV will be delimited with #### characters./
+You will also be provided with the Job IDs (delimited by angle brackets) /
+and corresponding descriptions (delimited by triple dashes)/
+for the available job openings./
+
+Perform the following steps:/
+
+Step 1 - Classify the provided CV into a suitability category for each job opening./
+Step 2 - For each ID briefly explain in one sentence your reasoning behind the chosen suitability category./
+Step 3 - Only provide your output in json format with the keys: id, suitability and explanation./
+
+Do not classify a CV into a suitability category until you have classify the CV yourself.
+
+Suitability categories: Highly Suitable, Moderately Suitable, Potentially Suitable, Marginally Suitable and Not Suitable./
+
+Highly Suitable: CVs in this category closely align with the job opening, demonstrating extensive relevant experience, skills, and qualifications. The candidate possesses all or most of the necessary requirements and is an excellent fit for the role./
+Moderately Suitable: CVs falling into this category show a reasonable match to the job opening. The candidate possesses some relevant experience, skills, and qualifications that align with the role, but there may be minor gaps or areas for improvement. With some additional training or development, they could become an effective candidate./
+Potentially Suitable: CVs in this category exhibit potential and may possess transferable skills or experience that could be valuable for the job opening. Although they may not meet all the specific requirements, their overall profile suggests that they could excel with the right support and training./
+Marginally Suitable: CVs falling into this category show limited alignment with the job opening. The candidate possesses a few relevant skills or experience, but there are significant gaps or deficiencies in their qualifications. They may require substantial training or experience to meet the requirements of the role./
+Not Suitable: CVs in this category do not match the requirements and qualifications of the job opening. The candidate lacks the necessary skills, experience, or qualifications, making them unsuitable for the role./
+#### Qualifications:
+- LLB Law from the University of Bristol (2022 - present)
+- Member of the Honours Program at UDLAP, researching FinTech, Financial Inclusion, Blockchain, Distributed Ledger Technologies, Cryptocurrencies, and Smart Contracts
+- TOEFL® iBT score of 107 out of 120
+
+Previous job titles:
+- Data Analyst at Tata Consultancy Services México (June 2022 – September 2022)
+- Legal Assistant at BLACKSHIIP Venture Capital (May 2022 – July 2022)
+- Data Analyst Jr. at AMATL GRÁFICOS (January 2020 – May 2022)
+- Mathematics Instructor at ALOHA Mental Arithmetic (December 2019 – January 2020)
+- Special Needs Counsellor at Camp Merrywood (O)
+- Special Needs Counsellor at Camp Merrywood (Ontario, Canada) (May 2019 - August 2019)
+- Special Needs Counsellor at YMCA Camp Independence (Chicago, USA) (June 2018 - August 2018)
+- Coordinator of Volunteers at NAHUI OLLIN (November 2017 - May 2019)
+
+Responsibilities/Key Duties:
+- Cleansed, interpreted, and analyzed data with Python and SQL Server to produce visual reports using Power BI
+- Proofread, drafted, and simplified legal documents such as Memorandums of Understanding, Terms & Conditions, Data Processing Agreements, Privacy Policies, etc.
+- Developed and introduced A/B testing to make data-backed decisions and achieve increased Net Profit Margin
+- Taught mental arithmetic to students and trained gifted children for national competitions
+- Led and assisted individuals with physical and mental disabilities in camp settings
+- Coordinated and supervised volunteers for an organization, increasing the number of volunteers by 400%
+
+Skills:
+- Written and verbal communication skills
+- Teamwork and ability to work under pressure
+- Attention to detail and judgment
+- Leadership and people skills
+- Python, SQL Server, MySQL/PostgreSQL, Tableau, Power BI, Bash/Command Line, Git & GitHub, Office 365, Machine Learning, Probabilities & Statistics
+
+Other Achievements:
+- Published paper on Smart Legal Contracts: From Theory to Reality
+- Participated in the IDEAS Summer Program on Intelligence, Data, Ethics, and Society at the University of California, San Diego. 
+
+####
+
+
+
+ Available job openings:
+
+
+
+ID:<458073>
+Job Description:---Title: Senior Data Engineer
+Location: United States
+Job Objective: As the first Data Engineer to join the Analytics Team, you will be collaborating with stakeholders across the company to design, build, and implement data pipelines and models that enable the next generation of technology to be deployed around the world.
+Responsibilities/Key duties: Lead the design and roadmap for the data platform infrastructure, partner with operations, product, and engineering to advocate best practices, and own the ingest and egress frameworks for data pipelines.
+Qualifications/Requirements/Experience: 5 years of experience in a data engineering role, proficiency in Python or another object-oriented language, experience with Spark, PySpark, Glue, SQL, dbt, Redshift, AWS, Azure, or GCP security ecosystem, and knowledge of data visualization tools such as Tableau.
+Preferred Skills/Nice to Have: Understanding the importance of engineering with security's best practices in mind, empathy, and motivation by the mission to solve the biggest problems in defense.
+About the company: Anduril Industries is a defense technology company with a mission to transform US and allied military capabilities with advanced technology. They are committed to bringing cutting-edge autonomy, AI, computer vision, sensor fusion, and networking technology to the military in months, not years.
+Compensation and Benefits: The salary range for this role is an estimate based on a wide range of compensation factors inclusive of base salary only. Additionally, Anduril offers top-tier benefits including comprehensive medical, dental, and vision plans, employee life and disability, mental health, and family planning benefits with all premiums paid by Anduril. Highly competitive equity grants are included in all offers and are considered part of Anduril's total compensation package.---
+
+ID:<458066>
+Job Description:---Title: Lead Information Security
+Location: United States
+Job Objective: Axoni is seeking talented, motivated professionals to be part of the next generation of capital markets technology. The successful candidate will have a strong technical background in systems and network security, exceptional interpersonal and leadership abilities, and a commitment to staying abreast of industry security trends and developments.
+Responsibilities/Key duties: Providing leadership guidance and training to information systems security personnel, managing security audits and vulnerability and threat assessments, directing responses to network or system intrusions, reviewing, implementing, updating, and documenting company-wide information security policies and procedures, ensuring fulfillment of legal and contractual information security and privacy mandates.
+Qualifications/Requirements/Experience: 5 years of professional Information Security experience, 3 years of management experience, strong understanding of software system network and cloud security, experience with security standards and controls such as SOC2, ISO27K, PCI DSS, NIST, and/or CIS, experience with Linux and AWS, CISSP certification is a big plus.
+Preferred Skills/Nice to Have: Experience with other operating systems and public clouds.
+About the company: Axoni is building the next generation of capital markets technology, with a diverse team focused on building products that will change and improve how clients and the markets interact. The company is committed to creating a culture where every team member feels valued and has the opportunity to grow and succeed, living by their Core Values of Delivery is everything, Choose Kindness, and Be better every day.
+Compensation and Benefits: Not provided in the job opening.---
+
+ID:<458082>
+Job Description:---Title: Staff Autonomy Engineer
+Location: United States
+Job Objective: The job objective is to join the team at Wisk and work on the integration of various perception sensors and associated processing software for the Wisk Gen 6 aircraft, specifically within the Conflict Detection and Resolution (CDR) team.
+Responsibilities/Key duties: The responsibilities include developing and certifying conflict detection and resolution functionality, integrating multiple sensing modalities to prevent collisions, developing tracking and estimation algorithms, and testing the software in flight.
+Qualifications/Requirements/Experience: The candidate should have at least 5 years of experience in developing highly automated vehicles or perception systems, a BS in related engineering fields, and a solid foundation in physics, mathematics, probability, and statistics. Experience in machine learning, machine vision, state estimation, and sensor fusion concepts is preferred.
+Preferred Skills/Nice to Have: Desired skills include experience with real-time operating systems, MATLAB/Simulink Model-Based Design, Agile software development, flight test operations, and flight simulators.
+About the company: Wisk is a passionate team working towards a sustainable future in urban mobility, solving high-impact problems through safe all-electric autonomous flight. They offer a comprehensive benefits package and a variety of perks.
+Compensation and Benefits: The company offers a competitive base salary, annual bonus, long-term incentive, 401K, health benefits, and additional perks such as free catered lunches, flight lessons, wellness allowances, and more. The starting base salary for this role varies based on geographical location and relevant job-related experience.---
+
+ID:<458072>
+Job Description:---Title: Staff Software Engineer-ZDX
+Location: United States
+Job Objective: Join us to build a web scale user experience platform
+Responsibilities/Key duties: Participate in all phases of the product development cycle, develop functional specifications, assess task requirements, troubleshoot issues, work with Operations and Support, and display accountability and sense of ownership of areas assigned.
+Qualifications/Requirements/Experience: 8 years of programming expertise on C, strong knowledge of Algorithms and Data Structures, experience in Datapath Networking, solid understanding of TCPIP protocol stack, http, TLS, PKI, DNS, DHCP, VPN, HA, routing and switching, strong software design profiling and verification skills, strong in fundamentals, high-performance computing, event-based programming, multithreading, memory optimization, fault tolerance, etc.
+Preferred Skills/Nice to Have: Knowledge of VPN, Load balancers, IPS/IDS, Routers, and Firewall is a plus.
+About the company: Zscaler accelerates digital transformation and protects customers from cyberattacks and data loss by securely connecting users, devices, and applications in any location. Zscaler serves thousands of enterprise customers around the world and was founded in 2007 with a mission to make the cloud a safe place to do business.
+Compensation and Benefits: The base salary range for this full-time position is $129,500 - $172,000 USD, excluding commission, bonus, equity, and benefits. Zscaler is an equal opportunity and affirmative action employer, committed to creating an inclusive environment for all employees.---
+
+ID:<458063>
+Job Description:---Title: Director of Engineering Mobile Development
+Location: United States
+Job Objective: Lead the design and implementation of Mobile development solutions, foster innovation, and improve efficiencies within the engineering team.
+Responsibilities/Key duties: Hands-on involvement with the team, effectively track and manage changing priorities, provide technical guidance, coordinate and align with local and remote engineering and design teams, produce high-quality code, and have a customer-focused mindset for delivering a great customer experience.
+Qualifications/Requirements/Experience: 15 years of software development experience with at least 5 years of focus in Mobile product development, at least 5 years of most recent experience managing engineering teams, solid knowledge and hands-on experience with Objective C, Swift, Java, and mobile applications, experience in agile collaboration models, and a minimum Bachelor's in Engineering is required.
+Preferred Skills/Nice to Have: Demonstrated ability to effectively set up and steer distributed developments, track record of hiring, grooming, and retaining top talent, strong verbal and written communication skills, and a desire to build the most intuitive and best-performing endpoint applications.
+About the company: Zscaler NASDAQ ZS accelerates digital transformation, protects customers from cyberattacks and data loss, and serves thousands of enterprise customers around the world. Zscaler's purpose-built security platform puts a company's defenses and controls where the connections occur—the internet—so that every connection is fast and secure, no matter how or where users connect or where their applications and workloads reside.
+Compensation and Benefits: The base salary range listed for this full-time position is $182,000 - $260,000 USD, excluding commission, bonus, equity, and benefits. Zscaler is proud to be an equal opportunity and affirmative action employer, celebrating diversity and committed to creating an inclusive environment for all employees.---
+
+
+2023-11-09 23:24:23,550 INFO: 
+
+USING: "gpt-4-1106-preview" FOR CLASSIFICATION 
+
+INPUT:
+TOKENS USED: 2652.
+PROMP COST: $0.027USD
+
+OUTPUT:
+TOKENS USED:1000
+COMPLETION COST: 0.03.
+
+TOTAL TOKENS USED:3652
+TOTAL COST FOR CLASSIFYING: $0.057 USD
+
+2023-11-09 23:24:23,550 INFO: 
+
+"gpt-4-1106-preview" finished classifying! all in: 26.35 seconds 
+
+
+2023-11-09 23:24:23,550 INFO: 
+{
+  "id": "<458073>",
+  "suitability": "Not Suitable",
+  "explanation": "The candidate lacks the required 5 years of experience in a data engineering role and specific technical skills such as Spark, PySpark, and Glue."
+}
+  
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+2023-11-09 23:24:23,550 INFO: 
+Response is a valid JSON object. Continuing...
+
+2023-11-09 23:24:23,550 INFO: 
+Results of iteration number 0:
+{'id': '<458073>', 'suitability': 'Not Suitable', 'explanation': 'The candidate lacks the required 5 years of experience in a data engineering role and specific technical skills such as Spark, PySpark, and Glue.'}
+
+2023-11-09 23:25:50,358 INFO: 
+
+Starting main().
+
+Arguments.
+user_id: 40.
+user_country_1: United States. user_country_2: Anywhere
+num_suitable_jobs: 3
+
+2023-11-09 23:25:52,326 INFO: 
+Incremental values:
+
+Starting on row number 0.
+Stopping on row number 5.
+Total number of rows from the df: 12
+
+2023-11-09 23:25:55,485 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-09 23:25:55,736 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-09 23:25:56,211 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-09 23:25:56,619 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-09 23:25:56,810 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-09 23:25:57,021 INFO: 
+Total cost for summarising: $0.01 USD
+
+2023-11-09 23:25:57,021 INFO: 
+
+Elapsed time in async_format_top_jobs_summarize(). 
+All matching jobs summarised in: 4.69 seconds
+
+2023-11-09 23:26:24,984 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-09 23:26:24,987 INFO: 
+
+
+You are a job recruiter for a large recruitment agency./
+You will be provided with a candidate's CV./
+The CV will be delimited with #### characters./
+You will also be provided with the Job IDs (delimited by angle brackets) /
+and corresponding descriptions (delimited by triple dashes)/
+for the available job openings./
+
+Perform the following steps:/
+
+Step 1 - Classify the provided CV into a suitability category for each job opening./
+Step 2 - For each ID briefly explain in one sentence your reasoning behind the chosen suitability category./
+Step 3 - Only provide your output in json format with the keys: id, suitability and explanation./
+
+Do not classify a CV into a suitability category until you have classify the CV yourself.
+
+Suitability categories: Highly Suitable, Moderately Suitable, Potentially Suitable, Marginally Suitable and Not Suitable./
+
+Highly Suitable: CVs in this category closely align with the job opening, demonstrating extensive relevant experience, skills, and qualifications. The candidate possesses all or most of the necessary requirements and is an excellent fit for the role./
+Moderately Suitable: CVs falling into this category show a reasonable match to the job opening. The candidate possesses some relevant experience, skills, and qualifications that align with the role, but there may be minor gaps or areas for improvement. With some additional training or development, they could become an effective candidate./
+Potentially Suitable: CVs in this category exhibit potential and may possess transferable skills or experience that could be valuable for the job opening. Although they may not meet all the specific requirements, their overall profile suggests that they could excel with the right support and training./
+Marginally Suitable: CVs falling into this category show limited alignment with the job opening. The candidate possesses a few relevant skills or experience, but there are significant gaps or deficiencies in their qualifications. They may require substantial training or experience to meet the requirements of the role./
+Not Suitable: CVs in this category do not match the requirements and qualifications of the job opening. The candidate lacks the necessary skills, experience, or qualifications, making them unsuitable for the role./
+#### Qualifications:
+- LLB Law from the University of Bristol (2022 - present)
+- Member of the Honours Program at UDLAP, researching FinTech, Financial Inclusion, Blockchain, Distributed Ledger Technologies, Cryptocurrencies, and Smart Contracts
+- TOEFL® iBT score of 107 out of 120
+
+Previous job titles:
+- Data Analyst at Tata Consultancy Services México (June 2022 – September 2022)
+- Legal Assistant at BLACKSHIIP Venture Capital (May 2022 – July 2022)
+- Data Analyst Jr. at AMATL GRÁFICOS (January 2020 – May 2022)
+- Mathematics Instructor at ALOHA Mental Arithmetic (December 2019 – January 2020)
+- Special Needs Counsellor at Camp Merrywood (O)
+- Special Needs Counsellor at Camp Merrywood (Ontario, Canada) (May 2019 - August 2019)
+- Special Needs Counsellor at YMCA Camp Independence (Chicago, USA) (June 2018 - August 2018)
+- Coordinator of Volunteers at NAHUI OLLIN (November 2017 - May 2019)
+
+Responsibilities/Key Duties:
+- Cleansed, interpreted, and analyzed data with Python and SQL Server to produce visual reports using Power BI
+- Proofread, drafted, and simplified legal documents such as Memorandums of Understanding, Terms & Conditions, Data Processing Agreements, Privacy Policies, etc.
+- Developed and introduced A/B testing to make data-backed decisions and achieve increased Net Profit Margin
+- Taught mental arithmetic to students and trained gifted children for national competitions
+- Led and assisted individuals with physical and mental disabilities in camp settings
+- Coordinated and supervised volunteers for an organization, increasing the number of volunteers by 400%
+
+Skills:
+- Written and verbal communication skills
+- Teamwork and ability to work under pressure
+- Attention to detail and judgment
+- Leadership and people skills
+- Python, SQL Server, MySQL/PostgreSQL, Tableau, Power BI, Bash/Command Line, Git & GitHub, Office 365, Machine Learning, Probabilities & Statistics
+
+Other Achievements:
+- Published paper on Smart Legal Contracts: From Theory to Reality
+- Participated in the IDEAS Summer Program on Intelligence, Data, Ethics, and Society at the University of California, San Diego. 
+
+####
+
+
+
+ Available job openings:
+
+
+
+ID:<458073>
+Job Description:---Title: Senior Data Engineer
+Location: United States
+Job Objective: As the first Data Engineer to join the Analytics Team, you will be collaborating with stakeholders across the company to design, build, and implement data pipelines and models that enable the next generation of technology to be deployed around the world.
+Responsibilities/Key duties: Lead the design and roadmap for the data platform infrastructure, partner with operations, product, and engineering to advocate best practices, and own the ingest and egress frameworks for data pipelines.
+Qualifications/Requirements/Experience: 5 years of experience in a data engineering role, proficiency in Python or another object-oriented language, experience with Spark, PySpark, Glue, SQL, dbt, Redshift, AWS, Azure, or GCP security ecosystem, and knowledge of data visualization tools such as Tableau.
+Preferred Skills/Nice to Have: Empathy, motivation by the mission, and understanding of security best practices in engineering.
+About the company: Anduril Industries is a defense technology company focused on transforming US and allied military capabilities with advanced technology, powered by Lattice OS, an AI-powered operating system.
+Compensation and Benefits: The salary range for this role is an estimate based on a wide range of compensation factors, inclusive of base salary only. Additionally, Anduril offers top-tier benefits including comprehensive medical, dental, and vision plans, employee life and disability, mental health, family planning benefits, fully paid medical leave, paid company holidays, paid time off, and a professional development stipend.---
+
+ID:<458066>
+Job Description:---Title: Lead Information Security
+Location: United States
+Job Objective: Axoni is seeking talented professionals to be part of the once-in-a-career opportunity to drive changes in global capital markets. 
+Responsibilities/Key duties: Providing leadership guidance and training to information systems security personnel, managing security audits and vulnerability assessments, directing responses to network or system intrusions, reviewing, implementing, updating, and documenting company-wide information security policies and procedures, ensuring fulfillment of legal and contractual information security and privacy mandates.
+Qualifications/Requirements/Experience: 5 years of professional Information Security experience, 3 years of management experience, strong understanding of software system network and cloud security, experience with security standards and controls such as SOC2, ISO27K, PCI DSS, NIST, and/or CIS, experience with Linux and AWS, CISSP certification is a big plus.
+Preferred Skills/Nice to Have: Experience with other operating systems and public clouds.
+About the company: Axoni is building the next generation of capital markets technology, used by leading banks, asset managers, hedge funds, and infrastructure providers. The company is focused on building products that will change and improve how clients and the markets interact, with a culture where the team feels valued and everyone is given an opportunity to grow and succeed.
+Compensation and Benefits: Not provided in the job opening.---
+
+ID:<458082>
+Job Description:---Title: Staff Autonomy Engineer
+Location: United States
+Job Objective: The job objective is to join the team at Wisk to work on the integration of various perception sensors and associated processing software for the Wisk Gen 6 aircraft, specifically within the Conflict Detection and Resolution (CDR) team.
+Responsibilities/Key duties: The responsibilities include developing and certifying conflict detection and resolution functionality, integrating multiple sensing modalities to prevent collisions, developing tracking and estimation algorithms, and testing software in flight.
+Qualifications/Requirements/Experience: The candidate should have at least 5 years of experience in developing highly automated vehicles or perception systems, a BS in related engineering fields, and a solid foundation in physics, mathematics, probability, and statistics. Experience in machine learning, machine vision, state estimation, and sensor fusion concepts is preferred.
+Preferred Skills/Nice to Have: Desired skills include experience with real-time operating systems, MATLAB/Simulink Model-Based Design, Agile software development, flight test operations, and flight simulators.
+About the company: Wisk is a passionate team working towards a sustainable future, solving high-impact problems in urban mobility through safe all-electric autonomous flight. They offer a comprehensive benefits package and a variety of perks.
+Compensation and Benefits: The company offers a competitive base salary, annual bonus, long-term incentive, 401K, health benefits, and additional perks such as free catered lunches, flight lessons, wellness allowances, and more.
+
+This information has been extracted from the job opening provided.---
+
+ID:<458072>
+Job Description:---Title: Staff Software Engineer-ZDX
+Location: United States
+Job Objective: The job objective is to participate in all phases of the product development cycle, from definition, design, through implementation and test, and to work on design and code components of a large-scale distributed system with a focus on high performance and scalability.
+Responsibilities/Key duties: Responsibilities include developing functional specifications, assessing task requirements and scheduling, participating in the development, debugging, and support, troubleshooting issues, and displaying accountability and ownership of assigned areas.
+Qualifications/Requirements/Experience: 8 years of programming expertise on C, strong knowledge of Algorithms and Data Structures, experience in Datapath Networking, solid understanding of TCPIP protocol stack, http, TLS, PKI, and other related protocols and products, and experience developing large maintainable software product architectures.
+Preferred Skills/Nice to Have: Knowledge of VPN, Load balancers, IPS/IDS, Routers, and Firewall is a plus.
+About the company: Zscaler NASDAQ ZS accelerates digital transformation, protects customers from cyberattacks and data loss, and serves thousands of enterprise customers around the world. Zscaler's purpose-built security platform puts a company's defenses and controls where the connections occur—the internet—so that every connection is fast and secure, no matter how or where users connect or where their applications and workloads reside.
+Compensation and Benefits: The base salary range for this full-time position is $129,500 - $172,000 USD, excluding commission, bonus, equity, and benefits. Zscaler is committed to providing reasonable support in recruiting processes for candidates who require accommodations or adjustments. Zscaler is an equal opportunity and affirmative action employer, celebrating diversity and creating an inclusive environment for all employees.---
+
+ID:<458063>
+Job Description:---Title: Director of Engineering Mobile Development
+Location: United States
+Job Objective: The job objective is to lead the design and implementation of Mobile development solutions, foster innovation, improve efficiencies, and deliver a product centered around a great customer experience.
+Responsibilities/Key duties: The responsibilities include hands-on involvement with the team, supporting the Product Owner, providing technical guidance, coordinating with engineering and design teams, producing high-quality code, leading and coordinating efforts on code reviews, and mentoring engineers.
+Qualifications/Requirements/Experience: The qualifications and requirements include 15 years of software development experience with at least 5 years of focus in Mobile product development, at least 5 years of most recent experience managing engineering teams, solid knowledge and hands-on experience with Objective C, Swift, Java, and mobile applications, experience in agile collaboration models, and a minimum Bachelor's in Engineering.
+Preferred Skills/Nice to Have: The preferred skills include a track record of hiring, grooming, and retaining top talent, strong verbal and written communication skills, and a desire to build the most intuitive and best-performing endpoint applications.
+About the company: Zscaler is a cloud-native platform that protects customers from cyberattacks and data loss by securely connecting users, devices, and applications in any location. The company was founded in 2007 with a mission to make the cloud a safe place to do business and a more enjoyable experience for enterprise users.
+Compensation and Benefits: The base salary range for this full-time position is $182,000 - $260,000 USD, excluding commission, bonus, equity, and benefits. Zscaler is an equal opportunity and affirmative action employer, committed to creating an inclusive environment for all employees.---
+
+
+2023-11-09 23:26:24,987 INFO: 
+
+USING: "gpt-4-1106-preview" FOR CLASSIFICATION 
+
+INPUT:
+TOKENS USED: 2582.
+PROMP COST: $0.026USD
+
+OUTPUT:
+TOKENS USED:1000
+COMPLETION COST: 0.03.
+
+TOTAL TOKENS USED:3582
+TOTAL COST FOR CLASSIFYING: $0.056 USD
+
+2023-11-09 23:26:24,987 INFO: 
+
+"gpt-4-1106-preview" finished classifying! all in: 27.96 seconds 
+
+
+2023-11-09 23:26:24,987 INFO: 
+{
+  "id": "<458073>",
+  "suitability": "Moderately Suitable",
+  "explanation": "The candidate has experience as a Data Analyst and is familiar with Python, SQL, and data visualization tools like Power BI, which aligns with the requirements for a Senior Data Engineer, but lacks the 5 years of specific data engineering experience and familiarity with some of the listed technologies."
+}
+  
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+
+
+ 	
+
+2023-11-09 23:26:24,987 INFO: 
+Response is a valid JSON object. Continuing...
+
+2023-11-09 23:26:24,987 INFO: 
+Results of iteration number 0:
+{'id': '<458073>', 'suitability': 'Moderately Suitable', 'explanation': 'The candidate has experience as a Data Analyst and is familiar with Python, SQL, and data visualization tools like Power BI, which aligns with the requirements for a Senior Data Engineer, but lacks the 5 years of specific data engineering experience and familiarity with some of the listed technologies.'}
+
+2023-11-10 00:19:59,269 INFO: 
+
+Starting main().
+
+Arguments.
+user_id: 40.
+user_country_1: United States. user_country_2: Anywhere
+num_suitable_jobs: 3
+
+2023-11-10 00:20:01,689 INFO: 
+Incremental values:
+
+Starting on row number 0.
+Stopping on row number 5.
+Total number of rows from the df: 12
+
+2023-11-10 00:20:05,428 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:20:05,911 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:20:06,508 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:20:07,123 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:20:07,854 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:20:08,067 INFO: 
+Total cost for summarising: $0.01 USD
+
+2023-11-10 00:20:08,067 INFO: 
+
+Elapsed time in async_format_top_jobs_summarize(). 
+All matching jobs summarised in: 6.37 seconds
+
+2023-11-10 00:20:34,477 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:20:34,488 INFO: 
+
+
+Take a deep breath and work on this problem step-by-step.
+
+
+
+You are the world's best job recruiter.
+
+Your exceptional ability to identify talent is unparalleled, and you have a keen eye for matching candidates with the perfect job roles.
+
+You understand the nuances of various industries and the specific skills they require.
+
+Your reputation precedes you, and both companies and candidates trust your judgment implicitly.
+
+You are not just a recruiter; you are a career matchmaker, creating successful professional relationships that last.
+
+
+
+You'll receive:
+
+
+
+1. A candidate's CV, delimited by #### characters.
+
+2. Job IDs, delimited by <> characters.
+
+3. Corresponding job descriptions, delimited by --- characters.
+
+
+Perform the following steps:
+
+
+
+Step 1 - Classify the provided CV into a suitability category for each job opening.
+
+Step 2 - For each ID briefly explain in one sentence your reasoning behind the chosen suitability category.
+
+Step 3 - Only provide your output in json format with the keys: id, suitability and explanation.
+
+
+
+Do not classify a CV into a suitability category until you have classify the CV yourself.
+
+
+
+Suitability categories: Highly Suitable, Moderately Suitable, Potentially Suitable, Marginally Suitable and Not Suitable.
+
+
+
+Highly Suitable: CVs in this category closely align with the job opening, demonstrating extensive relevant experience, skills, and qualifications. The candidate possesses all or most of the necessary requirements and is an excellent fit for the role.
+
+Moderately Suitable: CVs falling into this category show a reasonable match to the job opening. The candidate possesses some relevant experience, skills, and qualifications that align with the role, but there may be minor gaps or areas for improvement. With some additional training or development, they could become an effective candidate.
+
+Potentially Suitable: CVs in this category exhibit potential and may possess transferable skills or experience that could be valuable for the job opening. Although they may not meet all the specific requirements, their overall profile suggests that they could excel with the right support and training.
+
+Marginally Suitable: CVs falling into this category show limited alignment with the job opening. The candidate possesses a few relevant skills or experience, but there are significant gaps or deficiencies in their qualifications. They may require substantial training or experience to meet the requirements of the role.
+
+Not Suitable: CVs in this category do not match the requirements and qualifications of the job opening. The candidate lacks the necessary skills, experience, or qualifications, making them unsuitable for the role.
+
+
+
+
+#### Qualifications:
+- LLB Law from the University of Bristol (2022 - present)
+- Member of the Honours Program at UDLAP, researching FinTech, Financial Inclusion, Blockchain, Distributed Ledger Technologies, Cryptocurrencies, and Smart Contracts
+- TOEFL® iBT score of 107 out of 120
+
+Previous job titles:
+- Data Analyst at Tata Consultancy Services México (June 2022 – September 2022)
+- Legal Assistant at BLACKSHIIP Venture Capital (May 2022 – July 2022)
+- Data Analyst Jr. at AMATL GRÁFICOS (January 2020 – May 2022)
+- Mathematics Instructor at ALOHA Mental Arithmetic (December 2019 – January 2020)
+- Special Needs Counsellor at Camp Merrywood (O)
+- Special Needs Counsellor at Camp Merrywood (Ontario, Canada) (May 2019 - August 2019)
+- Special Needs Counsellor at YMCA Camp Independence (Chicago, USA) (June 2018 - August 2018)
+- Coordinator of Volunteers at NAHUI OLLIN (November 2017 - May 2019)
+
+Responsibilities/Key Duties:
+- Cleansed, interpreted, and analyzed data with Python and SQL Server to produce visual reports using Power BI
+- Proofread, drafted, and simplified legal documents such as Memorandums of Understanding, Terms & Conditions, Data Processing Agreements, Privacy Policies, etc.
+- Developed and introduced A/B testing to make data-backed decisions and achieve increased Net Profit Margin
+- Taught mental arithmetic to students and trained gifted children for national competitions
+- Led and assisted individuals with physical and mental disabilities in camp settings
+- Coordinated and supervised volunteers for an organization, increasing the number of volunteers by 400%
+
+Skills:
+- Written and verbal communication skills
+- Teamwork and ability to work under pressure
+- Attention to detail and judgment
+- Leadership and people skills
+- Python, SQL Server, MySQL/PostgreSQL, Tableau, Power BI, Bash/Command Line, Git & GitHub, Office 365, Machine Learning, Probabilities & Statistics
+
+Other Achievements:
+- Published paper on Smart Legal Contracts: From Theory to Reality
+- Participated in the IDEAS Summer Program on Intelligence, Data, Ethics, and Society at the University of California, San Diego. 
+
+####
+
+
+
+Available job openings:
+
+
+
+<ID:458073>
+---Job Description: Title: Senior Data Engineer
+
+Location: United States
+
+Job Objective: The job objective is to collaborate with stakeholders across the company to design, build, and implement data pipelines and models that enable the next generation of technology to be deployed around the world.
+
+Responsibilities/Key duties: Lead the design and roadmap for the data platform infrastructure, partner with operations, product, and engineering to advocate best practices, own the ingest and egress frameworks for data pipelines, and stitch together various data sources to produce valuable data products that drive the business.
+
+Qualifications/Requirements/Experience: 5 years of experience in a data engineering role, proficiency in Python or another object-oriented language, experience with Spark, PySpark, Glue, SQL, dbt, Redshift, AWS, Azure, or GCP security ecosystem, containerization, and associated tooling, knowledge of data visualization tools such as Tableau, and understanding of engineering with security's best practices in mind.
+
+Preferred Skills/Nice to Have: Motivated by the mission, empathetic, energized by business impact, and a self-starter.
+
+About the company: Anduril Industries is a defense technology company with a mission to transform US and allied military capabilities with advanced technology. They are committed to bringing cutting-edge autonomy, AI, computer vision, sensor fusion, and networking technology to the military in months, not years.
+
+Compensation and Benefits: The salary range for the role is competitive and includes equity grants. Additionally, Anduril offers comprehensive medical, dental, and vision plans, employee life and disability benefits, mental health and family planning benefits, fully paid medical leave, paid company holidays, paid time off, and a professional development stipend. Anduril is an equal opportunity employer committed to creating a diverse and inclusive workplace.---
+
+<ID:458066>
+---Job Description: Title: Lead Information Security
+
+Location: United States
+
+Job Objective: Axoni is seeking talented, motivated professionals to be part of the once-in-a-career opportunity to drive changes in global capital markets. The company is building a culture where the team feels valued and has opportunities to grow and succeed.
+
+Responsibilities/Key duties: Providing leadership guidance and training to information systems security personnel, managing security audits and vulnerability assessments, directing responses to network or system intrusions, reviewing, implementing, updating, and documenting company-wide information security policies and procedures, ensuring fulfillment of legal and contractual information security and privacy mandates.
+
+Qualifications/Requirements/Experience: Strong technical background in systems and network security, excellent interpersonal and leadership abilities, superior analytical and problem-solving skills, exceptional written and verbal communication skills, 5 years of professional Information Security experience, 3 years of management experience, experience with security standards and controls such as SOC2, ISO27K, PCI DSS, NIST, and/or CIS, experience with Linux and AWS, CISSP certification is a big plus.
+
+Preferred Skills/Nice to Have: Experience with other operating systems and public clouds.
+
+About the company: Axoni is building the next generation of capital markets technology, with solutions used by leading banks, asset managers, hedge funds, and infrastructure providers. The company is focused on building products that will change and improve how clients and the markets interact, and is committed to creating a culture where the team feels valued and has opportunities to grow and succeed.
+
+Compensation and Benefits: Not provided in the job opening.---
+
+<ID:458082>
+---Job Description: Title: Staff Autonomy Engineer
+
+Location: United States
+
+Job Objective: The job objective is to join the team at Wisk and work on the integration of various perception sensors and associated processing software for the Wisk Gen 6 aircraft, specifically within the Conflict Detection and Resolution (CDR) team.
+
+Responsibilities/Key duties: The responsibilities include developing and certifying conflict detection and resolution functionality, integrating multiple sensing modalities to prevent collisions, developing tracking and estimation algorithms, and testing the software in flight.
+
+Qualifications/Requirements/Experience: The candidate should have at least 5 years of experience in developing highly automated vehicles or perception systems, a BS in related engineering fields, and a solid foundation in physics, mathematics, probability, and statistics. Experience in machine learning, machine vision, state estimation, and sensor fusion concepts is preferred.
+
+Preferred Skills/Nice to Have: Desired skills include experience with real-time operating systems, MATLAB/Simulink Model-Based Design, Agile software development, flight test operations, and flight simulators.
+
+About the company: Wisk is a passionate team working towards a sustainable future, solving high-impact problems in urban mobility through safe all-electric autonomous flight. They offer a comprehensive benefits package and a variety of perks such as free catered lunches, flight lessons, wellness allowances, and more.
+
+Compensation and Benefits: The company offers a competitive base salary, annual bonus, long-term incentive, 401K, health benefits, and additional perks such as alternative work schedule, flexible time off, commuter assistance, and education assistance.
+
+This information can be used to effectively match potential candidates for the position.---
+
+<ID:458072>
+---Job Description: Title: Staff Software Engineer-ZDX
+
+Location: United States
+
+Job Objective: The job objective is to participate in all phases of the product development cycle, from definition, design, through implementation and test, and to work on design and code components of a large-scale distributed system with a focus on high performance and scalability.
+
+Responsibilities/Key duties: The responsibilities include developing functional specifications, assessing task requirements and scheduling, participating in the development, debugging, and support, troubleshooting issues, and displaying accountability and ownership of assigned areas.
+
+Qualifications/Requirements/Experience: The qualifications include 8 years of programming expertise on C, strong knowledge of Algorithms and Data Structures, experience in Datapath Networking, solid understanding of TCPIP protocol stack, http, TLS, PKI, and other related protocols and products, and experience developing large maintainable software product architectures.
+
+Preferred Skills/Nice to Have: Knowledge of VPN, Load balancers, IPS/IDS, Routers, and Firewall is a plus.
+
+About the company: Zscaler is a company that accelerates digital transformation, protects customers from cyberattacks and data loss, and serves thousands of enterprise customers around the world. They aim to make the cloud a safe place to do business and a more enjoyable experience for enterprise users.
+
+Compensation and Benefits: The base salary range for this full-time position is $129,500 - $172,000 USD, excluding commission, bonus, equity, and benefits. Zscaler is committed to providing reasonable support in recruiting processes for candidates who require accommodations or adjustments. Zscaler is an equal opportunity and affirmative action employer, celebrating diversity and creating an inclusive environment for all employees.---
+
+<ID:458063>
+---Job Description: Title: Director of Engineering Mobile Development
+
+Location: United States
+
+Job Objective: The job objective is to lead the design and implementation of Mobile development solutions, foster innovation, improve efficiencies, and deliver a product centered around a great customer experience.
+
+Responsibilities/Key duties: The responsibilities include hands-on involvement with the team, effectively tracking and managing changing priorities, providing technical guidance, coordinating with engineering and design teams, producing high-quality code, and leading and coordinating efforts on code reviews, bug triage, and build processes.
+
+Qualifications/Requirements/Experience: The qualifications include 15 years of software development experience with at least 5 years of focus in Mobile product development, at least 5 years of most recent experience managing engineering teams, solid knowledge and hands-on experience with Objective C, Swift, Java, and mobile applications, experience in agile collaboration models, and a minimum Bachelor's in Engineering.
+
+Preferred Skills/Nice to Have: The preferred skills include a track record of hiring, grooming, and retaining top talent, strong verbal and written communication skills, and a desire to build the most intuitive and best-performing endpoint applications.
+
+About the company: Zscaler is a cloud-native platform that protects customers from cyberattacks and data loss by securely connecting users, devices, and applications in any location. The company was founded in 2007 with a mission to make the cloud a safe place to do business and a more enjoyable experience for enterprise users.
+
+Compensation and Benefits: The base salary range for this full-time position is $182,000 - $260,000 USD, excluding commission, bonus, equity, and benefits. Zscaler is an equal opportunity and affirmative action employer, committed to creating an inclusive environment for all employees.---
+
+
+2023-11-10 00:20:34,489 INFO: 
+
+USING: "gpt-4-1106-preview" FOR CLASSIFICATION 
+
+INPUT:
+TOKENS USED: 2735.
+PROMP COST: $0.027USD
+
+OUTPUT:
+TOKENS USED:1000
+COMPLETION COST: 0.03.
+
+TOTAL TOKENS USED:3735
+TOTAL COST FOR CLASSIFYING: $0.057 USD
+
+2023-11-10 00:20:34,489 INFO: 
+
+"gpt-4-1106-preview" finished classifying! all in: 26.42 seconds 
+
+
+2023-11-10 00:20:34,489 INFO: 
+{
+    "id": "458073",
+    "suitability": "Marginally Suitable",
+    "explanation": "The candidate has experience as a Data Analyst and skills in Python, SQL, and data visualization tools, which align with some of the job requirements, but lacks the 5 years of data engineering experience and specific knowledge of Spark, Glue, and cloud platforms required for a Senior Data Engineer role."
+}
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+
+
+  
+ 	
+
+2023-11-10 00:20:34,489 INFO: 
+Response is a valid JSON object. Continuing...
+
+2023-11-10 00:20:34,490 INFO: 
+Results of iteration number 0:
+{'id': '458073', 'suitability': 'Marginally Suitable', 'explanation': 'The candidate has experience as a Data Analyst and skills in Python, SQL, and data visualization tools, which align with some of the job requirements, but lacks the 5 years of data engineering experience and specific knowledge of Spark, Glue, and cloud platforms required for a Senior Data Engineer role.'}
+
+2023-11-10 00:22:46,088 INFO: 
+
+Starting main().
+
+Arguments.
+user_id: 40.
+user_country_1: United States. user_country_2: Anywhere
+num_suitable_jobs: 2
+
+2023-11-10 00:22:48,414 INFO: 
+Incremental values:
+
+Starting on row number 0.
+Stopping on row number 5.
+Total number of rows from the df: 12
+
+2023-11-10 00:22:52,092 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:22:52,205 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:22:52,343 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:22:52,514 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:22:53,627 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:22:53,854 INFO: 
+Total cost for summarising: $0.01 USD
+
+2023-11-10 00:22:53,854 INFO: 
+
+Elapsed time in async_format_top_jobs_summarize(). 
+All matching jobs summarised in: 5.44 seconds
+
+2023-11-10 00:23:25,366 INFO: 
+
+Starting main().
+
+Arguments.
+user_id: 40.
+user_country_1: United States. user_country_2: Anywhere
+num_suitable_jobs: 2
+
+2023-11-10 00:23:27,253 INFO: 
+Incremental values:
+
+Starting on row number 0.
+Stopping on row number 5.
+Total number of rows from the df: 12
+
+2023-11-10 00:23:31,515 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:23:31,824 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:23:32,257 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:23:32,553 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:23:32,566 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:23:32,759 INFO: 
+Total cost for summarising: $0.01 USD
+
+2023-11-10 00:23:32,759 INFO: 
+
+Elapsed time in async_format_top_jobs_summarize(). 
+All matching jobs summarised in: 5.50 seconds
+
+2023-11-10 00:24:09,823 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:24:09,836 INFO: 
+
+
+Take a deep breath and work on this problem step-by-step.
+
+
+
+You are the world's best job recruiter.
+
+Your exceptional ability to identify talent is unparalleled, and you have a keen eye for matching candidates with the perfect job roles.
+
+You understand the nuances of various industries and the specific skills they require.
+
+Your reputation precedes you, and both companies and candidates trust your judgment implicitly.
+
+You are not just a recruiter; you are a career matchmaker, creating successful professional relationships that last.
+
+
+
+You'll receive:
+
+
+
+1. A candidate's CV, delimited by #### characters.
+
+2. Job IDs, delimited by <> characters.
+
+3. Corresponding job descriptions, delimited by --- characters.
+
+
+Perform the following steps:
+
+
+
+Step 1 - Classify the provided CV into a suitability category for each job opening.
+
+Step 2 - For each ID briefly explain in one sentence your reasoning behind the chosen suitability category.
+
+Step 3 - Only provide your output in json format with the keys: id, suitability and explanation.
+
+
+
+Do not classify a CV into a suitability category until you have classify the CV yourself.
+
+
+
+Suitability categories: Highly Suitable, Moderately Suitable, Potentially Suitable, Marginally Suitable and Not Suitable.
+
+
+
+Highly Suitable: CVs in this category closely align with the job opening, demonstrating extensive relevant experience, skills, and qualifications. The candidate possesses all or most of the necessary requirements and is an excellent fit for the role.
+
+Moderately Suitable: CVs falling into this category show a reasonable match to the job opening. The candidate possesses some relevant experience, skills, and qualifications that align with the role, but there may be minor gaps or areas for improvement. With some additional training or development, they could become an effective candidate.
+
+Potentially Suitable: CVs in this category exhibit potential and may possess transferable skills or experience that could be valuable for the job opening. Although they may not meet all the specific requirements, their overall profile suggests that they could excel with the right support and training.
+
+Marginally Suitable: CVs falling into this category show limited alignment with the job opening. The candidate possesses a few relevant skills or experience, but there are significant gaps or deficiencies in their qualifications. They may require substantial training or experience to meet the requirements of the role.
+
+Not Suitable: CVs in this category do not match the requirements and qualifications of the job opening. The candidate lacks the necessary skills, experience, or qualifications, making them unsuitable for the role.
+
+
+
+
+#### Qualifications:
+- LLB Law from the University of Bristol (2022 - present)
+- Member of the Honours Program at UDLAP, researching FinTech, Financial Inclusion, Blockchain, Distributed Ledger Technologies, Cryptocurrencies, and Smart Contracts
+- TOEFL® iBT score of 107 out of 120
+
+Previous job titles:
+- Data Analyst at Tata Consultancy Services México (June 2022 – September 2022)
+- Legal Assistant at BLACKSHIIP Venture Capital (May 2022 – July 2022)
+- Data Analyst Jr. at AMATL GRÁFICOS (January 2020 – May 2022)
+- Mathematics Instructor at ALOHA Mental Arithmetic (December 2019 – January 2020)
+- Special Needs Counsellor at Camp Merrywood (O)
+- Special Needs Counsellor at Camp Merrywood (Ontario, Canada) (May 2019 - August 2019)
+- Special Needs Counsellor at YMCA Camp Independence (Chicago, USA) (June 2018 - August 2018)
+- Coordinator of Volunteers at NAHUI OLLIN (November 2017 - May 2019)
+
+Responsibilities/Key Duties:
+- Cleansed, interpreted, and analyzed data with Python and SQL Server to produce visual reports using Power BI
+- Proofread, drafted, and simplified legal documents such as Memorandums of Understanding, Terms & Conditions, Data Processing Agreements, Privacy Policies, etc.
+- Developed and introduced A/B testing to make data-backed decisions and achieve increased Net Profit Margin
+- Taught mental arithmetic to students and trained gifted children for national competitions
+- Led and assisted individuals with physical and mental disabilities in camp settings
+- Coordinated and supervised volunteers for an organization, increasing the number of volunteers by 400%
+
+Skills:
+- Written and verbal communication skills
+- Teamwork and ability to work under pressure
+- Attention to detail and judgment
+- Leadership and people skills
+- Python, SQL Server, MySQL/PostgreSQL, Tableau, Power BI, Bash/Command Line, Git & GitHub, Office 365, Machine Learning, Probabilities & Statistics
+
+Other Achievements:
+- Published paper on Smart Legal Contracts: From Theory to Reality
+- Participated in the IDEAS Summer Program on Intelligence, Data, Ethics, and Society at the University of California, San Diego. 
+
+####
+
+
+
+Available job openings:
+
+
+
+<ID:458073>
+---Job Description: Title: Senior Data Engineer
+
+Location: United States
+
+Job Objective: The job objective is to collaborate with stakeholders across the company to design, build, and implement data pipelines and models that enable the next generation of technology to be deployed around the world.
+
+Responsibilities/Key duties: Lead the design and roadmap for the data platform infrastructure, partner with operations, product, and engineering to advocate best practices, own the ingest and egress frameworks for data pipelines, and stitch together various data sources to produce valuable data products that drive the business.
+
+Qualifications/Requirements/Experience: 5 years of experience in a data engineering role, proficiency in Python or another object-oriented language, experience with Spark, PySpark, Glue, SQL, dbt, Redshift, AWS, Azure, or GCP security ecosystem, containerization, and associated tooling, knowledge of data visualization tools, and understanding of engineering with security's best practices in mind.
+
+Preferred Skills/Nice to Have: Motivated by the mission, empathetic, energized by business impact, and a self-starter.
+
+About the company: Anduril Industries is a defense technology company with a mission to transform US and allied military capabilities with advanced technology. They are committed to bringing cutting-edge autonomy, AI, computer vision, sensor fusion, and networking technology to the military in months, not years.
+
+Compensation and Benefits: The salary range for the role is competitive and includes equity grants. Additionally, Anduril offers comprehensive medical, dental, and vision plans, employee life and disability benefits, mental health and family planning benefits, fully paid medical leave, paid company holidays, paid time off, and a professional development stipend. Anduril is an equal opportunity employer committed to creating a diverse and inclusive workplace.---
+
+<ID:458066>
+---Job Description: Title: Lead Information Security
+
+Location: United States
+
+Job Objective: Axoni is seeking talented professionals with a strong technical background in systems and network security, along with excellent interpersonal and leadership abilities, to provide leadership guidance and training to information systems security personnel, manage security audits and vulnerability assessments, and ensure fulfillment of legal and contractual information security and privacy mandates.
+
+Responsibilities/Key duties: Providing leadership guidance and training to information systems security personnel, managing security audits and vulnerability and threat assessments, and directing responses to network or system intrusions. Reviewing, implementing, updating, and documenting company-wide information security policies and procedures.
+
+Qualifications/Requirements/Experience: 5 years of professional Information Security experience, 3 years of management experience, strong understanding of software system network and cloud security, experience with security standards and controls such as SOC2, ISO27K, PCI DSS, NIST, and/or CIS, experience with Linux and AWS, CISSP certification is a big plus.
+
+Preferred Skills/Nice to Have: Experience with other operating systems and public clouds.
+
+About the company: Axoni is building the next generation of capital markets technology, with a diverse team focused on building products that will change and improve how clients and the markets interact. The company is committed to building a culture where the team feels valued and everyone is given an opportunity to grow and succeed.
+
+Compensation and Benefits: Not provided in the job opening.---
+
+<ID:458082>
+---Job Description: Title: Staff Autonomy Engineer
+
+Location: United States
+
+Job Objective: The job objective is to join the team at Wisk and work towards transforming the future of urban mobility through safe all-electric autonomous flight. The Autonomy Engineer will be responsible for successful integration of various perception sensors and associated processing software for the Wisk Gen 6 aircraft.
+
+Responsibilities/Key duties: The responsibilities include developing and certifying conflict detection and resolution functionality, integrating multiple sensing modalities to prevent collisions, developing tracking and estimation algorithms, and testing software in flight.
+
+Qualifications/Requirements/Experience: The candidate should have at least 5 years of experience in developing highly automated vehicles or perception systems, a BS in related engineering fields, and a solid foundation in physics, mathematics, probability, and statistics. Applied experience in machine learning and/or machine vision is preferred, along with coding experience in Python, Matlab, and C.
+
+Preferred Skills/Nice to Have: Desired skills include experience with real-time operating systems, MATLAB/Simulink Model-Based Design, Agile software development, flight test operations, and flight simulators.
+
+About the company: Wisk is a passionate team working towards a sustainable future, solving high-impact problems in urban mobility. They offer a comprehensive benefits package and a variety of perks such as free catered lunches, wellness allowances, and more.
+
+Compensation and Benefits: The company offers a competitive base salary, annual bonus, long-term incentive, 401K, health benefits, and additional perks such as flight lessons, employee referral bonus, and charitable giving match. The starting base salary for this role varies based on geographical location and relevant job-related experience.
+
+This information can be used to effectively match potential candidates for the position.---
+
+<ID:458072>
+---Job Description: Title: Staff Software Engineer-ZDX
+
+Location: United States
+
+Job Objective: The job objective is to participate in all phases of the product development cycle, including definition, design, implementation, and testing. The role also involves troubleshooting issues, working with Operations and Support, and displaying accountability and ownership of assigned areas.
+
+Responsibilities/Key duties: The responsibilities include developing functional specifications, assessing task requirements and scheduling, working on design and code components of a large-scale distributed system, and participating in the development, debugging, and support.
+
+Qualifications/Requirements/Experience: The qualifications include 8 years of programming expertise in C, strong knowledge of Algorithms and Data Structures, experience in Datapath Networking, solid understanding of TCPIP protocol stack, HTTP, TLS, PKI, DNS, DHCP, VPN, HA, routing and switching, strong software design profiling and verification skills, and experience developing large maintainable software product architectures.
+
+Preferred Skills/Nice to Have: Knowledge of VPN, Load balancers, IPS/IDS, Routers, and Firewall is a plus.
+
+About the company: Zscaler is a company that accelerates digital transformation and protects customers from cyberattacks and data loss by securely connecting users, devices, and applications in any location. The company's purpose-built security platform puts defenses and controls where the connections occur, ensuring fast and secure connections.
+
+Compensation and Benefits: The base salary range for this full-time position is $129,500 - $172,000 USD, excluding commission, bonus, equity, and benefits. Zscaler is committed to providing an inclusive environment for all employees and is an equal opportunity and affirmative action employer.---
+
+<ID:458063>
+---Job Description: Title: Director of Engineering Mobile Development
+
+Location: United States
+
+Job Objective: The job objective is to lead the design and implementation of Mobile development solutions, foster innovation, improve efficiencies, and produce high-quality code for a great customer experience.
+
+Responsibilities/Key duties: The responsibilities include hands-on involvement with the team, tracking and managing changing priorities, providing technical guidance, coordinating with engineering and design teams, participating in an iterative design/development process, and mentoring engineers.
+
+Qualifications/Requirements/Experience: The qualifications and requirements include 15 years of software development experience with a focus on Mobile product development, at least 5 years of experience managing engineering teams, solid knowledge and hands-on experience with Objective C, Swift, Java, and mobile applications, experience in agile collaboration models, and a minimum Bachelor's in Engineering.
+
+Preferred Skills/Nice to Have: The preferred skills include a track record of hiring, grooming, and retaining top talent, strong verbal and written communication skills, and a desire to build the most intuitive and best-performing endpoint applications.
+
+About the company: Zscaler is a cloud-native platform that protects customers from cyberattacks and data loss by securely connecting users, devices, and applications in any location. The company was founded in 2007 with a mission to make the cloud a safe place to do business and a more enjoyable experience for enterprise users.
+
+Compensation and Benefits: The base pay range for this full-time position is $182,000 - $260,000 USD, excluding commission, bonus, equity, and benefits. Zscaler is an equal opportunity and affirmative action employer, committed to creating an inclusive environment for all employees.---
+
+
+2023-11-10 00:24:09,836 INFO: 
+
+USING: "gpt-4" FOR CLASSIFICATION 
+
+INPUT:
+TOKENS USED: 2704.
+PROMP COST: $0.081USD
+
+OUTPUT:
+TOKENS USED:302
+COMPLETION COST: 0.018.
+
+TOTAL TOKENS USED:3006
+TOTAL COST FOR CLASSIFYING: $0.099 USD
+
+2023-11-10 00:24:09,836 INFO: 
+
+"gpt-4" finished classifying! all in: 37.07 seconds 
+
+
+2023-11-10 00:24:09,837 INFO: 
+{
+  "id": "458073",
+  "suitability": "Moderately Suitable",
+  "explanation": "The candidate has experience in data analysis and is proficient in Python and SQL Server, which aligns with the job's requirements. However, they lack the required 5 years of experience in a data engineering role."
+},
+{
+  "id": "458066",
+  "suitability": "Not Suitable",
+  "explanation": "The candidate does not have the required experience in information security or management, making them unsuitable for this role."
+},
+{
+  "id": "458082",
+  "suitability": "Potentially Suitable",
+  "explanation": "The candidate has a strong foundation in mathematics, probability, and statistics, and experience with Python, which could be valuable for this role. However, they lack direct experience in developing highly automated vehicles or perception systems."
+},
+{
+  "id": "458072",
+  "suitability": "Potentially Suitable",
+  "explanation": "The candidate has experience in data analysis and is proficient in Python, which could be valuable for this role. However, they lack the required 8 years of programming expertise in C and experience in Datapath Networking."
+},
+{
+  "id": "458063",
+  "suitability": "Not Suitable",
+  "explanation": "The candidate does not have the required experience in mobile product development or managing engineering teams, making them unsuitable for this role."
+}
+
+2023-11-10 00:24:09,837 WARNING: 
+JSON decoding error: Extra data: line 5 column 2 (char 294). Retrying async_classify_jobs_gpt_4()
+Traceback (most recent call last):
+  File "/Users/juanreyesgarcia/Library/CloudStorage/OneDrive-FundacionUniversidaddelasAmericasPuebla/DEVELOPER/PROJECTS/DJANGO_SANDBOX/mysite/DreamedJobAI/utils/main_utils.py", line 558, in whether_json_object
+    json.loads(gpt4_response)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 340, in decode
+    raise JSONDecodeError("Extra data", s, end)
+json.decoder.JSONDecodeError: Extra data: line 5 column 2 (char 294)
+2023-11-10 00:24:09,839 INFO: 
+Using "gpt-4-1106-preview" for loop number: 1...
+
+2023-11-10 00:24:25,688 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 00:24:25,697 INFO: 
+
+
+Take a deep breath and work on this problem step-by-step.
+
+
+
+You are the world's best job recruiter.
+
+Your exceptional ability to identify talent is unparalleled, and you have a keen eye for matching candidates with the perfect job roles.
+
+You understand the nuances of various industries and the specific skills they require.
+
+Your reputation precedes you, and both companies and candidates trust your judgment implicitly.
+
+You are not just a recruiter; you are a career matchmaker, creating successful professional relationships that last.
+
+
+
+You'll receive:
+
+
+
+1. A candidate's CV, delimited by #### characters.
+
+2. Job IDs, delimited by <> characters.
+
+3. Corresponding job descriptions, delimited by --- characters.
+
+
+Perform the following steps:
+
+
+
+Step 1 - Classify the provided CV into a suitability category for each job opening.
+
+Step 2 - For each ID briefly explain in one sentence your reasoning behind the chosen suitability category.
+
+Step 3 - Only provide your output in json format with the keys: id, suitability and explanation.
+
+
+
+Do not classify a CV into a suitability category until you have classify the CV yourself.
+
+
+
+Suitability categories: Highly Suitable, Moderately Suitable, Potentially Suitable, Marginally Suitable and Not Suitable.
+
+
+
+Highly Suitable: CVs in this category closely align with the job opening, demonstrating extensive relevant experience, skills, and qualifications. The candidate possesses all or most of the necessary requirements and is an excellent fit for the role.
+
+Moderately Suitable: CVs falling into this category show a reasonable match to the job opening. The candidate possesses some relevant experience, skills, and qualifications that align with the role, but there may be minor gaps or areas for improvement. With some additional training or development, they could become an effective candidate.
+
+Potentially Suitable: CVs in this category exhibit potential and may possess transferable skills or experience that could be valuable for the job opening. Although they may not meet all the specific requirements, their overall profile suggests that they could excel with the right support and training.
+
+Marginally Suitable: CVs falling into this category show limited alignment with the job opening. The candidate possesses a few relevant skills or experience, but there are significant gaps or deficiencies in their qualifications. They may require substantial training or experience to meet the requirements of the role.
+
+Not Suitable: CVs in this category do not match the requirements and qualifications of the job opening. The candidate lacks the necessary skills, experience, or qualifications, making them unsuitable for the role.
+
+
+
+
+#### Qualifications:
+- LLB Law from the University of Bristol (2022 - present)
+- Member of the Honours Program at UDLAP, researching FinTech, Financial Inclusion, Blockchain, Distributed Ledger Technologies, Cryptocurrencies, and Smart Contracts
+- TOEFL® iBT score of 107 out of 120
+
+Previous job titles:
+- Data Analyst at Tata Consultancy Services México (June 2022 – September 2022)
+- Legal Assistant at BLACKSHIIP Venture Capital (May 2022 – July 2022)
+- Data Analyst Jr. at AMATL GRÁFICOS (January 2020 – May 2022)
+- Mathematics Instructor at ALOHA Mental Arithmetic (December 2019 – January 2020)
+- Special Needs Counsellor at Camp Merrywood (O)
+- Special Needs Counsellor at Camp Merrywood (Ontario, Canada) (May 2019 - August 2019)
+- Special Needs Counsellor at YMCA Camp Independence (Chicago, USA) (June 2018 - August 2018)
+- Coordinator of Volunteers at NAHUI OLLIN (November 2017 - May 2019)
+
+Responsibilities/Key Duties:
+- Cleansed, interpreted, and analyzed data with Python and SQL Server to produce visual reports using Power BI
+- Proofread, drafted, and simplified legal documents such as Memorandums of Understanding, Terms & Conditions, Data Processing Agreements, Privacy Policies, etc.
+- Developed and introduced A/B testing to make data-backed decisions and achieve increased Net Profit Margin
+- Taught mental arithmetic to students and trained gifted children for national competitions
+- Led and assisted individuals with physical and mental disabilities in camp settings
+- Coordinated and supervised volunteers for an organization, increasing the number of volunteers by 400%
+
+Skills:
+- Written and verbal communication skills
+- Teamwork and ability to work under pressure
+- Attention to detail and judgment
+- Leadership and people skills
+- Python, SQL Server, MySQL/PostgreSQL, Tableau, Power BI, Bash/Command Line, Git & GitHub, Office 365, Machine Learning, Probabilities & Statistics
+
+Other Achievements:
+- Published paper on Smart Legal Contracts: From Theory to Reality
+- Participated in the IDEAS Summer Program on Intelligence, Data, Ethics, and Society at the University of California, San Diego. 
+
+####
+
+
+
+Available job openings:
+
+
+
+<ID:458073>
+---Job Description: Title: Senior Data Engineer
+
+Location: United States
+
+Job Objective: The job objective is to collaborate with stakeholders across the company to design, build, and implement data pipelines and models that enable the next generation of technology to be deployed around the world.
+
+Responsibilities/Key duties: Lead the design and roadmap for the data platform infrastructure, partner with operations, product, and engineering to advocate best practices, own the ingest and egress frameworks for data pipelines, and stitch together various data sources to produce valuable data products that drive the business.
+
+Qualifications/Requirements/Experience: 5 years of experience in a data engineering role, proficiency in Python or another object-oriented language, experience with Spark, PySpark, Glue, SQL, dbt, Redshift, AWS, Azure, or GCP security ecosystem, containerization, and associated tooling, knowledge of data visualization tools, and understanding of engineering with security's best practices in mind.
+
+Preferred Skills/Nice to Have: Motivated by the mission, empathetic, energized by business impact, and a self-starter.
+
+About the company: Anduril Industries is a defense technology company with a mission to transform US and allied military capabilities with advanced technology. They are committed to bringing cutting-edge autonomy, AI, computer vision, sensor fusion, and networking technology to the military in months, not years.
+
+Compensation and Benefits: The salary range for the role is competitive and includes equity grants. Additionally, Anduril offers comprehensive medical, dental, and vision plans, employee life and disability benefits, mental health and family planning benefits, fully paid medical leave, paid company holidays, paid time off, and a professional development stipend. Anduril is an equal opportunity employer committed to creating a diverse and inclusive workplace.---
+
+<ID:458066>
+---Job Description: Title: Lead Information Security
+
+Location: United States
+
+Job Objective: Axoni is seeking talented professionals with a strong technical background in systems and network security, along with excellent interpersonal and leadership abilities, to provide leadership guidance and training to information systems security personnel, manage security audits and vulnerability assessments, and ensure fulfillment of legal and contractual information security and privacy mandates.
+
+Responsibilities/Key duties: Providing leadership guidance and training to information systems security personnel, managing security audits and vulnerability and threat assessments, and directing responses to network or system intrusions. Reviewing, implementing, updating, and documenting company-wide information security policies and procedures.
+
+Qualifications/Requirements/Experience: 5 years of professional Information Security experience, 3 years of management experience, strong understanding of software system network and cloud security, experience with security standards and controls such as SOC2, ISO27K, PCI DSS, NIST, and/or CIS, experience with Linux and AWS, CISSP certification is a big plus.
+
+Preferred Skills/Nice to Have: Experience with other operating systems and public clouds.
+
+About the company: Axoni is building the next generation of capital markets technology, with a diverse team focused on building products that will change and improve how clients and the markets interact. The company is committed to building a culture where the team feels valued and everyone is given an opportunity to grow and succeed.
+
+Compensation and Benefits: Not provided in the job opening.---
+
+<ID:458082>
+---Job Description: Title: Staff Autonomy Engineer
+
+Location: United States
+
+Job Objective: The job objective is to join the team at Wisk and work towards transforming the future of urban mobility through safe all-electric autonomous flight. The Autonomy Engineer will be responsible for successful integration of various perception sensors and associated processing software for the Wisk Gen 6 aircraft.
+
+Responsibilities/Key duties: The responsibilities include developing and certifying conflict detection and resolution functionality, integrating multiple sensing modalities to prevent collisions, developing tracking and estimation algorithms, and testing software in flight.
+
+Qualifications/Requirements/Experience: The candidate should have at least 5 years of experience in developing highly automated vehicles or perception systems, a BS in related engineering fields, and a solid foundation in physics, mathematics, probability, and statistics. Applied experience in machine learning and/or machine vision is preferred, along with coding experience in Python, Matlab, and C.
+
+Preferred Skills/Nice to Have: Desired skills include experience with real-time operating systems, MATLAB/Simulink Model-Based Design, Agile software development, flight test operations, and flight simulators.
+
+About the company: Wisk is a passionate team working towards a sustainable future, solving high-impact problems in urban mobility. They offer a comprehensive benefits package and a variety of perks such as free catered lunches, wellness allowances, and more.
+
+Compensation and Benefits: The company offers a competitive base salary, annual bonus, long-term incentive, 401K, health benefits, and additional perks such as flight lessons, employee referral bonus, and charitable giving match. The starting base salary for this role varies based on geographical location and relevant job-related experience.
+
+This information can be used to effectively match potential candidates for the position.---
+
+<ID:458072>
+---Job Description: Title: Staff Software Engineer-ZDX
+
+Location: United States
+
+Job Objective: The job objective is to participate in all phases of the product development cycle, including definition, design, implementation, and testing. The role also involves troubleshooting issues, working with Operations and Support, and displaying accountability and ownership of assigned areas.
+
+Responsibilities/Key duties: The responsibilities include developing functional specifications, assessing task requirements and scheduling, working on design and code components of a large-scale distributed system, and participating in the development, debugging, and support.
+
+Qualifications/Requirements/Experience: The qualifications include 8 years of programming expertise in C, strong knowledge of Algorithms and Data Structures, experience in Datapath Networking, solid understanding of TCPIP protocol stack, HTTP, TLS, PKI, DNS, DHCP, VPN, HA, routing and switching, strong software design profiling and verification skills, and experience developing large maintainable software product architectures.
+
+Preferred Skills/Nice to Have: Knowledge of VPN, Load balancers, IPS/IDS, Routers, and Firewall is a plus.
+
+About the company: Zscaler is a company that accelerates digital transformation and protects customers from cyberattacks and data loss by securely connecting users, devices, and applications in any location. The company's purpose-built security platform puts defenses and controls where the connections occur, ensuring fast and secure connections.
+
+Compensation and Benefits: The base salary range for this full-time position is $129,500 - $172,000 USD, excluding commission, bonus, equity, and benefits. Zscaler is committed to providing an inclusive environment for all employees and is an equal opportunity and affirmative action employer.---
+
+<ID:458063>
+---Job Description: Title: Director of Engineering Mobile Development
+
+Location: United States
+
+Job Objective: The job objective is to lead the design and implementation of Mobile development solutions, foster innovation, improve efficiencies, and produce high-quality code for a great customer experience.
+
+Responsibilities/Key duties: The responsibilities include hands-on involvement with the team, tracking and managing changing priorities, providing technical guidance, coordinating with engineering and design teams, participating in an iterative design/development process, and mentoring engineers.
+
+Qualifications/Requirements/Experience: The qualifications and requirements include 15 years of software development experience with a focus on Mobile product development, at least 5 years of experience managing engineering teams, solid knowledge and hands-on experience with Objective C, Swift, Java, and mobile applications, experience in agile collaboration models, and a minimum Bachelor's in Engineering.
+
+Preferred Skills/Nice to Have: The preferred skills include a track record of hiring, grooming, and retaining top talent, strong verbal and written communication skills, and a desire to build the most intuitive and best-performing endpoint applications.
+
+About the company: Zscaler is a cloud-native platform that protects customers from cyberattacks and data loss by securely connecting users, devices, and applications in any location. The company was founded in 2007 with a mission to make the cloud a safe place to do business and a more enjoyable experience for enterprise users.
+
+Compensation and Benefits: The base pay range for this full-time position is $182,000 - $260,000 USD, excluding commission, bonus, equity, and benefits. Zscaler is an equal opportunity and affirmative action employer, committed to creating an inclusive environment for all employees.---
+
+
+2023-11-10 00:24:25,698 INFO: 
+
+USING: "gpt-4-1106-preview" FOR CLASSIFICATION 
+
+INPUT:
+TOKENS USED: 2704.
+PROMP COST: $0.027USD
+
+OUTPUT:
+TOKENS USED:106
+COMPLETION COST: 0.003.
+
+TOTAL TOKENS USED:2810
+TOTAL COST FOR CLASSIFYING: $0.030 USD
+
+2023-11-10 00:24:25,698 INFO: 
+
+"gpt-4-1106-preview" finished classifying! all in: 15.84 seconds 
+
+
+2023-11-10 00:24:25,698 INFO: 
+Response is a valid json object.
+Model used: "gpt-4-1106-preview"" Done in loop number: 1
+
+2023-11-10 00:24:25,698 INFO: 
+Results of iteration number 0:
+{'id': '458073', 'suitability': 'Marginally Suitable', 'explanation': 'The candidate has experience as a Data Analyst and skills in Python, SQL, and data visualization tools, which align with some of the technical requirements for a Senior Data Engineer role. However, the candidate lacks the 5 years of specific data engineering experience and familiarity with the listed technologies such as Spark, PySpark, and AWS security ecosystem, making them only marginally suitable.'}
+
+2023-11-10 01:14:27,214 INFO: 
+
+Starting main().
+
+Arguments.
+user_id: 40.
+user_country_1: United States. user_country_2: Anywhere
+num_suitable_jobs: 2
+
+2023-11-10 01:15:07,238 WARNING: 
+'HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /intfloat/e5-base-v2/resolve/main/tokenizer_config.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x151fb1600>, 'Connection to huggingface.co timed out. (connect timeout=10)'))' thrown while requesting HEAD https://huggingface.co/intfloat/e5-base-v2/resolve/main/tokenizer_config.json
+
+2023-11-10 01:15:47,281 WARNING: 
+'HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /intfloat/e5-base-v2/resolve/main/config.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x151fb2dd0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))' thrown while requesting HEAD https://huggingface.co/intfloat/e5-base-v2/resolve/main/config.json
+
+2023-11-10 01:15:49,258 INFO: 
+Incremental values:
+
+Starting on row number 0.
+Stopping on row number 5.
+Total number of rows from the df: 12
+
+2023-11-10 01:15:54,158 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 01:15:55,099 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 01:15:55,918 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 01:15:58,069 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 01:17:58,849 INFO: 
+
+Starting main().
+
+Arguments.
+user_id: 40.
+user_country_1: United States. user_country_2: Anywhere
+num_suitable_jobs: 2
+
+2023-11-10 01:18:38,889 WARNING: 
+'HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /intfloat/e5-base-v2/resolve/main/tokenizer_config.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x1629b1600>, 'Connection to huggingface.co timed out. (connect timeout=10)'))' thrown while requesting HEAD https://huggingface.co/intfloat/e5-base-v2/resolve/main/tokenizer_config.json
+
+2023-11-10 01:19:18,959 WARNING: 
+'HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /intfloat/e5-base-v2/resolve/main/config.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x1629b2dd0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))' thrown while requesting HEAD https://huggingface.co/intfloat/e5-base-v2/resolve/main/config.json
+
+2023-11-10 01:19:20,860 INFO: 
+Incremental values:
+
+Starting on row number 0.
+Stopping on row number 5.
+Total number of rows from the df: 12
+
+2023-11-10 01:19:27,812 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 01:19:29,048 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 01:19:29,246 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 01:19:31,162 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 01:19:31,799 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 01:19:32,067 INFO: 
+Total cost for summarising: $0.01 USD
+
+2023-11-10 01:19:32,068 INFO: 
+
+Elapsed time in async_format_top_jobs_summarize(). 
+All matching jobs summarised in: 11.20 seconds
+
+2023-11-10 01:19:34,394 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 01:19:34,404 INFO: 
+
+
+Take a deep breath and work on this problem step-by-step.
+
+
+
+You are the world's best job recruiter.
+
+Your exceptional ability to identify talent is unparalleled, and you have a keen eye for matching candidates with the perfect job roles.
+
+You understand the nuances of various industries and the specific skills they require.
+
+Your reputation precedes you, and both companies and candidates trust your judgment implicitly.
+
+You are not just a recruiter; you are a career matchmaker, creating successful professional relationships that last.
+
+
+
+You'll receive:
+
+
+
+1. A candidate's CV, delimited by #### characters.
+
+2. Job IDs, delimited by <> characters.
+
+3. Corresponding job descriptions, delimited by --- characters.
+
+
+Perform the following steps:
+
+
+
+Step 1 - Classify the provided CV into a suitability category for each job opening.
+
+Step 2 - For each ID briefly explain in one sentence your reasoning behind the chosen suitability category.
+
+Step 3 - Only provide your output in json format with the keys: id, suitability and explanation.
+
+
+
+Do not classify a CV into a suitability category until you have classify the CV yourself.
+
+
+
+Suitability categories: Highly Suitable, Moderately Suitable, Potentially Suitable, Marginally Suitable and Not Suitable.
+
+
+
+Highly Suitable: CVs in this category closely align with the job opening, demonstrating extensive relevant experience, skills, and qualifications. The candidate possesses all or most of the necessary requirements and is an excellent fit for the role.
+
+Moderately Suitable: CVs falling into this category show a reasonable match to the job opening. The candidate possesses some relevant experience, skills, and qualifications that align with the role, but there may be minor gaps or areas for improvement. With some additional training or development, they could become an effective candidate.
+
+Potentially Suitable: CVs in this category exhibit potential and may possess transferable skills or experience that could be valuable for the job opening. Although they may not meet all the specific requirements, their overall profile suggests that they could excel with the right support and training.
+
+Marginally Suitable: CVs falling into this category show limited alignment with the job opening. The candidate possesses a few relevant skills or experience, but there are significant gaps or deficiencies in their qualifications. They may require substantial training or experience to meet the requirements of the role.
+
+Not Suitable: CVs in this category do not match the requirements and qualifications of the job opening. The candidate lacks the necessary skills, experience, or qualifications, making them unsuitable for the role.
+
+
+
+
+#### Qualifications:
+- LLB Law from the University of Bristol (2022 - present)
+- Member of the Honours Program at UDLAP, researching FinTech, Financial Inclusion, Blockchain, Distributed Ledger Technologies, Cryptocurrencies, and Smart Contracts
+- TOEFL® iBT score of 107 out of 120
+
+Previous job titles:
+- Data Analyst at Tata Consultancy Services México (June 2022 – September 2022)
+- Legal Assistant at BLACKSHIIP Venture Capital (May 2022 – July 2022)
+- Data Analyst Jr. at AMATL GRÁFICOS (January 2020 – May 2022)
+- Mathematics Instructor at ALOHA Mental Arithmetic (December 2019 – January 2020)
+- Special Needs Counsellor at Camp Merrywood (O)
+- Special Needs Counsellor at Camp Merrywood (Ontario, Canada) (May 2019 - August 2019)
+- Special Needs Counsellor at YMCA Camp Independence (Chicago, USA) (June 2018 - August 2018)
+- Coordinator of Volunteers at NAHUI OLLIN (November 2017 - May 2019)
+
+Responsibilities/Key Duties:
+- Cleansed, interpreted, and analyzed data with Python and SQL Server to produce visual reports using Power BI
+- Proofread, drafted, and simplified legal documents such as Memorandums of Understanding, Terms & Conditions, Data Processing Agreements, Privacy Policies, etc.
+- Developed and introduced A/B testing to make data-backed decisions and achieve increased Net Profit Margin
+- Taught mental arithmetic to students and trained gifted children for national competitions
+- Led and assisted individuals with physical and mental disabilities in camp settings
+- Coordinated and supervised volunteers for an organization, increasing the number of volunteers by 400%
+
+Skills:
+- Written and verbal communication skills
+- Teamwork and ability to work under pressure
+- Attention to detail and judgment
+- Leadership and people skills
+- Python, SQL Server, MySQL/PostgreSQL, Tableau, Power BI, Bash/Command Line, Git & GitHub, Office 365, Machine Learning, Probabilities & Statistics
+
+Other Achievements:
+- Published paper on Smart Legal Contracts: From Theory to Reality
+- Participated in the IDEAS Summer Program on Intelligence, Data, Ethics, and Society at the University of California, San Diego. 
+
+####
+
+
+
+Available job openings:
+
+
+
+<ID:458073>
+---Job Description: Title: Senior Data Engineer
+
+Location: United States
+
+Job Objective: The Senior Data Engineer will be collaborating with stakeholders across the company to design, build, and implement data pipelines and models that enable the next generation of technology to be deployed around the world. They will also have a hand in helping shape the data platform vision at Anduril.
+
+Responsibilities/Key duties: Lead the design and roadmap for the data platform infrastructure, partner with operations, product, and engineering to advocate best practices, and own the ingest and egress frameworks for data pipelines that stitch together various data sources.
+
+Qualifications/Requirements/Experience: 5 years of experience in a data engineering role, proficiency in Python or another object-oriented language, experience with Spark, PySpark, Glue, SQL, dbt, Redshift, AWS, Azure, or GCP security ecosystem, containerization, and associated tooling, knowledge of data visualization tools such as Tableau, and the ability to obtain and hold a US Top Secret security clearance.
+
+Preferred Skills/Nice to Have: Empathy, motivation by the company's mission, and a self-starter with a focus on business impact.
+
+About the company: Anduril Industries is a defense technology company with a mission to transform US and allied military capabilities with advanced technology. They are committed to bringing cutting-edge autonomy, AI, computer vision, sensor fusion, and networking technology to the military in months, not years.
+
+Compensation and Benefits: The salary range for this role is an estimate based on a wide range of compensation factors inclusive of base salary only. Actual salary offer may vary based on work experience, education, and/or training. Additionally, Anduril offers top-tier benefits including comprehensive medical, dental, and vision plans, employee life and disability, mental health, and family planning benefits with all premiums paid by Anduril. They also provide fully paid medical leave, paid company holidays, paid time off, and a professional development stipend.---
+
+<ID:458066>
+---Job Description: Title: Lead Information Security
+
+Location: United States
+
+Job Objective: Axoni is seeking talented and motivated professionals to be part of the once-in-a-career opportunity to drive changes in global capital markets. The company is building a culture where the team feels valued and has the opportunity to grow and succeed.
+
+Responsibilities/Key duties: Providing leadership guidance and training to information systems security personnel, managing security audits and vulnerability assessments, directing responses to network or system intrusions, reviewing and implementing company-wide information security policies and procedures, ensuring fulfillment of legal and contractual information security and privacy mandates.
+
+Qualifications/Requirements/Experience: Candidates should have a strong technical background in systems and network security, excellent interpersonal and leadership abilities, superior analytical and problem-solving skills, exceptional written and verbal communication skills, and keep abreast of industry security trends and developments. Employers normally seek five or more years of systems and network security experience, one or more years of managerial experience, and industry certifications such as CISSP or CompTIA Security.
+
+Preferred Skills/Nice to Have: Strong understanding of software system network and cloud security, experience with security standards and controls such as SOC2, ISO27K, PCI DSS, NIST, and/or CIS, experience with Linux and AWS, CISSP certification.
+
+About the company: Axoni is building the next generation of capital markets technology, with solutions used by leading banks, asset managers, hedge funds, and infrastructure providers. The company is focused on building products that will change and improve how clients and the markets interact, and is committed to creating a culture where the team feels valued and has the opportunity to grow and succeed.
+
+Compensation and Benefits: Not provided in the job opening.---
+
+<ID:458082>
+---Job Description: Title: Staff Autonomy Engineer
+
+Location: United States
+
+Job Objective: The job objective is to join the team at Wisk and work on the integration of various perception sensors and associated processing software for the Wisk Gen 6 aircraft, specifically within the Conflict Detection and Resolution (CDR) team.
+
+Responsibilities/Key duties: Responsibilities include developing and certifying conflict detection and resolution functionality, integrating multiple sensing modalities to prevent collisions, developing tracking and estimation algorithms, and testing software in flight.
+
+Qualifications/Requirements/Experience: The candidate should have at least 5 years of experience in developing highly automated vehicles or perception systems, a BS in related engineering fields, and a solid foundation in physics, mathematics, probability, and statistics. Experience in machine learning, machine vision, state estimation, and sensor fusion concepts is preferred.
+
+Preferred Skills/Nice to Have: Desired skills include experience with real-time operating systems, MATLAB/Simulink Model-Based Design, Agile software development, flight test operations, and flight simulators.
+
+About the company: Wisk is a passionate team working towards a sustainable future, solving high-impact problems in urban mobility through safe all-electric autonomous flight. They offer a comprehensive benefits package and a variety of perks, and provide equal employment opportunities to all employees and applicants.
+
+Compensation and Benefits: The company offers a competitive base salary, annual bonus, long-term incentive, 401K, health benefits, and additional perks such as free catered lunches, flight lessons, wellness allowances, and more. The starting base salary for the role varies based on geographical location and relevant job-related experience.
+
+This information can be used to effectively match potential candidates for the position.---
+
+<ID:458072>
+---Job Description: Title: Staff Software Engineer-ZDX
+
+Location: United States
+
+Job Objective: The job objective is to participate in all phases of the product development cycle, from definition, design, through implementation and test, and to work on design and code components of a large-scale distributed system with a focus on high performance and scalability.
+
+Responsibilities/Key duties: The responsibilities include developing functional specifications, assessing task requirements and scheduling, participating in the development, debugging, and support, troubleshooting issues, and displaying accountability and ownership of assigned areas.
+
+Qualifications/Requirements/Experience: The qualifications include 8 years of programming expertise on C, strong knowledge of Algorithms and Data Structures, experience in Datapath Networking, solid understanding of TCPIP protocol stack, http, TLS, PKI, DNS, DHCP, VPN, HA, routing and switching, strong software design, profiling, and verification skills, and experience developing large maintainable software product architectures.
+
+Preferred Skills/Nice to Have: Knowledge of VPN, Load balancers, IPS/IDS, Routers, and Firewall is a plus.
+
+About the company: Zscaler is a company that accelerates digital transformation, protects customers from cyberattacks and data loss, and serves thousands of enterprise customers around the world. They aim to make the cloud a safe place to do business and a more enjoyable experience for enterprise users.
+
+Compensation and Benefits: The base salary range for this full-time position is $129,500 - $172,000 USD, excluding commission, bonus, equity, and benefits. Zscaler is committed to providing reasonable support in recruiting processes for candidates who require accommodations or adjustments. Zscaler is an equal opportunity and affirmative action employer, celebrating diversity and creating an inclusive environment for all employees.---
+
+<ID:458063>
+---Job Description: Title: Director of Engineering Mobile Development
+
+Location: United States
+
+Job Objective: The job objective is to lead the design and implementation of Mobile development solutions, foster innovation, improve efficiencies, and deliver a product centered around a great customer experience.
+
+Responsibilities/Key duties: The responsibilities include hands-on involvement with the team, tracking and managing changing priorities, providing technical guidance, coordinating with engineering and design teams, producing high-quality code, and mentoring engineers to grow the team's skillset.
+
+Qualifications/Requirements/Experience: The qualifications and requirements include 15 years of software development experience with at least 5 years of focus in Mobile product development, experience in agile collaboration models, track record of hiring and retaining top talent, and a minimum Bachelor's in Engineering.
+
+Preferred Skills/Nice to Have: The preferred skills include solid knowledge and hands-on experience with Objective C, Swift, Java, and mobile applications, strong verbal and written communication skills, and a desire to build the most intuitive and best-performing endpoint applications.
+
+About the company: Zscaler is a cloud-native platform that protects customers from cyberattacks and data loss by securely connecting users, devices, and applications in any location. The company was founded in 2007 with a mission to make the cloud a safe place to do business and a more enjoyable experience for enterprise users.
+
+Compensation and Benefits: The base salary range for this full-time position is $182,000 - $260,000 USD, excluding commission, bonus, equity, and benefits. Zscaler is committed to providing an inclusive environment for all employees and is an equal opportunity and affirmative action employer.---
+
+
+2023-11-10 01:19:34,405 INFO: 
+
+USING: "gpt-3.5-turbo-1106" FOR CLASSIFICATION 
+
+INPUT:
+TOKENS USED: 2807.
+PROMP COST: $0.003USD
+
+OUTPUT:
+TOKENS USED:100
+COMPLETION COST: 0.0.
+
+TOTAL TOKENS USED:2907
+TOTAL COST FOR CLASSIFYING: $0.003 USD
+
+2023-11-10 01:19:34,405 INFO: 
+
+"gpt-3.5-turbo-1106" finished classifying! all in: 2.33 seconds 
+
+
+2023-11-10 01:19:34,405 INFO: 
+{
+  "id": "458073",
+  "suitability": "Potentially Suitable",
+  "explanation": "The candidate has experience as a Data Analyst, proficiency in Python and SQL Server, and has worked with data visualization tools like Power BI, which aligns with the job's requirement for data engineering. However, the candidate may need additional experience with specific tools like Spark, PySpark, Glue, and AWS, as well as obtaining a US Top Secret security clearance."
+}
+
+ 
+
+2023-11-10 01:19:34,405 INFO: 
+Response is a valid JSON object. Continuing...
+
+2023-11-10 01:19:34,405 INFO: 
+Results of iteration number 0:
+
+{'id': '458073', 'suitability': 'Potentially Suitable', 'explanation': "The candidate has experience as a Data Analyst, proficiency in Python and SQL Server, and has worked with data visualization tools like Power BI, which aligns with the job's requirement for data engineering. However, the candidate may need additional experience with specific tools like Spark, PySpark, Glue, and AWS, as well as obtaining a US Top Secret security clearance."}
+
+2023-11-10 01:23:55,189 INFO: 
+
+Starting main().
+
+Arguments.
+user_id: 40.
+user_country_1: United States. user_country_2: Anywhere
+num_suitable_jobs: 2
+
+2023-11-10 01:24:35,223 WARNING: 
+'HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /intfloat/e5-base-v2/resolve/main/tokenizer_config.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x1528b1600>, 'Connection to huggingface.co timed out. (connect timeout=10)'))' thrown while requesting HEAD https://huggingface.co/intfloat/e5-base-v2/resolve/main/tokenizer_config.json
+
+2023-11-10 01:25:15,280 WARNING: 
+'HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /intfloat/e5-base-v2/resolve/main/config.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x1528b2dd0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))' thrown while requesting HEAD https://huggingface.co/intfloat/e5-base-v2/resolve/main/config.json
+
+2023-11-10 01:25:17,811 INFO: 
+Incremental values:
+
+Starting on row number 0.
+Stopping on row number 5.
+Total number of rows from the df: 12
+
+2023-11-10 01:25:23,795 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 01:25:26,366 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2023-11-10 01:25:26,968 INFO: 
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
