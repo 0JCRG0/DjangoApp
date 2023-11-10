@@ -25,6 +25,7 @@ from datetime import datetime, timedelta
 from torch import Tensor
 from transformers import AutoTokenizer, AutoModel
 from aiohttp import ClientSession
+from functools import wraps
 from .prompts import *
 import os
 
@@ -38,7 +39,6 @@ database = os.getenv("database")
 SAVE_PATH = os.getenv("SAVE_PATH")
 COUNTRIES_JSON_DATA = os.getenv("COUNTRIES_JSON_DATA")
 LOGGER_DJANGO = os.getenv("LOGGER_DJANGO")
-LOGGER_DIR_PATH = os.getenv("LOGGER_DIR_PATH")
 
 
 #Specs from 8/11/23
@@ -52,7 +52,7 @@ specs_gpt4_models = {
 }
 
 #Specs from 8/11/23
-specs_gpt3_model = {
+specs_gpt3_models = {
 	"gpt-3.5-turbo-1106": (16385, 0.001, 0.002, "json_object"),
 	"gpt-3.5-turbo": (4096, 0.0015, 0.002, "text"),
 	"gpt-3.5-turbo-16k": (16385, 0.003, 0.004, "text")
@@ -71,6 +71,8 @@ specs_all_models = {
 	"gpt-3.5-turbo-16k": (16385, 0.003, 0.004, "text")
 }
 
+#----------------UTILS' UTILS----------------#
+
 def count_words(text: str) -> int:
 	# Remove leading and trailing whitespaces
 	text = text.strip()
@@ -80,75 +82,6 @@ def count_words(text: str) -> int:
 
 	# Return the count of words
 	return len(words)
-
-async def async_summarise_job_gpt(job_description: str, gpt_model: str="gpt-3.5-turbo-1106") -> Tuple[str, float]:
-	
-	client = AsyncOpenAI(
-		# defaults to os.environ.get("OPENAI_API_KEY")
-		api_key=OPENAI_API_KEY,
-	)
-	
-	response = await client.chat.completions.create(
-		model=gpt_model,
-		messages=[
-			{'role': 'user', 'content': system_prompt_summary},
-			{'role': 'user', 'content': f"Job Opening: {delimiters_summary}{job_description}{delimiters_summary}"},
-		],
-		
-		temperature=0,
-		max_tokens = 400
-	)
-	response_message = response.choices[0].message.content
-
-	usage = dict(response).get('usage')
-	
-	cost_per_summary = 0
-	prompt_tokens = usage.prompt_tokens
-	completion_tokens = usage.completion_tokens
-
-	if gpt_model in specs_gpt3_model:
-		prompt_cost_per_k = specs_gpt3_model[gpt_model][1]
-		completion_cost_per_k = specs_gpt3_model[gpt_model][2]
-		prompt_cost = round((prompt_tokens / 1000) * prompt_cost_per_k, 3)
-		completion_cost = round((completion_tokens / 1000) * completion_cost_per_k, 3)
-		cost_per_summary = prompt_cost + completion_cost
-		# logging.info(f"COST FOR SUMMARISING: ${total_cost:.4f} USD")
-	else:
-		logging.error("The gpt_model selected in invalid. Choose a valid option. See https://openai.com/blog/new-models-and-developer-products-announced-at-devday")
-		raise Exception("The gpt_model selected in invalid. Choose a valid option. See https://openai.com/blog/new-models-and-developer-products-announced-at-devday")
-	return response_message, cost_per_summary
-
-async def async_summarise_description(description: str, gpt_model: str="gpt-3.5-turbo-1106") -> tuple:
-
-	cost_per_summary = 0
-
-	async def process_description(session, text):
-		attempts = 0
-		while attempts < 5:
-			try:
-				words_per_text = count_words(text)
-				if words_per_text > 50:
-					description_summary, cost_per_summary = await async_summarise_job_gpt(job_description=text, gpt_model=gpt_model)
-					return description_summary, cost_per_summary
-				else:
-					logging.warning(f"Description is too short for being summarised. Number of words: {words_per_text}")
-					return text, 0
-			except (Exception) as e:
-				attempts += 1
-				print(f"{e}. Retrying attempt {attempts}...")
-				logging.warning(f"{e}. Retrying attempt {attempts}...")
-				await asyncio.sleep(5**attempts)  # exponential backoff
-		else:
-			print(f"Description could not be summarised after 5 attempts.")
-			return text, 0
-
-	async with ClientSession() as session:
-		result = await process_description(session, description)
-
-	cost_per_summary = result[1]
-
-
-	return result[0], cost_per_summary
 
 def num_tokens(text: str, model: str ="gpt-3.5-turbo-1106") -> int:
 	#Return the number of tokens in a string.
@@ -163,31 +96,6 @@ def LoggingDjango():
 	logging.basicConfig(filename=LOGGER_DJANGO,
 						level=logging.INFO,
 						format=log_format)
-
-def LoggingTest():
-	# Define a custom format with bold text
-	log_format = '%(asctime)s %(levelname)s: \n%(message)s\n'
-
-	# Configure the logger with the custom format
-	logging.basicConfig(filename=LOGGER_DIR_PATH + "/LoggingTest.log",
-						level=logging.INFO,
-						format=log_format)
-
-def append_parquet(new_df: pd.DataFrame, filename: str):
-	# Ensure user_id is int
-	new_df['user_id'] = new_df['user_id'].astype(int)
-	# Load existing data
-	df = pd.read_parquet(SAVE_PATH + f'/{filename}.parquet')
-	
-	logging.info(f"Preexisting df: {df}")
-	logging.info(f"df to append: {new_df}")
-
-	df = pd.concat([df, new_df], ignore_index=True)
-	df = df.drop_duplicates(subset='id', keep='last')
-
-	# Write back to Parquet
-	df.to_parquet(SAVE_PATH + f'/{filename}.parquet', engine='pyarrow')
-	logging.info(f"{filename}.parquet has been updated")
 
 def average_pool(last_hidden_states: Tensor,
 				attention_mask: Tensor) -> Tensor:
@@ -206,126 +114,7 @@ def e5_base_v2_query(user_cv: str) -> np.ndarray:
 	query_embedding = average_pool(outputs.last_hidden_state, batch_dict['attention_mask']).detach().numpy().flatten()
 	return query_embedding
 
-def filter_last_two_weeks(df:pd.DataFrame) -> pd.DataFrame:
-	# Get the current date
-	current_date = datetime.now().date()
-	
-	# Calculate the date two weeks ago from the current date
-	two_weeks_ago = current_date - timedelta(days=14)
-	
-	# Filter the DataFrame to keep only rows with timestamps in the last two weeks
-	filtered_df = df[df["timestamp"].dt.date >= two_weeks_ago]
-	
-	return filtered_df
-
-def set_dataframe_display_options():
-	# Call the function to set the desired display options
-	pd.set_option('display.max_columns', None)  # Show all columns
-	pd.set_option('display.max_rows', None)  # Show all rows
-	pd.set_option('display.width', None)  # Disable column width restriction
-	pd.set_option('display.expand_frame_repr', False)  # Disable wrapping to multiple lines
-	pd.set_option('display.max_colwidth', None)  # Display full contents of each column
-
-def filter_df_per_countries(df: pd.DataFrame, user_desired_country: str, user_second_desired_country: str) -> pd.DataFrame:
-	# Load the JSON file into a Python dictionary
-	with open(COUNTRIES_JSON_DATA, 'r') as f:
-		data = json.load(f)
-
-	# Function to get country information
-	def get_country_info(user_country):
-		values = []
-		for continent, details in data.items():
-			for country in details['Countries']:
-				if country['country_name'] == user_country:
-					values.append(country['country_name'])
-					values.append(country['country_code'])
-					values.append(country['capital_english'])
-					subdivisions = country.get('subdivisions')  # Use get() to safely access the key
-					if subdivisions:
-						if isinstance(subdivisions, list):
-							for subdivision in subdivisions:
-								if isinstance(subdivision, dict) and 'subdivisions_code' in subdivision and 'subdivisions_name' in subdivision:
-									values.append(subdivision['subdivisions_code'])
-									values.append(subdivision['subdivisions_name'])
-								else:
-									pass
-						else:
-							pass
-					else:
-						pass
-		return values
-
-	# Get information for the first desired country
-	country_values1 = get_country_info(user_desired_country)
-
-	# Initialize country_values2 as an empty list
-	country_values2 = []
-
-	# Check if the second desired country is not empty
-	if user_second_desired_country:
-		country_values2 = get_country_info(user_second_desired_country)
-
-	# Combine both sets of country values
-	all_country_values = country_values1 + country_values2
-
-	# Convert 'location' column to lowercase
-	df['location'] = df['location'].str.lower()    
-
-	# Convert all country values to lowercase and escape special characters
-	country_values_lower = [re.escape(value.lower()) for value in all_country_values]
-	
-	# Create a mask with all False
-	mask = pd.Series(False, index=df.index)
-
-	# Update the mask if 'location' column contains any of the country values
-	for value in country_values_lower:
-		mask |= df['location'].str.contains(value, na=False)
-
-	# Filter DataFrame
-	filtered_df = df[mask]
-
-	return filtered_df
-
-def preexisting_ids_postgre(user_id:int) -> list :
-	conn = psycopg2.connect(user=user, password=password, host=host, port=port, database=database)
-
-	# Create a cursor object
-	cur = conn.cursor()
-
-	# Fetch new data from the table where id is greater than max_id
-	cur.execute(f"SELECT job_id FROM \"DreamedJobAI_suitablejobs\" WHERE user_id = {user_id}")
-	
-	data = cur.fetchall()
-
-	cur.close()
-	conn.close()
-	
-	# Separate the columns into individual lists
-	job_ids = [row[0] for row in data]
-
-	return job_ids
-
-def find_unique_ids(ids: tuple, preexisting_ids: list) -> list:
-	# Use a list comprehension to find the numbers in ids that are not in preexisting_ids
-	unique_ids = [id for id in ids if id not in preexisting_ids]
-	return unique_ids
-
-def list_or_dict_json_output_GPT4(json_output_GPT4):
-	if isinstance(json_output_GPT4, list):
-		# If json_output_GPT4 is a list, it contains multiple records
-		logging.info("json_output_GPT4 is a list of dictionaries, it contains multiple records")
-		df_json_output_GPT4 = pd.read_json(json.dumps(json_output_GPT4))
-		return df_json_output_GPT4	
-	elif isinstance(json_output_GPT4, dict):
-		# If json_output_GPT4 is a dictionary, it contains a single record
-		logging.info("json_output_GPT4 is a dictionary, it contains a single record")
-		data = [json_output_GPT4]
-		df = pd.DataFrame(data)
-		df['id'] = df['id'].astype(int)
-		return df
-	else:
-		# Handle other cases if necessary
-		pass
+#----------------MAIN UTILS----------------#
 
 def fetch_all_country_values(user_desired_country: str, user_second_desired_country: str | None) -> list:
 	# Load the JSON file into a Python dictionary
@@ -371,18 +160,18 @@ def fetch_all_country_values(user_desired_country: str, user_second_desired_coun
 
 	return all_country_values
 
-def check_matched_jobs(cursor: cursor, user_id: str, ):
 
-	query = f"""
-		SELECT id
-		FROM matched_jobs
-		WHERE id in ('{user_id}')
-		"""
-	
-	cursor.execute(query.format(table_name="embeddings_e5_base_v2"), (country_values_str, user_cv_embedding))
-
-	# Fetch all the rows
-	rows = cursor.fetchall()
+#def check_matched_jobs(cursor: cursor, user_id: str, ):
+#
+#	query = f"""
+#		SELECT id
+#		FROM matched_jobs
+#		WHERE id in ('{user_id}')
+#		"""
+#	
+#	cursor.execute(query.format(table_name="embeddings_e5_base_v2"), (country_values_str, user_cv_embedding))
+#	# Fetch all the rows
+#	rows = cursor.fetchall()
 
 
 
@@ -434,13 +223,94 @@ def fetch_top_n_matching_jobs(
 
 	return df
 
+def timeout_retry_summarise_wrapper(func):
+    @wraps(func)
+    async def wrapper(*args, **kwargs):
+        for model in specs_gpt3_models.keys():
+            try:
+                kwargs['summarize_gpt_model'] = model  # Add the model as a keyword argument
+                return await asyncio.wait_for(func(*args, **kwargs), timeout=15)
+            except asyncio.TimeoutError:
+                continue
+        raise Exception("All models timed out")
+    return wrapper
 
+async def async_summarise_job_gpt(job_description: str, gpt_model: str="gpt-3.5-turbo-1106") -> Tuple[str, float]:
+	
+	client = AsyncOpenAI(
+		# defaults to os.environ.get("OPENAI_API_KEY")
+		api_key=OPENAI_API_KEY,
+	)
+	
+	response = await client.chat.completions.create(
+		model=gpt_model,
+		messages=[
+			{'role': 'user', 'content': system_prompt_summary},
+			{'role': 'user', 'content': f"Job Opening: {delimiters_summary}{job_description}{delimiters_summary}"},
+		],
+		
+		temperature=0,
+		max_tokens = 400
+	)
+	response_message = response.choices[0].message.content
+
+	usage = dict(response).get('usage')
+	
+	cost_per_summary = 0
+	prompt_tokens = usage.prompt_tokens
+	completion_tokens = usage.completion_tokens
+
+	if gpt_model in specs_gpt3_models:
+		prompt_cost_per_k = specs_gpt3_models[gpt_model][1]
+		completion_cost_per_k = specs_gpt3_models[gpt_model][2]
+		prompt_cost = round((prompt_tokens / 1000) * prompt_cost_per_k, 3)
+		completion_cost = round((completion_tokens / 1000) * completion_cost_per_k, 3)
+		cost_per_summary = prompt_cost + completion_cost
+		# logging.info(f"COST FOR SUMMARISING: ${total_cost:.4f} USD")
+	else:
+		logging.error("The gpt_model selected in invalid. Choose a valid option. See https://openai.com/blog/new-models-and-developer-products-announced-at-devday")
+		raise Exception("The gpt_model selected in invalid. Choose a valid option. See https://openai.com/blog/new-models-and-developer-products-announced-at-devday")
+	return response_message, cost_per_summary
+
+async def async_summarise_description(description: str, gpt_model: str) -> tuple:
+
+	cost_per_summary = 0
+
+	async def process_description(session, text):
+		attempts = 0
+		while attempts < 5:
+			try:
+				words_per_text = count_words(text)
+				if words_per_text > 50:
+					description_summary, cost_per_summary = await async_summarise_job_gpt(job_description=text, gpt_model=gpt_model)
+					return description_summary, cost_per_summary
+				else:
+					logging.warning(f"Description is too short for being summarised. Number of words: {words_per_text}")
+					return text, 0
+			except (Exception) as e:
+				attempts += 1
+				print(f"{e}. Retrying attempt {attempts}...")
+				logging.warning(f"{e}. Retrying attempt {attempts}...")
+				await asyncio.sleep(5**attempts)  # exponential backoff
+		else:
+			print(f"Description could not be summarised after 5 attempts.")
+			return text, 0
+
+	async with ClientSession() as session:
+		result = await process_description(session, description)
+
+	cost_per_summary = result[1]
+
+
+	return result[0], cost_per_summary
+
+@timeout_retry_summarise_wrapper
 async def async_format_top_jobs_summarize(
 	user_id: int,
 	user_cv: str,
 	df: pd.DataFrame,
-	summarize_gpt_model: str,
 	classify_gpt_model: str,
+	summarize_gpt_model: str
 ) -> Tuple[str, list[str], int]:
 	
 		
@@ -454,7 +324,7 @@ async def async_format_top_jobs_summarize(
 
 		start_time = asyncio.get_event_loop().time()
 
-		tasks = [async_summarise_description(df[df['id'] == id]['job_info'].values[0], gpt_model=summarize_gpt_model) for id in ids]
+		tasks = [async_summarise_description(df[df['id'] == id]['job_info'].values[0], summarize_gpt_model) for id in ids]
 
 		# Run the tasks concurrently
 		results = await asyncio.gather(*tasks)
@@ -493,6 +363,18 @@ async def async_format_top_jobs_summarize(
 		logging.error("DF does not have ids. Check fetch_top_n_matching_jobs().")
 		#raise Exception("DF does not have ids. Check fetch_top_n_matching_jobs().")
 		pass
+
+def timeout_retry_classify_wrapper(func):
+    @wraps(func)
+    async def wrapper(*args, **kwargs):
+        for model in specs_gpt4_models.keys():
+            try:
+                return await asyncio.wait_for(func(*args, **kwargs, classify_gpt_model=model), timeout=70)
+            except asyncio.TimeoutError:
+                continue
+        raise Exception("All models timed out")
+    return wrapper
+
 
 async def async_classify_jobs_gpt_4(
 	#This query is your question, only parameter to fill in function
