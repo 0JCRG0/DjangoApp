@@ -89,16 +89,16 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 		2. Tracks the cost of each summary.
 		3. Constructs a message for GPT, including ids, 
 		job summaries and user CV text, while respecting a token budget.
+		4. Wrapped in a decorator that retries if timeout (15s)
 		
 		Returns a tuple containing the constructed message and a list of job summaries
 		"""
-		#TODO: Wrapper that will change the model if time is > 10s
+
 		formatted_message, job_summaries = await async_format_top_jobs_summarize(
 																user_id,
 																user_cv,
 																sliced_df,
-																summarize_gpt_model="gpt-3.5-turbo-1106",
-																classify_gpt_model="gpt-3.5-turbo-1106"
+																classify_gpt_model="gpt-4-0613"
 															)
 
 		
@@ -116,7 +116,7 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 		gpt4_response = await async_classify_jobs_gpt_4(
 													user_cv,
 													formatted_message,
-													classify_gpt_model = "gpt-3.5-turbo-1106",
+													classify_gpt_model = "gpt-4-0613",
 													log_gpt_messages= True
 												)
 		logging.info(gpt4_response)
