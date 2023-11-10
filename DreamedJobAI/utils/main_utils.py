@@ -43,8 +43,8 @@ LOGGER_DJANGO = os.getenv("LOGGER_DJANGO")
 
 #Specs from 8/11/23
 specs_gpt4_models = {
-	"gpt-4-1106-preview": (128000, 0.01, 0.03, "json_object"),
 	"gpt-4-0613": (8192, 0.03, 0.06, "text"),
+	"gpt-4-1106-preview": (128000, 0.01, 0.03, "json_object"),
 	"gpt-4-vision-preview": (128000, 0.01, 0.03, "json_object"),
 	"gpt-4": (8192, 0.03, 0.06, "text"),
 	"gpt-4-32k": (32768, 0.06, 0.12, "text"),
@@ -114,6 +114,31 @@ def e5_base_v2_query(user_cv: str) -> np.ndarray:
 	query_embedding = average_pool(outputs.last_hidden_state, batch_dict['attention_mask']).detach().numpy().flatten()
 	return query_embedding
 
+
+def whether_json_object(gpt4_response: str) -> bool:
+	try:
+		json.loads(gpt4_response)
+		logging.info(f"Response is a valid JSON object. Continuing...")
+		return True
+	except json.JSONDecodeError as e:
+		logging.warning(f"JSON decoding error: {e}.\nRetrying async_classify_jobs_gpt_4()\n\n", exc_info=True)
+		return False
+
+def list_or_dict_python_object(gpt4_response_python_object):
+	if isinstance(gpt4_response_python_object, list):
+		logging.info("gpt4_response_python_object is a list of dictionaries. Continuing...")
+		df_gpt4_response = pd.DataFrame(gpt4_response_python_object)
+		df_gpt4_response['id'] = df_gpt4_response['id'].astype(int)
+		return df_gpt4_response	
+	elif isinstance(gpt4_response_python_object, dict):
+		logging.info("gpt4_response_python_object is a dictionary.\nEither contains a single record or gpt fucked up")
+		data = [gpt4_response_python_object]
+		df_gpt4_response = pd.DataFrame(data)
+		df_gpt4_response['id'] = df_gpt4_response['id'].astype(int)
+		return df_gpt4_response
+	else:
+		# Handle other cases if necessary
+		pass
 #----------------MAIN UTILS----------------#
 
 def fetch_all_country_values(user_desired_country: str, user_second_desired_country: str | None) -> list:
@@ -310,9 +335,11 @@ async def async_format_top_jobs_summarize(
 	user_cv: str,
 	df: pd.DataFrame,
 	classify_gpt_model: str,
-	summarize_gpt_model: str
+	summarize_gpt_model=None
 ) -> Tuple[str, list[str], int]:
 	
+	logging.info(f"""\nUSING: "{summarize_gpt_model}" FOR SUMMARISING""")
+
 		
 	if classify_gpt_model in specs_all_models:
 		token_budget = specs_all_models[classify_gpt_model][0]
@@ -363,17 +390,6 @@ async def async_format_top_jobs_summarize(
 		logging.error("DF does not have ids. Check fetch_top_n_matching_jobs().")
 		#raise Exception("DF does not have ids. Check fetch_top_n_matching_jobs().")
 		pass
-
-def timeout_retry_classify_wrapper(func):
-    @wraps(func)
-    async def wrapper(*args, **kwargs):
-        for model in specs_gpt4_models.keys():
-            try:
-                return await asyncio.wait_for(func(*args, **kwargs, classify_gpt_model=model), timeout=70)
-            except asyncio.TimeoutError:
-                continue
-        raise Exception("All models timed out")
-    return wrapper
 
 
 async def async_classify_jobs_gpt_4(
@@ -434,16 +450,6 @@ async def async_classify_jobs_gpt_4(
 	
 	return response_message
 
-def whether_json_object(gpt4_response: str) -> bool:
-	try:
-		json.loads(gpt4_response)
-		logging.info(f"Response is a valid JSON object. Continuing...")
-		return True
-	except json.JSONDecodeError as e:
-		logging.warning(f"JSON decoding error: {e}.\nRetrying async_classify_jobs_gpt_4()\n\n", exc_info=True)
-		return False
-
-
 async def retrying_async_classify_jobs_gpt_4(
 		async_classify_jobs_gpt_4: Callable,
 		user_cv: str,
@@ -467,9 +473,10 @@ async def retrying_async_classify_jobs_gpt_4(
 											log_gpt_messages
 										)
 				try:
-					data = json.loads(gpt4_response)
+					python_object = json.loads(gpt4_response)
 					logging.info(f"""Response is a valid json object.\nResponse: {gpt4_response}.\nModel used: "{model_name}".\nDone in loop number: {i + 1}""")
-					return data
+					df_gpt4_response_json_object = list_or_dict_python_object(python_object)
+					return df_gpt4_response_json_object
 				except json.JSONDecodeError:
 					pass
 			except openai.RateLimitError as e:
@@ -514,6 +521,8 @@ def find_jobs_main_jobs_per_ids(cur: cursor, ids:str, table: str = "main_jobs") 
 		'location': all_locations,
 		'pubdate': all_pubdates
 	})
+
+	df['id'] = df['id'].astype(int)
 
 	return df
 
