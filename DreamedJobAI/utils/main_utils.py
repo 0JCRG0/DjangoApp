@@ -124,7 +124,7 @@ def whether_json_object(gpt4_response: str) -> bool:
 		logging.warning(f"JSON decoding error: {e}.\nRetrying async_classify_jobs_gpt_4()\n\n", exc_info=True)
 		return False
 
-def list_or_dict_python_object(gpt4_response_python_object):
+def list_or_dict_python_object(gpt4_response_python_object: object) -> pd.DataFrame:
 	if isinstance(gpt4_response_python_object, list):
 		logging.info("gpt4_response_python_object is a list of dictionaries. Continuing...")
 		df_gpt4_response = pd.DataFrame(gpt4_response_python_object)
@@ -226,14 +226,14 @@ def fetch_top_n_matching_jobs(
 	country_values_str = "{" + ",".join(all_country_values).lower() + "}"
 
 	query = f"""
-    SELECT *
-    FROM (
-        SELECT *
-        FROM {table_name}
-        WHERE timestamp >= (current_date - interval {interval_days})
-    ) AS two_weeks
-    WHERE substring(lower(job_info) from '#### location: (.*?) ####') = ANY(%s::text[])
-    ORDER BY embedding {similarity_metric} %s;
+	SELECT *
+	FROM (
+		SELECT *
+		FROM {table_name}
+		WHERE timestamp >= (current_date - interval {interval_days})
+	) AS two_weeks
+	WHERE substring(lower(job_info) from '#### location: (.*?) ####') = ANY(%s::text[])
+	ORDER BY embedding {similarity_metric} %s;
 	"""
 	cursor.execute(query.format(table_name="embeddings_e5_base_v2"), (country_values_str, user_cv_embedding))
 
@@ -248,17 +248,20 @@ def fetch_top_n_matching_jobs(
 
 	return df
 
-def timeout_retry_summarise_wrapper(func):
-    @wraps(func)
-    async def wrapper(*args, **kwargs):
-        for model in specs_gpt3_models.keys():
-            try:
-                kwargs['summarize_gpt_model'] = model  # Add the model as a keyword argument
-                return await asyncio.wait_for(func(*args, **kwargs), timeout=15)
-            except asyncio.TimeoutError:
-                continue
-        raise Exception("All models timed out")
-    return wrapper
+def retry_on_error_summarise_wrapper(func):
+	@wraps(func)
+	async def wrapper(*args, **kwargs):
+		for model in specs_gpt3_models.keys():
+			try:
+				kwargs['summarize_gpt_model'] = model  # Add the model as a keyword argument
+				return await asyncio.wait_for(func(*args, **kwargs), timeout=15)
+			except (asyncio.TimeoutError, Exception) as e:
+				time.sleep(.5)
+				logging.warning(f"Error while summarizing with model {model}:\n\n{e}\nSleeping & Retrying.")
+				continue
+		logging.error(f"All the following models encountered errors while summarising:\n\n{specs_gpt3_models}.")
+		raise Exception(f"All the models encountered errors while summarizing.")
+	return wrapper
 
 async def async_summarise_job_gpt(job_description: str, gpt_model: str="gpt-3.5-turbo-1106") -> Tuple[str, float]:
 	
@@ -329,7 +332,7 @@ async def async_summarise_description(description: str, gpt_model: str) -> tuple
 
 	return result[0], cost_per_summary
 
-@timeout_retry_summarise_wrapper
+@retry_on_error_summarise_wrapper
 async def async_format_top_jobs_summarize(
 	user_id: int,
 	user_cv: str,
@@ -340,7 +343,6 @@ async def async_format_top_jobs_summarize(
 	
 	logging.info(f"""\nUSING: "{summarize_gpt_model}" FOR SUMMARISING""")
 
-		
 	if classify_gpt_model in specs_all_models:
 		token_budget = specs_all_models[classify_gpt_model][0]
 	
@@ -387,20 +389,58 @@ async def async_format_top_jobs_summarize(
 
 		return message, job_summaries
 	else:
-		logging.error("DF does not have ids. Check fetch_top_n_matching_jobs().")
-		#raise Exception("DF does not have ids. Check fetch_top_n_matching_jobs().")
-		pass
+		logging.error("No IDs in async_format_top_jobs_summarize().\n If this happened in the first call then check fetch_top_n_matching_jobs().\nElse, we simply ran out of jobs to classify")
+		raise TypeError ("IDs is empty so it won't unpack returned objects")
+
+def retry_on_error_json_classify_wrapper(func):
+	@wraps(func)
+	async def wrapper(*args, **kwargs):
+		result = None
+		for model in specs_gpt4_models.keys():
+			try:
+				kwargs['classify_gpt_model'] = model 
+				logging.info(f"")
+				result = await asyncio.wait_for(func(*args, **kwargs), timeout=70)
+				
+				json.loads(result)
+				
+				return result
+			except (asyncio.TimeoutError, Exception, json.JSONDecodeError) as e:
+				time.sleep(.5)
+				logging.warning(f"Error while classifying with model {model}:\n\n{e}\n\n{model} response: {result}.\nSleeping & Retrying with different model.")
+				continue
+		logging.error(f"All the following models encountered errors while classifying:\n\n{specs_gpt4_models}.")
+		raise Exception(f"All the models encountered errors while classifying.")
+	return wrapper
+
+def retry_on_error_classify_wrapper(func):
+	@wraps(func)
+	async def wrapper(*args, **kwargs):
+		result = None
+		for model in specs_gpt4_models.keys():
+			try:
+				kwargs['classify_gpt_model'] = model 
+				return await asyncio.wait_for(func(*args, **kwargs), timeout=70)
+			except (asyncio.TimeoutError, Exception) as e:
+				time.sleep(.5)
+				logging.warning(f"Error while classifying with model {model}:\n\n{e}\n\n{model} response: {result}.\nSleeping & Retrying with different model.")
+				continue
+		logging.error(f"All the following models encountered errors while classifying:\n\n{specs_gpt4_models}.")
+		raise Exception(f"All the models encountered errors while classifying.")
+	return wrapper
 
 
+@retry_on_error_classify_wrapper
 async def async_classify_jobs_gpt_4(
 	#This query is your question, only parameter to fill in function
 	user_cv: str,
 	formatted_message: str,
-	classify_gpt_model: str = "gpt-4",
 	log_gpt_messages: bool = True,
+	classify_gpt_model=None,
 	specs_all_models: dict=specs_all_models,
 ):
-	
+	logging.info(f"""\nCALLING: "{classify_gpt_model}" FOR CLASSIFYING TASK""")
+
 	client = AsyncOpenAI(
 		# defaults to os.environ.get("OPENAI_API_KEY")
 		api_key=OPENAI_API_KEY,
@@ -443,7 +483,7 @@ async def async_classify_jobs_gpt_4(
 	prompt_cost = round((prompt_tokens / 1000) * input_cost, 3)
 	completion_cost = round((completion_tokens / 1000) * output_cost, 3)
 	total_classifying_cost = prompt_cost + completion_cost
-	logging.info(f"""\nUSING: "{classify_gpt_model}" FOR CLASSIFICATION \n\nINPUT:\nTOKENS USED: {prompt_tokens}.\nPROMP COST: ${prompt_cost}USD\n\nOUTPUT:\nTOKENS USED:{completion_tokens}\nCOMPLETION COST: {completion_cost}.\n\nTOTAL TOKENS USED:{total_tokens}\nTOTAL COST FOR CLASSIFYING: ${total_classifying_cost:.3f} USD""")
+	logging.info(f"""\nDONE CLASSIFYING.\n\nMODEL USED: "{classify_gpt_model}"\nINPUT:\nTOKENS USED: {prompt_tokens}.\nPROMP COST: ${prompt_cost}USD\n\nOUTPUT:\nTOKENS USED:{completion_tokens}\nCOMPLETION COST: {completion_cost}.\n\nTOTAL TOKENS USED:{total_tokens}\nTOTAL COST FOR CLASSIFYING: ${total_classifying_cost:.3f} USD""")
 
 	elapsed_time = asyncio.get_event_loop().time() - start_time
 	logging.info(f"""\n"{classify_gpt_model}" finished classifying! all in: {elapsed_time:.2f} seconds \n""")
@@ -457,8 +497,8 @@ async def retrying_async_classify_jobs_gpt_4(
 		log_gpt_messages: bool,
 		):
 	
-	default = '[{"id": "", "suitability": "", "explanation": ""}]'
-	default_json = json.loads(default)
+	default = [{"id": "", "suitability": "", "explanation": ""}]
+	df_default = list_or_dict_python_object(default)
 
 	#specs_gpt4_models is initialised in the beginning
 	for model_name, model_specs in specs_gpt4_models.items():
@@ -475,8 +515,8 @@ async def retrying_async_classify_jobs_gpt_4(
 				try:
 					python_object = json.loads(gpt4_response)
 					logging.info(f"""Response is a valid json object.\nResponse: {gpt4_response}.\nModel used: "{model_name}".\nDone in loop number: {i + 1}""")
-					df_gpt4_response_json_object = list_or_dict_python_object(python_object)
-					return df_gpt4_response_json_object
+					df_gpt4_response = list_or_dict_python_object(python_object)
+					return df_gpt4_response
 				except json.JSONDecodeError:
 					pass
 			except openai.RateLimitError as e:
@@ -486,8 +526,50 @@ async def retrying_async_classify_jobs_gpt_4(
 				logging.warning(f"{e}. Retrying in 5 seconds. Model: {model_name}, Number of retries: {i + 1}", exc_info=True)
 				time.sleep(5)
 
-	logging.error("Check logs!!!! Main function was not callable. Setting json to default")
-	return default_json
+	logging.error("Check logs!!!! Main function was not callable. Setting df to default")
+	return df_default
+
+
+async def parse_response_async_classify_jobs_gpt_4(user_cv: str, formatted_message:str, log_gpt_messages:bool=True, attempts: int = 2) -> pd.DataFrame:
+	for _ in range(attempts):
+		try:
+			response = await async_classify_jobs_gpt_4(user_cv, formatted_message, log_gpt_messages)
+			type_gpt_4_response = type(response)
+			logging.info(f"type_gpt_4_response: {type_gpt_4_response}.\ngpt_4_response: {response}")
+
+			if whether_json_object(response):
+				response_python_object = json.loads(response)
+			else:
+				try:
+					response_python_object = eval(response)
+				except SyntaxError as e:
+					logging.warning(f"Response is possibly a string of a dict.\nSyntaxError: {e}\nTrying to wrap it in a list...")
+					response_python_object = json.loads(f"[{response}]")
+			return list_or_dict_python_object(response_python_object)
+		except SyntaxError as e:
+			logging.warning(f"Response is not a valid python object.\n{e}\nRetrying -> async_classify_jobs_gpt_4()...")
+		except Exception as e:
+			logging.error(f"URGENT! All the models encountered errors while classifying after calling twice.\n{e}.\nSetting the df to default)...")
+			break
+
+	default = [{"id": "", "suitability": "", "explanation": ""}]
+	return list_or_dict_python_object(default)
+
+async def parse_response_async_format_top_jobs_summarize(user_id: int, user_cv: str, sliced_df: pd.DataFrame, classify_gpt_model:str, attempts: int = 2) -> pd.DataFrame:
+	for _ in range(attempts):
+		try:
+			formatted_message, job_summaries = await async_format_top_jobs_summarize(user_id, user_cv,sliced_df, classify_gpt_model)
+			return formatted_message, job_summaries
+		except TypeError as e:
+			logging.error("No IDs in async_format_top_jobs_summarize().\n If this happened in the first call then check fetch_top_n_matching_jobs().\nElse, we simply ran out of jobs to classify.\nEither way, we are breaking out of the while loop.")
+			break
+		except Exception as e:
+			logging.error(f"All the models encountered errors while summarizing.\n{e}.\nSleeping & Retrying -> async_format_top_jobs_summarize()...")
+			await asyncio.sleep(10)
+	
+	logging.error(f"All attempts to call async_format_top_jobs_summarize failed.")
+
+
 
 #Get the ids
 def ids_df_most_suitable(df: pd.DataFrame) -> str:
@@ -532,7 +614,7 @@ def postgre_insert_matched_jobs(cursor: cursor, df: pd.DataFrame(), table_name: 
 
 	create_table = f"""
 		CREATE TABLE IF NOT EXISTS {table_name} (
-			id INTEGER UNIQUE,
+			id INTEGER,
 			title TEXT,
 			link TEXT,
 			location TEXT,
