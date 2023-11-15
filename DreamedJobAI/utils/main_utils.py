@@ -186,25 +186,62 @@ def fetch_all_country_values(user_desired_country: str, user_second_desired_coun
 	return all_country_values
 
 
-#def check_matched_jobs(cursor: cursor, user_id: str, ):
-#
-#	query = f"""
-#		SELECT id
-#		FROM matched_jobs
-#		WHERE id in ('{user_id}')
-#		"""
-#	
-#	cursor.execute(query.format(table_name="embeddings_e5_base_v2"), (country_values_str, user_cv_embedding))
-#	# Fetch all the rows
-#	rows = cursor.fetchall()
+def fetch_similar_jobs_not_matched(
+		user_id: int,
+		user_cv_embedding: np.ndarray,
+		cursor: cursor,
+		all_country_values:str,
+		similarity_or_distance_metric: str = "NN",
+		table_name: str ="embeddings_e5_base_v2",
+		interval_days: str = '\'15 days\''
+		) -> pd.DataFrame:
+	
+	metric_mapping = {
+		"NN": "<->",
+		"inner_product": "<#>",
+		"cosine": "<=>"
+	}
+
+	# Check if the provided value exists in the dictionary
+	if similarity_or_distance_metric in metric_mapping:
+		similarity_metric = metric_mapping[similarity_or_distance_metric]
+	else:
+		logging.error("""Invalid similarity_or_distance_metric. Choose "NN", "inner_product" or "cosine" """)
+		raise Exception("""Invalid similarity_or_distance_metric. Choose "NN", "inner_product" or "cosine" """)
+
+	country_values_str = "{" + ",".join(all_country_values).lower() + "}"
+
+	main_query = f"""
+    SELECT *
+    FROM {table_name}
+    WHERE NOT EXISTS (
+        SELECT id
+        FROM matched_jobs
+        WHERE id = {user_id}
+    ) AND timestamp >= (current_date - interval {interval_days})
+    AND substring(lower(job_info) from '#### location: (.*?) ####') = ANY(%s::text[])
+    ORDER BY embedding {similarity_metric} %s;
+	"""
+	
+	cursor.execute(main_query.format(country_values_str, user_cv_embedding))
+
+	# Fetch all the rows
+	rows = cursor.fetchall()
+
+	# Separate the columns into individual lists
+	ids = [row[0] for row in rows]
+	jobs_info = [row[1] for row in rows]
+
+	df = pd.DataFrame({'id': ids, 'job_info': jobs_info})
+
+	return df
 
 
 
-def fetch_top_n_matching_jobs(
+def fetch_similar_jobs(
 		user_cv_embedding: np.ndarray,
 		all_country_values:str,
 		cursor: cursor,
-		top_n: str,
 		similarity_or_distance_metric: str = "NN",
 		table_name: str ="embeddings_e5_base_v2",
 		interval_days: str = '\'15 days\''
