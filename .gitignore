@@ -7,7 +7,6 @@ vendor/
 profile/
 img/
 media/
-DreamedJobAI/data/data.json
-*.parquet
+data/
 tools/
 staticfiles/
