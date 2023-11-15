@@ -51,11 +51,12 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 	Returns a df containing the matching ids and respective jobs_info
 	"""
 	
-	df = fetch_top_n_matching_jobs(user_query_embedding, all_country_values, cursor, top_n="1", similarity_or_distance_metric="NN")
+	df = fetch_similar_jobs(user_query_embedding, all_country_values, cursor, similarity_or_distance_metric="NN")
 	
-	#TODO: Have a function that will output the distance and the rows.
-	# To compare outputs depending on metric.
-	# This is only for analytics, not functionality.
+
+	# TODO: For getting more jobs, haz un funcion que tambien crea una columna donde este la distancia y el nombre de la columna es la metrica usada
+	# Save it and send it to postgre, then guarda en una variable cual fue el limite de la ultima corrida.
+	# Utiliza esta variable para poder limitar las entradas de la nueva db, depsues haz un query en la tabla de embeddings, y excluye los ids de encontrados de la otra tabla.
 
 	#Initialise the range
 	start = 0
@@ -77,7 +78,7 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 	accumulator_df = pd.DataFrame()
 	
 	"""
-	Continously calls the function until:
+	Continously call the function until:
 	
 	1. We have x number of suitable jobs
 	2. There are no more jobs
@@ -111,9 +112,10 @@ async def main(user_id: int, user_country_1: str, user_country_2: str | None, us
 																	sliced_df,
 																	classify_gpt_model="gpt-4-1106-preview"
 																)
-		#TODO: Check
+		#TODO: You could save these sumarries is posgre & check 
+		# whether a summary of a job has been done, it order to 
+		# save costs.
 		df_summaries = pd.DataFrame(job_summaries)
-		#append_parquet(df_summaries, 'summaries')
 		
 		"""
 		The function does the following:
