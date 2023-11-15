@@ -51,11 +51,7 @@ async def get_additional_jobs(user_id: int, user_country_1: str, user_country_2:
 	Returns a df containing the matching ids and respective jobs_info
 	"""
 	
-	df = fetch_top_n_matching_jobs(user_query_embedding, all_country_values, cursor, top_n="1", similarity_or_distance_metric="NN")
-	
-	#TODO: Have a function that will output the distance and the rows.
-	# To compare outputs depending on metric.
-	# This is only for analytics, not functionality.
+	df = fetch_similar_jobs_not_matched(user_id, user_query_embedding, all_country_values, cursor, similarity_or_distance_metric="NN")
 
 	#Initialise the range
 	start = 0
@@ -76,9 +72,18 @@ async def get_additional_jobs(user_id: int, user_country_1: str, user_country_2:
 	# Initialize the dataframe
 	accumulator_df = pd.DataFrame()
 	
-	# Continue to call the function until we have x suitable jobs
+	"""
+	Continously call the function until:
+	
+	1. We have x number of suitable jobs
+	2. There are no more jobs
+	
+	"""
+	
 	counter = 0
-	while max_number_rows_df > limit or True:
+	while True:
+
+		logging.info(f"Loop number: {counter}.\n\nNumber of max rows:{max_number_rows_df}.\nStarting on row {start}.\nStopping on row {limit}")
 		
 		#Only get the top_n from the original df
 		sliced_df = df.iloc[start:limit]
@@ -90,55 +95,38 @@ async def get_additional_jobs(user_id: int, user_country_1: str, user_country_2:
 		2. Tracks the cost of each summary.
 		3. Constructs a message for GPT, including ids, 
 		job summaries and user CV text, while respecting a token budget.
-		4. Wrapped in a decorator that retries if timeout (15s)
+		4. Wrapped in a decorator that retries if timeout (15s).
+		5. If there are no more IDs it breaks out of the loop.
 		
 		Returns a tuple containing the constructed message and a list of job summaries
 		"""
 
-		formatted_message, job_summaries = await async_format_top_jobs_summarize(
-																user_id,
-																user_cv,
-																sliced_df,
-																classify_gpt_model="gpt-4-0613"
-															)
-
-		
+		formatted_message, job_summaries = await parse_response_async_format_top_jobs_summarize(
+																	user_id,
+																	user_cv,
+																	sliced_df,
+																	classify_gpt_model="gpt-4-1106-preview"
+																)
+		#TODO: You could save these sumarries is posgre & check 
+		# whether a summary of a job has been done, it order to 
+		# save costs.
 		df_summaries = pd.DataFrame(job_summaries)
-		#append_parquet(df_summaries, 'summaries')
 		
 		"""
-		This function asynchronously classifies job-related
-		information using the GPT-4 model.
+		The function does the following:
 		
-		Returns the GPT-4 model's generated response for the given input.
+		1. Tries to call an asynchronous function that classifies job suitability by GPT-4 models.
+		2. Function is wrapped. So, if time > 70s or exception it will change of model.
+		3. The gpt_response is processed by converting it into a Python object either
+		through JSON parsing or eval if it is not a JSON object.
+		4. If there is an exception, there are 2 retries
+		
+		Returns a df containing the job matches
 		"""
-
-		#TODO: Wrapper that will change the model if time is > 70s
-		gpt4_response = await async_classify_jobs_gpt_4(
-													user_cv,
-													formatted_message,
-													classify_gpt_model = "gpt-4-0613",
-													log_gpt_messages= True
-												)
-		logging.info(gpt4_response)
 		
-		#Whether the output is a json object
-		json_object = whether_json_object(gpt4_response)
-
-		"""
-		If the output is not a json object.
-
-		Try with all the different models.
-		"""
-
-		if json_object:
-			gpt4_response_python_object = json.loads(gpt4_response)
-			df_gpt4_response = list_or_dict_python_object(gpt4_response_python_object)
-		else:
-			df_gpt4_response = await retrying_async_classify_jobs_gpt_4(async_classify_jobs_gpt_4, user_cv, formatted_message, log_gpt_messages=True)
+		df_gpt4_response = await parse_response_async_classify_jobs_gpt_4(user_cv, formatted_message, log_gpt_messages=True)
 		
-		logging.info(f"""Results of iteration number {counter}:\n\n{df_gpt4_response}""")		
-		
+		#ACCUMULATE those jobs, 
 		accumulator_df = pd.concat([accumulator_df, df_gpt4_response], ignore_index=True)
 		
 		# Filter the dataframe to only include the suitable jobs
@@ -156,7 +144,15 @@ async def get_additional_jobs(user_id: int, user_country_1: str, user_country_2:
 		start += limit_interval
 		limit += limit_interval
 
-		logging.info(f"Increasing values for next iteration.\n\nLoop number {counter}\nStarting on row {start}.\nStopping on row {limit}")
+		# Break the loop if there are no more jobs
+		if limit > max_number_rows_df:
+			logging.warning(f"No more jobs.\n\nNext iteration would be range({start},{limit}) > the total number of jobs={max_number_rows_df}\n\nBreaking out of the loop.")
+			break
+
+		logging.info(f"Not enough jobs were found.\nNext loop:{counter}.\n\nStarting on row {start}.\nStopping on row {limit}")
+	
+	if df_most_suitable.empty:
+		logging.error("NO MATCHING JOBS WERE FOUND. DF IS EMPTY.")
 	
 	ids_most_suitable = ids_df_most_suitable(df=df_most_suitable)
 
