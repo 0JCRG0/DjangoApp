@@ -11,11 +11,6 @@ from utils.main_utils import *
 
 load_dotenv('.env')
 openai.api_key = os.getenv("OPENAI_API_KEY")
-user = os.getenv("user")
-password = os.getenv("password")
-host = os.getenv("host")
-port = os.getenv("port")
-database = os.getenv("database")
 LOCAL_POSTGRE_URL = os.environ.get("LOCAL_POSTGRE_URL")
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -44,9 +39,10 @@ async def get_additional_jobs(user_id: int, user_country_1: str, user_country_2:
 	"""
 	This function performs three actions:
 
-	1. Filters user's country
-	2. Filters to only query rows < 2 weeks from current date
-	3. Performs similarity search depending on metric
+	1. Only selects jobs that were not chosen previously
+	2. Filters jobs based on user's country
+	3. Filters jobs that are only < 2 weeks from current date
+	4. Performs similarity search depending on metric
 
 	Returns a df containing the matching ids and respective jobs_info
 	"""
